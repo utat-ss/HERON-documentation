@@ -1,6 +1,6 @@
 # 3. Our Toolchain
 
-Developing code for a real-time embedded system like HERON Mk II as part of a large, interdisciplinary team of programmers is no easy task, and we have collected a set of tools to make the process as effective as possible. To make the software we develop as reliable and sustainable as possible, it is crucial to properly set up, use, and understand the various steps involved.
+Developing code for a real-time embedded system like HERON Mk II as part of a large, interdisciplinary team of programmers is no easy task, and we have collected a set of tools to make the process as effective as possible. To make the software we develop reliable and sustainable, it is crucial to properly set up, use, and understand the tools described in this article.
 
 ### 3.1 Background
 
@@ -46,22 +46,22 @@ Any library can be used in your code as long as it is accessible to the compiler
 
 ```
 // standard C libraries
-#include  	<stdbool.h>
-#include  	<stdint.h>
+#include      <stdbool.h>
+#include      <stdint.h>
 
 // avr-libc includes
-#include 	<avr/io.h>
-#include 	<util/delay.h>
+#include     <avr/io.h>
+#include     <util/delay.h>
 
 // lib-common includes
-#include 	<spi/spi.h>
-#include 	<uart/uart.h>
-#include 	<uart/log.h>
-#include 	<can/can.h>
+#include     <spi/spi.h>
+#include     <uart/uart.h>
+#include     <uart/log.h>
+#include     <can/can.h>
 
 // project file includes
-#include 	"rtc.h"
-#include 	"mem.h"
+#include     "rtc.h"
+#include     "mem.h"
 ```
 
 #### 3.2.2 Making with avr-gcc
