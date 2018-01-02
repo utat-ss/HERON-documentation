@@ -1,6 +1,6 @@
 # 3. Our Toolchain
 
-Developing code for a real-time embedded system like HERON Mk II as part of a large, interdisciplinary team of programmers is no easy task, and we have collected a set of tools to make the process as effective as possible. To make the software we develop as reliable and sustainable as possible, it is crucial to properly set up, use, and understand the various steps involved. 
+Developing code for a real-time embedded system like HERON Mk II as part of a large, interdisciplinary team of programmers is no easy task, and we have collected a set of tools to make the process as effective as possible. To make the software we develop as reliable and sustainable as possible, it is crucial to properly set up, use, and understand the various steps involved.
 
 ### 3.1 Background
 
@@ -40,7 +40,11 @@ There are three sources of libraries that we use:
 2. [**avr-libc**](http://www.nongnu.org/avr-libc/user-manual/overview.html): a library created specifically for writing C programs for AVR microcontrollers. It lets you do things that are specific to the microcontroler you are using. For example, it can let you read/write to the I/O pins on your microcontroller; it can allow you to count a certain number of milliseconds to have accurate delays; or it can provide access to certain power-saving functions.
 3. [**lib-common**](https://github.com/HeronmkII/lib-common): our constantly-evolving, home-made library just for HERON Mk II. Here we have functions that are used in all of the different subsystems on the satellite, protocols that allow the subsystems to communicate, and drivers for peripherals that are used on the satellite.
 
-Since libraries typically make up most of a project, it is not convenient to store them as ".c" and ".h" files with the rest of your code. If you were to do that, they would need to be recompiled every time you make a small change in your main code, which would take ages. 
+Since libraries typically make up most of a project, it is not convenient to store them as ".c" and ".h" files with the rest of your code. If you were to do that, they would need to be recompiled every time you make a small change in your main code, which would take ages. Instead, they are pre-compiled and stored in ".a" files, which you can see in lib-common/lib/ in the link above. This is why later on, once you have completed setting up the toolchain, you will not be able to compile one of the subsystem projects until after you have compiled the contents of lib-common.
+
+Any library can be used in your code, however it needs to be included properly. The snippet below shows an example of how to include various libraries and other project files in your main code. Note how the angle brackets are used for the libraries, and double quotes are used for the project files - [can you guess why](https://stackoverflow.com/questions/3162030/difference-between-angle-bracket-and-double-quotes-while-including-heade)?
+
+
 
 #### 3.2.2 Making with avr-gcc
 
