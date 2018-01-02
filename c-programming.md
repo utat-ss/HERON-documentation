@@ -1,16 +1,20 @@
-# Embedded Programming
+# 2. Embedded Systems
 
+## 2.1 Levels of Abstraction
 
+## 2.2 Microcontrollers and Processors
 
-## Levels of Abstraction
+## 2.3 The Physical Layer
 
+## 2.4 C on Microcontrollers
 
+### 2.4.1 Bitwise Operations
 
-## Hardware
+### 2.4.2 Registers 
 
+### 2.4.3 Memory and Data Management
 
-
-## Software
+### 2.4.4 Interrupts
 
 
 
