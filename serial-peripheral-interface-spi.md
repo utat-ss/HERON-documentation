@@ -6,7 +6,7 @@
 
 ## 4.3 Inter-Integrated Circuit \(I2C\)
 
-## 4.4 Controller Area Network
+## 4.4 Controller Area Network \(CAN\)
 
 
 

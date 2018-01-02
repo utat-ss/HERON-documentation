@@ -10,7 +10,7 @@
 
 ### 2.4.1 Bitwise Operations
 
-### 2.4.2 Registers 
+### 2.4.2 Registers
 
 ### 2.4.3 Memory and Data Management
 
