@@ -42,9 +42,27 @@ There are three sources of libraries that we use:
 
 Since libraries typically make up most of a project, it is not convenient to store them as ".c" and ".h" files with the rest of your code. If you were to do that, they would need to be recompiled every time you make a small change in your main code, which would take ages. Instead, they are pre-compiled and stored in ".a" files, which you can see in lib-common/lib/ in the link above. This is why later on, once you have completed setting up the toolchain, you will not be able to compile one of the subsystem projects until after you have compiled the contents of lib-common.
 
-Any library can be used in your code, however it needs to be included properly. The snippet below shows an example of how to include various libraries and other project files in your main code. Note how the angle brackets are used for the libraries, and double quotes are used for the project files - [can you guess why](https://stackoverflow.com/questions/3162030/difference-between-angle-bracket-and-double-quotes-while-including-heade)?
+Any library can be used in your code as long as it is accessible to the compiler, however it needs to be included properly. The snippet below shows an example of how to include various libraries and other project files in your main code \(taken from obc.h in the [On-Board Computer code](/github.com/HeronMkII/obc)\). Note how the angle brackets are used for the libraries, and double quotes are used for the project files - [can you guess why](https://stackoverflow.com/questions/3162030/difference-between-angle-bracket-and-double-quotes-while-including-heade)?
 
+```
+// standard C libraries
+#include  	<stdbool.h>
+#include  	<stdint.h>
 
+// avr-libc includes
+#include 	<avr/io.h>
+#include 	<util/delay.h>
+
+// lib-common includes
+#include 	<spi/spi.h>
+#include 	<uart/uart.h>
+#include 	<uart/log.h>
+#include 	<can/can.h>
+
+// project file includes
+#include 	"rtc.h"
+#include 	"mem.h"
+```
 
 #### 3.2.2 Making with avr-gcc
 
