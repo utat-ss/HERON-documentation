@@ -8,7 +8,7 @@ The limited number of CAN Message Objects that can be created on the ATmega32M1 
 * A message cannot have multiple recipients, but multiple senders can send to the same MOb
 * No two MObs on the bus can have the same ID
 
-The MOb names are with respect to the OBC \(e.g. STATUS{% raw %}\\_{% endraw %}TX is transmitted from the OBC, STATUS
+The MOb names are with respect to the OBC \(e.g. STATUS{% raw %}\_{% endraw %}TX is transmitted from the OBC, STATUS
 
 | \# | Name |  |  |  |  |  |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
