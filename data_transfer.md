@@ -100,7 +100,7 @@ typedef struct {
 #define default_tx_ctrl { 0, 0, 0, 0, 0, 0 }
 ```
 
-The most important exception to the default control configuration is when setting up auto-reply. For an AUTO MOb, `rtr` and `rplv` need to be set to 1. When setting up a TX MOb to send remote frames for use with AUTO MObs, only `rtr` needs to be set. Refer to `can_print_auto.c` and `can_print_auto_remote.c` in `lib-common/examples` for more detail.
+The most important exception to the default control configuration is when setting up auto-reply. For an AUTO MOb, `rtr` and `rplv` need to be set to 1. When setting up a TX MOb to send remote frames for use with AUTO MObs, only `rtr` needs to be set. Refer to `can_print_auto.c` and `can_print_auto_remote.c` in `lib-common/examples/` for more detail.
 
 ### 4.2.4 dlc
 
