@@ -56,7 +56,7 @@ Priority is given is given to the MOb with the smallest `mob_num` when choosing 
 
 ### 4.2.2 id_tag and id_mask
 
-Each MOb on the **entire CAN bus** should be given a unique `id_tag`. ID tags are used by RX and AUTO MObs when masking incoming transmissions via `id_mask`. Both `id_tag` and `id_mask` are _eleven_ bits long and should be defined as single-element structs during initialization:
+Each MOb on the _entire CAN bus_ should be given a _unique_ `id_tag`. ID tags are used by RX and AUTO MObs when masking incoming transmissions via `id_mask`. Both `id_tag` and `id_mask` are _eleven_ bits long and should be defined as single-element structs during initialization:
 
 ``` C
 // MOb A
@@ -75,9 +75,9 @@ Each MOb on the **entire CAN bus** should be given a unique `id_tag`. ID tags ar
 
 From the above example, notice that each MOb has been given a unique ID and that the RX MOb has been given the mask `0xFF01`. Assume that the TX MObs are initialized on Board A and the RX MOb on Board B.
 
-Masks work such that if `id_mask` has a 1 in a certain bit position, then the incoming `id_tag` and the `id_tag` of the RX MOb must be _equal_ in that bit position. If `id_mask` has a 0 in that position, then the mask doesn't care.
+Masks work such that if `id_mask` has a 1 in a certain bit position, then the incoming `id_tag` and the `id_tag` of the RX MOb must be _equal_ in that bit position. If `id_mask` has a 0 in that position, then the mask treats that position as a "don't care".
 
-In this example, the RX MOb will ignore transmissions from MOb B. The RX mask cares about equality in bits 10-8 and bit 1. All the ID tags have 0's in bits 10-8, but since the RX MOb has a 1 in bit 0 and MOb B has a 0, the RX MOb will mask transmissions from MOb B. Meanwhile, both the RX MOb and MOb A share a 1 in bit 0 and the equality holds.
+In this example, the RX MOb will ignore transmissions from MOb B. The RX mask cares about equality in bits 10-8 and bit 1. All the ID tags have 0's in bits 10-8, but since the RX MOb has a 1 in bit 0 and MOb B has a 0, the RX MOb will mask transmissions from MOb B. Meanwhile, both the RX MOb and MOb A share a 1 in bit 0, so the RX MOb will accept incoming transmissions from MOb A.
 
 ### 4.2.3 ctrl and mob_type
 
