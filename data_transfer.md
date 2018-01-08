@@ -154,7 +154,7 @@ The MOb names are with respect to the OBC \(e.g. STATUS{% raw %}\_{% endraw %}TX
 | 1 | ```STATUS_Rx_MOb``` | Rx | Tx | Tx | 
 | 2 | ```CMD_Rx_MOb``` | Rx | Tx | Tx |  
 | 3 | ```PAY_CMD_Tx_MOb``` | Tx | N/A | Rx |  
-| 4 | ```EPS_CMD_Rx_MOb``` | Tx | Rx | N/A |  
+| 4 | ```EPS_CMD_Tx_MOb``` | Tx | Rx | N/A |  
 | 5 | ```DATA_Rx_MOb```| Rx | Tx | Tx |  
 
 The Message ID of every message is structured as the following:
