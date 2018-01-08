@@ -19,5 +19,7 @@ The MOb names are with respect to the OBC \(e.g. STATUS{% raw %}\_{% endraw %}TX
 | 4 | EPS\_CMD\_Rx\_MOb | Tx | Tx | N/A |  
 | 5 | DATA\_Rx\_MOb | Rx | Tx | Tx |  
 
+The Message ID of every message is structured as the following:
+
 
 
