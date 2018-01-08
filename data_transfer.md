@@ -148,7 +148,7 @@ The limited number of CAN Message Objects that can be created on the ATmega32M1 
 
 The MOb names are with respect to the OBC \(e.g. STATUS{% raw %}\_{% endraw %}TX is transmitted from the OBC, STATUS\_RX is received on the OBC).
 
-| \# | Name | OBC | EPS | PAY |
+| \# | Name | OBC (00) | EPS (10) | PAY (01) |
 | :--- | :--- | :--- | :--- | :--- | 
 | 0 | ```STATUS_Tx_MOb``` | Tx | Rx | Rx | 
 | 1 | ```STATUS_Rx_MOb``` | Rx | Tx | Tx | 
