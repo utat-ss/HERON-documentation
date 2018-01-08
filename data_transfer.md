@@ -104,13 +104,13 @@ The most important exception to the default control configuration is when settin
 
 ### 4.2.4 dlc
 
-The `dlc` variable stores the number of bytes to be sent/received, and can be up to 8 bytes long. DLC only needs to be defined upon initialization for RX MObs (and possibly TX MObs sending remote frames for auto-reply, but that's a Sidd question). If the incoming message does not have the expected DLC an error will be thrown. <!--technically a warning, will test this-->
+The `dlc` variable stores the number of bytes to be sent/received, and can be up to 8 bytes long. DLC needs to be defined upon initialization for RX MObs <!--(and possibly TX MObs sending remote frames for auto-reply, but that's a Sidd question)-->. If the incoming message does not have the expected DLC an error will be thrown. <!--technically a warning, will test this-->
 
-When the MOb is set up for TX, `dlc` needs to be set to the length of the data (in bytes) to be sent. This is assigned in the TX callback function pointed to by `tx_data_cb`, which is described in the following section.
+When the MOb is initialized for TX, `dlc` needs to be set to the length of the data (in bytes) to be transmitted. This is assigned in the TX callback function pointed to by `tx_data_cb`, which is described in the following section.
 
 ### 4.2.5 rx_cb, tx_data_cb and data[8]
 
-The `rx_cb` and `tx_data_cb` variables store function pointers to the RX and TX callback functions for a specific MOb. Different callback functions can be defined for each individual MOb. These functions are called from the function handling the interrupt in `can.c`, and passed a pointer to the array of data to be sent/received.
+The `rx_cb` and `tx_data_cb` variables store function pointers to the RX and TX callback functions for a specific MOb. Different callback functions can be defined for each individual MOb. These functions are called from the function handling the interrupt in `can.c` and passed a pointer to the array of data to be sent/received.
 
 These functions are called when the respective The functions should be defined in the file which includes CAN, and the two variables can be set simply by passing them the name of the function.
 ``` C
