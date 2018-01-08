@@ -81,7 +81,7 @@ In this example, the RX MOb will ignore transmissions from MOb B. The RX mask ca
 
 ### 4.2.3 ctrl and mob_type
 
-The `mob_type` variable defines the type of MOb and should be one of `TX_MOB`, `RX_MOB` or `AUTO_MOB`. 'The `ctrl` variable is a six-element struct defined in `can.h` which holds CAN control parameters. Default TX and RX control configurations are also defined in `can.h` (and work pretty well for the majority of cases).
+The `mob_type` variable defines the type of MOb and should be one of `TX_MOB`, `RX_MOB` or `AUTO_MOB`, depending on the type of MOb you would like to define. 'The `ctrl` variable is a six-element struct defined in `can.h` which holds CAN control parameters. Default TX and RX control configurations are also defined in `can.h` (and work pretty well for the majority of cases).
 
 ``` C
 // struct to hold RTR, IDE, IDE Mask, RTR Mask and RBnTag bits;
@@ -100,7 +100,7 @@ typedef struct {
 #define default_tx_ctrl { 0, 0, 0, 0, 0, 0 }
 ```
 
-The most important exception to the default control configuration is when setting up auto-reply. For an AUTO MOb, `rtr` and `rplv` need to be set to 1. When setting up a TX MOb to send remote frames for use with AUTO MObs, only `rtr` needs to be set. Refer to `can_print_auto.c` and `can_print_auto_remote.c` in lib-common/examples for examples of this.
+The most important exception to the default control configuration is when setting up auto-reply. For an AUTO MOb, `rtr` and `rplv` need to be set to 1. When setting up a TX MOb to send remote frames for use with AUTO MObs, only `rtr` needs to be set. Refer to `can_print_auto.c` and `can_print_auto_remote.c` in lib-common/examples for more detail.
 
 ### 4.2.4 dlc
 
