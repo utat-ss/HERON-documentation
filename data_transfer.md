@@ -110,9 +110,9 @@ When the MOb is initialized for TX, `dlc` needs to be set to the length of the d
 
 ### 4.2.5 rx_cb, tx_data_cb and data[8]
 
-The `rx_cb` and `tx_data_cb` variables store function pointers to the RX and TX callback functions for a specific MOb. Different callback functions can be defined for each individual MOb. These functions are called from the function handling the interrupt in `can.c` and passed a pointer to the array of data to be sent or received. 
+The `rx_cb` and `tx_data_cb` variables store function pointers to the RX and TX callback functions for a specific MOb. Different callback functions can be defined for each individual MOb. These functions are called from their respective interrupt-handling functions in `can.c`. They are passed a pointer to the array of data to be sent/received, and either the length of the array (to the RX callback) or a pointer to the length of the array (to be set in the TX callback).
 
-These functions are called when the respective The functions should be defined in the file which includes CAN, and the two variables can be set simply by passing them the name of the function.
+`tx_data_cb` is called upon initialization and after a transmission has been sent. After a transmission is sent, it generates a `TXOK` interrupt and calls `tx_data_cb` from `load_data` to get fresh data. `rx_cb` is called from `handle_rx_interrupt()` after once a transmission has been sucessfully recieved, generating a `RXOK` interrupt. The functions should be defined in the file which includes CAN, and the two variables can be set simply by passing them the name of the function.
 ``` C
 void rx_callback(uint8_t* data, uint8_t len) {
     print("TX received!\n");
@@ -128,7 +128,6 @@ void tx_callback(uint8_t* data, uint8_t* len) {
     }
 }
 ```
-**
 
 The `rx_cb` function takes two inputs, a pointer to the array of incoming data and the length of the array. `tx_cb` takes a pointer to the array of data to be sent, and the length of the array should be passed
 
