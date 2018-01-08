@@ -153,15 +153,15 @@ The MOb names are with respect to the OBC \(e.g. STATUS{% raw %}\_{% endraw %}TX
 | 0 | ```STATUS_Tx_MOb``` | Tx | Rx | Rx | 
 | 1 | ```STATUS_Rx_MOb``` | Rx | Tx | Tx | 
 | 2 | ```CMD_Rx_MOb``` | Rx | Tx | Tx |  
-| 3 | ```PAY_CMD_Tx_MOb``` | Tx | N/A | Tx |  
-| 4 | ```EPS_CMD_Rx_MOb``` | Tx | Tx | N/A |  
+| 3 | ```PAY_CMD_Tx_MOb``` | Tx | N/A | Rx |  
+| 4 | ```EPS_CMD_Rx_MOb``` | Tx | Rx | N/A |  
 | 5 | ```DATA_Rx_MOb```| Rx | Tx | Tx |  
 
 The Message ID of every message is structured as the following:
 
 | Bit | 10-9 | 8-3 | 2-1 | 0 |
 | :--- | :--- | :--- | :--- | :--- 
-| | Receiver ID | ```_BV(MOb #)``` | Sender ID | RX/T̅̅X |
+| | Receiver ID | ```_BV(MOb #)``` | Sender ID | Rx/T̅̅x |
 
 The Receiver and Sender ID are 00 for OBC, 01 for PAY, and 10 for EPS.
 
