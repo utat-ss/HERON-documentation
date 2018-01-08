@@ -129,8 +129,6 @@ void tx_callback(uint8_t* data, uint8_t* len) {
 }
 ```
 
-The `rx_cb` function takes two inputs, a pointer to the array of incoming data and the length of the array. `tx_cb` takes a pointer to the array of data to be sent, and the length of the array should be passed
-
 
 
 ## 4.3 Initializing CAN
