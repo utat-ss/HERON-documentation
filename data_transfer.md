@@ -133,7 +133,7 @@ void tx_callback(uint8_t* data, uint8_t* len) {
 
 ### 4.4.3 Initializing CAN
 
-## 4.4.4 Sending TX and RX
+### 4.4.4 Sending TX and RX
 
 ### 4.4.5 AUTO MObs
 
