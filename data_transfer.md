@@ -48,17 +48,11 @@ Before sending messages over CAN, the message objects (MObs) need to be initiali
 
 ### 4.2.1 mob_num
 
-Each 32M1 has space for **six** MObs which can be active at any given time, denoted by `mob_num`. In the 32M1 datasheet, you might see these referred to as 'pages', although `mob_num` and the page number are functionally the same. Before editing MOb variables, the mob needs to be selected. <!-- by shifting `mob_num` into the `CANPAGE` register, which is performed by `select_mob()` in `can.c`.
-``` C
-static inline void select_mob(uint8_t mob_num) {
-    CANPAGE = mob_num << 4;
-}
-``` -->
-Further reads or writes to MOb-related registers will only affect the selected MOb. <!--The CAN library already handles MOb selection where needed and `select_mob()` shouldn't need to be called in an external function. However, it's good to know that it's doing this in the background for debugging.-->
+Each 32M1 has space for **six** MObs which can be active at any given time, denoted by `mob_num`. In the 32M1 datasheet, you might see these referred to as 'pages', although `mob_num` and the page number are functionally the same. Before editing MOb variables, the mob needs to be selected, which is handled automatically by the CAN library. _Further reads or writes to MOb-related registers will only affect the selected MOb_. 
 
-In addition, priority is given is given to the MOb with the smallest `mob_num` when triggering interrupts. For example, if two TX MObs are initialized and resumed on Board A with MOb numbers 0 and 1, MOb 1 will not trigger an interrupt until MOb 0 is paused. Or, if a TX from Board A can be handled by two RX MObs on Board B, then the RX MOb with the lower `mob_num` will trigger the RX interrupt.
+Priority is given is given to the MOb with the smallest `mob_num` when choosing which MOb to send/receive. For example, if two TX MObs are initialized and resumed on Board A, then MOb 0 will send first. Likewise, if a TX from Board A can be handled by two RX MObs on Board B, then the RX MOb with the lower `mob_num` will trigger the RX interrupt.
 
-<!-- Check with Sidd that the above TX example is correct, or whether MOb 1 will send.-->
+<!-- Check with Sidd that the above TX example is correct, and whether MOb 1 will send.-->
 
 ### 4.2.2 id_tag and id_mask
 
