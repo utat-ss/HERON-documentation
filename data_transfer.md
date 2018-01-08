@@ -110,7 +110,7 @@ When the MOb is initialized for TX, `dlc` needs to be set to the length of the d
 
 ### 4.2.5 rx_cb, tx_data_cb and data[8]
 
-The `rx_cb` and `tx_data_cb` variables store function pointers to the RX and TX callback functions for a specific MOb. Different callback functions can be defined for each individual MOb. These functions are called from the function handling the interrupt in `can.c` and passed a pointer to the array of data to be sent/received.
+The `rx_cb` and `tx_data_cb` variables store function pointers to the RX and TX callback functions for a specific MOb. Different callback functions can be defined for each individual MOb. These functions are called from the function handling the interrupt in `can.c` and passed a pointer to the array of data to be sent or received. 
 
 These functions are called when the respective The functions should be defined in the file which includes CAN, and the two variables can be set simply by passing them the name of the function.
 ``` C
