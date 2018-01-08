@@ -161,7 +161,7 @@ The Message ID of every message is structured as the following:
 
 | Bit | 10-9 | 8-3 | 2-1 | 0 |
 | :--- | :--- | :--- | :--- | :--- 
-| | Receiver ID | ```_BV(MOb #)``` | Sender ID | RX/T̅̅x |
+| | Receiver ID | ```_BV(MOb #)``` | Sender ID | RX/T̅̅X |
 
 The Receiver and Sender ID are 00 for OBC, 01 for PAY, and 10 for EPS.
 
