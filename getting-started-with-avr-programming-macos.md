@@ -48,7 +48,15 @@ This should print something like `/usr/local/bin/avr-gcc`.
 
 ## The Make Utility
 
-Finally, we need to install the `make` utility. This helps compile programs consistently by automating the compilation process. Make expects compilation instructions to be stored in a file called a `makefile`. These details of how make works are not relevant to  Running `make` in a directory, say `~/project/` attempts to execute the commands  
+Finally, we need to install the `make` utility. This helps compile programs consistently by automating the compilation process. Make expects compilation instructions to be stored in a file called a `makefile`. These details of how `make` works are not relevant at the moment.
 
+To install `make`, run
 
+```
+$ brew install make
+```
+
+## Conclusion
+
+You should now be ready to contribute to the UTAT AVR codebase. We look forward to reading your code!
 
