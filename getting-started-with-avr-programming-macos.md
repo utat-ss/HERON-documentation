@@ -7,9 +7,11 @@ The following tutorial will help you get started with AVR programming on macOS. 
 To begin, we're going to install Homebrew. Homebrew is a tool that allows you to easily install other programs. It takes care of many details, like updating dependencies and managing versions, so you don't have to.
 
 To install Homebrew, run
+
 ```
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
+
 ## The AVR toolchain
 
 To begin, we must install the AVR toolchain. The AVR toolchain contains variants
