@@ -17,16 +17,7 @@ This provides a new tool, `brew`. To make sure the installation was successful, 
  ```
  $ brew help
  ``` 
-
-## The AVR toolchain
-
-To begin, we must install the AVR toolchain. The AVR toolchain contains variants
-
-the AVR toolchain, the system we use to compile C programs for AVR microcontrollers, and load those programs into the AVR microcontroller's flash memory.
-
-There are three key parts of this system.
-
-## 
-
+ 
+ 
 
 
