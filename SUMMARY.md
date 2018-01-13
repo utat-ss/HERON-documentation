@@ -10,4 +10,5 @@
 * [8. Style Guide](style_guide.md)
 * [9. lib-common ](can_mob_allocation.md)
 * [10. Getting Started with AVR Programming - macOS](getting-started-with-avr-programming-macos.md)
+* 11. Getting Started with AVR Programming on Windows
 
