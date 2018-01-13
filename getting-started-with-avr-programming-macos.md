@@ -8,9 +8,15 @@ To begin, we're going to install Homebrew. Homebrew is a tool that allows you to
 
 To install Homebrew, run
 
-```
-$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-```
+ ```
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/mas ter/install)"
+ ```
+
+This provides a new tool, `brew`. To make sure the installation was successful, run
+
+ ```
+ $ brew help
+ ``` 
 
 ## The AVR toolchain
 
