@@ -1,14 +1,13 @@
 # Summary
 
-* [1. Introduction](README.md)
-* [2. Embedded Programming](embedded_programming.md)
-* [3. Our Toolchain](our_toolchain.md)
-* [4. Data Transfer](data_transfer.md)
-* [5. Using Peripherals](using_peripherals.md)
-* [6. GitHub](github.md)
-* [7. Testing](testing.md)
-* [8. Style Guide](style_guide.md)
-* [9. lib-common ](can_mob_allocation.md)
-* [10. Getting Started with AVR Programming - macOS](getting-started-with-avr-programming-macos.md)
-* [11. Getting Started with AVR Programming - Windows](blah.md)
+### Getting Started
 
+* [Getting Started](getting-started/INTRO.md)
+    * [Git and Github](getting-started/git-and-github.md)
+    * [AVR Toolchain - macOS](getting-started/avr-toolchain-mac.md)
+    * [AVR Toolchain - Windows](getting-started/avr-toolchain-win.md)
+* [Style Guide](style-guide/INTRO.md)
+* [AVR Embedded Programming](embedded-programming/INTRO.md)
+* [SPI](spi/INTRO.md)
+* [CAN](can/INTRO.md)
+* [UART](uart/INTRO.md)
