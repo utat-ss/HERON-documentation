@@ -11,8 +11,6 @@
 * [The ATMega32M1 Microcontroller](getting-started/atmega32m1.md)
 * [Hello World for the ATmega32m1](getting-started/hello-world.md)
 * [Git and Github](getting-started/git-and-github.md)
-    * [Github Workflow](getting-started/workflow.md)
-    * [Git Command Cheat Sheet](getting-started/git-cheat-sheet.md)
 
 ### Style Guide
 
