@@ -4,13 +4,15 @@
 
 ### Getting Started
 
-* [The AVR-GCC Toolchain](getting-started/avr-gcc.md)
-    * [Installing AVR-GCC on macOS](getting-started/avr-gcc-install-mac.md)
-    * [Installing AVR-GCC on Windows](getting-started/avr-gcc-install-win.md)
+* [Real-Time Embedded Systems](getting-started/rtsys.md)
+* [The AVR Toolchain](getting-started/avr-toolchain.md)
+    * [Installing the AVR Toolchain on macOS](getting-started/avr-toolchain-install-mac.md)
+    * [Installing the AVR Toolchain on Windows](getting-started/avr-toolchain-install-win.md)
+* [The ATMega32M1 Microcontroller](getting-started/atmega32m1.md)
+* [Hello World for the ATmega32m1](getting-started/hello-world.md)
 * [Git and Github](getting-started/git-and-github.md)
     * [Github Workflow](getting-started/workflow.md)
     * [Git Command Cheat Sheet](getting-started/git-cheat-sheet.md)
-* [Hello World for the ATmega32m1](getting-started/hello-world.md)
 
 ### Style Guide
 

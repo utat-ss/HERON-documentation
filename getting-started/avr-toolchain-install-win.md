@@ -1,8 +1,8 @@
-# AVR Programming on Windows INCOMPLETE
+# Installing the AVR Toolchain on Windows
 
 The following tutorial will help you get started with AVR programming on
 Windows. After finishing this tutorial, you'll be ready to compile and upload
-programs onto AVR microcontrolers.
+programs onto AVR microcontrollers.
 
 ## WinAVR
 

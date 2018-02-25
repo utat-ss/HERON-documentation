@@ -1,18 +1,21 @@
-# 1. Introduction
+# Introduction
 
-Welcome to the HERON Mk II Gitbook. This is our attempt to create an
-ever-growing collection of knowledge, documentation and guides that we have
-developed over the past few years while developing software for the various
-systems on board our spacecraft.
+Welcome to the Heron Mk II documentation page! We have created with document
+with the following goals in mind:
 
-Eventually, this book will contain most of what you need to know to start
-developing code for a _real-time embedded system_. In addition to that, it will
-contain all of the guides to get you set up with our _toolchain_ and
-_libraries_ you need to properly start developing code for our custom systems.
+* To enable new UTAT members to quickly get up to speed and begin contributing
+  to the Heron Mk II codebase.
 
-This repository is primarily managed through
-[GitBooks](https://www.gitbook.com/@utat-space-systems), although normal git
-functions can be used to apply changes made to articles in the
-[Markdown](https://toolchain.gitbook.com/syntax/markdown.html) formatting
-language.
+* To document the functionality of the various libraries used to program
+  subsystem microcontrollers.
 
+* To act as a comprehensive source of information regarding systems programming
+  on the ATMega32m1
+
+We hope this document succeeds in these goals, and we look forward to your
+contributions.
+
+To suggest improvements or report bugs, please file a [bug
+report](https://github.com/HeronMkII/documentation/issues) on Github.
+
+If you have any additional questions, please contact Siddharth, Ali or Dylan.
