@@ -1,7 +1,9 @@
 {
     "title": "Heron Mk II Documentation",
     "plugins": [
-        "theme-api"
+        "theme-api",
+        "-sharing",
+        "-fontsettings"
     ],
     "structure" : {
         "readme" : "INTRO.md"
