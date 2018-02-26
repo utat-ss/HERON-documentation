@@ -1,6 +1,10 @@
 {
     "title": "Heron Mk II Documentation",
-    "plugins": [ "theme-bandwidth" ],
+    "plugins": [
+        "theme-faq",
+        "-fontsettings",
+        "-sharing"
+    ],
     "structure" : {
         "readme" : "INTRO.md"
     }
