@@ -158,3 +158,6 @@ Atlassian](https://www.atlassian.com/git/tutorials/atlassian-git-cheatsheet).
 To learn more about Git, or read about the many features we have not mentioned,
 run `git help`, `git help <command>` or read the documentation
 [online](https://git-scm.com/).
+
+To learn see a glossary of Git terminology, see the official
+[glossary](https://git-scm.com/docs/gitglossary).
