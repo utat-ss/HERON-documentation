@@ -4,7 +4,7 @@ This document is meant to provide a preliminary overview of topics which we feel
 
 # C Programming
 
-In this document, we will provide a brief overview of the basics of the C programming language, putting emphasis on the most relevant areas. I will assume some previous programming experience and for certain topics universal to all programming language I will only provide an example of the C syntax with a brief explanation. In addition to this document I would recommend “The C Programming Language” by Brian Kernighan and Dennis Ritchie.^[You can find a pdf of this book on the Google Drive in /Instrumentation/Literature] This book describes all the features of C in great detail and is suitable for all levels of programming experience.
+In this document, we will provide a brief overview of the basics of the C programming language, putting emphasis on the most relevant areas. I will assume some previous programming experience and for certain topics universal to all programming language I will only provide an example of the C syntax with a brief explanation. In addition to this document I would recommend **“The C Programming Language”** by Brian Kernighan and Dennis Ritchie. **You can find a pdf of this book on the Google Drive in /Instrumentation/Literature.** This book describes all the features of C in great detail and is suitable for all levels of programming experience.
 
 
 ## So, what makes C different than other programming languages?
@@ -15,9 +15,9 @@ Now, let’s get into C.
 ## Variables in C
 C includes the following most common types: char, int, long, double and float. A char is always a byte but the size of the other variables is machine dependent. Due to the confusion caused by variable sizes on different machines, in our software we use the types defined in stdint.h. These include the following unsigned types: uint8_t, uint16_t, uint32_t and uint64_t and the following signed types int8_t, int16_t, int32_t and int64_t, where the numbers are the number of bits the variable holds. These types allow us to have better control over the sizes of our variables. So don’t use a 64 bit variable in a for loop that loops 10 times.
 
-Here you can see how to initialize and set variables using binary, hex and decimal. The “//” before text is how you make a comment in C.
+Here you can see how to initialize and set variables using binary, hex and decimal. The ``//`` before text is how you make a comment in C.
 
-![](./figures/fig1.jpg)\
+![](./figures/fig1.jpg)
 
 You may have noticed no mention of strings or booleans, which are common types in several other languages. While a char represents a byte, it also can represent a character, hence the name char. So a string of characters is just an array of chars with a terminating character (```\0```) as the last element. ```char[] s = “Hello World”``` is a away to initialize a char array.
 
@@ -46,11 +46,11 @@ There are also the following logical operators:
 
 There are also the following short forms for incrementing or decrementing numbers.
 
-![](./figures/fig2.jpg)\
+![](./figures/fig2.jpg)
 
 In addition to ```a++``` and ```a--``` there is ```++a``` and ```--a``` which are indistinguishable without a context.
 
-![](./figures/fig3.jpg)\
+![](./figures/fig3.jpg)
 
 In *example 1*, a is used first in the ```a == 5``` check and then is incremented, whereas in *example 2*, a is first incremented and then used in the ```a == 5``` check.
 
@@ -59,46 +59,49 @@ These operators directly manipulate the bits in numbers. A lot of our software i
 
 This is how it is used.
 
-![](./figures/fig4.jpg)\
+![](./figures/fig4.jpg)
 
 It works like this. We’ll move from right to left comparing the bits. If both the bits are 1 the result
 will have a 1 in that location, otherwise it will have a 0. Just like ```&&``` it needs two 1’s to get a 1.
 
->```10110001```  
->```00101110```  
->```00100000```  
+```
+10110001
+00101110
+--------
+00100000
+```
 
 There is only a 1 in the 6th bit position because that is the only position where there is a 1 in both the numbers.
 
 The “or” operator works exactly the same except if at least one of the bits is a 1 the result will have a 1 in that position.
 
-![](./figures/fig5.jpg)\
+![](./figures/fig5.jpg)
 
 There is another operator really similar to those two. It’s called the XOR (exclusive or) operator
 and is represented as ```^```. If one and only one of the bits is a 1 then the result will have a 1 in that
 position.
 
-![](./figures/fig6.jpg)\
+![](./figures/fig6.jpg)
 
 All these operators can also be used as ```&=```, ```|=``` and ```^=```.
 
 The next group of bitwise operators is bit shifts. There is left (```<<```) and right (```>>```) bit shifts. They do what the name suggests, shift the bits in a number.
 
-![](./figures/fig7.jpg)\
+![](./figures/fig7.jpg)
 
 The bits are shifted to the left and 0’s are shifted in. You might think x is now ```0b111111110000```
 but that is incorrect because that is no longer an 8 bit number. It is actually ```0b11111111```. With bit
 shifts you have to consider the size of the variable because if you shift a number to the left past
 its limit those bits will be cut off.
 
-![](./figures/fig8.jpg)\
+![](./figures/fig8.jpg)
 
 When we shift this number by four, four of the leading zeros are being cut off so we end up with ```0b0000111111110000```, or more nicely ```0x0FF0```.
 
 The right bit shift does the exact same thing except in the opposite direction. No matter the size
 of the variable the bits will be cut off.
 
-![](./figures/fig9.jpg)\
+![](./figures/fig9.jpg)
 
 In this case the bits are shifted out of the variable to the right and 0’s are shifting into the variable on the left. Here we will end up with x as ```0b00001111```.
 
@@ -106,13 +109,13 @@ There is one final bitwise operator called the not or compliment operator. It fl
 
 **Example 1:**
 
-![](./figures/fig10.jpg)\
+![](./figures/fig10.jpg)
 
 In this example x becomes 0b01011100.
 
 **Example 2:**
 
-![](./figures/fig11.jpg)\
+![](./figures/fig11.jpg)
 
 In this example x becomes ```0b1111111100001111```. Don’t forget about those leading zeroes.
 
@@ -123,41 +126,41 @@ Very frequently we have to set bits in an 8 bit number to change settings in our
 
 This is how to write a certain bit to 1
 
-![](./figures/fig12.jpg)\
+![](./figures/fig12.jpg)
 
 Now the value of x is ```0b00100000```.
 
 And you can set a certain bit to 0 with the following,
 
-![](./figures/fig13.jpg)\
+![](./figures/fig13.jpg)
 
 Now the value of x is 0b11011111
 
 You can also switch the value of a bit with the following:
 
-![](./figures/fig14.jpg)\
+![](./figures/fig14.jpg)
 
 
 ## If statements in C
 If statements in C look very similar to if statements in java
 
-![](./figures/fig15.jpg)\
+![](./figures/fig15.jpg)
 
 
 ## Switch statement
 Switch statements are used quite often in our software.
 
-![](./figures/fig16.jpg)\
+![](./figures/fig16.jpg)
 
 
 ## While Loop
 
-![](./figures/fig17.jpg)\
+![](./figures/fig17.jpg)
 
 
 ## For Loop
 
-![](./figures/fig18.jpg)\
+![](./figures/fig18.jpg)
 
 There are two useful commands for conditional statements and loops that are worth mentioning.
 These commands exist in most other programming languages.
@@ -169,7 +172,7 @@ These commands exist in most other programming languages.
 
 In C functions are very similar to functions/methods in other programming languages. We’ll look at the following code to learn how to do functions in C and see what a C file should look like.
 
-![](./figures/fig19.jpg)\
+![](./figures/fig19.jpg)
 
 First I included ```stdint.h```. I will go into header files a bit more later.
 
@@ -184,31 +187,31 @@ A header file that we have already seen is ```stdint.h```. The purpose of header
 
 You can also put define and typedef statements in header flies. These statements that I will describe shortly, can also be put in the source file but for better organization tend to be put in a header file.
 
-![](./figures/fig20.jpg)\
+![](./figures/fig20.jpg)
 
 The preprocessor will replace text in the source code based on the define statements. So every occurrence of foo in the source code will be replaced with bar.
 
 The ```typedef``` statement shown above lets you use “boolean” as a type. Now the following is a valid statement.
 
-![](./figures/fig21.jpg)\
+![](./figures/fig21.jpg)
 
 
 ## Pointers
 A pointer is a type of variable whose value is the memory address of another variable. This is how you declare and use a pointer.
 
-![](./figures/fig22.jpg)\
+![](./figures/fig22.jpg)
 
 
 ## Structs
 Structs are a useful way of bunching multiple variables together. This is probably the closet C gets to objects. We tend to declare our structs in a header file using typedef for easier use.
 
-![](./figures/fig23.jpg)\
+![](./figures/fig23.jpg)
 
 
-![](./figures/fig24.jpg)\
+![](./figures/fig24.jpg)
 
 I think this should be enough of a crash course on C to get you writing programs. There are more details on pointers and structs that I have left out. I would suggest the C book I mentioned earlier to learn more about those topics.
-\newpage
+
 
 # SPI (Serial Peripheral Interface)
 
@@ -222,7 +225,7 @@ SPI uses what’s called a Master-Slave architecture. In this system there is on
 ## SPI Bus
 SPI uses four lines, which make up what we call the SPI bus. Three of these lines (SCK, MOSI, MISO) are shared amongst the slave devices. Whereas the final line (CS) must be unique to each slave device.  SPI is a synchronous communication protocol, meaning data is sent and received at the same time. This means that two of the four lines (MOSI, MISO) are for data, and one of the lines (SCK) is for timing. One of the data lines is for master to slave and the other is for slave to master. All of this will make more sense shortly. The four lines are shown in the figure below. They'll be explained in more detail shortly.
 
-![Diagram of a general SPI bus](./figures/spi_bus.png)\
+![Diagram of a general SPI bus](./figures/spi_bus.png)
 
 
 ### SCK (Source Clock)
@@ -242,7 +245,7 @@ A pull-up resistor is a large resistor (typically 10K) which bridges between VCC
 Hopefully the diagram above now makes sense.
 This is what a SPI transfer should look like:
 
-![SPI signals on an oscilloscope](./figures/spi_scope.png)\
+![SPI signals on an oscilloscope](./figures/spi_scope.png)
 
 I took this image from online but SPI transfers look very similar on our equipment.
 
@@ -285,17 +288,17 @@ Once you figure out what pin you are using for CS you can check the microcontrol
 
 There are four banks of ports (B, C, D and E) with eight pins on each. There are 8-bit data direction and port registers for each of the four ports. Each bit in the register is for a separate pin. The data direction register is called DDRx and the port register is just called PORTx where x is the port. So if you wanted to initialized PB6 as output the code would be the following.
 
-![](./figures/ddrb.jpg)\
+![](./figures/ddrb.jpg)
 
 
 The macro ```_BV(PB6)``` expands to ```1 << PB6``` and PB6 is a macro that expands to 6. Here is the code to write high or low on PB6.
 
 
-![](./figures/portb.jpg)\
+![](./figures/portb.jpg)
 
 In our SPI library we have functions that will do this for you. This is how you use them.
 
-![](./figures/spi_fn.jpg)\
+![](./figures/spi_fn.jpg)
 
 
 ### Initialize SPI
@@ -304,13 +307,13 @@ We have a function, ```init_spi()``` that does this. It initializes SCK and MOSI
 ### Sending a SPI message
 SPI sends 8 bit messages. If you want to send more than a byte you can send consecutive SPI messages. This is how you do it.
 
-![](./figures/spi_msg.jpg)\
+![](./figures/spi_msg.jpg)
 
 
 ### Example SPI Code
 This a full SPI program that I used to make sure SPI was running correctly on the microcontroller.
 
-![](./figures/spi_example_code.jpg)\
+![](./figures/spi_example_code.jpg)
 
 
 This repeatedly sends ```10101010```.
@@ -318,7 +321,7 @@ This repeatedly sends ```10101010```.
 ### More Clock Settings
 As I touched on earlier in this document, there are more clock settings.
 
-![](./figures/spi_modes.jpg)\
+![](./figures/spi_modes.jpg)
 
 The two clock settings introduced here are Clock Polarity and Clock Phase. Clock Phase determines whether data is shifted in and out on the rising or falling edge of the data clock cycle. Clock Polarity determines determines whether the clock is idle when high or low.
 
@@ -343,7 +346,7 @@ These are some of the different base platforms for building circuits.
   * If you forget which holes are connected, follow the lines and notice the breaks in the lines
 (add diagram/photo with lines indicating the connected sets of holes)
 
-![](./figures/breadboard.jpg)\
+![](./figures/breadboard.jpg)
 
 ### Printed Circuit Board (PCB)
 * Used to create final circuits or major prototype versions of a circuit
@@ -356,16 +359,16 @@ These are some of the different base platforms for building circuits.
 * A PCB’s connections can’t be changed after it is ordered and printed (with some exceptions, you can ask for some good stories)
 * Generally uses surface mount (SMD/SMT) components, which are much smaller than through hole
 
-![](./figures/pcb_front.jpg)\
+![](./figures/pcb_front.jpg)
 
-![](./figures/pcb_back.jpg)\
+![](./figures/pcb_back.jpg)
 
 ### Protoboard
 * Somewhat of a hybrid between a breadboard and PCB
 * Has connected tracks like a breadboard, but components need to be soldered and are more likely to stay on the board
 * Uses through hole components
 
-![](./figures/protoboard.jpg)\
+![](./figures/protoboard.jpg)
 
 
 ## Tools
@@ -381,34 +384,34 @@ Used to measure voltage, current, resistance, and connected points in parts of a
   * After assembling a circuit, can check that you have made the intended connections
   * Can check that you have not made accidental connections that change your circuit. An unintentional short circuit can change the circuit's behaviour and/or produce a high current that can damage components.
 
-![](./figures/multimeter.jpg)\
+![](./figures/multimeter.jpg)
 
 ### Oscilloscope
 * Used to measure waveforms (signals) over time in a circuit
 * This is useful for viewing the raw signal data in a wire, such as a sensor’s output or communication lines
 
-![](./figures/oscilloscope.jpg)\
+![](./figures/oscilloscope.jpg)
 
 ### Function Generator
 * Used to generate an AC (alternating current) signal with a specific voltage and waveform
 
-![](./figures/function_generator.jpg)\
+![](./figures/function_generator.jpg)
 
 ### Power Supply
 * Used to generate DC (direct current) power with a specific voltage or current
 
-![](./figures/power_supply.jpg)\
+![](./figures/power_supply.jpg)
 
 ### Wire Cutters/Wire Strippers
 * **Wire cutter** - to cut specific lengths of wire to use on breadboards
 * **Wire stripper** - to remove some of the insulation on the end of a wire so it can be connected to a breadboard
 
-![](./figures/wire_tools.jpg)\
+![](./figures/wire_tools.jpg)
 
 ### Soldering Iron
 * Used to form strong electrical connections between components on PCBs or protoboards
 
-![](./figures/soldering_iron.jpg)\
+![](./figures/soldering_iron.jpg)
 
 
 ## Microcontrollers
@@ -417,12 +420,12 @@ A microcontroller is a processing unit, like the brain of a circuit.
 ### AVR/ATmega32M1
 Our subsystem's components will be controlled by the ATmega32M1 microcontroller on the satellite, part of the AVR family of microcontrollers. It is programmed in the C language, and you will need to install the AVR software to compile and upload code to it (which we will help you to get set up).
 
-![](./figures/avr.png)\
+![](./figures/avr.png)
 
 ### Arduino
 Arduino is an open-source platform of microcontrollers, which we sometimes use to test components quickly. Since Arduino has more built-in code libraries, it is faster to write and upload code to test individual components than using the AVR microcontroller. Arduino is programmed using a slightly modified version of the C++ language.
 
-![](./figures/arduino.jpg)\
+![](./figures/arduino.jpg)
 
 
 
