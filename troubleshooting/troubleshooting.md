@@ -10,12 +10,17 @@ Below is a quick checklist for points to consider when programming.
 - [ ] All necessary lib-common modules are initialized.
 - [ ] Build folder is included.
 - [ ] CoolTerm / Xterm baud rate is set to 9600. Appropriate port is set. See below for details.
+- [ ] Power LED on the PCB(s) is on.
+- [ ] 6-pin programming header is connected to the PCB.
+- [ ] MOSI header pin on the PCB is connected to RX on the programmer.
+- [ ] If using CAN, the CANH and CANL pins are connected between PCBs.
 
 If the quick checklist has not cornered your error, let us first troubleshoot the software.
 
 Software
 - Read compiler warnings (bold this)
 - Add a print statement after init_uart() to see if your program executes on the board
+- Add print statements at various points in the program to isolate where things are going wrong
 
 Hardware
 - Change pcb
