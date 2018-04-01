@@ -1,78 +1,3 @@
-# 2. Embedded Systems
-
-## 2.1 Levels of Abstraction
-
-## 2.2 Microcontrollers and Processors
-
-## 2.3 The Physical Layer
-
-## 2.4 C on Microcontrollers
-
-### 2.4.1 Bitwise Operations
-
-### 2.4.2 Registers
-
-### 2.4.3 Memory and Data Management
-
-### 2.4.4 Interrupts
-
-_EXISTING WRITE-UP FROM SHIMI SMITH_
-
-
-
-
-
-
-
-
-
-## Microcontrollers
-A microcontroller is a processing unit, like the brain of a circuit.
-
-### AVR/ATmega32M1
-Our subsystem's components will be controlled by the ATmega32M1 microcontroller on the satellite, part of the AVR family of microcontrollers. It is programmed in the C language, and you will need to install the AVR software to compile and upload code to it (which we will help you to get set up).
-
-![](./figures/avr.png)
-
-### Arduino
-Arduino is an open-source platform of microcontrollers, which we sometimes use to test components quickly. Since Arduino has more built-in code libraries, it is faster to write and upload code to test individual components than using the AVR microcontroller. Arduino is programmed using a slightly modified version of the C++ language.
-
-![](./figures/arduino.jpg)
-
-
-
-
-# Uploading Code (AVR)
-Here is how to upload your code to the AVR ATmega32M1 microcontroller.
-
-1. Follow the instructions at https://github.com/HeronMkII/coms-board to download and install the AVR software.
-
-2. Download the CoolTerm application from http://freeware.the-meiers.org. This will be used to view transmissions from UART, a communication protocol to transmit log messages (from the print() function) from the board to the computer.
-
-3. Get the programmer hardware device. Connect the 6-pin connector to the "Programming" header on the PCB, which is used to upload code. Connect the "RX" pin on the programmer to the "MOSI_A" pin on the PCB. RX refers to the "receive" pin, while MOSI_A refers to the "alternative" MOSI line, used for UART which is separate from SPI.
-
-4. Turn on the power supply, set the output to 3.3V, and connect the power and ground lines to the "3V3" and "GND" header pins on the PCB.
-
-5. See the instructions at https://github.com/HeronMkII/coms-board for finding the correct USB port and modifying the makefile (it might already be the correct one).
-
-6. Open CoolTerm and modify the options to set the correct port (see https://github.com/HeronMkII/coms-board; the port for UART is the **opposite** of the port for uploading code). Click Connect.
-
-7. Navigate to the folder for the local copy of the Git repository on your computer. Run ```make upload``` to compile the program and upload it to the board. Fix any compile-time errors if they occur.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # C Programming
 
 In this document, we will provide a brief overview of the basics of the C programming language, putting emphasis on the most relevant areas. I will assume some previous programming experience and for certain topics universal to all programming language I will only provide an example of the C syntax with a brief explanation. In addition to this document I would recommend **“The C Programming Language”** by Brian Kernighan and Dennis Ritchie. **You can find a pdf of this book on the Google Drive in /Instrumentation/Literature.** This book describes all the features of C in great detail and is suitable for all levels of programming experience.
@@ -282,3 +207,32 @@ Structs are a useful way of bunching multiple variables together. This is probab
 ![](./figures/fig24.jpg)
 
 I think this should be enough of a crash course on C to get you writing programs. There are more details on pointers and structs that I have left out. I would suggest the C book I mentioned earlier to learn more about those topics.
+
+
+
+
+
+
+
+
+
+
+
+
+# 2. Embedded Systems
+
+## 2.1 Levels of Abstraction
+
+## 2.2 Microcontrollers and Processors
+
+## 2.3 The Physical Layer
+
+## 2.4 C on Microcontrollers
+
+### 2.4.1 Bitwise Operations
+
+### 2.4.2 Registers
+
+### 2.4.3 Memory and Data Management
+
+### 2.4.4 Interrupts

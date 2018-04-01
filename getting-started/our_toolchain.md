@@ -43,7 +43,7 @@ code on your MCU. For the sake of simplicity, let's call them the following:
 
 * **Code**: Use any text editor you want on your computer to create the .c and .h files and make use of libraries.
 * **Make**: Use a compiler to compile your code into machine code
-* **Upload**: Use a _programmer_, a small circuit board with wires on either end, to connect your computer to your MCU and to upload the program 
+* **Upload**: Use a _programmer_, a small circuit board with wires on either end, to connect your computer to your MCU and to upload the program
 
 Once you've completed the setup of the environment, this whole process will be
 as simple as saving your code, and typing the following into your command line:
@@ -130,6 +130,3 @@ why](https://stackoverflow.com/questions/3162030/difference-between-angle-bracke
 #### 3.2.2 Making with avr-gcc
 
 #### 3.2.3 Uploading with avrdude
-
-
-

@@ -1,7 +1,6 @@
 # Reading Datasheets
-One recurring area of confusion which arises within Instrumentation is how to read the datasheet for a component. The datasheet for a component is an important
+A common area of confusion is how to read the datasheet for a component, but this is an important skill and resource.
 
-## Reading Datasheets for Electrical Engineers
+## Electrical
 
-
-## Reading Datasheets for Computer Scientists
+## Software
