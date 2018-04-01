@@ -1,34 +1,8 @@
----
-title: Instrumentation — New Member Orientation
-author: Bruno Almeida, Russel Brown, Shimi Smith & Dylan Vogel
-date: \today
-
-toc: true
-numbersections: true
----
-
-\newpage
-\clearpage
-\setcounter{page}{1}
-
-# Version History
-
------------- ---------------- ----------------------------------------------------
-2017-11-07   Dylan Vogel      Created document and added existing write-ups.
-
-2017-11-07   Bruno Almeida    Edited and added missing content in Lab Equipment
-                              section; fixed attributions.
-
-2017-11-11   Bruno Almeida    Added images to Lab Equipment section; started
-                              Uploading Code (AVR) section.
------------- ---------------- ----------------------------------------------------
-
-# Introduction
+# Instrumentation Introduction
 This document is meant to provide a preliminary overview of topics which we feel are useful to a new member joining the Instrumentation subsystem. The topics covered include SPI (Serial Peripheral Interface), reading datasheets, C programming, and hardware in the MP099 lab.
 
 
 # C Programming
-*Written by Shimi Smith*
 
 In this document, we will provide a brief overview of the basics of the C programming language, putting emphasis on the most relevant areas. I will assume some previous programming experience and for certain topics universal to all programming language I will only provide an example of the C syntax with a brief explanation. In addition to this document I would recommend “The C Programming Language” by Brian Kernighan and Dennis Ritchie.^[You can find a pdf of this book on the Google Drive in /Instrumentation/Literature] This book describes all the features of C in great detail and is suitable for all levels of programming experience.
 
@@ -237,7 +211,6 @@ I think this should be enough of a crash course on C to get you writing programs
 \newpage
 
 # SPI (Serial Peripheral Interface)
-*Written by Shimi Smith*
 
 In this section, we will describe the SPI protocol and how to use our library with the ATmega32m1, the main microcontroller used on the Heron Mk. II cube-satellite.
 
@@ -352,8 +325,6 @@ The two clock settings introduced here are Clock Polarity and Clock Phase. Clock
 This is the end of this SPI tutorial. Hopefully you you are now a SPI expert.
 
 # Lab Equipment (WIP)
-
-*Written by Bruno Almeida*
 
 Here is some equipment you will see and use in the lab (MP 099). We will demonstrate how to use the equipment in-person.
 
@@ -477,7 +448,6 @@ Here is how to upload your code to the AVR ATmega32M1 microcontroller.
 
 
 # Reading Datasheets
-*Written by Dylan Vogel*  
 One recurring area of confusion which arises within Instrumentation is how to read the datasheet for a component. The datasheet for a component is an important
 
 ## Reading Datasheets for Electrical Engineers
