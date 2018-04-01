@@ -5,6 +5,7 @@
 ### Getting Started
 
 * [Real-Time Embedded Systems](getting-started/rtsys.md)
+* [Our Toolchain](getting-started/our_toolchain.md)
 * [The AVR Toolchain](getting-started/avr-toolchain.md)
     * [Installing the AVR Toolchain on macOS](getting-started/avr-toolchain-install-mac.md)
     * [Installing the AVR Toolchain on Windows](getting-started/avr-toolchain-install-win.md)
@@ -12,17 +13,13 @@
 * [Hello World for the ATmega32m1](getting-started/hello-world.md)
 * [Git and Github](getting-started/git-and-github.md)
 
-### Style Guide
+### Embedded Systems
 
-* [Header Files](style-guide/headers.md)
-* [Naming](style-guide/naming.md)
-* [Formatting](style-guide/formatting.md)
+* [Introduction](embedded/INTRO.md)
+* [Microcontrollers](embedded/microcontrollers.md)
+* [C Programming](embedded/c-programming.md)
 
-### AVR Embedded Programming
-
-* [AVR Embedded Programming](embedded-programming/INTRO.md)
-
-### Lib-common Documentation
+### Lib-common
 
 * [UART](uart/INTRO.md)
     * [init\_uart](uart/uart.md#init_uart)
@@ -35,3 +32,22 @@
     * [set\_cs\_high](spi/spi.md#set_cs_high)
 * [CAN](can/INTRO.md)
     * [init\_can](can/can.md#init_can)
+    * [MOB Allocation](can/can_mob_allocation.md)
+    * [Data Transfer](can/data_transfer.md)
+
+
+### Programming Style Guide
+
+* [Introduction](style-guide/INTRO.md)
+* [Header Files](style-guide/headers.md)
+* [Naming](style-guide/naming.md)
+* [Formatting](style-guide/formatting.md)
+
+### Electrical Systems
+
+* [Equipment](electrical/equipment.md)
+* [Circuits](electrical/circuits.md)
+
+### Reading Datasheets
+
+* [Introduction](datasheets/datasheets.md)
