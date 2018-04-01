@@ -13,7 +13,7 @@ Here are the different base platforms for building circuits.
   * If you forget which holes are connected, follow the lines and notice the breaks in the lines
 (add diagram/photo with lines indicating the connected sets of holes)
 
-![](./figures/breadboard.jpg)
+![](../figures/breadboard.jpg)
 
 ## Printed Circuit Board (PCB)
 * Used to create final circuits or major prototype versions of a circuit
@@ -26,11 +26,11 @@ Here are the different base platforms for building circuits.
 * A PCB’s connections can’t be changed after it is ordered and printed (with some exceptions, but it is very difficult and unreliable)
 * Generally uses surface mount (SMD/SMT) components, which are much smaller than through hole
 
-![](./figures/pcb_front.jpg)
+![](../figures/pcb_front.jpg)
 
-![](./figures/pcb_back.jpg)
+![](../figures/pcb_back.jpg)
 
 ## Protoboard
 * Has connected tracks like a breadboard, but through hole components are soldered and are more likely to stay on the board
 
-![](./figures/protoboard.jpg)
+![](../figures/protoboard.jpg)

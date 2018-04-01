@@ -12,31 +12,31 @@ Used to measure voltage, current, resistance, and connected points in parts of a
   * After assembling a circuit, can check that you have made the intended connections
   * Can check that you have not made accidental connections that change your circuit. An unintentional short circuit can change the circuit's behaviour and/or produce a high current that can damage components.
 
-![](./figures/multimeter.jpg)
+![](../figures/multimeter.jpg)
 
 ## Oscilloscope
 * Used to measure waveforms (signals) over time in a circuit
 * This is useful for viewing the raw signal data in a wire, such as a sensor’s output or communication lines
 
-![](./figures/oscilloscope.jpg)
+![](../figures/oscilloscope.jpg)
 
 ## Function Generator
 * Used to generate an AC (alternating current) signal with a specific voltage and waveform
 
-![](./figures/function_generator.jpg)
+![](../figures/function_generator.jpg)
 
 ## Power Supply
 * Used to generate DC (direct current) power with a specific voltage or current
 
-![](./figures/power_supply.jpg)
+![](../figures/power_supply.jpg)
 
 ## Wire Cutters/Wire Strippers
 * **Wire cutter** - to cut specific lengths of wire to use on breadboards
 * **Wire stripper** - to remove some of the insulation on the end of a wire so it can be connected to a breadboard
 
-![](./figures/wire_tools.jpg)
+![](../figures/wire_tools.jpg)
 
 ## Soldering Iron
 * Used to form strong electrical connections between components on PCBs or protoboards
 
-![](./figures/soldering_iron.jpg)
+![](../figures/soldering_iron.jpg)

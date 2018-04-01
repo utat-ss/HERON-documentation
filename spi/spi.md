@@ -29,7 +29,7 @@ SPI uses what’s called a Master-Slave architecture. In this system there is on
 ## SPI Bus
 SPI uses four lines, which make up what we call the SPI bus. Three of these lines (SCK, MOSI, MISO) are shared amongst the slave devices. Whereas the final line (CS) must be unique to each slave device.  SPI is a synchronous communication protocol, meaning data is sent and received at the same time. This means that two of the four lines (MOSI, MISO) are for data, and one of the lines (SCK) is for timing. One of the data lines is for master to slave and the other is for slave to master. All of this will make more sense shortly. The four lines are shown in the figure below. They'll be explained in more detail shortly.
 
-![Diagram of a general SPI bus](./figures/spi_bus.png)
+![Diagram of a general SPI bus](../figures/spi_bus.png)
 
 
 ### SCK (Source Clock)
@@ -49,7 +49,7 @@ A pull-up resistor is a large resistor (typically 10K) which bridges between VCC
 Hopefully the diagram above now makes sense.
 This is what a SPI transfer should look like:
 
-![SPI signals on an oscilloscope](./figures/spi_scope.png)
+![SPI signals on an oscilloscope](../figures/spi_scope.png)
 
 I took this image from online but SPI transfers look very similar on our equipment.
 
@@ -87,22 +87,22 @@ On our microcontroller each IO pin has three registers that control it. We will 
 
 Once you figure out what pin you are using for CS you can check the microcontroller’s datasheet to get the name of the pin. Figure 1 shows the pin configuration for the ATmega32m1 microcontroller.
 
-![ATmega32m1 pinout](./figures/32m1.png)
+![ATmega32m1 pinout](../figures/32m1.png)
 
 
 There are four banks of ports (B, C, D and E) with eight pins on each. There are 8-bit data direction and port registers for each of the four ports. Each bit in the register is for a separate pin. The data direction register is called DDRx and the port register is just called PORTx where x is the port. So if you wanted to initialized PB6 as output the code would be the following.
 
-![](./figures/ddrb.jpg)
+![](../figures/ddrb.jpg)
 
 
 The macro ```_BV(PB6)``` expands to ```1 << PB6``` and PB6 is a macro that expands to 6. Here is the code to write high or low on PB6.
 
 
-![](./figures/portb.jpg)
+![](../figures/portb.jpg)
 
 In our SPI library we have functions that will do this for you. This is how you use them.
 
-![](./figures/spi_fn.jpg)
+![](../figures/spi_fn.jpg)
 
 
 ### Initialize SPI
@@ -111,13 +111,13 @@ We have a function, ```init_spi()``` that does this. It initializes SCK and MOSI
 ### Sending a SPI message
 SPI sends 8 bit messages. If you want to send more than a byte you can send consecutive SPI messages. This is how you do it.
 
-![](./figures/spi_msg.jpg)
+![](../figures/spi_msg.jpg)
 
 
 ### Example SPI Code
 This a full SPI program that I used to make sure SPI was running correctly on the microcontroller.
 
-![](./figures/spi_example_code.jpg)
+![](../figures/spi_example_code.jpg)
 
 
 This repeatedly sends ```10101010```.
@@ -125,7 +125,7 @@ This repeatedly sends ```10101010```.
 ### More Clock Settings
 As I touched on earlier in this document, there are more clock settings.
 
-![](./figures/spi_modes.jpg)
+![](../figures/spi_modes.jpg)
 
 The two clock settings introduced here are Clock Polarity and Clock Phase. Clock Phase determines whether data is shifted in and out on the rising or falling edge of the data clock cycle. Clock Polarity determines determines whether the clock is idle when high or low.
 
