@@ -30,6 +30,8 @@
 * [UART](uart/INTRO.md)
 * [SPI](spi/INTRO.md)
 * [CAN](can/INTRO.md)
+    * [Message Objects (MObs)](can/can-mobs.md)
+    * [MOb Allocation](can/can-mob-allocation.md)
 
 ### Programming Style Guide
 
