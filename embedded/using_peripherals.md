@@ -24,4 +24,3 @@ Interfacing between devices using CAN
 
 Some general notes on a methodology behind designing for peripherals, how to
 structure a logical flow and converting outputs.
-

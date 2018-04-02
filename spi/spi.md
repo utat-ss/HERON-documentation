@@ -13,12 +13,7 @@
 
 
 
-
-
-
-
 # SPI (Serial Peripheral Interface)
-
 In this section, we will describe the SPI protocol and how to use our library with the ATmega32m1, the main microcontroller used on the Heron Mk. II cube-satellite.
 
 ## What is SPI?

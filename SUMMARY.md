@@ -15,33 +15,24 @@
 
 ### Embedded Systems
 
-* [Introduction](embedded/INTRO.md)
 * [Microcontrollers](embedded/microcontrollers.md)
 * [C Programming](embedded/c-programming.md)
+    * [Variables](embedded/c-variables.md)
+    * [Bitwise Operators](embedded/c-bitwise-operators.md)
+    * [Control Structures](embedded/c-control-structures.md)
+    * [Functions](embedded/c-functions.md)
+    * [Header Files](embedded/c-header-files.md)
+    * [Pointers](embedded/c-pointers.md)
+    * [Structs](embedded/c-structs.md)
 
 ### Lib-common
 
 * [UART](uart/INTRO.md)
-    * [init\_uart](uart/uart.md#init_uart)
-    * [print](uart/uart.md#print)
 * [SPI](spi/INTRO.md)
-    * [init\_spi](spi/spi.md#init_spi)
-    * [send\_spi](spi/spi.md#send_spi)
-    * [init\_cs](spi/spi.md#init_cs)
-    * [set\_cs\_low](spi/spi.md#set_cs_low)
-    * [set\_cs\_high](spi/spi.md#set_cs_high)
 * [CAN](can/INTRO.md)
-    * [init\_can](can/can.md#init_can)
-    * [MOB Allocation](can/can_mob_allocation.md)
     * [Data Transfer](can/data_transfer.md)
 
-
 ### Programming Style Guide
-
-* [Introduction](style-guide/INTRO.md)
-* [Header Files](style-guide/headers.md)
-* [Naming](style-guide/naming.md)
-* [Formatting](style-guide/formatting.md)
 
 ### Electrical Systems
 
@@ -49,5 +40,3 @@
 * [Circuits](electrical/circuits.md)
 
 ### Reading Datasheets
-
-* [Introduction](datasheets/datasheets.md)

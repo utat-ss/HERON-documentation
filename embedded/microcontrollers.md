@@ -1,12 +1,17 @@
 # Microcontrollers
+
 A microcontroller is a processing unit, like the brain of a circuit.
 
-## AVR/ATmega32M1
-Our subsystem's components will be controlled by the ATmega32M1 microcontroller on the satellite, part of the AVR family of microcontrollers. It is programmed in the C language, and you will need to install the AVR software to compile and upload code to it (which we will help you to get set up).
+
+## ATmega32M1 (AVR)
 
 ![](../figures/avr.png)
 
+Our subsystem's components will be controlled by the ATmega32M1 microcontroller on the satellite, part of the AVR family of microcontrollers. It is programmed in the C language, and you will need to install the AVR software to compile and upload code to it (which we will help you to get set up).
+
+
 ## Arduino
-Arduino is an open-source platform of microcontrollers, which we sometimes use to test components quickly. Since Arduino has more built-in code libraries, it is faster to write and upload code to test individual components than using the AVR microcontroller. Arduino is programmed using a slightly modified version of the C++ language.
 
 ![](../figures/arduino.jpg)
+
+Arduino is an open-source platform of microcontrollers, which we occasionally use to test components and prototype software quickly. Since Arduino has more built-in code libraries, it is faster to write and upload code to test individual components than using the AVR microcontroller. Arduino is programmed using a slightly modified version of the C++ language.
