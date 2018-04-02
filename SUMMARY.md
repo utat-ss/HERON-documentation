@@ -30,7 +30,6 @@
 * [UART](uart/INTRO.md)
 * [SPI](spi/INTRO.md)
 * [CAN](can/INTRO.md)
-    * [Data Transfer](can/data_transfer.md)
 
 ### Programming Style Guide
 
