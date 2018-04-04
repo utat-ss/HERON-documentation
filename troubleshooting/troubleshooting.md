@@ -47,3 +47,13 @@ If the quick checklist has not cornered your error, let us first troubleshoot th
 ### Appendix
 
 ## Figure 1
+
+![](../figures/coolterm_port.png)
+
+![](../figures/makefile_port.png)
+
+![](../figures/power_supply_settings.jpg)
+
+![](../figures/programmer_rx.jpg)
+
+![](../figures/programming_header.jpg)
