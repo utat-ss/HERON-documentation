@@ -10,21 +10,40 @@ Below is a quick checklist for points to consider when programming.
 - [ ] All necessary lib-common modules are initialized.
 - [ ] Build folder is included.
 - [ ] CoolTerm / Xterm baud rate is set to 9600. Appropriate port is set. See below for details.
-- [ ] Power LED on the PCB(s) is on.
 - [ ] 6-pin programming header is connected to the PCB.
-- [ ] MOSI header pin on the PCB is connected to RX on the programmer.
 - [ ] If using CAN, the CANH and CANL pins are connected between PCBs.
 
 If the quick checklist has not cornered your error, let us first troubleshoot the software.
 
-Software
-- Read compiler warnings (bold this)
-- Add a print statement after init_uart() to see if your program executes on the board
-- Add print statements at various points in the program to isolate where things are going wrong
+**Hardware**
 
-Hardware
-- Change pcb
-- Change wires
-- Change programmer
-- Change programmer micro-usb
-- Check power supply, use different channel
+### Is the LED on the board on?
+
+- [ ] Check power supply, use different channel
+- [ ] Change wires
+
+### Is UART working? Can you see your print statements on CoolTerm / Xterm?
+
+- [ ] Check that you have clicked on the Connect button
+- [ ] Click on the Options button and ensure your port is correct. This port should not be the same as the port in your makefile.
+- [ ] Check the baud rate (use 9800)
+- [ ] Ensure the UART wire is connected to MOSI pin on the board and to the RX pin on the Pololu programmer (Figure X)
+
+**Software**
+
+**Read compiler warnings**
+
+### Does AVR say completed and uploaded to board?
+
+- [ ] Check your port on the makefile. (For macOS use ls /dev/tty. \*), for Windows use device manager)
+- [ ] Change programmer micro-usb
+- [ ] Change programmer
+- [ ] Change PCB
+
+### Debugging through print statements (like the old times)
+- [ ] Add a print statement after init_uart() to see if your program executes on the board
+- [ ] Use various print statements throughout the program to see how your program executes (print useful variables)
+
+### Appendix
+
+## Figure 1
