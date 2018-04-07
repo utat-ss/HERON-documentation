@@ -31,7 +31,7 @@ This process has only been tested on Windows 10.
 1. [Download WinAVR.](https://sourceforge.net/projects/winavr/) Make sure you get WinAVR-20100110. Remember where you put it - we will call the path \<install> in this tutorial. By default, it is C:/WinAVR-20100110.
 2. Add \<install>/bin and \<install>/utils/bin to your PATH variable. Do this from Control Panel > System > Advanced System Settings > Environment variables, by choosing to edit the Path variable on the *top* list in the window that pops up. Move \<install>/bin to the top of the list, and \<install>/utils/bin to second place.
 3. In \<install>/utils/bin, replace the file msys-1.0.dll with the one found [here]http://www.madwizard.org/electronics/articles/winavrvista). It's in the download called msys-1.0-vista64.zip.
-4. Download the [Atmel AVR Toolchain](http://www.atmel.com/tools/atmelavrtoolchainforwindows.aspx).
+4. Download the [AVR 8-bit Toolchain](http://www.microchip.com/avr-support/avr-and-arm-toolchains-(c-compilers)).
 5. Back up your WinAVR install folder (the whole folder, it's probably C:/WinAVR-20100110).
 6. Delete all *subfolders* from the original WinAVR folder except pn and utils
 7. Copy all the subfolders in the Atmel AVR Toolchain from (4) into \<install> (the folder you cleaned up in (6))

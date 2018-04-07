@@ -10,10 +10,10 @@ It works like this. We’ll move from right to left comparing the bits. If both 
 will have a 1 in that location, otherwise it will have a 0. Just like ```&&``` it needs two 1’s to get a 1.
 
 ```
-10110001
-00101110
---------
-00100000
+  10110001
+& 00101110
+----------
+  00100000
 ```
 
 There is only a 1 in the 6th bit position because that is the only position where there is a 1 in both the numbers.
@@ -35,7 +35,7 @@ The next group of bitwise operators is bit shifts. There is left (```<<```) and 
 ![](../figures/fig7.jpg)
 
 The bits are shifted to the left and 0’s are shifted in. You might think x is now ```0b111111110000```
-but that is incorrect because that is no longer an 8 bit number. It is actually ```0b11111111```. With bit
+but that is incorrect because that is no longer an 8 bit number. It is actually ```0b11110000```. With bit
 shifts you have to consider the size of the variable because if you shift a number to the left past
 its limit those bits will be cut off.
 
