@@ -25,11 +25,15 @@
 * [Structs](c-programming/structs.md)
 
 ### Lib-Common
-* [UART](uart/INTRO.md)
-* [SPI](spi/INTRO.md)
-* [CAN](can/INTRO.md)
-    * [Message Objects (MObs)](can/mobs.md)
-    * [MOb Allocation](can/mob-allocation.md)
+* [Introduction](lib-common/lib-common.md)
+
+### Communication Protocols
+* [Introduction](communication-protocols/communication-protocols.md)
+* [CAN](communication-protocols/can.md)
+    * [Message Objects (MObs)](communication-protocols/can-mobs.md)
+    * [MOb Allocation](communication-protocols/can-mob-allocation.md)
+* [SPI](communication-protocols/spi.md)
+* [UART](communication-protocols/uart.md)
 
 ### Programming Style Guide
 
