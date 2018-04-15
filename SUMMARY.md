@@ -33,6 +33,8 @@
     * [Message Objects (MObs)](communication-protocols/can-mobs.md)
     * [MOb Allocation](communication-protocols/can-mob-allocation.md)
 * [SPI](communication-protocols/spi.md)
+    * [SPI Bus](communication-protocols/spi-bus.md)
+    * [Using SPI](communication-protocols/spi-using-spi.md)
 * [UART](communication-protocols/uart.md)
 
 ### Programming Style Guide
