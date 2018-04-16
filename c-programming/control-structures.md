@@ -24,8 +24,8 @@ Control structures alter program flow.
 
 
 ## Break and Continue
-There are two useful commands for conditional statements and loops that are worth mentioning.
-These commands exist in most other programming languages.
+
+These are useful commands for conditional statements and loops.
 
 >**break** - exits the current statement or loop    
 >**continue** - skips the current iteration of the loop and continues with the next
