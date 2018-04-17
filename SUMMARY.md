@@ -4,9 +4,11 @@
 ### Getting Started
 * [Real-Time Embedded Systems](getting-started/rtsys.md)
 * [Our Toolchain](getting-started/our_toolchain.md)
-* [The AVR Toolchain](getting-started/avr-toolchain.md)
-    * [Installing the AVR Toolchain on macOS](getting-started/install-mac.md)
-    * [Installing the AVR Toolchain on Windows](getting-started/install-win.md)
+* [AVR Toolchain](getting-started/avr-toolchain.md)
+* [Other Software](getting-started/other-software.md)
+* [Installing Software]
+    * [macOS](getting-started/install-mac.md)
+    * [Windows](getting-started/install-win.md)
 * [The ATMega32M1 Microcontroller](getting-started/atmega32m1.md)
 * [Hello World for the ATmega32m1](getting-started/hello-world.md)
 * [Git and Github](getting-started/git-and-github.md)

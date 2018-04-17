@@ -148,7 +148,7 @@ program onto the 32M1!
 
 ## Step 6
 
-To verify that the program is running correctly, first connect the female RX pin
+To verify that the program is running correctly, first connect the female RX pin on the programmer
 via a male to male wire to the MOSI pin on the board. This is wire along which
 the serial communication between the 32M1 and your computer will occur.
 

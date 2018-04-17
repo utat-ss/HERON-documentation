@@ -42,14 +42,3 @@ Note: You might need 7-Zip or other unzipping software to extract all packages.
 Note: If you get errors about C99, go to the makefile and add `-std=c99` to the CFLAGs.
 
 Note: Steps 4-10 are from [here](https://www.insidegadgets.com/2014/05/27/update-winavr-to-the-latest-avr-gcc-avrdude/). We need them to update the WinAVR bundle to the latest version of `avrdude`. Any improvements on this process are welcome.
-
-
-# Reading Serial Messages
-Download your terminal program of choice (such as TeraTerm). The following settings will probably work:
-- Baud Rate: 9600
-- Data: 8 bit
-- Parity: None
-- Stop: 1 bit
-- Flow control: none
-
-Connect the RX pin on the programmer to the TX pin on the board (MOSI). If you're using one of the old silver boards, you have to unplug the programmer.

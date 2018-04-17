@@ -1,4 +1,4 @@
-# 3. Our Toolchain
+# Our Toolchain
 
 Developing code for a real-time embedded system like HERON Mk II as part of a
 large, interdisciplinary team of programmers is no easy task, and we have
@@ -6,7 +6,7 @@ collected a set of tools to make the process as effective as possible. To make
 the software we develop reliable and sustainable, it is crucial to properly set
 up, use, and understand the tools described in this article.
 
-### 3.1 Background
+## Background
 
 The ATmega32M1 microcontroller we use is a part of the Atmel AVR family. Atmel
 is the company that produces them \(and is now owned by Microchip\), and AVR
@@ -36,7 +36,7 @@ that you will definitely end up using if you write any code for HERON.
 We call the set of tools we use to develop and program our MCUs our
 _toolchain_, and I'll give a brief overview of what every part of it is about.
 
-### 3.2 Our AVR Toolchain
+## Our AVR Toolchain
 
 From the point of view of the programmer, there are three steps to get some
 code on your MCU. For the sake of simplicity, let's call them the following:
@@ -55,7 +55,7 @@ make upload
 The rest of this section describes these steps in more detail, and explains how
 they apply to our specific project.
 
-#### 3.2.1 Coding with Libraries
+### Coding with Libraries
 
 Libraries are collections of well-tested, useful, and nicely documented code
 that can be _included_ in many projects. They can have many different purposes,
@@ -126,7 +126,3 @@ why](https://stackoverflow.com/questions/3162030/difference-between-angle-bracke
 #include     "rtc.h"
 #include     "mem.h"
 ```
-
-#### 3.2.2 Making with avr-gcc
-
-#### 3.2.3 Uploading with avrdude
