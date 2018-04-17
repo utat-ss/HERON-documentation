@@ -43,6 +43,7 @@
 * [UART](communication-protocols/uart.md)
 
 ### Programming Style Guide
+* [Style Guide](style-guide/style-guide.md)
 
 ### Electrical Systems
 * [Equipment](electrical/equipment.md)
