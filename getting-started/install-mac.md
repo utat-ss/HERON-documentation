@@ -1,4 +1,4 @@
-# Installing the AVR Toolchain on macOS
+# Installing Software on macOS
 
 The following tutorial will help you install the AVR toolchain on macOS.
 

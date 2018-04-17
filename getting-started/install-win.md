@@ -1,4 +1,4 @@
-# Installing the AVR Toolchain on Windows
+# Installing Software on Windows
 
 The following tutorial will help you get started with AVR programming on
 Windows. After finishing this tutorial, you'll be ready to compile and upload

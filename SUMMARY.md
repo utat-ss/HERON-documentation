@@ -6,7 +6,7 @@
 * [Our Toolchain](getting-started/our_toolchain.md)
 * [AVR Toolchain](getting-started/avr-toolchain.md)
 * [Other Software](getting-started/other-software.md)
-* [Installing Software]
+* Installing Software
     * [macOS](getting-started/install-mac.md)
     * [Windows](getting-started/install-win.md)
 * [The ATMega32M1 Microcontroller](getting-started/atmega32m1.md)
