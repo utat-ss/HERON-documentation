@@ -13,6 +13,7 @@ In practice, you won't often need to worry about the underlying details of the
 instruction set or architecture; you can simply write code in C and be confident
 `avr-gcc` will generate the correct instructions for you.
 
+
 ## Pin Layout
 
 The 32M1 has 32 pins, labelled from 1 to 32. Most pins have some specific
@@ -38,37 +39,28 @@ them can also be useful for debugging purposes.
 In what follows we use mnemonic labels because this is how pins are specified in
 C code.
 
-## SPI Pins (PB0, PB1, PB7, PD3)
 
-We abbreviate master in slave out as MISO, master out slave in as MOSI,
-and slave select as SS. The slave select pin is also called the chip select
-pin, abbreviated CS.
+## SPI Pins
 
-### PB7 - SPI Clock
+See the Communication Protocols section for how the SPI protocol works.
 
-When a SPI transmission is in progress, this pin outputs a clock signal. SPI
-transmission can be configured to occur on the various edges of this clock.
+- **PB7 - SCK/SCLK** - The 32M1 outputs the clock signal to this pin to synchronize all devices.
+- **PB0 - MISO** - Peripherals (other devices) write to this pin to send data to the 32M1.
+- **PB1 - MOSI** - The 32M1 writes to this pin to send data to a peripheral device.
+- **PD3 - CS/SS** - This pin can be used by another peripheral to select the 32M1 as a slave.
 
-### PB0 - SPI MISO
-
-Peripherals will write to this pin to send data to the 32M1 via SPI.
-
-### PB1 - SPI MOSI
-
-The 32M1 will write to this pin to send data to a peripheral device via SPI.
-
-### PD3 - SS
-
-This pin can be used by another peripheral to select the 32M1 as a slave.
-
-In the current setup this pin is not used because each SSM is the master in the
+In the current setup, the CS/SS pin is not used because each SSM is the master in the
 SPI master/slave model. It is included for completeness, and because it can be
 the source of many difficult-to-debug bugs. For example, accidentally setting
 this pin as an input pin and driving it high can cause the 32M1 to believe it is
 now a SPI slave, thus changing the MOSI and clock SPI pins to input pins.
 
-## CAN Pins (PC2, PC3)
 
-### PC2 - CAN TX
+## CAN Pins
 
-### PC3 - CAN RX
+See the Communication Protocols section for how the CAN protocol works.
+
+These pins connect the 32M1 to the CAN transceiver, which is the device that actually transmits and receives messages on the CAN bus.
+
+- **PC2 - TX** - Transmit
+- **PC3 - RX** - Receive

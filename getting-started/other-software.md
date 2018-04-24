@@ -1,6 +1,6 @@
 # Other Software
 
-Besides the AVR toolchain, there is other software we use to design the satellite's software
+Besides the AVR toolchain, there is other software we use to design the satellite's software.
 
 
 ## Git and GitHub

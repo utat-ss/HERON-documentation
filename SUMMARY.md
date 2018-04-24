@@ -9,12 +9,12 @@
 * Installing Software
     * [macOS](getting-started/install-mac.md)
     * [Windows](getting-started/install-win.md)
-* [The ATMega32M1 Microcontroller](getting-started/atmega32m1.md)
 * [Hello World for the ATmega32m1](getting-started/hello-world.md)
 * [Git and Github](getting-started/git-and-github.md)
 
 ### Embedded Systems
 * [Microcontrollers](embedded/microcontrollers.md)
+* [The ATMega32M1 Microcontroller](embedded/atmega32m1.md)
 
 ### C Programming
 * [Introduction](c-programming/INTRO.md)

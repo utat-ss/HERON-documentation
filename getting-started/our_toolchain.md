@@ -41,7 +41,7 @@ _toolchain_, and I'll give a brief overview of what every part of it is about.
 From the point of view of the programmer, there are three steps to get some
 code on your MCU. For the sake of simplicity, let's call them the following:
 
-* **Code**: Use any text editor you want on your computer to create the .c and .h files and make use of libraries.
+* **Code**: Use any text editor you want on your computer to create the `.c` and `.h` files and make use of libraries.
 * **Make**: Use a compiler to compile your code into machine code
 * **Upload**: Use a _programmer_, a small circuit board with wires on either end, to connect your computer to your MCU and to upload the program
 
@@ -90,10 +90,10 @@ There are three sources of libraries that we use:
    peripherals that are used on the satellite.
 
 Since libraries typically make up most of a project, it is not convenient to
-store them as ".c" and ".h" files with the rest of your code. If you were to do
+store them as `.c` and `.h` files with the rest of your code. If you were to do
 that, they would need to be recompiled every time you make a small change in
 your main code, which would take ages. Instead, they are pre-compiled and
-stored in ".a" files, which you can see in lib-common/lib/ in the link above.
+stored in `.a` files, which you can see in `lib-common/lib/` in the link above.
 This is why later on, once you have completed setting up the toolchain, you
 will not be able to compile one of the subsystem projects until after you have
 compiled the contents of lib-common.
