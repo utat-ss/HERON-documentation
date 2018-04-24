@@ -49,4 +49,8 @@
 * [Equipment](electrical/equipment.md)
 * [Circuits](electrical/circuits.md)
 
+### PCB Design
+* [PCB Design](pcb-design/pcb-design.md)
+
 ### Reading Datasheets
+* [Reading Datasheets](datasheets/datasheets.md)
