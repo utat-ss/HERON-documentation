@@ -46,11 +46,10 @@
 * [Style Guide](style-guide/style-guide.md)
 
 ### Electrical Systems
+* [Components](electrical/components.md)
 * [Equipment](electrical/equipment.md)
-* [Circuits](electrical/circuits.md)
-
-### PCB Design
-* [PCB Design](pcb-design/pcb-design.md)
+* [Circuit Platforms](electrical/circuit-platforms.md)
+* [PCB Design](electrical/pcb-design.md)
 
 ### Reading Datasheets
 * [Reading Datasheets](datasheets/datasheets.md)

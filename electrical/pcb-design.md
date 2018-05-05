@@ -1,6 +1,16 @@
 # PCB Design
 
-A PCB (Printed Circuit Board) is a circuit board that is designed and manufactured using CAD (Computer Aided Design) software, also called EDA (Electronic Design Automation) software. We design the board's connections and layout using CAD software and send it to a manufacturer that manufactures the board with all of its electrical connections. After receiving the boards, we purchase all the necessary components and solder them onto the board.
+A PCB (Printed Circuit Board) is a circuit board that is designed and manufactured using CAD (Computer Aided Design) software, also called EDA (Electronic Design Automation) software.
+
+Getting a functional PCB requires several steps:
+* Design the board's connections and layout using CAD software
+* Send the design to a manufacturer, who manufactures the board with just the traces (electrical wires)
+* Order all of the components
+* Receive the board from the manufacturer
+* Purchase the necessary components
+* Solder the components onto the board.
+
+This process usually takes at least a month, which is why PCBs are not used for fast prototyping.
 
 
 ## Software
