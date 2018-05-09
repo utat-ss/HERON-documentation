@@ -15,6 +15,7 @@
 ### Embedded Systems
 * [Microcontrollers](embedded/microcontrollers.md)
 * [The ATMega32M1 Microcontroller](embedded/atmega32m1.md)
+* [Interrupts](embedded/interrupts.md)
 
 ### C Programming
 * [Introduction](c-programming/INTRO.md)
@@ -27,7 +28,7 @@
 * [Header Files](c-programming/header-files.md)
 * [Pointers](c-programming/pointers.md)
 * [Structs](c-programming/structs.md)
-* [Interrupts](c-programming/interrupts.md)
+* [.c and .h files](c-programming/c_h_files.md)
 
 ### Lib-Common
 * [Introduction](lib-common/lib-common.md)
