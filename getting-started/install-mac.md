@@ -1,13 +1,14 @@
-# Installing Software on macOS
+# Software Installation - Mac
 
-The following tutorial will help you install the AVR toolchain on macOS.
+Please ask us for help if you encounter any issues. See the "Software Installation" page for descriptions of what these tools do.
+
+
 
 
 ## Homebrew
 
-To begin, we will install Homebrew, a tool that allows you to easily
-install other command-line programs on your Mac. It takes care of many details,
-like updating dependencies and managing versions so you don't have to.
+Homebrew is a tool that allows you to easily install and update other
+command-line programs. This will help us install the other programs more easily.
 
 To install Homebrew, run
 
@@ -15,7 +16,7 @@ To install Homebrew, run
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 
-Homebrew is now accessible via a new command-line utility, `brew`. To make sure the installation was successful, run
+Homebrew is now accessible via the command-line utility `brew`. To make sure the installation was successful, run
 
 ```
  $ brew help
@@ -24,19 +25,17 @@ Homebrew is now accessible via a new command-line utility, `brew`. To make sure 
 If Homebrew is successfully installed, it will display help information.
 
 
+
+
 ## AVR Toolchain
 
-### The AVR-GCC package
-
-We're now ready to install the AVR-GCC package. This includes the AVR-GCC compiler and the AVR libc standard libraries.
-
-To do this, run
+To install AVR-GCC and AVR libc, run
 
 ```
 $ brew tap osx-cross/avr
 ```
 
-Once this command returns, run
+Once it finishes, run
 
 ```
 $ brew install avr-gcc
@@ -45,9 +44,7 @@ $ brew install avr-gcc
 This will take a while. Be patient.
 
 
-### avrdude
-
-This is the software that writes binary files to the 32M1's flash memory. To install `avrdude`, run
+To install `avrdude`, run
 
 ```
 $ brew install avrdude --with-usb
@@ -58,7 +55,7 @@ $ brew install avrdude --with-usb
 
 ### Sanity Check
 
-To check that the installation completed successfully, run the following
+To check that the installation completed successfully, run
 
 ```
 $ which avr-gcc
@@ -68,18 +65,9 @@ This should print something like `/usr/local/bin/avr-gcc`. If so, you're all
 set.
 
 
-## Additional Tools
-
-Finally, we need to install the Git and Make utilities, and the CoolTerm
-application. These utilities are not part of the AVR toolchain,
-but we use them because they are very helpful.
 
 
-### Make
-
-Make helps us compile programs consistently by automating the compilation
-process. Make expects compilation instructions to be stored in a file called a
-`makefile`.
+## Make
 
 To install Make, run
 
@@ -87,12 +75,12 @@ To install Make, run
 $ brew install make
 ```
 
-This creates a new command-line utility called `make`. Run `make --help` to
-learn more.
+Run `make --help` to learn more.
 
-### Git
 
-Git is a version control system that keeps track of changes in a codebase over time. It provides powerful facilities for different programmers to collaborate on the same codebase.
+
+
+## Git and GitHub
 
 To install Git, run
 
@@ -100,52 +88,26 @@ To install Git, run
 $ brew install git
 ```
 
-This creates a new command-line utility called `git`. Run `git --help` to learn
-more.
+Run `git --help` to learn more.
 
+### GitHub
+
+Create an account on https://github.com/. Ask one of the leads to add you to the Heron Mk II organization so you can contribute code.
 
 ### GitHub Desktop
 
-GitHub is a website built on top of the Git version control system that provides additional features, such as a website to manage projects, project management features, and the GitHub Desktop application to make it easier to use Git on your local computer.
-
-You are not required to install GitHub Desktop, but it is recommended to make using Git easier.
-
-You can download and install it from https://desktop.github.com.
-
-### CoolTerm
-
-CoolTerm is an application that allows you to interface with peripheral
-devices via the UART serial protocol and view log messages from the board on your laptop.
-
-Download the macOS package from [this site](http://freeware.the-meiers.org/) and install it.
+Download and install it from https://desktop.github.com.
 
 
-## Build and Run a Program
-
-To build a program, run
-
-```
-$ make
-```
-
-To upload the program to the 32M1, run
-
-```
-$ make upload
-```
-
-Note that `make upload` both compiles and uploads the program.
 
 
-## Finding the Correct USB Port
+## Atom
 
-To see all connected USB devices, run
+Download and install it from https://atom.io/.
 
-```
-$ ls /dev/tty.usb*
-```
 
-The USB device corresponding to the programmer is almost always the device
-with the lowest id. Open the makefile and change the value of `PORT` to this device's location. For example, if the `ls` command
-above displays `/dev/tty.usbmodem00100561` and `/dev/tty.usbmodem00100563`,
-set `PORT = /dev/tty.usbmodem00100561`.
+
+
+## CoolTerm
+
+Download and install the macOS package from [this site](http://freeware.the-meiers.org/).

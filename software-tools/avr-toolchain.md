@@ -83,10 +83,3 @@ learn more about the 32M1.
 The programmer available for general use in the UTAT lab is the Polulu USB
 AVR programmer v2. To learn more about the Polulu, read the online documentation
 [here](https://www.pololu.com/docs/0J67).
-
-## Installing the AVR Toolchain
-
-The installation process depends on your operating system. See the appropriate
-tutorial in the sidebar for details. Once you've completed the installation
-process and verified that the installation completed successfully, read the
-Hello World tutorial next.
