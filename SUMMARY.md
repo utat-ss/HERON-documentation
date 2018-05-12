@@ -9,12 +9,11 @@
 * [Hello World Tutorial](getting-started/hello-world.md)
 
 ## Software Tools
-* [AVR Toolchain](software-tools/avr-toolchain.md)
-* [Compile and Run Programs](software-tools/compile-and-run.md)
-* [Git and GitHub](software-tools/git-and-github.md)
-* [Lib-common](software-tools/lib-common.md)
+* [Software Workflow](software-tools/software-workflow.md)
 * [Our Toolchain](software-tools/our_toolchain.md)
-* [Pololu AVR Bundle](software-tools/pololu-avr-bundle.md)
+* [AVR Toolchain](software-tools/avr-toolchain.md)
+* [Lib-common](software-tools/lib-common.md)
+* [Git and GitHub](software-tools/git-and-github.md)
 * [UART Terminal](software-tools/uart-terminal.md)
 
 ## Embedded Systems

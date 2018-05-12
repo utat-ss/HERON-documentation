@@ -1,4 +1,4 @@
-# Installing Software on Windows
+# Software Installation - Windows
 
 Please ask us for help if you encounter any issues. See the "Software Installation" page for descriptions of what these tools do.
 

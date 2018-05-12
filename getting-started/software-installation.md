@@ -66,3 +66,12 @@ Other text editors are available such as Sublime and Notepad++.
 We use a communication protocol called UART to allow us to view log messages from the 32M1 on a laptop. You need a terminal program that receives and displays these messages.
 
 We recommend using CoolTerm, but other options such as TeraTerm or Xterm are available.
+
+
+
+
+## Pololu USB AVR Programmer v2 (optional)
+
+**You don't need to install this** since we rarely use it.
+
+This utility is for changing the settings of a hardware programmer device. If someone ever tells you to install it, download and install the Pololu USB AVR Programmer v2 for your operating system [here](https://www.pololu.com/product/3170/resources). If you're using the older programmer, this might not work.
