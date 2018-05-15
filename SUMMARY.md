@@ -9,7 +9,7 @@
     * [Installation on Windows](getting-started/install-win.md)
 3. [The ATMega32M1 Microcontroller](getting-started/atmega32m1.md)
 4. [Your First Program: Hello World](getting-started/hello-world.md)
-5. [Git and Github](getting-started/git-and-github)
+5. [Git and Github](getting-started/git-and-github.md)
 
 ## Software Tools
 * [Software Workflow](software-tools/software-workflow.md)
