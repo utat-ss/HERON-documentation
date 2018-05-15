@@ -3,6 +3,7 @@
 
 ## Getting Started
 * [Satellite Software](getting-started/satellite-software.md)
+* [Command Line](getting-started/command-line.md)
 * [Software Installation](getting-started/software-installation.md)
     * [Mac](getting-started/install-mac.md)
     * [Windows](getting-started/install-win.md)
@@ -17,10 +18,12 @@
 * [UART Terminal](software-tools/uart-terminal.md)
 
 ## Embedded Systems
-* [Real-Time Embedded Systems](getting-started/rtsys.md)
+* [Real-Time Embedded Systems](embedded/rtsys.md)
 * [Microcontrollers](embedded/microcontrollers.md)
 * [The ATMega32M1 Microcontroller](embedded/atmega32m1.md)
 * [Interrupts](embedded/interrupts.md)
+* [Binary (0b) and Hexadecimal (0x) Literals](embedded/binary-hex-literals.md)
+* [Integer Types](embedded/integer-types.md)
 
 ## C Programming
 * [Introduction](c-programming/INTRO.md)
@@ -30,7 +33,7 @@
 * [Bitwise Operator Applications](c-programming/bitwise-operators-applications.md)
 * [Control Structures](c-programming/control-structures.md)
 * [Functions](c-programming/functions.md)
-* [Header Files](c-programming/header-files.md)
+* [Header Files, #define, typedef](c-programming/header-files.md)
 * [Pointers](c-programming/pointers.md)
 * [Structs](c-programming/structs.md)
 * [.c and .h files](c-programming/c_h_files.md)
@@ -49,7 +52,7 @@
 * [UART](communication-protocols/uart.md)
 
 ## Programming Style Guide
-* [Style Guide](style-guide/style-guide.md)
+* [Programming Style Guide](style-guide/style-guide.md)
 
 ## Electrical Systems
 * [Components](electrical/components.md)

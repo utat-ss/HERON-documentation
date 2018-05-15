@@ -1,4 +1,4 @@
-## SPI Bus
+# SPI Bus
 
 SPI is a synchronous serial communication protocol used to communicate between devices. SPI uses a master-slave architecture, with a single master device initiating the communication frame, and operates in full-duplex mode (data is sent and received at the same time).
 
@@ -15,26 +15,28 @@ The master device always transmits a square wave on SCK (source clock) to synchr
 
 
 
-### SCK/SCLK (Source Clock)
+## SCK/SCLK (Source Clock)
 
 The clock keeps the data lines and devices in sync. The clock is an oscillating signal produced by the master device that tells the receiving device when to read the data. Depending on the device properties, data is either sent/received on the rising/falling edge of SCK. We will discuss this in more detail shortly. This line is shared by all slave devices.
 
-### MOSI (Master Out Slave In)
+## MOSI (Master Out Slave In)
 
 This is the line where data is sent from the master device to the slave device. This line is shared by all slave devices.
 
-### MISO (Master In Slave Out)
+## MISO (Master In Slave Out)
 
 On this line the data is being sent out of the slave device received by master. This line is shared by all slave devices.
 
-### CS/SS (Chip Select / Slave Select)
+## CS/SS (Chip Select / Slave Select)
 
 This line is referred to as CS or SS interchangeably. It is active low, which means the slave device is active when CS is set low. Only one CS can be low at a time or there will be conflicts on the SPI bus resulting in garbage data. We use a pull-up resistor on the CS pin to set a default value.
 
 A pull-up resistor is a large resistor (typically 10K) which bridges between VCC (3V3 in our case) and another pin. When no load is applied to the pin, no current flows through the resistor. This allows us to hold CS at a known (3V3) state when the CS pin isn't being driven by other circuitry. Then, we can drive another pin on the CS line low (GND) to select the device. Current will flow through the resistor and drop 3V3 across it.
 
-Hopefully the diagram above now makes sense.
-This is what a SPI transfer should look like:
+
+## Hardware Signal
+
+If you look at the SPI lines on an oscilloscope, this is what a SPI transfer should look like:
 
 ![SPI signals on an oscilloscope](../figures/spi_scope.png)
 

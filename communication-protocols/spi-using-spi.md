@@ -1,17 +1,20 @@
-## Using our SPI Library
+# Using our SPI Library
 
-Here are the basic software steps to send SPI messages:
+Here are the basic software steps to send SPI messages.
 
-1. Initialize CS as an output pin
-2. Set CS high
-3. Initialize SPI
-4. Send SPI message
-5. Set CS low
-6. Send message
-7. Set CS high
+Setup:
+1. Initialize SPI
+2. Initialize CS as an output pin
+3. Set CS high
+
+Transmission:
+1. Set CS low
+2. Send SPI message
+3. Set CS high
 
 
-### Initializing CS as an output pin and writing CS high or low
+## CS Pin
+
 On our microcontroller each IO pin has three registers that control it. We will only need to use two of them. There is the data direction register that controls if the pin is input our output and there is the port register that lets you write high or low on the pin.
 
 Once you figure out what pin you are using for CS you can check the microcontroller’s datasheet to get the name of the pin. Figure 1 shows the pin configuration for the ATmega32m1 microcontroller.
@@ -34,16 +37,16 @@ In our SPI library we have functions that will do this for you. This is how you 
 ![](../figures/spi_fn.jpg)
 
 
-### Initialize SPI
+## Initialize SPI
 We have a function, ```init_spi()``` that does this. It initializes SCK and MOSI as output and sets the SCK frequency to 8 MHz / 64. The 32M1’s internal clock frequency is 8 MHz.
 
-### Sending a SPI message
+## Sending a SPI message
 SPI sends 8 bit messages. If you want to send more than a byte you can send consecutive SPI messages. This is how you do it.
 
 ![](../figures/spi_msg.jpg)
 
 
-### Example SPI Code
+## Example SPI Code
 
 
 ```c
@@ -69,6 +72,9 @@ init_spi();
 // Initialize CS pin as an output pin
 init_cs(CS, &CS_DDR);   // pin, DDR
 
+// Set CS pin high (disable SPI device by default)
+set_cs_high(CS, &CS_PORT);
+
 
 
 
@@ -78,9 +84,9 @@ init_cs(CS, &CS_DDR);   // pin, DDR
 set_cs_low(CS, &CS_PORT);  // pin, port
 
 // Send and/or receive data: call send_spi() for each byte
-uint8_t received1 = send_spi(0xA4); // send and receive
-uint8_t received2 = send_spi(0x00); // just receive (send 0)
-send_spi(0xA4);                     // just send (ignore received)
+uint8_t received1 = send_spi(0xA4); // if you want to both send and receive
+uint8_t received2 = send_spi(0x00); // if you just want to receive (send 0)
+send_spi(0xA4);                     // if you just want to send (ignore received)
 
 // End transmission: set CS pin high (disable SPI device)
 set_cs_high(CS, &CS_PORT);
@@ -89,14 +95,14 @@ set_cs_high(CS, &CS_PORT);
 
 
 
-This a full SPI program to make sure SPI is running correctly on the microcontroller.
+This is another full SPI program to make sure SPI is running correctly on the microcontroller.
 
 ![](../figures/spi_example_code.jpg)
 
 
 This repeatedly sends ```10101010```.
 
-### More Clock Settings
+## More Clock Settings (advanced)
 
 ![](../figures/spi_modes.jpg)
 
