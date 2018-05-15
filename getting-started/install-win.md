@@ -9,7 +9,7 @@ Please ask us for help if you encounter any issues. See the "Software Installati
 
 2. Add `<install>/bin` and `<install>/utils/bin` to your `PATH` variable. Do this from `Control Panel > System > Advanced System Settings > Environment variables`, by choosing to edit the Path variable on the **top** list in the window that pops up. Move `<install>/bin` to the top of the list, and `<install>/utils/bin` to second place.
 
-3. Download [this zip file](https://drive.google.com/file/d/1f61X8gvA3odfeqVYECHdmM-gnlFUbaJG/view?usp=sharing). You must be logged in to the Space Systems general member Google account to access it. Unzip this file. Within the extracted folder, take the `WinAVR-20100110` folder and replace the `<install>` folder with it.
+3. Download [this zip file](https://drive.google.com/file/d/1fWXrAz3peHORZjkVtChWaw8oGPStPxiM/view?usp=sharing). Unzip this file. Within the extracted folder, take the `WinAVR-20100110` folder and replace the `<install>` folder with it.
 
 Note: You might need 7-Zip or other unzipping software to extract all packages.
 
