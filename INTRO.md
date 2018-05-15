@@ -1,6 +1,6 @@
 # Introduction
 
-Welcome to the Heron Mk II documentation page! We have created with document
+Welcome to the Heron Mk II documentation page! We have created this document
 with the following goals in mind:
 
 * To enable new UTAT members to quickly get up to speed and begin contributing

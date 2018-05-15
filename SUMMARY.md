@@ -2,12 +2,14 @@
 * [Introduction](INTRO.md)
 
 ## Getting Started
-* [Satellite Software](getting-started/satellite-software.md)
-* [Command Line](getting-started/command-line.md)
-* [Software Installation](getting-started/software-installation.md)
-    * [Mac](getting-started/install-mac.md)
-    * [Windows](getting-started/install-win.md)
-* [Hello World Tutorial](getting-started/hello-world.md)
+
+1. [Real-Time Embedded Systems](getting-started/rtsys.md)
+2. [The AVR Toolchain](getting-started/avr-toolchain.md)
+    * [Installation on macOS](getting-started/install-mac.md)
+    * [Installation on Windows](getting-started/install-win.md)
+3. [The ATMega32M1 Microcontroller](getting-started/atmega32m1.md)
+4. [Your First Program: Hello World](getting-started/hello-world.md)
+5. [Git and Github](getting-started/git-and-github)
 
 ## Software Tools
 * [Software Workflow](software-tools/software-workflow.md)
