@@ -1,31 +1,6 @@
-# Software Installation
+# Other Software
 
-There are several software tools that we use to develop the satellite's software.
-
-
-
-
-## AVR Toolchain
-
-The AVR toolchain is a collection of tools to compile and upload programs to the microcontrollers.
-
-
-### The AVR-GCC Compiler
-
-The AVR-GCC compiler is a tool used to compile and link C code to create an
-executable (binary program) that can run on the 32M1.
-
-
-### AVR libc
-
-AVR libc contains the standard C library and code to access features on
-the MCU, such as accessing pins, handling hardware interrupts, and communicating
-with peripheral devices.
-
-
-### AVRdude
-
-AVRdude is an application that uploads executable binary programs to the 32M1.
+There are other tools that we use to develop the satellite's software.
 
 
 

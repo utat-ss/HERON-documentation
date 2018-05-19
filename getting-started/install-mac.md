@@ -1,4 +1,4 @@
-# Software Installation - Mac
+# Software Installation - macOS
 
 Please ask us for help if you encounter any issues. See the "Software Installation" page for descriptions of what these tools do.
 

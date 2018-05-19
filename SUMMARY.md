@@ -5,24 +5,22 @@
 
 1. [Real-Time Embedded Systems](getting-started/rtsys.md)
 2. [The AVR Toolchain](getting-started/avr-toolchain.md)
-    * [Installation on macOS](getting-started/install-mac.md)
-    * [Installation on Windows](getting-started/install-win.md)
-3. [The ATMega32M1 Microcontroller](getting-started/atmega32m1.md)
-4. [Your First Program: Hello World](getting-started/hello-world.md)
-5. [Git and Github](getting-started/git-and-github.md)
+3. [Other Software](getting-started/other-software.md)
+    * [Software Installation on macOS](getting-started/install-mac.md)
+    * [Software Installation on Windows](getting-started/install-win.md)
+4. [The ATMega32M1 Microcontroller](getting-started/atmega32m1.md)
+5. [Your First Program: Hello World](getting-started/hello-world.md)
+6. [Git and Github](getting-started/git-and-github.md)
 
 ## Software Tools
 * [Software Workflow](software-tools/software-workflow.md)
 * [Our Toolchain](software-tools/our_toolchain.md)
 * [AVR Toolchain](software-tools/avr-toolchain.md)
-* [Lib-common](software-tools/lib-common.md)
-* [Git and GitHub](software-tools/git-and-github.md)
+* [Lib-common and Submodules](software-tools/lib-common.md)
 * [UART Terminal](software-tools/uart-terminal.md)
 
 ## Embedded Systems
-* [Real-Time Embedded Systems](embedded/rtsys.md)
 * [Microcontrollers](embedded/microcontrollers.md)
-* [The ATMega32M1 Microcontroller](embedded/atmega32m1.md)
 * [Interrupts](embedded/interrupts.md)
 * [Binary (0b) and Hexadecimal (0x) Literals](embedded/binary-hex-literals.md)
 * [Integer Types](embedded/integer-types.md)
@@ -39,9 +37,6 @@
 * [Pointers](c-programming/pointers.md)
 * [Structs](c-programming/structs.md)
 * [.c and .h files](c-programming/c_h_files.md)
-
-## Lib-Common
-* [Introduction](lib-common/lib-common.md)
 
 ## Communication Protocols
 * [Introduction](communication-protocols/communication-protocols.md)
