@@ -15,7 +15,6 @@
 ## Software Tools
 * [Software Workflow](software-tools/software-workflow.md)
 * [Our Toolchain](software-tools/our_toolchain.md)
-* [AVR Toolchain](software-tools/avr-toolchain.md)
 * [Lib-common and Submodules](software-tools/lib-common.md)
 * [UART Terminal](software-tools/uart-terminal.md)
 
