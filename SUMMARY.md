@@ -12,6 +12,9 @@
 5. [Your First Program: Hello World](getting-started/hello-world.md)
 6. [Git and Github](getting-started/git-and-github.md)
 
+## Troubleshooting
+* [Troubleshooting](troubleshooting/troubleshooting.md)
+
 ## Software Tools
 * [Software Workflow](software-tools/software-workflow.md)
 * [Our Toolchain](software-tools/our_toolchain.md)
