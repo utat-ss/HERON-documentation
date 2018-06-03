@@ -50,8 +50,10 @@
     * [Using SPI](communication-protocols/spi-using-spi.md)
 * [UART](communication-protocols/uart.md)
 
-## Programming Style Guide
-* [Programming Style Guide](style-guide/style-guide.md)
+## Software Style Guide
+* [Software Style Guide](style-guide/style-guide.md)
+* [Technical](style-guide/technical.md)
+* [Formatting](style-guide/formatting.md)
 
 ## Electrical Systems
 * [Components](electrical/components.md)
