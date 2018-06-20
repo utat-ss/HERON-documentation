@@ -116,7 +116,7 @@ and your teammates will not appreciate it.
 A good commit consists of:
 
 1. A set of related changes to a group of related files.
-2. An informative, well-crafted commit message.   
+2. An informative, well-crafted commit message.
 
 Creating good commits requires discipline.
 
@@ -145,6 +145,24 @@ As mentioned above, you should never be pushing directly onto `master`.
 Instead, create a pull-request on the project's Github page, and request a code
 review from one of the leads. Branches merged directly to `master` without
 review will be reverted.
+
+### Create Separate Branches for Bug Fixes
+
+If you find a bug and fix it, it is important to create a seperate branch
+containing your changes, and open a separate pull request specifically for the
+bug fix. Do *not* just add the bug fix to the branch you're currently working
+on.
+
+Suppose you're working on a new feature on the branch `new-feat` and you happen
+to find a bug in the file `src/a.c`. Once you fix the bug on your current
+branch, checkout the `master` branch and create a new branch called, say
+`a-bug-fix`. This branch will contain only the new bug fix. Now, apply your bug
+fix onto this new branch, in this case, by modifying `src/a.c`. Next, push this
+new branch to Github and create a pull request explaining what you found and
+how you fixed the problem.
+
+Following this process allows other people to benefit from your find, and helps
+keep track of bug fixes across many branches.
 
 ## Git Cheat Sheets
 
