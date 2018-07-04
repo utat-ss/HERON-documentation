@@ -12,20 +12,19 @@
 5. [Your First Program: Hello World](getting-started/hello-world.md)
 6. [Git and Github](getting-started/git-and-github.md)
 
-## Troubleshooting
-* [Troubleshooting](troubleshooting/troubleshooting.md)
-
 ## Software Tools
 * [Software Workflow](software-tools/software-workflow.md)
 * [Our Toolchain](software-tools/our_toolchain.md)
-* [Lib-common and Submodules](software-tools/lib-common.md)
+* [lib-common](software-tools/lib-common.md)
 * [UART Terminal](software-tools/uart-terminal.md)
+
+## Troubleshooting
+* [Troubleshooting](troubleshooting/troubleshooting.md)
 
 ## Embedded Systems
 * [Microcontrollers](embedded/microcontrollers.md)
 * [Interrupts](embedded/interrupts.md)
-* [Binary (0b) and Hexadecimal (0x) Literals](embedded/binary-hex-literals.md)
-* [Integer Types](embedded/integer-types.md)
+* [Registers](embedded/registers.md)
 
 ## C Programming
 * [Introduction](c-programming/INTRO.md)
@@ -39,6 +38,12 @@
 * [Pointers](c-programming/pointers.md)
 * [Structs](c-programming/structs.md)
 * [.c and .h files](c-programming/c_h_files.md)
+* [Binary and Hexadecimal Literals](c-programming/binary-hex-literals.md)
+* [Integer Types](c-programming/integer-types.md)
+* [Print Formatting](c-programming/print-formatting.md)
+* [Volatile Variables](c-programming/volatile-variables.md)
+* [Binary and Hexadecimal Literals](c-programming/binary-hex-literals.md)
+* [Integer Types](c-programming/integer-types.md)
 
 ## Communication Protocols
 * [Introduction](communication-protocols/communication-protocols.md)

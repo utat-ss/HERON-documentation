@@ -1,6 +1,8 @@
 # Microcontrollers
 
-A microcontroller is a processing unit, like the brain of a circuit.
+A microcontroller is a processing unit, like the brain of a circuit. It is slightly different from the microprocessor in your computer because it also has other components like RAM and ROM integrated on the same chip. A microprocessor just has the processing unit.
+
+C is the most common language for programming microcontrollers. This is because of its wide availability and compatibility between platforms, low performance and memory overhead, and high level of control for the programmer. This high level of control for the programmer also creates more potential for mistakes, so be careful.
 
 
 ## ATmega32M1 (AVR)

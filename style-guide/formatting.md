@@ -163,7 +163,9 @@ if (condition) {
 
 ## Comments
 
-Every function should have a comment block with a high-level description of what it does, its parameters, and its return value (if applicable). These comments should be placed before the function declaration, ideally with the function declaration in the header (`.h`) file.
+Every file should have a comment at the top with a high-level description of the code in the file. It should describe what the code does, and list the author(s) of the file. If the file contains code to control an electrical component, it should give the part number and list important page numbers in the datasheet.
+
+Every function should have a comment before it with a high-level description of what it does, its parameters, and its return value (if applicable).
 
 ```C
 // bad
@@ -265,3 +267,8 @@ uint8_t can_message[8];
 #define CAN_MESSAGE_LENGTH 8
 uint8_t can_message[CAN_MESSAGE_LENGTH];
 ```
+
+
+## Testing
+
+When developing libraries of code, do not put temporary testing code in `main.c` and/or `main.h`. Any code that is for testing specific functions in a library should be written in a separate program in the `examples` or `tests` folder, separate from the main program.

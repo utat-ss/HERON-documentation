@@ -41,10 +41,17 @@ When opening the repository folder in Atom, you will see many folders and files.
 Here are the commonly used folders.
 
 - **.git**: Not actually part of the project, so ignore it. It contains files that Git uses for version control.
-- **build**: Contains the compiled versions of the files.
-- **examples**: Contains example code or small pieces of code that test components of the software. This is not the actual code that will go on the satellite.
+- **build**: Compiled versions of the files.
+- **examples**: Example code that demonstrates use of particular software components. This is not the actual code that will go on the satellite.
 - **lib-common**: This is a Git **submodule**, which has code from another repository embedded in this repository so that we can use it. Our `lib-common` repository contains common code to be shared among all the repositories.
-- **src**: Contains the actual code that will go on the satellite.
+- **src**: The actual code that will go on the satellite (`.c` and `.h` files).
+- **tests**: Automated testing files that will be used by the test harness.
+
+`lib-common` has a slightly different structure:
+- **bin**: For the automated test harness (`harness.py`).
+- **include**: All the `.h` files.
+- **lib**: Compiled versions of the common libraries.
+- **src**: All the `.c` files (the `.h` files are moved to `include`).
 
 Here are the commonly used files.
 
