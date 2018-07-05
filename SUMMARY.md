@@ -14,6 +14,7 @@
 
 ## Software Tools
 * [Software Workflow](software-tools/software-workflow.md)
+* [Test Harness](software-tools/test-harness.md)
 * [Our Toolchain](software-tools/our_toolchain.md)
 * [lib-common](software-tools/lib-common.md)
 * [UART Terminal](software-tools/uart-terminal.md)
@@ -23,11 +24,12 @@
 
 ## Embedded Systems
 * [Microcontrollers](embedded/microcontrollers.md)
-* [Interrupts](embedded/interrupts.md)
 * [Registers](embedded/registers.md)
+* [Interrupts](embedded/interrupts.md)
+* [AVR Fuses](embedded/avr-fuses.md)
 
 ## C Programming
-* [Introduction](c-programming/INTRO.md)
+* [Introduction](c-programming/introduction.md)
 * [Variables](c-programming/variables.md)
 * [Operators](c-programming/operators.md)
 * [Bitwise Operators](c-programming/bitwise-operators.md)
