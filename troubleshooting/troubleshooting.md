@@ -12,10 +12,11 @@ Below is a quick checklist for points to consider when programming.
 - [ ] CoolTerm / Xterm baud rate is set to 9600. Appropriate port is set. See below for details.
 - [ ] 6-pin programming header is connected to the PCB.
 - [ ] If using CAN, the CANH and CANL pins are connected between PCBs.
+- [ ] In your program, all the necessary components/libraries are initialized.
 
 If the quick checklist has not cornered your error, let us first troubleshoot the software.
 
-**Hardware**
+## Hardware
 
 ### Is the LED on the board on?
 
@@ -27,11 +28,11 @@ If the quick checklist has not cornered your error, let us first troubleshoot th
 - [ ] Check that you have clicked on the Connect button
 - [ ] Click on the Options button and ensure your port is correct. This port should not be the same as the port in your makefile.
 - [ ] Check the baud rate (use 9800)
-- [ ] Ensure the UART wire is connected to MOSI pin on the board and to the RX pin on the Pololu programmer (Figure X)
+- [ ] Ensure the UART wire is connected to MOSI pin on the board and to the RX pin on the Pololu programmer
 
-**Software**
+## Software
 
-**Read compiler warnings**
+**Read compiler warnings!!**
 
 ### Does AVR say completed and uploaded to board?
 
@@ -44,13 +45,15 @@ If the quick checklist has not cornered your error, let us first troubleshoot th
 - [ ] Add a print statement after init_uart() to see if your program executes on the board
 - [ ] Use various print statements throughout the program to see how your program executes (print useful variables)
 
-### Appendix
+### Appendix - Figures
 
-## Figure 1
+![](../figures/coolterm-settings.png)
 
 ![](../figures/coolterm_port.png)
 
 ![](../figures/makefile_port.png)
+
+![](../figures/software-inits.png)
 
 ![](../figures/power_supply_settings.jpg)
 
