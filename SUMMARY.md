@@ -63,6 +63,7 @@
 * [Formatting](style-guide/formatting.md)
 
 ## Electrical Systems
+* [Useful Websites](electrical/websites.md)
 * [Components](electrical/components.md)
 * [Equipment](electrical/equipment.md)
 * [Circuit Platforms](electrical/circuit-platforms.md)
