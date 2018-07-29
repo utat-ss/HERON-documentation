@@ -49,6 +49,20 @@ Preprocessor macros (including constants) should be named with the "upper snake 
 #define ADC_CS PB3
 ```
 
+Struct names should end with `_t` to represent a type.
+
+```C
+// bad
+typedef struct {
+    ...
+} mob;
+
+// good
+typedef struct {
+    ...
+} mob_t;
+```
+
 
 ## Operator Spacing
 
@@ -267,6 +281,11 @@ uint8_t can_message[8];
 #define CAN_MESSAGE_LENGTH 8
 uint8_t can_message[CAN_MESSAGE_LENGTH];
 ```
+
+
+## Line Length
+
+Lines should generally be no more than 80 characters long. This is a common standard for text width in editor windows.
 
 
 ## Testing
