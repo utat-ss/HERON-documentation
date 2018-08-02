@@ -30,7 +30,7 @@ Create a new file called `hello_world.c`, and copy the following contents into
 the new file:
 
 ```
-#import <uart/log.h>
+#include <uart/log.h>
 
 int main() {
     init_uart();
@@ -83,14 +83,14 @@ We're now ready to compile our program. Make sure you're in the root directory,
 and run
 
 ```
-$ avr-gcc -std=gnu99 -Wall -mmcu=atmega32m1 -c hello_world.c -I./lib-common/include
+$ avr-gcc -std=gnu99 -Wall -mmcu=atmega32m1 -c hello_world.c -I ./lib-common/include
 ```
 
 This will create a new `hello_world.o` object file. We must now link this
 object file to create an executable. To do this, run
 
 ```
-$ avr-gcc -std=gnu99 -Wall -mmcu=atmega32m1 -o hello_world.elf hello_world.o -L./lib-common/lib -luart
+$ avr-gcc -std=gnu99 -Wall -mmcu=atmega32m1 -o hello_world.elf hello_world.o -L ./lib-common/lib -l uart
 ```
 
 This will create a new file called `hello_world.elf`; this is a complete
