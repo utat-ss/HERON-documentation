@@ -1,6 +1,8 @@
-# Other Software
+# Software Installation
 
-There are other tools that we use to develop the satellite's software.
+**See the `AVR Toolchain` section** for descriptions of the software for the AVR microcontroller.
+
+These are other tools that we use to develop the satellite's software.
 
 
 

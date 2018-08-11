@@ -113,7 +113,9 @@ Note: If you get errors about C99, go to the makefile and add `-std=c99` to the 
 
 ## Finding the Correct USB Port
 
-If you get an error about the device not being found, you need to change the port used to communicate with the device. In Atom, open the `makefile` in the `pay` folder. Find the line starting with `PORT =`. Find the port on your computer as shown below, modify this line, save the file, and run `make upload` again.
+If you get an error about the device not being found, you need to change the port used to communicate with the device. In Atom, open the `makefile` in the `pay` folder. Find the line starting with `PORT =`. Find the port on your computer as shown below, modify this line to change the port, save the file, and run `make upload` again.
+
+When you do this process, you should find two ports for the programmer. Usually, the lower number is for uploading programs while the higher number is for viewing UART (serial) output.
 
 **Mac**: To see all connected USB devices, run
 
@@ -121,13 +123,9 @@ If you get an error about the device not being found, you need to change the por
 $ ls /dev/tty.usb*
 ```
 
-The USB device corresponding to the programmer is almost always the device
-with the lowest id. In the makefile, change the value of `PORT` to this device's
-location. For example, if the `ls` command
-above displays `/dev/tty.usbmodem00100561` and `/dev/tty.usbmodem00100563`,
-set `PORT = /dev/tty.usbmodem00100561`.
-
 **Windows**: Open the `Device Manager` application on your computer, then select `Ports`. Find the appropriate port. You want the programmer port, not the serial port. In the makefile, modify the line to use the programming port, such as ```PORT = COM7```.
+
+**Linux (Windows Subsystem)**: Follow the above instructions for Windows to get the port number from the Device Manager. In the Linux subsystem, these ports are mapped with the same numbers but slightly different names. As described [here](https://blogs.msdn.microsoft.com/wsl/2017/04/14/serial-support-on-the-windows-subsystem-for-linux/), `/dev/ttyS<N>` on Linux is tied to `COM<N>` on Windows. For example, use `dev/ttyS7` instead of `COM7`.
 
 
 ## Committing and Pushing to GitHub

@@ -5,9 +5,10 @@
 
 1. [Real-Time Embedded Systems](getting-started/rtsys.md)
 2. [The AVR Toolchain](getting-started/avr-toolchain.md)
-3. [Other Software](getting-started/other-software.md)
-    * [Software Installation on macOS](getting-started/install-mac.md)
-    * [Software Installation on Windows](getting-started/install-win.md)
+3. [Software Installation](getting-started/install.md)
+    * [Software Installation - macOS](getting-started/install-mac.md)
+    * [Software Installation - Windows](getting-started/install-win.md)
+    * [Software Installation - Linux](getting-started/install-linux.md)
 4. [The ATMega32M1 Microcontroller](getting-started/atmega32m1.md)
 5. [Your First Program: Hello World](getting-started/hello-world.md)
 6. [Git and Github](getting-started/git-and-github.md)
