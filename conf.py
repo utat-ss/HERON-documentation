@@ -26,8 +26,8 @@ source_parsers = {
 # -- Project information -----------------------------------------------------
 
 project = 'utatss-documentation'
-copyright = '2018, University of Toronto Aerospace Team [D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[D[D[D[D[D[D[D[D[D[D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C): University of Toronto Aerospace Team'
-author = 'Dylan Vogel, Bruno Almeida, Sidd Mahen, Ali Haydaroglu[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[D[D[D[D[D[D[D[D[D[D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C): Bruno Almeida, Ali Haydaroglu, Sidd Mahen, Dylan Vogel'
+copyright = '2018, University of Toronto Aerospace Team'
+author = 'Dylan Vogel, Bruno Almeida, Sidd Mahen, Ali Haydaroglu'
 
 # The short X.Y version
 version = ''
@@ -89,7 +89,9 @@ pygments_style = 'sphinx'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+#html_theme = 'alabaster'
+html_theme = "sphinx_rtd_theme"
+html_theme_path = ["_themes", ]
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
