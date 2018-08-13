@@ -1,0 +1,119 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Test Harness &#8212; utatss-documentation 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="test-harness">
+<span id="test-harness"></span><h1>Test Harness<a class="headerlink" href="#test-harness" title="Permalink to this headline">¶</a></h1>
+<p>The <strong>test harness</strong> is a program we use to automate testing parts of our code. It
+takes a folder of test programs, uploads each program to the microcontroller,
+runs it, observes its output, determines whether the tests passed or failed, and
+prints the results.</p>
+<p>Each <strong>test suite</strong> contains a set of tests, which contain assertion statements.
+An <strong>assertion</strong> is a condition we expect to be true at a certain time if the
+program is working correctly. If all assertions succeed, the program is working
+correctly. If any assertion fails, we know the program is not working correctly
+and can isolate the problem.</p>
+<p>The test harness is written in Python and requires the <code class="docutils literal notranslate"><span class="pre">pyserial</span></code> library to be
+installed.</p>
+<div class="section" id="running-the-test-harness">
+<span id="running-the-test-harness"></span><h2>Running the Test Harness<a class="headerlink" href="#running-the-test-harness" title="Permalink to this headline">¶</a></h2>
+<p>The test harness Python script is located in <code class="docutils literal notranslate"><span class="pre">lib-common/bin/harness.py</span></code>.</p>
+<p>The command to run the test harness is:</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">python</span> <span class="pre">harness.py</span> <span class="pre">-p</span> <span class="pre">&lt;port&gt;</span> <span class="pre">-d</span> <span class="pre">tests</span></code></p>
+<p><strong>IMPORTANT NOTES:</strong></p>
+<p><strong>You must replace</strong> <code class="docutils literal notranslate"><span class="pre">&lt;port&gt;</span></code> with the port the programmer is connected to (what you normally use to upload programs), for example <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">python</span> <span class="pre">harness.py</span> <span class="pre">-p</span> <span class="pre">/dev/tty.usbmodem00208212</span> <span class="pre">-d</span> <span class="pre">tests</span></code> (Mac) or <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">python</span> <span class="pre">harness.py</span> <span class="pre">-p</span> <span class="pre">COM3</span> <span class="pre">-d</span> <span class="pre">tests</span></code> (Windows).</p>
+<p><strong>You may have to replace</strong> <code class="docutils literal notranslate"><span class="pre">harness.py</span></code> with the path to the Python script, such as <code class="docutils literal notranslate"><span class="pre">bin/harness.py</span></code> if you are running from the <code class="docutils literal notranslate"><span class="pre">lib-common</span></code> folder.</p>
+<p><strong>You may have to replace</strong> <code class="docutils literal notranslate"><span class="pre">tests</span></code> with the path to the folder of your test files.</p>
+<p><strong>If you are running tests that use 2 boards</strong> (e.g. CAN), you must specify a second port with a space after the first port, e.g. <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">python</span> <span class="pre">harness.py</span> <span class="pre">-p</span> <span class="pre">/dev/tty.usbmodem00208212</span> <span class="pre">/dev/tty.usbmodem00187462</span> <span class="pre">-d</span> <span class="pre">tests</span></code>.</p>
+<p>See the <a class="reference external" href="https://github.com/HeronMkII/lib-common/pull/28">pull request for the test harness’ development</a> for more details.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Test Harness</a><ul>
+<li><a class="reference internal" href="#running-the-test-harness">Running the Test Harness</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/software-tools/test-harness.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, University of Toronto Aerospace Team [D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[D[D[D[D[D[D[D[D[D[D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C): University of Toronto Aerospace Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/software-tools/test-harness.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

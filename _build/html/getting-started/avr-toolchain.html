@@ -1,0 +1,168 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>The AVR Toolchain &#8212; utatss-documentation 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-avr-toolchain">
+<span id="the-avr-toolchain"></span><h1>The AVR Toolchain<a class="headerlink" href="#the-avr-toolchain" title="Permalink to this headline">¶</a></h1>
+<p>The AVR toolchain is a collection of open-source tools which can be used
+together to compile and upload programs to AVR-based microcontrollers, such as
+the ATMega32M1 microcontroller used on the Heron Mk II subsystem
+microcontrollers.</p>
+<p>Installing and understanding how to use the AVR toolchain is the first
+step to contributing to the Heron Mk II codebase.</p>
+<div class="section" id="glossary">
+<span id="glossary"></span><h2>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h2>
+<p>Before we dive in, we pause to introduce the following terminology. It will be
+used liberally throughout these docs.</p>
+<ul class="simple">
+<li>SSM: abbreviation for subsystem microcontroller; this refers to the
+microcontroller which controls a particular subsystem board.</li>
+<li>32M1: abbreviation for the ATMega32M1.</li>
+<li>MCU: abbreviation for microcontroller.</li>
+<li>Library: a self-contained unit of code, intended to be reused.</li>
+<li>Header: a file describing the interface to a particular unit of code. Header
+files end in <code class="docutils literal notranslate"><span class="pre">.h</span></code>.</li>
+<li>SPI: serial peripheral interface; the mechanism by which the 32M1 communicates
+with peripherals, such as external sensors.</li>
+<li>CAN: controller area network; a robust bus on which all SSMs communicate
+with one another.</li>
+</ul>
+</div>
+<div class="section" id="the-avr-gcc-compiler">
+<span id="the-avr-gcc-compiler"></span><h2>The AVR-GCC Compiler<a class="headerlink" href="#the-avr-gcc-compiler" title="Permalink to this headline">¶</a></h2>
+<p>The AVR-GCC compiler is a tool used to compile and link C code to create an
+executable that can run on the 32M1. Generally, compilation refers to the
+process of transforming structured data from one form into another. The
+AVR-GCC compiler transforms C code into machine instructions that the 32M1
+can execute. It also links this code together into a executable; a program
+which can be run on the 32M1.</p>
+<p>In fact, AVR-GCC accomplishes much, much more, including warning you of
+certain kinds of errors in your code (type errors) and performing optimizations
+to reduce code size.</p>
+<p>Installing AVR-GCC also installs a host of other useful programs such as
+<code class="docutils literal notranslate"><span class="pre">avr-objcopy</span></code>, <code class="docutils literal notranslate"><span class="pre">avr-ar</span></code> and <code class="docutils literal notranslate"><span class="pre">avr-objdump</span></code>. You’ll learn about these tools later.</p>
+<p>The AVR-GCC is based on the well known GCC compiler. To read more about AVR-GCC
+and GCC, look <a class="reference external" href="https://www.nongnu.org/avr-libc/user-manual/overview.html">here</a>.</p>
+<p>AVR-GCC can be invoked by running <code class="docutils literal notranslate"><span class="pre">avr-gcc</span></code> in the command line. You won’t
+normally have to invoke the AVR-GCC compiler yourself; as you’ll see the process
+of compiling your code can be automated to the point where it becomes a single
+command.</p>
+</div>
+<div class="section" id="avr-libc">
+<span id="avr-libc"></span><h2>AVR libc<a class="headerlink" href="#avr-libc" title="Permalink to this headline">¶</a></h2>
+<p>AVR libc is a library which provides all of the standard C headers and their
+implementations, as well as special code used to access features unique
+to AVR-based MCUs, such as accessing pins, handling hardware interrupts, and
+communicating with peripheral devices.</p>
+<p>Whenever you use standard C libraries, for example, via <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;stdint.h&gt;</span></code>
+or <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;avr/io.h&gt;</span></code>, you are implicitly using AVR libc.</p>
+<p>To learn more about AVR libc, read the online documentation
+<a class="reference external" href="https://www.nongnu.org/avr-libc/user-manual/index.html">here</a>.</p>
+</div>
+<div class="section" id="avrdude">
+<span id="avrdude"></span><h2>avrdude<a class="headerlink" href="#avrdude" title="Permalink to this headline">¶</a></h2>
+<p>Avrdude is a command-line application which, when used in combination with a
+programmer, can upload the contents of a specific file to the 32M1’s flash
+memory. We use avrdude to upload executables onto the 32M1.</p>
+<p>Avrdude writes to the 32M1’s flash memory using a protocol called In-Circuit
+Serial Programming; ISP for short. A programmer is simply a device which
+allows your computer to interface with the pins of the 32M1 that are relevant
+to ISP. You will learn about which pins are relevant to ISP later, when you
+learn more about the 32M1.</p>
+<p>The programmer available for general use in the UTAT lab is the Polulu USB
+AVR programmer v2. To learn more about the Polulu, read the online documentation
+<a class="reference external" href="https://www.pololu.com/docs/0J67">here</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The AVR Toolchain</a><ul>
+<li><a class="reference internal" href="#glossary">Glossary</a></li>
+<li><a class="reference internal" href="#the-avr-gcc-compiler">The AVR-GCC Compiler</a></li>
+<li><a class="reference internal" href="#avr-libc">AVR libc</a></li>
+<li><a class="reference internal" href="#avrdude">avrdude</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/getting-started/avr-toolchain.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, University of Toronto Aerospace Team [D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[D[D[D[D[D[D[D[D[D[D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C): University of Toronto Aerospace Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/getting-started/avr-toolchain.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

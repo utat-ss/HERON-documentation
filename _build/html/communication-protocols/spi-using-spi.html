@@ -1,0 +1,187 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Using our SPI Library &#8212; utatss-documentation 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="using-our-spi-library">
+<span id="using-our-spi-library"></span><h1>Using our SPI Library<a class="headerlink" href="#using-our-spi-library" title="Permalink to this headline">¶</a></h1>
+<p>Here are the basic software steps to send SPI messages.</p>
+<p>Setup:</p>
+<ol class="simple">
+<li>Initialize SPI</li>
+<li>Initialize CS as an output pin</li>
+<li>Set CS high</li>
+</ol>
+<p>Transmission:</p>
+<ol class="simple">
+<li>Set CS low</li>
+<li>Send SPI message</li>
+<li>Set CS high</li>
+</ol>
+<div class="section" id="cs-pin">
+<span id="cs-pin"></span><h2>CS Pin<a class="headerlink" href="#cs-pin" title="Permalink to this headline">¶</a></h2>
+<p>On our microcontroller each IO pin has three registers that control it. We will only need to use two of them. There is the data direction register that controls if the pin is input our output and there is the port register that lets you write high or low on the pin.</p>
+<p>Once you figure out what pin you are using for CS you can check the microcontroller’s datasheet to get the name of the pin. Figure 1 shows the pin configuration for the ATmega32m1 microcontroller.</p>
+<p><img alt="ATmega32m1 pinout" src="../_images/32m1.png" /></p>
+<p>There are four banks of ports (B, C, D and E) with eight pins on each. There are 8-bit data direction and port registers for each of the four ports. Each bit in the register is for a separate pin. The data direction register is called DDRx and the port register is just called PORTx where x is the port. So if you wanted to initialized PB6 as output the code would be the following.</p>
+<p><img alt="" src="../_images/ddrb.jpg" /></p>
+<p>The macro <code class="docutils literal notranslate"><span class="pre">_BV(PB6)</span></code> expands to <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">&lt;&lt;</span> <span class="pre">PB6</span></code> and PB6 is a macro that expands to 6. Here is the code to write high or low on PB6.</p>
+<p><img alt="" src="../_images/portb.jpg" /></p>
+<p>In our SPI library we have functions that will do this for you. This is how you use them.</p>
+<p><img alt="" src="../_images/spi_fn.jpg" /></p>
+</div>
+<div class="section" id="initialize-spi">
+<span id="initialize-spi"></span><h2>Initialize SPI<a class="headerlink" href="#initialize-spi" title="Permalink to this headline">¶</a></h2>
+<p>We have a function, <code class="docutils literal notranslate"><span class="pre">init_spi()</span></code> that does this. It initializes SCK and MOSI as output and sets the SCK frequency to 8 MHz / 64. The 32M1’s internal clock frequency is 8 MHz.</p>
+</div>
+<div class="section" id="sending-a-spi-message">
+<span id="sending-a-spi-message"></span><h2>Sending a SPI message<a class="headerlink" href="#sending-a-spi-message" title="Permalink to this headline">¶</a></h2>
+<p>SPI sends 8 bit messages. If you want to send more than a byte you can send consecutive SPI messages. This is how you do it.</p>
+<p><img alt="" src="../_images/spi_msg.jpg" /></p>
+</div>
+<div class="section" id="example-spi-code">
+<span id="example-spi-code"></span><h2>Example SPI Code<a class="headerlink" href="#example-spi-code" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">Example from PAY:</span>
+<span class="cm">Say we want to use the pin labelled PB5 on the 32M1 as the CS pin for the SPI device.</span>
+<span class="cm">It uses pin 5 on DDR B (data direction register) and Port B (output).</span>
+<span class="cm">*/</span>
+
+<span class="c1">// This would be in a header file</span>
+<span class="cp">#define CS PB5</span>
+<span class="cp">#define CS_PORT PORTB</span>
+<span class="cp">#define CS_DDR DDRB</span>
+
+
+
+
+<span class="c1">// Setup: Just do this once</span>
+
+<span class="c1">// Initialize SPI</span>
+<span class="n">init_spi</span><span class="p">();</span>
+
+<span class="c1">// Initialize CS pin as an output pin</span>
+<span class="n">init_cs</span><span class="p">(</span><span class="n">CS</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">CS_DDR</span><span class="p">);</span>   <span class="c1">// pin, DDR</span>
+
+<span class="c1">// Set CS pin high (disable SPI device by default)</span>
+<span class="n">set_cs_high</span><span class="p">(</span><span class="n">CS</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">CS_PORT</span><span class="p">);</span>
+
+
+
+
+<span class="c1">// Transmission: do this every time you want to transmit</span>
+
+<span class="c1">// Start transmission: set CS pin low (enable SPI device)</span>
+<span class="n">set_cs_low</span><span class="p">(</span><span class="n">CS</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">CS_PORT</span><span class="p">);</span>  <span class="c1">// pin, port</span>
+
+<span class="c1">// Send and/or receive data: call send_spi() for each byte</span>
+<span class="kt">uint8_t</span> <span class="n">received1</span> <span class="o">=</span> <span class="n">send_spi</span><span class="p">(</span><span class="mh">0xA4</span><span class="p">);</span> <span class="c1">// if you want to both send and receive</span>
+<span class="kt">uint8_t</span> <span class="n">received2</span> <span class="o">=</span> <span class="n">send_spi</span><span class="p">(</span><span class="mh">0x00</span><span class="p">);</span> <span class="c1">// if you just want to receive (send 0)</span>
+<span class="n">send_spi</span><span class="p">(</span><span class="mh">0xA4</span><span class="p">);</span>                     <span class="c1">// if you just want to send (ignore received)</span>
+
+<span class="c1">// End transmission: set CS pin high (disable SPI device)</span>
+<span class="n">set_cs_high</span><span class="p">(</span><span class="n">CS</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">CS_PORT</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This is another full SPI program to make sure SPI is running correctly on the microcontroller.</p>
+<p><img alt="" src="../_images/spi_example_code.jpg" /></p>
+<p>This repeatedly sends <code class="docutils literal notranslate"><span class="pre">10101010</span></code>.</p>
+</div>
+<div class="section" id="more-clock-settings-advanced">
+<span id="more-clock-settings-advanced"></span><h2>More Clock Settings (advanced)<a class="headerlink" href="#more-clock-settings-advanced" title="Permalink to this headline">¶</a></h2>
+<p><img alt="" src="../_images/spi_modes.jpg" /></p>
+<p>The two clock settings introduced here are Clock Polarity and Clock Phase. Clock Phase determines whether data is shifted in and out on the rising or falling edge of the data clock cycle. Clock Polarity determines determines whether the clock is idle when high or low.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Using our SPI Library</a><ul>
+<li><a class="reference internal" href="#cs-pin">CS Pin</a></li>
+<li><a class="reference internal" href="#initialize-spi">Initialize SPI</a></li>
+<li><a class="reference internal" href="#sending-a-spi-message">Sending a SPI message</a></li>
+<li><a class="reference internal" href="#example-spi-code">Example SPI Code</a></li>
+<li><a class="reference internal" href="#more-clock-settings-advanced">More Clock Settings (advanced)</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/communication-protocols/spi-using-spi.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, University of Toronto Aerospace Team [D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[D[D[D[D[D[D[D[D[D[D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C): University of Toronto Aerospace Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/communication-protocols/spi-using-spi.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

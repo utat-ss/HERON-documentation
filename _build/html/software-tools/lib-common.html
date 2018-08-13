@@ -1,0 +1,128 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>lib-common &#8212; utatss-documentation 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="lib-common">
+<span id="lib-common"></span><h1>lib-common<a class="headerlink" href="#lib-common" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">lib-common</span></code> is a repository of common software used in multiple subsystems of the satellite. It has its own GitHub repository for development (<code class="docutils literal notranslate"><span class="pre">lib-common</span></code>), and is embedded in other subsystem repositories as a Git submodule so it can be used in those repositories.</p>
+<p>A submodule is code from one repository that is embedded in another repository to be used. We use this to embed code from the <code class="docutils literal notranslate"><span class="pre">lib-common</span></code> repository in other repositories such as <code class="docutils literal notranslate"><span class="pre">pay</span></code>.</p>
+<div class="section" id="update-lib-common">
+<span id="update-lib-common"></span><h2>Update lib-common<a class="headerlink" href="#update-lib-common" title="Permalink to this headline">¶</a></h2>
+<p>To update the <code class="docutils literal notranslate"><span class="pre">lib-common</span></code> submodule to the latest code from the <code class="docutils literal notranslate"><span class="pre">lib-common</span></code> repository, run this command from your other repository’s root:</p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span> <span class="pre">--remote</span></code></p>
+<p>You must then recompile <code class="docutils literal notranslate"><span class="pre">lib-common</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd lib-common
+$ make
+$ cd ..
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="switch-lib-common-to-a-different-branch">
+<span id="switch-lib-common-to-a-different-branch"></span><h1>Switch lib-common to a Different Branch<a class="headerlink" href="#switch-lib-common-to-a-different-branch" title="Permalink to this headline">¶</a></h1>
+<p>Normally, when you run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span> <span class="pre">--remote</span></code>, it fetches the latest version of <code class="docutils literal notranslate"><span class="pre">lib-common</span></code> from <code class="docutils literal notranslate"><span class="pre">master</span></code>. You can get Git to track a different branch of <code class="docutils literal notranslate"><span class="pre">lib-common</span></code> by modifying the <code class="docutils literal notranslate"><span class="pre">.gitmodules</span></code> file. If you open it, you will see something like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">submodule</span> <span class="s2">&quot;lib-common&quot;</span><span class="p">]</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">lib</span><span class="o">-</span><span class="n">common</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">HeronMkII</span><span class="o">/</span><span class="n">lib</span><span class="o">-</span><span class="n">common</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Add the following line to track a different branch:</p>
+<p><code class="docutils literal notranslate"><span class="pre">branch</span> <span class="pre">=</span> <span class="pre">&lt;branch</span> <span class="pre">name&gt;</span></code></p>
+<p>For example, if you want to use the branch <code class="docutils literal notranslate"><span class="pre">flash-dev</span></code>, your <code class="docutils literal notranslate"><span class="pre">.gitmodules</span></code> file will look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">submodule</span> <span class="s2">&quot;lib-common&quot;</span><span class="p">]</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">lib</span><span class="o">-</span><span class="n">common</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">HeronMkII</span><span class="o">/</span><span class="n">lib</span><span class="o">-</span><span class="n">common</span><span class="o">.</span><span class="n">git</span>
+    <span class="n">branch</span> <span class="o">=</span> <span class="n">flash</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">lib-common</a><ul>
+<li><a class="reference internal" href="#update-lib-common">Update lib-common</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#switch-lib-common-to-a-different-branch">Switch lib-common to a Different Branch</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/software-tools/lib-common.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, University of Toronto Aerospace Team [D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[D[D[D[D[D[D[D[D[D[D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C): University of Toronto Aerospace Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/software-tools/lib-common.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

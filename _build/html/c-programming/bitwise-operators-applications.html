@@ -1,0 +1,122 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Applications of Bitwise Operators &#8212; utatss-documentation 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="applications-of-bitwise-operators">
+<span id="applications-of-bitwise-operators"></span><h1>Applications of Bitwise Operators<a class="headerlink" href="#applications-of-bitwise-operators" title="Permalink to this headline">¶</a></h1>
+<p>Here are the most common uses of bitwise operators in our software.</p>
+<p>Very frequently we have to manipulate specific bits in numbers (usually 8 bit, 16 bit, or 32 bit). For example, this is necessary to change settings in the microcontroller or other devices. We use bitwise operators to change certain bits while not affecting others.</p>
+<div class="section" id="or">
+<span id="or"></span><h2>OR<a class="headerlink" href="#or" title="Permalink to this headline">¶</a></h2>
+<p>If you OR any bit with 0, you always get the original bit. If you OR any bit with 1, you always get 1. We can use the OR operator to force specific bits to be 1 while leaving other bits as they are.</p>
+<p>For example, this is how to set bit 5 to 1.</p>
+<p><img alt="" src="../_images/fig12.jpg" /></p>
+<p>Now the value of x is <code class="docutils literal notranslate"><span class="pre">0b00100000</span></code>.</p>
+</div>
+<div class="section" id="and">
+<span id="and"></span><h2>AND<a class="headerlink" href="#and" title="Permalink to this headline">¶</a></h2>
+<p>If you AND any bit with 0, you always get 0. If you AND any bit with 1, you always get the original bit. We can use the AND operator to force specific bits to be 0 while leaving other bits as they are.</p>
+<p>For example, you can set bit 5 to 0 with the following:</p>
+<p><img alt="" src="../_images/fig13.jpg" /></p>
+<p>The expression <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">&lt;&lt;</span> <span class="pre">5</span></code> is <code class="docutils literal notranslate"><span class="pre">00100000</span></code>, so <code class="docutils literal notranslate"><span class="pre">~(1</span> <span class="pre">&lt;&lt;</span> <span class="pre">5)</span></code> is <code class="docutils literal notranslate"><span class="pre">11011111</span></code>.</p>
+<p>Now the value of x is <code class="docutils literal notranslate"><span class="pre">0b11011111</span></code>.</p>
+</div>
+<div class="section" id="xor">
+<span id="xor"></span><h2>XOR<a class="headerlink" href="#xor" title="Permalink to this headline">¶</a></h2>
+<p>If you XOR any bit with 0, you always get the original bit. If you XOR any bit with 1, you always get the <strong>opposite</strong> of the original bit. We can use the XOR operator to flip specific bits while leaving other bits as they are.</p>
+<p>For example, you can switch the value of a bit with the following:</p>
+<p><img alt="" src="../_images/fig14.jpg" /></p>
+<p>Now the value of x is <code class="docutils literal notranslate"><span class="pre">0b11011111</span></code>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Applications of Bitwise Operators</a><ul>
+<li><a class="reference internal" href="#or">OR</a></li>
+<li><a class="reference internal" href="#and">AND</a></li>
+<li><a class="reference internal" href="#xor">XOR</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/c-programming/bitwise-operators-applications.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, University of Toronto Aerospace Team [D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[D[D[D[D[D[D[D[D[D[D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C): University of Toronto Aerospace Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/c-programming/bitwise-operators-applications.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,161 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Bitwise Operators &#8212; utatss-documentation 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="bitwise-operators">
+<span id="bitwise-operators"></span><h1>Bitwise Operators<a class="headerlink" href="#bitwise-operators" title="Permalink to this headline">¶</a></h1>
+<p>These operators directly manipulate the bits in numbers. A lot of our software is manipulating 8 bit registers on our microcontroller so bitwise operators are very common in our software. The first two are very similar to <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> and <code class="docutils literal notranslate"><span class="pre">||</span></code> mentioned above. They are the “and” and “or” bitwise operators, represented by <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> and <code class="docutils literal notranslate"><span class="pre">|</span></code>. They both combine two numbers into one. We will explain different operators.</p>
+<div class="section" id="and">
+<span id="and"></span><h2>AND (<code class="docutils literal notranslate"><span class="pre">&amp;</span></code>)<a class="headerlink" href="#and" title="Permalink to this headline">¶</a></h2>
+<p><img alt="" src="../_images/fig4.jpg" /></p>
+<p>We move from right to left comparing each pair of bits. If both the bits are 1 the result
+will have a 1 in that location, otherwise it will have a 0. Just like <code class="docutils literal notranslate"><span class="pre">&amp;&amp;</span></code> it needs two 1’s to get a 1.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="mi">10110001</span>
+<span class="o">&amp;</span> <span class="mi">00101110</span>
+<span class="o">----------</span>
+  <span class="mi">00100000</span>
+</pre></div>
+</div>
+<p>There is only a 1 in the 6th bit position because that is the only position where there is a 1 in both the numbers.</p>
+</div>
+<div class="section" id="or">
+<span id="or"></span><h2>OR (<code class="docutils literal notranslate"><span class="pre">|</span></code>)<a class="headerlink" href="#or" title="Permalink to this headline">¶</a></h2>
+<p>This operator is similar, except if at least one of the bits is a 1 the result will have a 1 in that position.</p>
+<p><img alt="" src="../_images/fig5.jpg" /></p>
+</div>
+<div class="section" id="xor-exclusive-or">
+<span id="xor-exclusive-or"></span><h2>XOR (<code class="docutils literal notranslate"><span class="pre">^</span></code>) (Exclusive OR)<a class="headerlink" href="#xor-exclusive-or" title="Permalink to this headline">¶</a></h2>
+<p>Exclusive OR is similar to OR, but if one and only one of the bits is a 1 then the result will have a 1 in that position.</p>
+<p><img alt="" src="../_images/fig6.jpg" /></p>
+</div>
+<div class="section" id="not-compliment">
+<span id="not-compliment"></span><h2>NOT (<code class="docutils literal notranslate"><span class="pre">~</span></code>) (Compliment)<a class="headerlink" href="#not-compliment" title="Permalink to this headline">¶</a></h2>
+<p>This only applies to one number (instead of two), and it flips all the bits in the number so 1’s become 0’s and vice-versa.</p>
+<p><strong>Example 1:</strong></p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">uint8_t</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b10100011</span><span class="p">;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="o">~</span><span class="n">x</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>x becomes <code class="docutils literal notranslate"><span class="pre">0b01011100</span></code>.</p>
+<p><strong>Example 2:</strong></p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">uint8_t</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="n">b11110000</span><span class="p">;</span>
+<span class="n">x</span> <span class="o">=</span> <span class="o">~</span><span class="n">x</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>x becomes <code class="docutils literal notranslate"><span class="pre">0b00001111</span></code>.</p>
+</div>
+<div class="section" id="modified-assignment">
+<span id="modified-assignment"></span><h2>Modified Assignment<a class="headerlink" href="#modified-assignment" title="Permalink to this headline">¶</a></h2>
+<p>You can use the following operators to modify and assign a variable in one step: <code class="docutils literal notranslate"><span class="pre">&amp;=</span></code>, <code class="docutils literal notranslate"><span class="pre">|=</span></code>, and <code class="docutils literal notranslate"><span class="pre">^=</span></code>.</p>
+</div>
+<div class="section" id="bitwise-shifts">
+<span id="bitwise-shifts"></span><h2>Bitwise Shifts (<code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>)<a class="headerlink" href="#bitwise-shifts" title="Permalink to this headline">¶</a></h2>
+<p>There are left (<code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code>) and right (<code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>) bit shifts. They do what the name suggests, shift the bits in a number by a certain number of places.</p>
+<p><img alt="" src="../_images/fig7.jpg" /></p>
+<p>The bits are shifted to the left and 0’s are shifted into the empty spots. You
+might think x is now <code class="docutils literal notranslate"><span class="pre">0b111111110000</span></code>, but that is incorrect because that is
+no longer an 8 bit number. It is actually <code class="docutils literal notranslate"><span class="pre">0b11110000</span></code>. With bit shifts you
+have to consider the size of the variable because if you shift a number to the
+left past its limit those bits will be cut off.</p>
+<p><img alt="" src="../_images/fig8.jpg" /></p>
+<p>When we shift this number by four, four of the leading zeros are being cut off so we end up with <code class="docutils literal notranslate"><span class="pre">0b0000111111110000</span></code>, or more nicely <code class="docutils literal notranslate"><span class="pre">0x0FF0</span></code>.</p>
+<p>The right bit shift does the exact same thing except in the opposite direction. No matter the size
+of the variable the bits will be cut off.</p>
+<p><img alt="" src="../_images/fig9.jpg" /></p>
+<p>In this case the bits are shifted out of the variable to the right and 0’s are shifting into the variable on the left. Here we will end up with x as <code class="docutils literal notranslate"><span class="pre">0b00001111</span></code>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Bitwise Operators</a><ul>
+<li><a class="reference internal" href="#and">AND (<code class="docutils literal notranslate"><span class="pre">&amp;</span></code>)</a></li>
+<li><a class="reference internal" href="#or">OR (<code class="docutils literal notranslate"><span class="pre">|</span></code>)</a></li>
+<li><a class="reference internal" href="#xor-exclusive-or">XOR (<code class="docutils literal notranslate"><span class="pre">^</span></code>) (Exclusive OR)</a></li>
+<li><a class="reference internal" href="#not-compliment">NOT (<code class="docutils literal notranslate"><span class="pre">~</span></code>) (Compliment)</a></li>
+<li><a class="reference internal" href="#modified-assignment">Modified Assignment</a></li>
+<li><a class="reference internal" href="#bitwise-shifts">Bitwise Shifts (<code class="docutils literal notranslate"><span class="pre">&lt;&lt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code>)</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/c-programming/bitwise-operators.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, University of Toronto Aerospace Team [D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[D[D[D[D[D[D[D[D[D[D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C): University of Toronto Aerospace Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/c-programming/bitwise-operators.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

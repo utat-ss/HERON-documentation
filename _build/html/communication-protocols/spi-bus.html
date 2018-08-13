@@ -1,0 +1,141 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>SPI Bus &#8212; utatss-documentation 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="spi-bus">
+<span id="spi-bus"></span><h1>SPI Bus<a class="headerlink" href="#spi-bus" title="Permalink to this headline">¶</a></h1>
+<p>SPI is a synchronous serial communication protocol used to communicate between devices. SPI uses a master-slave architecture, with a single master device initiating the communication frame, and operates in full-duplex mode (data is sent and received at the same time).</p>
+<p>In digital systems, data is transferred in the form of 1’s and 0’s. In hardware, 1’s and 0’s are represented as high and low voltages. Our satellite uses 3.3V, so a 1 corresponds to ~3.3V on a wire, and a 0 corresponds to ~0V.</p>
+<p>SPI is a synchronous communication protocol, meaning data is timed with clock pulses. is sent and received at the same time. This means that two of the four lines (MOSI, MISO) are for data, and one of the lines (SCK) is for timing.</p>
+<p>SPI uses four wires to communicate, which are referred to as the <em>SPI bus</em>. Three lines (SCK, MOSI, MISO) are shared between <em>all devices</em> on a SPI bus. The fourth line (CS/SS) is <em>unique to every slave device</em>, and all CS/SS lines are connected to the master device.</p>
+<p>The master device always transmits a square wave on SCK (source clock) to synchronize all devices. To initiate communication, the master device sets CS/SS (chip select/slave select) low for a particular device. The master device sends data to the slave device on the MOSI (master out, slave in) line. At the same time, the slave device sends data to the master device on the MISO (master in, slave out) line. To stop communication, the master devices sets CS/SS high again.</p>
+<p><img alt="Diagram of a general SPI bus" src="../_images/spi_bus.png" /></p>
+<div class="section" id="sck-sclk-source-clock">
+<span id="sck-sclk-source-clock"></span><h2>SCK/SCLK (Source Clock)<a class="headerlink" href="#sck-sclk-source-clock" title="Permalink to this headline">¶</a></h2>
+<p>The clock keeps the data lines and devices in sync. The clock is an oscillating signal produced by the master device that tells the receiving device when to read the data. Depending on the device properties, data is either sent/received on the rising/falling edge of SCK. We will discuss this in more detail shortly. This line is shared by all slave devices.</p>
+</div>
+<div class="section" id="mosi-master-out-slave-in">
+<span id="mosi-master-out-slave-in"></span><h2>MOSI (Master Out Slave In)<a class="headerlink" href="#mosi-master-out-slave-in" title="Permalink to this headline">¶</a></h2>
+<p>This is the line where data is sent from the master device to the slave device. This line is shared by all slave devices.</p>
+</div>
+<div class="section" id="miso-master-in-slave-out">
+<span id="miso-master-in-slave-out"></span><h2>MISO (Master In Slave Out)<a class="headerlink" href="#miso-master-in-slave-out" title="Permalink to this headline">¶</a></h2>
+<p>On this line the data is being sent out of the slave device received by master. This line is shared by all slave devices.</p>
+</div>
+<div class="section" id="cs-ss-chip-select-slave-select">
+<span id="cs-ss-chip-select-slave-select"></span><h2>CS/SS (Chip Select / Slave Select)<a class="headerlink" href="#cs-ss-chip-select-slave-select" title="Permalink to this headline">¶</a></h2>
+<p>This line is referred to as CS or SS interchangeably. It is active low, which means the slave device is active when CS is set low. Only one CS can be low at a time or there will be conflicts on the SPI bus resulting in garbage data. We use a pull-up resistor on the CS pin to set a default value.</p>
+<p>A pull-up resistor is a large resistor (typically 10K) which bridges between VCC (3V3 in our case) and another pin. When no load is applied to the pin, no current flows through the resistor. This allows us to hold CS at a known (3V3) state when the CS pin isn’t being driven by other circuitry. Then, we can drive another pin on the CS line low (GND) to select the device. Current will flow through the resistor and drop 3V3 across it.</p>
+</div>
+<div class="section" id="hardware-signal">
+<span id="hardware-signal"></span><h2>Hardware Signal<a class="headerlink" href="#hardware-signal" title="Permalink to this headline">¶</a></h2>
+<p>If you look at the SPI lines on an oscilloscope, this is what a SPI transfer should look like:</p>
+<p><img alt="SPI signals on an oscilloscope" src="../_images/spi_scope.png" /></p>
+<p>This image is taken from online but SPI transfers look very similar on our equipment.</p>
+<p>I’ll pose the following question:</p>
+<blockquote>
+<div><em>Which lines are which?</em></div></blockquote>
+<p>You can’t really distinguish between MISO and MOSI in this picture but just pick one to be MOSI and the other to be MISO. What is being sent and received? The answer is given below.</p>
+<blockquote>
+<div><p><strong>Answer:</strong></p>
+<ol class="simple">
+<li>The <strong>yellow line is CS</strong>. This is because it is being lowered before and raised after the SPI transfer is complete.</li>
+<li>The <strong>green line is SCK</strong>. It oscillates 8 times for each byte sent.</li>
+<li>The <strong>pink and blue are MOSI and MISO</strong>. The blue line has <code class="docutils literal notranslate"><span class="pre">0x00</span></code> and <code class="docutils literal notranslate"><span class="pre">0x00</span></code> and the pink line has <code class="docutils literal notranslate"><span class="pre">0b10010101</span></code> and <code class="docutils literal notranslate"><span class="pre">0b01010101</span></code>.</li>
+</ol>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">SPI Bus</a><ul>
+<li><a class="reference internal" href="#sck-sclk-source-clock">SCK/SCLK (Source Clock)</a></li>
+<li><a class="reference internal" href="#mosi-master-out-slave-in">MOSI (Master Out Slave In)</a></li>
+<li><a class="reference internal" href="#miso-master-in-slave-out">MISO (Master In Slave Out)</a></li>
+<li><a class="reference internal" href="#cs-ss-chip-select-slave-select">CS/SS (Chip Select / Slave Select)</a></li>
+<li><a class="reference internal" href="#hardware-signal">Hardware Signal</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/communication-protocols/spi-bus.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, University of Toronto Aerospace Team [D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[D[D[D[D[D[D[D[D[D[D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C): University of Toronto Aerospace Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/communication-protocols/spi-bus.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

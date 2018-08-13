@@ -1,0 +1,220 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Our Toolchain &#8212; utatss-documentation 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="our-toolchain">
+<span id="our-toolchain"></span><h1>Our Toolchain<a class="headerlink" href="#our-toolchain" title="Permalink to this headline">¶</a></h1>
+<p>Developing code for a real-time embedded system like HERON Mk II as part of a
+large, interdisciplinary team of programmers is no easy task, and we have
+collected a set of tools to make the process as effective as possible. To make
+the software we develop reliable and sustainable, it is crucial to properly set
+up, use, and understand the tools described in this article.</p>
+<div class="section" id="background">
+<span id="background"></span><h2>Background<a class="headerlink" href="#background" title="Permalink to this headline">¶</a></h2>
+<p>The ATmega32M1 microcontroller we use is a part of the Atmel AVR family. Atmel
+is the company that produces them (and is now owned by Microchip), and AVR
+refers to the architecture and the instruction set used in these
+microcontrollers (MCU for short). As discussed earlier, in order to program
+these devices, we need to translate the C code we write into machine code
+through a <em>Compiler</em>. The compiled machine code is then loaded to the AVR
+device through a protocol called <em>In-Circuit Serial Programming</em>, ISP for
+short, which is just a fancy name for “program your device with just 6 wires so
+you don’t have to rip it out of your circuit board every time you want to
+change a line of code”. This is a standard feature nowadays, but at some point
+in the past “burning” a program onto your MCU was a much harder, non-reversible
+process.</p>
+<p>Often, the process of writing code, compiling it for the specific MCU that you
+are using, and loading that program onto the MCU is done through what is called
+an <em>Integrated Development Environment</em>, or an IDE. Atmel has a nice IDE for
+its own microcontrollers, named <em>Atmel Studio</em>, and it integrates and
+simplifies the process a fair bit. However, for HERON Mk II, we’ve decided to
+move to a more bare-bones approach that lets you see a little deeper into the
+inner workings of the process. This approach also allows us to keep better
+track of the <em>libraries</em> that we use in our code. Libraries, which are
+pre-written, self-contained pieces of useful code that can be reused, make up
+most of the code in any embedded system, and we have a few that we have written
+that you will definitely end up using if you write any code for HERON.</p>
+<p>We call the set of tools we use to develop and program our MCUs our
+<em>toolchain</em>, and I’ll give a brief overview of what every part of it is about.</p>
+</div>
+<div class="section" id="our-avr-toolchain">
+<span id="our-avr-toolchain"></span><h2>Our AVR Toolchain<a class="headerlink" href="#our-avr-toolchain" title="Permalink to this headline">¶</a></h2>
+<p>From the point of view of the programmer, there are three steps to get some
+code on your MCU. For the sake of simplicity, let’s call them the following:</p>
+<ul class="simple">
+<li><strong>Code</strong>: Use any text editor you want on your computer to create the <code class="docutils literal notranslate"><span class="pre">.c</span></code> and <code class="docutils literal notranslate"><span class="pre">.h</span></code> files and make use of libraries.</li>
+<li><strong>Make</strong>: Use a compiler to compile your code into machine code</li>
+<li><strong>Upload</strong>: Use a <em>programmer</em>, a small circuit board with wires on either end, to connect your computer to your MCU and to upload the program</li>
+</ul>
+<p>Once you’ve completed the setup of the environment, this whole process will be
+as simple as saving your code, and typing the following into your command line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">upload</span>
+</pre></div>
+</div>
+<p>The rest of this section describes these steps in more detail, and explains how
+they apply to our specific project.</p>
+<div class="section" id="coding-with-libraries">
+<span id="coding-with-libraries"></span><h3>Coding with Libraries<a class="headerlink" href="#coding-with-libraries" title="Permalink to this headline">¶</a></h3>
+<p>Libraries are collections of well-tested, useful, and nicely documented code
+that can be <em>included</em> in many projects. They can have many different purposes,
+including:</p>
+<ul class="simple">
+<li>provide easy access to basic functions, such as “wait 50 ms”, “turn pin PB5
+on” or “allocate 8 bits of memory for this integer”</li>
+<li>allow easy use of complex features of your microcontroller, such as the SPI
+or CAN data transfer protocols</li>
+<li>let you use an external device (a <em>peripheral</em>), such as writing data to an
+SD card or running a motor.</li>
+</ul>
+<p>There are three sources of libraries that we use:</p>
+<ol class="simple">
+<li><a class="reference external" href="https://en.wikipedia.org/wiki/C_standard_library"><strong>Standard C
+Libraries</strong></a>: a set of
+libraries that can be used in any given C program running on any device.
+Functions from these libraries are used so often that you don’t think about
+them much. Math functions, variable types and sizes, floating point numbers,
+strings are all dealt with here.</li>
+<li><a class="reference external" href="http://www.nongnu.org/avr-libc/user-manual/overview.html"><strong>avr-libc</strong></a>: a
+library created specifically for writing C programs for AVR
+microcontrollers. It lets you do things that are specific to the
+microcontroler you are using. For example, it can let you read/write to the
+I/O pins on your microcontroller; it can allow you to count a certain number
+of milliseconds to have accurate delays; or it can provide access to certain
+power-saving functions.</li>
+<li><a class="reference external" href="https://github.com/HeronmkII/lib-common"><strong>lib-common</strong></a>: our
+constantly-evolving, home-made library just for HERON Mk II. Here we have
+functions that are used in all of the different subsystems on the satellite,
+protocols that allow the subsystems to communicate, and drivers for
+peripherals that are used on the satellite.</li>
+</ol>
+<p>Since libraries typically make up most of a project, it is not convenient to
+store them as <code class="docutils literal notranslate"><span class="pre">.c</span></code> and <code class="docutils literal notranslate"><span class="pre">.h</span></code> files with the rest of your code. If you were to do
+that, they would need to be recompiled every time you make a small change in
+your main code, which would take ages. Instead, they are pre-compiled and
+stored in <code class="docutils literal notranslate"><span class="pre">.a</span></code> files, which you can see in <code class="docutils literal notranslate"><span class="pre">lib-common/lib/</span></code> in the link above.
+This is why later on, once you have completed setting up the toolchain, you
+will not be able to compile one of the subsystem projects until after you have
+compiled the contents of lib-common.</p>
+<p>Any library can be used in your code as long as it is accessible to the
+compiler, however it needs to be included properly. The snippet below shows an
+example of how to include various libraries and other project files in your
+main code (taken from obc.h in the <a class="reference external" href="/github.com/HeronMkII/obc">On-Board Computer
+code</a>). Note how the angle brackets are used for
+the libraries, and double quotes are used for the project files - <a class="reference external" href="https://stackoverflow.com/questions/3162030/difference-between-angle-bracket-and-double-quotes-while-including-heade">can you
+guess
+why</a>?</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">standard</span> <span class="n">C</span> <span class="n">libraries</span>
+<span class="c1">#include      &lt;stdbool.h&gt;</span>
+<span class="c1">#include      &lt;stdint.h&gt;</span>
+
+<span class="o">//</span> <span class="n">avr</span><span class="o">-</span><span class="n">libc</span> <span class="n">includes</span>
+<span class="c1">#include     &lt;avr/io.h&gt;</span>
+<span class="c1">#include     &lt;util/delay.h&gt;</span>
+
+<span class="o">//</span> <span class="n">lib</span><span class="o">-</span><span class="n">common</span> <span class="n">includes</span>
+<span class="c1">#include     &lt;spi/spi.h&gt;</span>
+<span class="c1">#include     &lt;uart/uart.h&gt;</span>
+<span class="c1">#include     &lt;uart/log.h&gt;</span>
+<span class="c1">#include     &lt;can/can.h&gt;</span>
+
+<span class="o">//</span> <span class="n">project</span> <span class="n">file</span> <span class="n">includes</span>
+<span class="c1">#include     &quot;rtc.h&quot;</span>
+<span class="c1">#include     &quot;mem.h&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Our Toolchain</a><ul>
+<li><a class="reference internal" href="#background">Background</a></li>
+<li><a class="reference internal" href="#our-avr-toolchain">Our AVR Toolchain</a><ul>
+<li><a class="reference internal" href="#coding-with-libraries">Coding with Libraries</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/software-tools/our_toolchain.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, University of Toronto Aerospace Team [D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[D[D[D[D[D[D[D[D[D[D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C): University of Toronto Aerospace Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/software-tools/our_toolchain.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

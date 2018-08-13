@@ -1,0 +1,213 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Software Workflow &#8212; utatss-documentation 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="software-workflow">
+<span id="software-workflow"></span><h1>Software Workflow<a class="headerlink" href="#software-workflow" title="Permalink to this headline">¶</a></h1>
+<p>This page describes the general workflow to clone a GitHub repository to your computer, make changes to the code, upload them to a board, and push your changes back to GitHub.</p>
+<p>Make sure you have already installed everything in Getting Started &gt; Software Installation, created a GitHub account, and are added to the Heron Mk II GitHub organization.</p>
+<p>This tutorial will use the <code class="docutils literal notranslate"><span class="pre">pay</span></code> (payload instrumentation) repository as an example, but this process applies to any repository.</p>
+<div class="section" id="github-repositories">
+<span id="github-repositories"></span><h2>GitHub Repositories<a class="headerlink" href="#github-repositories" title="Permalink to this headline">¶</a></h2>
+<p>If you go to the UTAT Space Systems organization on GitHub (https://github.com/HeronMkII), you will see a list of repositories. A <strong>repository</strong> is a project with a collection of code for a particular purpose. We have a repository for each of the circuit boards/microcontrollers.</p>
+</div>
+<div class="section" id="cloning-a-repository">
+<span id="cloning-a-repository"></span><h2>Cloning a Repository<a class="headerlink" href="#cloning-a-repository" title="Permalink to this headline">¶</a></h2>
+<p><strong>Cloning</strong> is the process of copying a repository on GitHub to your computer so you can make changes and push changes back to GitHub.</p>
+<p>On the repository page (https://github.com/HeronMkII/pay), click the green button called <code class="docutils literal notranslate"><span class="pre">Clone</span> <span class="pre">or</span> <span class="pre">download</span></code>, then click <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">in</span> <span class="pre">Desktop</span></code>. Choose where to save the repository locally on your computer.</p>
+<p><img alt="" src="../_images/clone-repository.png" /></p>
+</div>
+<div class="section" id="editing-code">
+<span id="editing-code"></span><h2>Editing Code<a class="headerlink" href="#editing-code" title="Permalink to this headline">¶</a></h2>
+<p>There are two ways to open the project in Atom:</p>
+<ol class="simple">
+<li>Click <code class="docutils literal notranslate"><span class="pre">Current</span> <span class="pre">Repository</span></code> in the top left, right-click on <code class="docutils literal notranslate"><span class="pre">pay</span></code>, then click <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">in</span> <span class="pre">Atom</span></code>.</li>
+</ol>
+<p><img alt="" src="../_images/open-github-atom.png" /></p>
+<ol class="simple">
+<li>Open Atom, go to <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Open</span></code>, navigate to where you saved the repository locally, and select the <code class="docutils literal notranslate"><span class="pre">pay</span></code> folder.</li>
+</ol>
+<p>You can now pen and edit files in Atom. Atom is a text editor, so it can edit code but it can’t run it. We need to use command line tools to compile and upload code to the board. Make sure to save your edited files in Atom before compiling and uploading the program.</p>
+</div>
+<div class="section" id="project-structure">
+<span id="project-structure"></span><h2>Project Structure<a class="headerlink" href="#project-structure" title="Permalink to this headline">¶</a></h2>
+<p>When opening the repository folder in Atom, you will see many folders and files.</p>
+<p>Here are the commonly used folders.</p>
+<ul class="simple">
+<li><strong>.git</strong>: Not actually part of the project, so ignore it. It contains files that Git uses for version control.</li>
+<li><strong>build</strong>: Compiled versions of the files.</li>
+<li><strong>examples</strong>: Example code that demonstrates use of particular software components. This is not the actual code that will go on the satellite.</li>
+<li><strong>lib-common</strong>: This is a Git <strong>submodule</strong>, which has code from another repository embedded in this repository so that we can use it. Our <code class="docutils literal notranslate"><span class="pre">lib-common</span></code> repository contains common code to be shared among all the repositories.</li>
+<li><strong>src</strong>: The actual code that will go on the satellite (<code class="docutils literal notranslate"><span class="pre">.c</span></code> and <code class="docutils literal notranslate"><span class="pre">.h</span></code> files).</li>
+<li><strong>tests</strong>: Automated testing files that will be used by the test harness.</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">lib-common</span></code> has a slightly different structure:</p>
+<ul class="simple">
+<li><strong>bin</strong>: For the automated test harness (<code class="docutils literal notranslate"><span class="pre">harness.py</span></code>).</li>
+<li><strong>include</strong>: All the <code class="docutils literal notranslate"><span class="pre">.h</span></code> files.</li>
+<li><strong>lib</strong>: Compiled versions of the common libraries.</li>
+<li><strong>src</strong>: All the <code class="docutils literal notranslate"><span class="pre">.c</span></code> files (the <code class="docutils literal notranslate"><span class="pre">.h</span></code> files are moved to <code class="docutils literal notranslate"><span class="pre">include</span></code>).</li>
+</ul>
+<p>Here are the commonly used files.</p>
+<ul class="simple">
+<li><strong>.gitignore</strong>: Specifies which files Git should ignore (not saved to the GitHub repository).</li>
+<li><strong>.gitmodules</strong>: Contains information about the Git submodule used in this repository.</li>
+<li><strong>makefile</strong>: Contains instructions that Make will use to compile the project.</li>
+<li><strong>README.md</strong>: Documentation about this repository.</li>
+</ul>
+</div>
+<div class="section" id="compiling-and-uploading-a-program">
+<span id="compiling-and-uploading-a-program"></span><h2>Compiling and Uploading a Program<a class="headerlink" href="#compiling-and-uploading-a-program" title="Permalink to this headline">¶</a></h2>
+<p>We need to compile the project from the command line. Open your command line (Terminal on Mac or Command Prompt on Windows) and navigate to the <code class="docutils literal notranslate"><span class="pre">pay</span></code> folder.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd &lt;folder&gt;/&lt;other folder&gt;/.../pay
+</pre></div>
+</div>
+<p>Make sure <code class="docutils literal notranslate"><span class="pre">lib-common</span></code> is up to date:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git submodule update --remote
+</pre></div>
+</div>
+<p>We need to compile <code class="docutils literal notranslate"><span class="pre">lib-common</span></code> separately from the <code class="docutils literal notranslate"><span class="pre">pay</span></code> project.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd lib-common
+$ make
+</pre></div>
+</div>
+<p>When you run <code class="docutils literal notranslate"><span class="pre">make</span></code>, the Make tool looks inside the folder for a <code class="docutils literal notranslate"><span class="pre">makefile</span></code> and executes the instructions in it to compile <code class="docutils literal notranslate"><span class="pre">lib-common</span></code>.</p>
+<p>Go back (up) one folder:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd ..
+</pre></div>
+</div>
+<p>Now compile the <code class="docutils literal notranslate"><span class="pre">pay</span></code> project.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make
+</pre></div>
+</div>
+<p>If you are connected to the board, upload the program to the 32M1.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make upload
+</pre></div>
+</div>
+<p>If you get an error about the device not being found, see the <code class="docutils literal notranslate"><span class="pre">Finding</span> <span class="pre">the</span> <span class="pre">Correct</span> <span class="pre">USB</span> <span class="pre">Port</span></code> section below.</p>
+<p>Note for future reference that you can use <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">upload</span></code> to both compile and upload the program.</p>
+<p>If there are any compilation errors, fix them in Atom, save the files, and run <code class="docutils literal notranslate"><span class="pre">make</span></code> again.</p>
+<p>Note: If you get errors about C99, go to the makefile and add <code class="docutils literal notranslate"><span class="pre">-std=c99</span></code> to the CFLAGs. Ask a lead if you are not sure.</p>
+</div>
+<div class="section" id="finding-the-correct-usb-port">
+<span id="finding-the-correct-usb-port"></span><h2>Finding the Correct USB Port<a class="headerlink" href="#finding-the-correct-usb-port" title="Permalink to this headline">¶</a></h2>
+<p>If you get an error about the device not being found, you need to change the port used to communicate with the device. In Atom, open the <code class="docutils literal notranslate"><span class="pre">makefile</span></code> in the <code class="docutils literal notranslate"><span class="pre">pay</span></code> folder. Find the line starting with <code class="docutils literal notranslate"><span class="pre">PORT</span> <span class="pre">=</span></code>. Find the port on your computer as shown below, modify this line to change the port, save the file, and run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">upload</span></code> again.</p>
+<p>When you do this process, you should find two ports for the programmer. Usually, the lower number is for uploading programs while the higher number is for viewing UART (serial) output.</p>
+<p><strong>Mac</strong>: To see all connected USB devices, run</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls /dev/tty.usb*
+</pre></div>
+</div>
+<p><strong>Windows</strong>: Open the <code class="docutils literal notranslate"><span class="pre">Device</span> <span class="pre">Manager</span></code> application on your computer, then select <code class="docutils literal notranslate"><span class="pre">Ports</span></code>. Find the appropriate port. You want the programmer port, not the serial port. In the makefile, modify the line to use the programming port, such as <code class="docutils literal notranslate"><span class="pre">PORT</span> <span class="pre">=</span> <span class="pre">COM7</span></code>.</p>
+<p><strong>Linux (Windows Subsystem)</strong>: Follow the above instructions for Windows to get the port number from the Device Manager. In the Linux subsystem, these ports are mapped with the same numbers but slightly different names. As described <a class="reference external" href="https://blogs.msdn.microsoft.com/wsl/2017/04/14/serial-support-on-the-windows-subsystem-for-linux/">here</a>, <code class="docutils literal notranslate"><span class="pre">/dev/ttyS&lt;N&gt;</span></code> on Linux is tied to <code class="docutils literal notranslate"><span class="pre">COM&lt;N&gt;</span></code> on Windows. For example, use <code class="docutils literal notranslate"><span class="pre">dev/ttyS7</span></code> instead of <code class="docutils literal notranslate"><span class="pre">COM7</span></code>.</p>
+</div>
+<div class="section" id="committing-and-pushing-to-github">
+<span id="committing-and-pushing-to-github"></span><h2>Committing and Pushing to GitHub<a class="headerlink" href="#committing-and-pushing-to-github" title="Permalink to this headline">¶</a></h2>
+<p>After making changes to the code and running it, you will probably need to modify, compile, upload, and test it a few times. Remember to save the files in Atom and run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">upload</span></code> to compile and upload it each time.</p>
+<p>When you are ready to save your changes to GitHub, go to the GitHub Desktop application. It will show which lines in which files you have changed. Red lines have been deleted and green lines have been added. Review these changes to be sure.</p>
+<p><img alt="" src="../_images/commit-changes.png" /></p>
+<p>Now, we will create a commit. A <strong>commit</strong> is a version of the project where you have made a particular set of changes. In the <code class="docutils literal notranslate"><span class="pre">Summary</span></code> box, type a summary of the changes you made. In some cases, you may want to add a more detailed description. Click the <code class="docutils literal notranslate"><span class="pre">Commit</span></code> button to make your commit. Push it to GitHub by clicking the <code class="docutils literal notranslate"><span class="pre">Push</span> <span class="pre">Origin</span></code> button in the top right. Now your commit is saved on GitHub.</p>
+</div>
+<div class="section" id="branches-and-pull-requests">
+<span id="branches-and-pull-requests"></span><h2>Branches and Pull Requests<a class="headerlink" href="#branches-and-pull-requests" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>branch</strong> is like a timeline of development within a repository. We have a <strong>master</strong> branch that always contains a version of the code that has been tested and that we know works.</p>
+<p><strong>Never commit directly to the master branch</strong> (except for rare cases when one of the leads tells you otherwise). We create separate branches to develop and test code, then integrate those changes into master when we know they work.</p>
+<p>To create a new branch on the GitHub repository page or in GitHub Desktop, select the <em>base</em> branch from which to create the new branch. Go back to the list of branches, type in a name for the new branch, and create it. When editing and committing code on this new branch, make sure you have that branch selected in GitHub Desktop.</p>
+<p>When you want to integrate your commits on this branch into the master branch, create a <strong>pull request</strong>. Go to the GitHub repository page, click <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">pull</span> <span class="pre">request</span></code>, choose the base (master) and the compare (your branch). Add a description and people to review it (usually your subsystem lead). If they approve your pull request, they will <strong>merge</strong> it into the master branch, integrating those commits into master.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Software Workflow</a><ul>
+<li><a class="reference internal" href="#github-repositories">GitHub Repositories</a></li>
+<li><a class="reference internal" href="#cloning-a-repository">Cloning a Repository</a></li>
+<li><a class="reference internal" href="#editing-code">Editing Code</a></li>
+<li><a class="reference internal" href="#project-structure">Project Structure</a></li>
+<li><a class="reference internal" href="#compiling-and-uploading-a-program">Compiling and Uploading a Program</a></li>
+<li><a class="reference internal" href="#finding-the-correct-usb-port">Finding the Correct USB Port</a></li>
+<li><a class="reference internal" href="#committing-and-pushing-to-github">Committing and Pushing to GitHub</a></li>
+<li><a class="reference internal" href="#branches-and-pull-requests">Branches and Pull Requests</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/software-tools/software-workflow.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, University of Toronto Aerospace Team [D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[D[D[D[D[D[D[D[D[D[D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C): University of Toronto Aerospace Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/software-tools/software-workflow.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,169 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Troubleshooting &#8212; utatss-documentation 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="troubleshooting">
+<span id="troubleshooting"></span><h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h1>
+<p>This document is to be used as a guide when programming to ensure all critical points for error are considered.</p>
+<p>Below is a quick checklist for points to consider when programming.</p>
+<ul class="simple">
+<li>[ ] Lib-common, if included, is compiled.</li>
+<li>[ ] Added files compile.</li>
+<li>[ ] ‘PORT’ in makefile is set to the correct port. See below for details.</li>
+<li>[ ] All necessary lib-common modules are initialized.</li>
+<li>[ ] Build folder is included.</li>
+<li>[ ] CoolTerm / Xterm baud rate is set to 9600. Appropriate port is set. See below for details.</li>
+<li>[ ] 6-pin programming header is connected to the PCB.</li>
+<li>[ ] If using CAN, the CANH and CANL pins are connected between PCBs.</li>
+<li>[ ] In your program, all the necessary components/libraries are initialized.</li>
+</ul>
+<p>If the quick checklist has not cornered your error, let us first troubleshoot the software.</p>
+<div class="section" id="hardware">
+<span id="hardware"></span><h2>Hardware<a class="headerlink" href="#hardware" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="is-the-led-on-the-board-on">
+<span id="is-the-led-on-the-board-on"></span><h3>Is the LED on the board on?<a class="headerlink" href="#is-the-led-on-the-board-on" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>[ ] Check power supply, use different channel</li>
+<li>[ ] Change wires</li>
+</ul>
+</div>
+<div class="section" id="is-uart-working-can-you-see-your-print-statements-on-coolterm-xterm">
+<span id="is-uart-working-can-you-see-your-print-statements-on-coolterm-xterm"></span><h3>Is UART working? Can you see your print statements on CoolTerm / Xterm?<a class="headerlink" href="#is-uart-working-can-you-see-your-print-statements-on-coolterm-xterm" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>[ ] Check that you have clicked on the Connect button</li>
+<li>[ ] Click on the Options button and ensure your port is correct. This port should not be the same as the port in your makefile.</li>
+<li>[ ] Check the baud rate (use 9800)</li>
+<li>[ ] Ensure the UART wire is connected to MOSI pin on the board and to the RX pin on the Pololu programmer</li>
+</ul>
+</div>
+</div>
+<div class="section" id="software">
+<span id="software"></span><h2>Software<a class="headerlink" href="#software" title="Permalink to this headline">¶</a></h2>
+<p><strong>Read compiler warnings!!</strong></p>
+<div class="section" id="does-avr-say-completed-and-uploaded-to-board">
+<span id="does-avr-say-completed-and-uploaded-to-board"></span><h3>Does AVR say completed and uploaded to board?<a class="headerlink" href="#does-avr-say-completed-and-uploaded-to-board" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>[ ] Check your port on the makefile. (For macOS use ls /dev/tty. *), for Windows use device manager)</li>
+<li>[ ] Change programmer micro-usb</li>
+<li>[ ] Change programmer</li>
+<li>[ ] Change PCB</li>
+</ul>
+</div>
+<div class="section" id="debugging-through-print-statements-like-the-old-times">
+<span id="debugging-through-print-statements-like-the-old-times"></span><h3>Debugging through print statements (like the old times)<a class="headerlink" href="#debugging-through-print-statements-like-the-old-times" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>[ ] Add a print statement after init_uart() to see if your program executes on the board</li>
+<li>[ ] Use various print statements throughout the program to see how your program executes (print useful variables)</li>
+</ul>
+</div>
+<div class="section" id="appendix-figures">
+<span id="appendix-figures"></span><h3>Appendix - Figures<a class="headerlink" href="#appendix-figures" title="Permalink to this headline">¶</a></h3>
+<p><img alt="" src="../_images/coolterm-settings.png" /></p>
+<p><img alt="" src="../_images/coolterm_port.png" /></p>
+<p><img alt="" src="../_images/makefile_port.png" /></p>
+<p><img alt="" src="../_images/software-inits.png" /></p>
+<p><img alt="" src="../_images/power_supply_settings.jpg" /></p>
+<p><img alt="" src="../_images/programmer_rx.jpg" /></p>
+<p><img alt="" src="../_images/programming_header.jpg" /></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Troubleshooting</a><ul>
+<li><a class="reference internal" href="#hardware">Hardware</a><ul>
+<li><a class="reference internal" href="#is-the-led-on-the-board-on">Is the LED on the board on?</a></li>
+<li><a class="reference internal" href="#is-uart-working-can-you-see-your-print-statements-on-coolterm-xterm">Is UART working? Can you see your print statements on CoolTerm / Xterm?</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#software">Software</a><ul>
+<li><a class="reference internal" href="#does-avr-say-completed-and-uploaded-to-board">Does AVR say completed and uploaded to board?</a></li>
+<li><a class="reference internal" href="#debugging-through-print-statements-like-the-old-times">Debugging through print statements (like the old times)</a></li>
+<li><a class="reference internal" href="#appendix-figures">Appendix - Figures</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/troubleshooting/troubleshooting.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, University of Toronto Aerospace Team [D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[D[D[D[D[D[D[D[D[D[D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C): University of Toronto Aerospace Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/troubleshooting/troubleshooting.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

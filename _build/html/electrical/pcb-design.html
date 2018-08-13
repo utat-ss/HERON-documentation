@@ -1,0 +1,176 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>PCB Design &#8212; utatss-documentation 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pcb-design">
+<span id="pcb-design"></span><h1>PCB Design<a class="headerlink" href="#pcb-design" title="Permalink to this headline">¶</a></h1>
+<p>A PCB (Printed Circuit Board) is a circuit board that is designed and manufactured using CAD (Computer Aided Design) software, also called EDA (Electronic Design Automation) software.</p>
+<p>Getting a functional PCB requires several steps:</p>
+<ul class="simple">
+<li>Design the board’s connections and layout using CAD software</li>
+<li>Send the design to a manufacturer, who manufactures the board with just the traces (electrical wires)</li>
+<li>Order all of the components</li>
+<li>Receive the board from the manufacturer</li>
+<li>Purchase the necessary components</li>
+<li>Solder the components onto the board.</li>
+</ul>
+<p>This process usually takes at least a month, which is why PCBs are not used for fast prototyping.</p>
+<div class="section" id="software">
+<span id="software"></span><h2>Software<a class="headerlink" href="#software" title="Permalink to this headline">¶</a></h2>
+<p>We use two different pieces of CAD software.</p>
+<div class="section" id="kicad-website">
+<span id="kicad-website"></span><h3>KiCad (<a class="reference external" href="http://kicad-pcb.org/">website</a>)<a class="headerlink" href="#kicad-website" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Free and open source</li>
+<li>Easier to learn</li>
+<li>Available for Windows, Mac, and Linux</li>
+</ul>
+</div>
+<div class="section" id="altium-designer-website">
+<span id="altium-designer-website"></span><h3>Altium Designer (<a class="reference external" href="https://www.altium.com/altium-designer/">website</a>)<a class="headerlink" href="#altium-designer-website" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Paid, but UTAT is sponsored by Altium and gets free licenses</li>
+<li>More difficult to learn</li>
+<li>Only available for Windows</li>
+</ul>
+</div>
+</div>
+<div class="section" id="design-process">
+<span id="design-process"></span><h2>Design Process<a class="headerlink" href="#design-process" title="Permalink to this headline">¶</a></h2>
+<p>Designing a PCB is generally separated into two main steps.</p>
+<div class="section" id="schematic">
+<span id="schematic"></span><h3>Schematic<a class="headerlink" href="#schematic" title="Permalink to this headline">¶</a></h3>
+<p>The schematic specifies all the components and how they are logically connected to each other to create circuits (which pins are connected). This does not have anything to do with the physical arrangement of components.</p>
+</div>
+<div class="section" id="pcb-layout">
+<span id="pcb-layout"></span><h3>PCB Layout<a class="headerlink" href="#pcb-layout" title="Permalink to this headline">¶</a></h3>
+<p>The PCB Layout involves taking the schematic and physically laying out the components and connections as they will be located on the PCB. After placing the components, you route the wires (also called traces or tracks) so they do not cross one another. Altium Designer has an autorouter that can automate this process.</p>
+</div>
+</div>
+<div class="section" id="layout">
+<span id="layout"></span><h2>Layout<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h2>
+<p>The simplest PCB uses 1 layer and places all component on one side, but multiple layers can be used. Some PCBs have 2 layers, where you can put components and traces on the other side as well. Some have 4 layers, such as the payload sensor PCB which has dedicated layers for power and ground connections to minimize electrical noise. In any case, you can only put components on a maximum of 2 layers (top and bottom). Other layers are useful for dedicated power/ground planes or to route traces that are impossible to put on one layer without crossing.</p>
+<div class="section" id="vias">
+<span id="vias"></span><h3>Vias<a class="headerlink" href="#vias" title="Permalink to this headline">¶</a></h3>
+<p>A via is a hole that connects a trace on one layer to another layer. They are useful for routing traces that cannot be routed on a single layer without crossing other traces. For example, you can start a trace on the top layer, place a via to the bottom layer, route it along the bottom layer, then place another via bringing it back to the top layer.</p>
+</div>
+</div>
+<div class="section" id="components">
+<span id="components"></span><h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="schematic-components">
+<span id="schematic-components"></span><h3>Schematic Components<a class="headerlink" href="#schematic-components" title="Permalink to this headline">¶</a></h3>
+<p>A schematic component describes a component’s type and pins.</p>
+</div>
+<div class="section" id="footprints">
+<span id="footprints"></span><h3>Footprints<a class="headerlink" href="#footprints" title="Permalink to this headline">¶</a></h3>
+<p>A footprint describes a component’s physical size and shape.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">PCB Design</a><ul>
+<li><a class="reference internal" href="#software">Software</a><ul>
+<li><a class="reference internal" href="#kicad-website">KiCad (website)</a></li>
+<li><a class="reference internal" href="#altium-designer-website">Altium Designer (website)</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#design-process">Design Process</a><ul>
+<li><a class="reference internal" href="#schematic">Schematic</a></li>
+<li><a class="reference internal" href="#pcb-layout">PCB Layout</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#layout">Layout</a><ul>
+<li><a class="reference internal" href="#vias">Vias</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#components">Components</a><ul>
+<li><a class="reference internal" href="#schematic-components">Schematic Components</a></li>
+<li><a class="reference internal" href="#footprints">Footprints</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/electrical/pcb-design.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, University of Toronto Aerospace Team [D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[D[D[D[D[D[D[D[D[D[D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C): University of Toronto Aerospace Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/electrical/pcb-design.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

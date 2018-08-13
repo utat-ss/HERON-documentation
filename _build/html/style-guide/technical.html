@@ -1,0 +1,149 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Technical &#8212; utatss-documentation 1.0 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="technical">
+<span id="technical"></span><h1>Technical<a class="headerlink" href="#technical" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="memory-allocation-and-malloc">
+<span id="memory-allocation-and-malloc"></span><h2>Memory Allocation and <code class="docutils literal notranslate"><span class="pre">malloc()</span></code><a class="headerlink" href="#memory-allocation-and-malloc" title="Permalink to this headline">¶</a></h2>
+<p><strong>You are not allowed to use <code class="docutils literal notranslate"><span class="pre">malloc()</span></code>.</strong> This is because our satellite is an embedded system and <code class="docutils literal notranslate"><span class="pre">malloc()</span></code> is a non-deterministic operation.</p>
+<ul class="simple">
+<li>There is a limited amount of memory, so it is likely to fail.</li>
+<li>It may be very slow, blocking the system.</li>
+</ul>
+<p><strong>All arrays must be statically declared with a fixed number of elements</strong>, preferably using a named constant that can be easily changed.</p>
+</div>
+<div class="section" id="integer-types">
+<span id="integer-types"></span><h2>Integer Types<a class="headerlink" href="#integer-types" title="Permalink to this headline">¶</a></h2>
+<p><strong>Avoid using the <code class="docutils literal notranslate"><span class="pre">int</span></code> type.</strong> All integer types should be declared with explicit sizes using types in the <code class="docutils literal notranslate"><span class="pre">&lt;stdint.h&gt;</span></code> library, such as <code class="docutils literal notranslate"><span class="pre">uint8_t</span></code>, <code class="docutils literal notranslate"><span class="pre">uint32_t</span></code>, and <code class="docutils literal notranslate"><span class="pre">int16_t</span></code>.</p>
+<p><strong>Be careful about integer sizes.</strong> We need to avoid integer overflows at all costs, so make sure your integer types are large enough for the values they will contain.</p>
+</div>
+<div class="section" id="infinite-loops-and-timeouts">
+<span id="infinite-loops-and-timeouts"></span><h2>Infinite Loops and Timeouts<a class="headerlink" href="#infinite-loops-and-timeouts" title="Permalink to this headline">¶</a></h2>
+<p><strong>Do not allow the possibility of an infinite loop.</strong> Do not assume hardware will always behave as expected. Always add a timer as a fallback for loops waiting for a hardware event so the MCU cannot get stuck in an infinite loop. Every loop should have a guaranteed upper bound on the number of times it executes.</p>
+<p>The most common timeout value is (2^16 - 1) or 65,535 with a <code class="docutils literal notranslate"><span class="pre">uint16_t</span></code> type counting down to 0.</p>
+<p>For example, say we are waiting for the pin PB0 to go low before proceeding.</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="c1">// bad, could infinte loop</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">bit_is_set</span><span class="p">(</span><span class="n">PINB</span><span class="p">,</span> <span class="n">PB0</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">continue</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// good, protect against rare case of infinite loop</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">uint16_t</span> <span class="n">timeout</span> <span class="o">=</span> <span class="mi">65535</span><span class="p">;</span> <span class="n">bit_is_set</span><span class="p">(</span><span class="n">PINB</span><span class="p">,</span> <span class="n">PB0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">timeout</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">timeout</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">continue</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// might want to check if timeout == 0 here if you want to detect a timeout</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="compiler-warnings">
+<span id="compiler-warnings"></span><h2>Compiler Warnings<a class="headerlink" href="#compiler-warnings" title="Permalink to this headline">¶</a></h2>
+<p><strong>Generally, you should not have any compiler warnings.</strong> These often detect non-obvious bugs such as integer overflows.</p>
+</div>
+<div class="section" id="header-file-guards">
+<span id="header-file-guards"></span><h2>Header File Guards<a class="headerlink" href="#header-file-guards" title="Permalink to this headline">¶</a></h2>
+<p>All header files (<code class="docutils literal notranslate"><span class="pre">.h</span></code>) should have a guard statement to prevent duplicate declarations when included multiple times.</p>
+<p>Say we have a header file called <code class="docutils literal notranslate"><span class="pre">file.h</span></code>:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef FILE_H</span>
+<span class="cp">#define FILE_H</span>
+
+<span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span>
+
+<span class="cp">#endif</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Technical</a><ul>
+<li><a class="reference internal" href="#memory-allocation-and-malloc">Memory Allocation and <code class="docutils literal notranslate"><span class="pre">malloc()</span></code></a></li>
+<li><a class="reference internal" href="#integer-types">Integer Types</a></li>
+<li><a class="reference internal" href="#infinite-loops-and-timeouts">Infinite Loops and Timeouts</a></li>
+<li><a class="reference internal" href="#compiler-warnings">Compiler Warnings</a></li>
+<li><a class="reference internal" href="#header-file-guards">Header File Guards</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/style-guide/technical.md.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, University of Toronto Aerospace Team [D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[D[D[D[D[D[D[D[D[D[D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C): University of Toronto Aerospace Team.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/style-guide/technical.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
