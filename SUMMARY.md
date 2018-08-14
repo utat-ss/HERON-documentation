@@ -34,7 +34,6 @@
 * [Variables](c-programming/variables.md)
 * [Operators](c-programming/operators.md)
 * [Bitwise Operators](c-programming/bitwise-operators.md)
-* [Bitwise Operator Applications](c-programming/bitwise-operators-applications.md)
 * [Control Structures](c-programming/control-structures.md)
 * [Functions](c-programming/functions.md)
 * [Header Files, #define, typedef](c-programming/header-files.md)
