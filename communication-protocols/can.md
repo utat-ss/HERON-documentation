@@ -1,6 +1,6 @@
 # CAN (Controller Area Network)
 
-CAN is a communication transfer protocol that we use to communicate between 32M1 microcontrollers in different subsystems. CAN transmits "messages", which can each contain up to 8 bytes of data.
+CAN is a communication transfer protocol that we use to communicate between 32M1 microcontrollers in different subsystems. CAN transmits **messages**, which can each contain up to 8 bytes of data.
 
 
 
@@ -11,11 +11,11 @@ CAN is a communication transfer protocol that we use to communicate between 32M1
 
 **TX** - Transmitting
 
-**MOB** - A message object (like a mailbox) that transmits or receives particular types of messages.
+**MOB/MOb** - A message object (like a mailbox) that transmits or receives particular types of messages.
 
-**CAN Transceiver** - The hardware device connected to each 32M1 that transmits and recives CAN messages on the bus
+**CAN Transceiver** - The hardware device connected to each 32M1 that transmits and recives CAN messages on the bus.
 
-**CAN Bus** - The set of wires connecting all CAN transceivers
+**CAN Bus** - The set of wires connecting all CAN transceivers.
 
 **CANH** - CAN high (bus wire)
 
@@ -109,7 +109,7 @@ void data_tx_callback(uint8_t* data, uint8_t* len) {
     // For this example, just transmit the bytes 0x00 0x01 0x02 0x03
 
     // Want to transmit 4 bytes
-    * len = 4;
+    *len = 4;
 
     // Set the data
     data[0] = 0x00;

@@ -1,8 +1,8 @@
 # Message Objects (MObs)
-Before sending messages over CAN, the message objects (MObs) need to be initialized. A universal MOb structure is defined in `can.h` and reproduced below:
+Before sending messages over CAN, the message objects (MObs) need to be initialized. A universal MOb structure is defined in `lib-common/include/can/can.h`:
 
 ``` C
- typedef struct {
+typedef struct {
     // common
     uint8_t mob_num;
     uint8_t dlc;
@@ -21,7 +21,7 @@ Before sending messages over CAN, the message objects (MObs) need to be initiali
 ```
 
 
-## 1. mob_num
+## mob_num
 
 Each 32M1 has space for **six** MObs which can be active at any given time, denoted by `mob_num`. In the 32M1 datasheet, you might see these referred to as 'pages', although `mob_num` and the page number are functionally the same. Before editing MOb variables, the mob needs to be selected, which is handled automatically by the CAN library. _Further reads or writes to MOb-related registers will only affect the selected MOb_.
 
@@ -29,9 +29,11 @@ Priority is given is given to the MOb with the smallest `mob_num` when choosing 
 
 <!-- Check with Sidd that the above TX example is correct, and whether MOb 1 will send.-->
 
-## 2. id_tag and id_mask
+## id_tag and id_mask
 
-Each MOb on the _entire CAN bus_ should be given a _unique_ `id_tag`. ID tags are used by RX and AUTO MObs when masking incoming transmissions via `id_mask`. Both `id_tag` and `id_mask` are _eleven_ bits long and should be defined as single-element structs during initialization:
+Each MOb on the _entire CAN bus_ should be given a _unique_ `id_tag`. ID tags are used by RX MObs when masking incoming transmissions via `id_mask`. Both `id_tag` and `id_mask` are _eleven_ bits long and should be defined as single-element structs during initialization:
+
+You may see references to AUTO MObs in documentation and code. We are not using them, so ignore them.
 
 ``` C
 // MOb A
@@ -54,9 +56,9 @@ Masks work such that if `id_mask` has a 1 in a certain bit position, then the in
 
 In this example, the RX MOb will ignore transmissions from MOb B. The RX mask cares about equality in bits 10-8 and bit 1. All the ID tags have 0's in bits 10-8, but since the RX MOb has a 1 in bit 0 and MOb B has a 0, the RX MOb will mask transmissions from MOb B. Meanwhile, both the RX MOb and MOb A share a 1 in bit 0, so the RX MOb will accept incoming transmissions from MOb A.
 
-## 3. ctrl and mob_type
+## ctrl and mob_type
 
-The `mob_type` variable defines the type of MOb and should be one of `TX_MOB`, `RX_MOB` or `AUTO_MOB`, depending on the type of MOb you would like to define. 'The `ctrl` variable is a six-element struct defined in `can.h` which holds CAN control parameters. Default TX and RX control configurations are also defined in `can.h` (and work pretty well for the majority of cases).
+The `mob_type` variable defines the type of MOb and should be one of `TX_MOB` or `RX_MOB`, depending on the type of MOb you would like to define. The `ctrl` variable is a six-element struct defined in `lib-common/include/can/can.h` which holds CAN control parameters. Default TX and RX control configurations are also defined in `can.h` (and work pretty well for the majority of cases).
 
 ``` C
 // struct to hold RTR, IDE, IDE Mask, RTR Mask and RBnTag bits;
@@ -75,17 +77,15 @@ typedef struct {
 #define default_tx_ctrl { 0, 0, 0, 0, 0, 0 }
 ```
 
-The most important exception to the default control configuration is when setting up auto-reply. For an AUTO MOb, `rtr` and `rplv` need to be set to 1. When setting up a TX MOb to send remote frames for use with AUTO MObs, only `rtr` needs to be set. Refer to `can_print_auto.c` and `can_print_auto_remote.c` in `lib-common/examples/` for more detail.
+## dlc
 
-## 4. dlc
-
-The `dlc` variable stores the number of bytes to be sent/received, and can be up to 8 bytes long. DLC needs to be defined upon initialization for RX MObs <!--(and possibly TX MObs sending remote frames for auto-reply, but that's a Sidd question)-->. If the incoming message does not have the expected DLC an error will be thrown. <!--technically a warning, will test this-->
+The `dlc` variable stores the number of bytes to be sent/received, and can be up to 8 bytes long. DLC needs to be defined upon initialization for RX MObs. <!--(and possibly TX MObs sending remote frames for auto-reply, but that's a Sidd question)--> If the incoming message does not have the expected DLC an error will be thrown. <!--technically a warning, will test this-->
 
 When the MOb is initialized for TX, `dlc` needs to be set to the length of the data (in bytes) to be transmitted. This is assigned in the TX callback function pointed to by `tx_data_cb`, which is described in the following section.
 
-## 5. rx_cb, tx_data_cb and data[8]
+## rx_cb, tx_data_cb and data[8]
 
-The `rx_cb` and `tx_data_cb` variables store function pointers to the RX and TX callback functions for a specific MOb. Different callback functions can be defined for each individual MOb. These functions are called from their respective interrupt-handling functions in `can.c`. They are passed a pointer to the array of data to be sent/received, and either the length of the array (to the RX callback) or a pointer to the length of the array (to be set in the TX callback).
+The `rx_cb` and `tx_data_cb` variables store function pointers to the RX and TX callback functions for a specific MOb. Different callback functions can be defined for each individual MOb. These functions are called from their respective interrupt-handling functions in `lib-common/src/can/can.c`. They are passed a pointer to the array of data to be sent/received, and either the length of the array (to the RX callback) or a pointer to the length of the array (to be set in the TX callback).
 
 `tx_data_cb` is called upon initialization and after a transmission has been sent. After a transmission is sent, it generates a `TXOK` interrupt and calls `tx_data_cb` from `load_data` to get fresh data. `rx_cb` is called from `handle_rx_interrupt()` after once a transmission has been sucessfully recieved, generating a `RXOK` interrupt. The functions should be defined in the file which includes CAN, and the two variables can be set simply by passing them the name of the function.
 
@@ -96,7 +96,7 @@ void rx_callback(uint8_t* data, uint8_t len) {
 }
 
 void tx_callback(uint8_t* data, uint8_t* len) {
-    * len = 7;
+    *len = 7;
     char str[] = "Hello!";
 
     for(uint8_t i = 0; i < *len; i++) {
