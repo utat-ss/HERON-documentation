@@ -32,16 +32,26 @@ Our documentation is organized into the following sections:
 	:maxdepth: 2
 	:caption: Getting Started
 
-	getting-started/atmega32m1
+	getting-started/rtsys
 	getting-started/avr-toolchain
-	getting-started/command-line
+	getting-started/install
+	getting-started/install-mac
+	getting-started/install-win
+	getting-started/install-linux
+	getting-started/atmega32m1
+	getting-started/hello-world
+	getting-started/git-and-github
 	
 .. _software-tools:
 .. toctree::
 	:maxdepth: 2
 	:caption: Software Tools
 	
+	software-tools/software-workflow
+	software-tools/test-harness
+	software-tools/our_toolchain
 	software-tools/lib-common
+	software-tools/uart-terminal
 	
 .. _troubleshooting:
 .. toctree::
@@ -55,6 +65,9 @@ Our documentation is organized into the following sections:
 	:maxdepth: 2
 	:caption: Embedded Systems
 	
+	embedded/microcontrollers
+	embedded/registers
+	embedded/interrupts
 	embedded/avr-fuses
 	
 .. _c-programming:
@@ -62,20 +75,44 @@ Our documentation is organized into the following sections:
 	:maxdepth: 2
 	:caption: C Programming
 	
+	c-programming/introduction
+	c-programming/variables
+	c-programming/operators
+	c-programming/bitwise-operators
+	c-programming/bitwise-operators-applications
+	c-programming/control-structures
+	c-programming/functions
+	c-programming/header-files
+	c-programming/pointers
+	c-programming/structs
+	c-programming/c_h_files
 	c-programming/binary-hex-literals
+	c-programming/integer-types
+	c-programming/print-formatting
+	c-programming/volatile-variables
+	
 	
 .. _communication-protocols:
 .. toctree::
 	:maxdepth: 2
 	:caption: Communication Protocols
 	
+	communication-protocols/communication-protocols
 	communication-protocols/can
+	communication-protocols/can-mobs
+	communication-protocols/can-mob-allocation
+	communication-protocols/spi
+	communication-protocols/spi-bus
+	communication-protocols/spi-using-spi
+	communication-protocols/uart
 	
 .. _software-style-guide:
 .. toctree::
 	:maxdepth: 2
 	:caption: Software Style Guide
 	
+	style-guide/style-guide
+	style-guide/technical
 	style-guide/formatting
 	
 .. _electrical-systems:
@@ -83,18 +120,20 @@ Our documentation is organized into the following sections:
 	:maxdepth: 2
 	:caption: Electrical Systems
 	
+	electrical/websites
+	electrical/components
+	electrical/equipment
 	electrical/circuit-platforms
+	electrical/pcb-design
 	
 .. _reading-datasheets:
 .. toctree::
 	:maxdepth: 2
 	:caption: Reading Datasheets
 	
-.. Insert guidelines on contributing, adding bug reports
+	datasheets/datasheets
+	
 
-Indices and tables
-==================
+If you would like to contribute to our documentation, create a branch and start a pull request. If you would like to report an error, please `submit an issue`_.
 
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. _submit an issue: https://github.com/HeronMkII/documentation/issues 
