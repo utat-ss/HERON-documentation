@@ -1,34 +1,173 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Hello World ATMega32M1 &#8212; utatss-documentation 1.0 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Hello World ATMega32M1 &mdash; UTAT Space Systems Documentation 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Git and Github" href="git-and-github.html" />
+    <link rel="prev" title="The ATMega32M1 Microcontroller" href="atmega32m1.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
    
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <div class="wy-grid-for-nav">
 
-  </head><body>
-  
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+          
+            <a href="../index.html" class="icon icon-home"> UTAT Space Systems Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="rtsys.html">Real-Time Embedded Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="avr-toolchain.html">The AVR Toolchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-mac.html">Software Installation - macOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-win.html">Software Installation - Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install-linux.html">Software Installation - Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="atmega32m1.html">The ATMega32M1 Microcontroller</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hello World ATMega32M1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#step-1">Step 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-2">Step 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-3">Step 3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-4">Step 4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-5">Step 5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-6">Step 6</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="git-and-github.html">Git and Github</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software and Programming</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software-and-programming.html">Software and Programming</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Electronics and Altium</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../electronics-and-altium.html">Electronics and Altium</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">UTAT Space Systems Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Hello World ATMega32M1</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/getting-started/hello-world.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="hello-world-atmega32m1">
 <span id="hello-world-atmega32m1"></span><h1>Hello World ATMega32M1<a class="headerlink" href="#hello-world-atmega32m1" title="Permalink to this headline">¶</a></h1>
@@ -39,12 +178,12 @@ using tools such as Make; for most subsystems, this entire process can be
 accomplished using a single command.</p>
 <div class="section" id="step-1">
 <span id="step-1"></span><h2>Step 1<a class="headerlink" href="#step-1" title="Permalink to this headline">¶</a></h2>
-<p>Create a new directory called <code class="docutils literal notranslate"><span class="pre">hello_32m1</span></code> as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir hello_32m1
+<p>Create a new directory called <code class="docutils literal"><span class="pre">hello_32m1</span></code> as follows:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ mkdir hello_32m1
 </pre></div>
 </div>
-<p>This will be the root directory of the project. Now enter this directory by running <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">hello_32m1</span></code> and run the following command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git init
+<p>This will be the root directory of the project. Now enter this directory by running <code class="docutils literal"><span class="pre">cd</span> <span class="pre">hello_32m1</span></code> and run the following command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git init
 </pre></div>
 </div>
 <p>This will initialize Git for this root directory and all sub-directories. You’ll
@@ -52,9 +191,9 @@ learn more about what this command is doing soon.</p>
 </div>
 <div class="section" id="step-2">
 <span id="step-2"></span><h2>Step 2<a class="headerlink" href="#step-2" title="Permalink to this headline">¶</a></h2>
-<p>Create a new file called <code class="docutils literal notranslate"><span class="pre">hello_world.c</span></code>, and copy the following contents into
+<p>Create a new file called <code class="docutils literal"><span class="pre">hello_world.c</span></code>, and copy the following contents into
 the new file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#import &lt;uart/log.h&gt;</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#import &lt;uart/log.h&gt;</span>
 
 <span class="nb">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">init_uart</span><span class="p">();</span>
@@ -63,55 +202,55 @@ the new file:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The first line, <code class="docutils literal notranslate"><span class="pre">init_uart();</span></code>, initializes the UART circuitry on the 32M1. UART
+<p>The first line, <code class="docutils literal"><span class="pre">init_uart();</span></code>, initializes the UART circuitry on the 32M1. UART
 stands for Universal Asynchronous Receiver-Transmitter. This allows the 32M1 to
 communicate with external peripherals using a serial protocol.</p>
-<p>The second line, <code class="docutils literal notranslate"><span class="pre">print(&quot;Hello</span> <span class="pre">ATMega32M1!\n&quot;);</span></code>, send the string “Hello
+<p>The second line, <code class="docutils literal"><span class="pre">print(&quot;Hello</span> <span class="pre">ATMega32M1!\n&quot;);</span></code>, send the string “Hello
 ATMega32M1” to the UART system to be written to serial output.</p>
-<p>The third line returns from the <code class="docutils literal notranslate"><span class="pre">main</span></code> function.</p>
-<p>Run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">status</span></code> and read the output carefully. Notice that Git has noticed
+<p>The third line returns from the <code class="docutils literal"><span class="pre">main</span></code> function.</p>
+<p>Run <code class="docutils literal"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">status</span></code> and read the output carefully. Notice that Git has noticed
 the new file you’ve created.</p>
 </div>
 <div class="section" id="step-3">
 <span id="step-3"></span><h2>Step 3<a class="headerlink" href="#step-3" title="Permalink to this headline">¶</a></h2>
-<p>Download the <code class="docutils literal notranslate"><span class="pre">lib-common</span></code> library by running the following command in the root
+<p>Download the <code class="docutils literal"><span class="pre">lib-common</span></code> library by running the following command in the root
 directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git submodule add https://github.com/HeronMkII/lib-common
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ git submodule add https://github.com/HeronMkII/lib-common
 </pre></div>
 </div>
-<p>Run <code class="docutils literal notranslate"><span class="pre">ls</span></code> in the root directory. Notice a new directory has been added, called
-<code class="docutils literal notranslate"><span class="pre">lib-common</span></code>. Explore the contents of this directory by running <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">lib-common</span></code>
+<p>Run <code class="docutils literal"><span class="pre">ls</span></code> in the root directory. Notice a new directory has been added, called
+<code class="docutils literal"><span class="pre">lib-common</span></code>. Explore the contents of this directory by running <code class="docutils literal"><span class="pre">cd</span> <span class="pre">lib-common</span></code>
 (do <em>not</em> modify anything).</p>
 <p>This is a library which contains many code components common to all subsystems,
 including SPI, UART and CAN functionality.</p>
 <p>Before the library is used, it must be built. To do this, make sure you are in
-the <code class="docutils literal notranslate"><span class="pre">lib-common</span></code> directory and run</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ make
+the <code class="docutils literal"><span class="pre">lib-common</span></code> directory and run</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ make
 </pre></div>
 </div>
-<p>Inspect the <code class="docutils literal notranslate"><span class="pre">lib</span></code> folder in the <code class="docutils literal notranslate"><span class="pre">lib-common</span></code> directory. You should notice many
-files ending in <code class="docutils literal notranslate"><span class="pre">.a</span></code>. These are the library files we just generated.</p>
+<p>Inspect the <code class="docutils literal"><span class="pre">lib</span></code> folder in the <code class="docutils literal"><span class="pre">lib-common</span></code> directory. You should notice many
+files ending in <code class="docutils literal"><span class="pre">.a</span></code>. These are the library files we just generated.</p>
 </div>
 <div class="section" id="step-4">
 <span id="step-4"></span><h2>Step 4<a class="headerlink" href="#step-4" title="Permalink to this headline">¶</a></h2>
 <p>We’re now ready to compile our program. Make sure you’re in the root directory,
 and run</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ avr-gcc -std=gnu99 -Wall -mmcu=atmega32m1 -c hello_world.c -I./lib-common/include
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ avr-gcc -std=gnu99 -Wall -mmcu=atmega32m1 -c hello_world.c -I./lib-common/include
 </pre></div>
 </div>
-<p>This will create a new <code class="docutils literal notranslate"><span class="pre">hello_world.o</span></code> object file. We must now link this
+<p>This will create a new <code class="docutils literal"><span class="pre">hello_world.o</span></code> object file. We must now link this
 object file to create an executable. To do this, run</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ avr-gcc -std=gnu99 -Wall -mmcu=atmega32m1 -o hello_world.elf hello_world.o -L./lib-common/lib -luart
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ avr-gcc -std=gnu99 -Wall -mmcu=atmega32m1 -o hello_world.elf hello_world.o -L./lib-common/lib -luart
 </pre></div>
 </div>
-<p>This will create a new file called <code class="docutils literal notranslate"><span class="pre">hello_world.elf</span></code>; this is a complete
+<p>This will create a new file called <code class="docutils literal"><span class="pre">hello_world.elf</span></code>; this is a complete
 executable file. To upload it onto the 32M1, however, we must format it
 in the Intel Hex format. To do this, run</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ avr-objcopy -j .text -j .data -O ihex hello_world.elf hello_world.hex
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ avr-objcopy -j .text -j .data -O ihex hello_world.elf hello_world.hex
 </pre></div>
 </div>
 <p>This creates the final executable which we will upload to the 32M1, called
-<code class="docutils literal notranslate"><span class="pre">hello_world.hex</span></code>.</p>
+<code class="docutils literal"><span class="pre">hello_world.hex</span></code>.</p>
 </div>
 <div class="section" id="step-5">
 <span id="step-5"></span><h2>Step 5<a class="headerlink" href="#step-5" title="Permalink to this headline">¶</a></h2>
@@ -119,17 +258,17 @@ in the Intel Hex format. To do this, run</p>
 <p>To do this, you need to connect a 32M1 on a board to your computer using a
 programmer. Find a Polulu programmer in the lab, and connect it to an open USB
 port on your computer.</p>
-<p>We will use <code class="docutils literal notranslate"><span class="pre">avrdude</span></code> to upload our <code class="docutils literal notranslate"><span class="pre">hello_world.hex</span></code> onto the 32M1. To do this,
-we need to tell <code class="docutils literal notranslate"><span class="pre">avrdude</span></code> which USB port the programmer is connected to. To find
+<p>We will use <code class="docutils literal"><span class="pre">avrdude</span></code> to upload our <code class="docutils literal"><span class="pre">hello_world.hex</span></code> onto the 32M1. To do this,
+we need to tell <code class="docutils literal"><span class="pre">avrdude</span></code> which USB port the programmer is connected to. To find
 this out, run</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls /dev/tty.usb*
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ ls /dev/tty.usb*
 </pre></div>
 </div>
 <p>This lists all USB devices connected to your computer.</p>
 <p>The USB device corresponding to the programmer is almost always the device with
 the lowest id. For example, if the command above returns
-<code class="docutils literal notranslate"><span class="pre">/dev/tty.usbmodem00100561</span> <span class="pre">/dev/tty.usbmodem00100563</span></code>, the USB port
-corresponding to the programmer is <code class="docutils literal notranslate"><span class="pre">/dev/tty.usbmodem00100561</span></code>. Make sure to
+<code class="docutils literal"><span class="pre">/dev/tty.usbmodem00100561</span> <span class="pre">/dev/tty.usbmodem00100563</span></code>, the USB port
+corresponding to the programmer is <code class="docutils literal"><span class="pre">/dev/tty.usbmodem00100561</span></code>. Make sure to
 remember this port.</p>
 <p>Connect power to the VCC pin on the board, and ground the GND pin. Set the
 voltage to 3.3 volts. Connect the programmer to the programmer port on the
@@ -137,9 +276,9 @@ board. Check that the light on the programmer is green; this means the board is
 being powered correctly. If the board has insufficient power, the programmer
 will not upload to the board, because this has the potential to corrupt the
 MCU’s memory.</p>
-<p>Now run the following command, where <code class="docutils literal notranslate"><span class="pre">&lt;port&gt;</span></code> is replaced with the USB port you
+<p>Now run the following command, where <code class="docutils literal"><span class="pre">&lt;port&gt;</span></code> is replaced with the USB port you
 found above.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ avrdude -p 32m1 -c stk500 -P &lt;port&gt; -U flash:w:./hello_world.hex
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ avrdude -p 32m1 -c stk500 -P &lt;port&gt; -U flash:w:./hello_world.hex
 </pre></div>
 </div>
 <p>This should upload your program onto the 32M1! If this command runs
@@ -163,67 +302,69 @@ simplify this process in the future using tools such as Make.</p>
 </div>
 
 
+           </div>
+           
           </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="git-and-github.html" class="btn btn-neutral float-right" title="Git and Github" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="atmega32m1.html" class="btn btn-neutral" title="The ATMega32M1 Microcontroller" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, University of Toronto Aerospace Team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Hello World ATMega32M1</a><ul>
-<li><a class="reference internal" href="#step-1">Step 1</a></li>
-<li><a class="reference internal" href="#step-2">Step 2</a></li>
-<li><a class="reference internal" href="#step-3">Step 3</a></li>
-<li><a class="reference internal" href="#step-4">Step 4</a></li>
-<li><a class="reference internal" href="#step-5">Step 5</a></li>
-<li><a class="reference internal" href="#step-6">Step 6</a></li>
-</ul>
-</li>
-</ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
-  </ul></li>
-</ul>
-</div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/getting-started/hello-world.md.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2018, University of Toronto Aerospace Team [D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[D[D[D[D[D[D[D[D[D[D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C): University of Toronto Aerospace Team.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
-      
-      |
-      <a href="../_sources/getting-started/hello-world.md.txt"
-          rel="nofollow">Page source</a>
-    </div>
 
-    
+    </section>
 
-    
-  </body>
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>

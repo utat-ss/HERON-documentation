@@ -27,6 +27,8 @@ Our documentation is organized into the following sections:
 	:caption: Getting Started
 
 	getting-started/rtsys
+	getting-started/satellite-software
+	getting-started/command-line
 	getting-started/avr-toolchain
 	getting-started/install
 	getting-started/install-mac
@@ -35,7 +37,6 @@ Our documentation is organized into the following sections:
 	getting-started/atmega32m1
 	getting-started/hello-world
 	getting-started/git-and-github
-
 
 .. _software-and-programming:
 .. toctree::
