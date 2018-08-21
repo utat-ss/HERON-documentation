@@ -18,14 +18,8 @@ This documentation covers the software used on our satellite and some useful get
 Our documentation is organized into the following sections:
 
 - :ref:`getting-started`
-- :ref:`software-tools`
-- :ref:`troubleshooting`
-- :ref:`embedded-systems`
-- :ref:`c-programming`
-- :ref:`communication-protocols`
-- :ref:`software-style-guide`
-- :ref:`electrical-systems`
-- :ref:`reading-datasheets`
+- :ref:`software-and-programming`
+- :ref:`electronics-and-altium`
 
 .. _getting-started:
 .. toctree::
