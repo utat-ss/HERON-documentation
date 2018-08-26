@@ -13,6 +13,8 @@ Please ask us for help if you encounter any issues. See the "Software Installati
 
 Note: You might need 7-Zip or other unzipping software to extract all packages.
 
+Other instructions (just for reference, don't follow them): http://fab.cba.mit.edu/classes/863.16/doc/projects/ftsmin/windows_avr.html
+
 
 
 
