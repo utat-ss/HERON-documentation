@@ -29,18 +29,18 @@ Our documentation is organized into the following sections:
 
 .. _getting-started:
 .. toctree::
-	:maxdepth: 2
-	:caption: Getting Started
+ 	:maxdepth: 2
+ 	:caption: Getting Started
 
-	getting-started/rtsys
-	getting-started/avr-toolchain
-	getting-started/install
-	getting-started/install-mac
-	getting-started/install-win
-	getting-started/install-linux
-	getting-started/atmega32m1
-	getting-started/hello-world
-	getting-started/git-and-github
+.. 	getting-started/rtsys
+.. 	getting-started/avr-toolchain
+.. 	getting-started/install
+.. 	getting-started/install-mac
+.. 	getting-started/install-win
+.. 	getting-started/install-linux
+.. 	getting-started/atmega32m1
+.. 	getting-started/hello-world
+.. 	getting-started/git-and-github
 
 .. _software-tools:
 .. toctree::
