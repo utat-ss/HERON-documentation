@@ -43,7 +43,7 @@ Our documentation is organized into the following sections:
 	:maxdepth: 2
 	:caption: Software and Programming
 
-	software-and-programming.rst
+	.. software-and-programming.rst
 
 
 .. _electronics-and-altium:
@@ -51,7 +51,7 @@ Our documentation is organized into the following sections:
 	:maxdepth: 2
 	:caption: Electronics and Altium
 
-	electronics-and-altium.rst
+	.. electronics-and-altium.rst
 
 
 If you would like to contribute to our documentation, create a branch and start a pull request. If you would like to report an error, please `submit an issue`_.
