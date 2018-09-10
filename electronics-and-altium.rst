@@ -1,7 +1,7 @@
 Electronics and Altium
 ======================
 
-This section contains information on electronics design, debuggig and prototyping within Heron MkII.
+This section contains information on electronics design, debugging and prototyping within Heron MkII.
 
 - :ref:`electrical-systems`
 - :ref:`reading-datasheets`
@@ -12,12 +12,7 @@ This section contains information on electronics design, debuggig and prototypin
 	:maxdepth: 2
 	:caption: Electrical Systems
 
-	electrical/websites
-	electrical/components
-	electrical/equipment
-	electrical/circuit-platforms
-	electrical/pcb-design
-	electrical/footprints
+	electrical/electrical-systems
 
 .. _reading-datasheets:
 .. toctree::
