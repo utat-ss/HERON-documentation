@@ -26,24 +26,20 @@ Our documentation is organized into the following sections:
 	:maxdepth: 2
 	:caption: Getting Started
 
-	getting-started/rtsys
-	getting-started/satellite-software
-	getting-started/command-line
-	getting-started/avr-toolchain
-	getting-started/install
-	getting-started/install-mac
-	getting-started/install-win
-	getting-started/install-linux
-	getting-started/atmega32m1
-	getting-started/hello-world
-	getting-started/git-and-github
+	getting-started/getting-started
+
 
 .. _software-and-programming:
 .. toctree::
 	:maxdepth: 2
 	:caption: Software and Programming
 
-	software-and-programming.rst
+	software-tools/software-tools
+	troubleshooting/troubleshooting
+	embedded/embedded-systems
+	communication-protocols/communication-protocols
+	c-programming/c-programming
+	style-guide/style-guide
 
 
 .. _electronics-and-altium:
@@ -51,7 +47,10 @@ Our documentation is organized into the following sections:
 	:maxdepth: 2
 	:caption: Electronics and Altium
 
-	electronics-and-altium.rst
+	altium/altium
+	electrical/electrical-systems
+	datasheets/reading-datasheets
+
 
 
 If you would like to contribute to our documentation, create a branch and start a pull request. If you would like to report an error, please `submit an issue`_.
