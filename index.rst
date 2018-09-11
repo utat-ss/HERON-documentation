@@ -18,121 +18,39 @@ This documentation covers the software used on our satellite and some useful get
 Our documentation is organized into the following sections:
 
 - :ref:`getting-started`
-- :ref:`software-tools`
-- :ref:`troubleshooting`
-- :ref:`embedded-systems`
-- :ref:`c-programming`
-- :ref:`communication-protocols`
-- :ref:`software-style-guide`
-- :ref:`electrical-systems`
-- :ref:`reading-datasheets`
+- :ref:`software-and-programming`
+- :ref:`electronics-and-altium`
 
 .. _getting-started:
 .. toctree::
- 	:maxdepth: 2
- 	:caption: Getting Started
+	:maxdepth: 2
+	:caption: Getting Started
 
-.. 	getting-started/rtsys
-.. 	getting-started/avr-toolchain
-.. 	getting-started/install
-.. 	getting-started/install-mac
-.. 	getting-started/install-win
-.. 	getting-started/install-linux
-.. 	getting-started/atmega32m1
-.. 	getting-started/hello-world
-.. 	getting-started/git-and-github
+	getting-started/getting-started
 
-.. _software-tools:
+
+.. _software-and-programming:
 .. toctree::
 	:maxdepth: 2
-	:caption: Software Tools
+	:caption: Software and Programming
 
-	software-tools/software-workflow
-	software-tools/test-harness
-	software-tools/our_toolchain
-	software-tools/lib-common
-	software-tools/uart-terminal
-
-.. _troubleshooting:
-.. toctree::
-	:maxdepth: 2
-	:caption: Troubleshooting
-
+	software-tools/software-tools
 	troubleshooting/troubleshooting
-
-.. _embedded-systems:
-.. toctree::
-	:maxdepth: 2
-	:caption: Embedded Systems
-
-	embedded/microcontrollers
-	embedded/registers
-	embedded/interrupts
-	embedded/avr-fuses
-
-.. _c-programming:
-.. toctree::
-	:maxdepth: 2
-	:caption: C Programming
-
-	c-programming/introduction
-	c-programming/variables
-	c-programming/operators
-	c-programming/bitwise-operators
-	c-programming/bitwise-operators-applications
-	c-programming/control-structures
-	c-programming/functions
-	c-programming/header-files
-	c-programming/pointers
-	c-programming/structs
-	c-programming/c_h_files
-	c-programming/sizeof
-	c-programming/binary-hex-literals
-	c-programming/integer-types
-	c-programming/print-formatting
-	c-programming/volatile-variables
-
-
-.. _communication-protocols:
-.. toctree::
-	:maxdepth: 2
-	:caption: Communication Protocols
-
+	embedded/embedded-systems
 	communication-protocols/communication-protocols
-	communication-protocols/can
-	communication-protocols/can-mobs
-	communication-protocols/can-mob-allocation
-	communication-protocols/spi
-	communication-protocols/spi-bus
-	communication-protocols/spi-using-spi
-	communication-protocols/uart
-
-.. _software-style-guide:
-.. toctree::
-	:maxdepth: 2
-	:caption: Software Style Guide
-
+	c-programming/c-programming
 	style-guide/style-guide
-	style-guide/technical
-	style-guide/formatting
 
-.. _electrical-systems:
+
+.. _electronics-and-altium:
 .. toctree::
 	:maxdepth: 2
-	:caption: Electrical Systems
+	:caption: Electronics and Altium
 
-	electrical/websites
-	electrical/components
-	electrical/equipment
-	electrical/circuit-platforms
-	electrical/pcb-design
+	altium/altium
+	electrical/electrical-systems
+	datasheets/reading-datasheets
 
-.. _reading-datasheets:
-.. toctree::
-	:maxdepth: 2
-	:caption: Reading Datasheets
-
-	datasheets/datasheets
 
 
 If you would like to contribute to our documentation, create a branch and start a pull request. If you would like to report an error, please `submit an issue`_.

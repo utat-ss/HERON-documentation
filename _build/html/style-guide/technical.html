@@ -1,40 +1,220 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Technical &#8212; utatss-documentation 1.0 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript" src="../_static/documentation_options.js"></script>
-    <script type="text/javascript" src="../_static/jquery.js"></script>
-    <script type="text/javascript" src="../_static/underscore.js"></script>
-    <script type="text/javascript" src="../_static/doctools.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Technical &mdash; UTAT Space Systems Documentation 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Formatting" href="formatting.html" />
+    <link rel="prev" title="Software Style Guide" href="style-guide.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
    
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <div class="wy-grid-for-nav">
 
-  </head><body>
-  
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+          
+            <a href="../index.html" class="icon icon-home"> UTAT Space Systems Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/rtsys.html">Real-Time Embedded Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/avr-toolchain.html">The AVR Toolchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/install.html">Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/install-mac.html">Software Installation - macOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/install-win.html">Software Installation - Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/install-linux.html">Software Installation - Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/atmega32m1.html">The ATMega32M1 Microcontroller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/hello-world.html">Hello World ATMega32M1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/git-and-github.html">Git and Github</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software and Programming</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../software-and-programming.html">Software and Programming</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../software-tools/software-workflow.html">Software Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../software-tools/test-harness.html">Test Harness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../software-tools/our_toolchain.html">Our Toolchain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../software-tools/lib-common.html">lib-common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../software-tools/lib-common.html#switch-lib-common-to-a-different-branch">Switch lib-common to a Different Branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../software-tools/uart-terminal.html">UART Terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../embedded/microcontrollers.html">Microcontrollers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../embedded/registers.html">Registers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../embedded/interrupts.html">Interrupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../embedded/avr-fuses.html">AVR Fuses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../communication-protocols/communication-protocols.html">Communication Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../communication-protocols/can.html">CAN (Controller Area Network)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../communication-protocols/can-mobs.html">Message Objects (MObs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../communication-protocols/can-mob-allocation.html">MOb Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../communication-protocols/spi.html">SPI (Serial Peripheral Interface)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../communication-protocols/spi-bus.html">SPI Bus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../communication-protocols/spi-using-spi.html">Using our SPI Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../communication-protocols/uart.html">UART (Universal Asynchronous Receiver Transmitter)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c-programming/introduction.html">C Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c-programming/variables.html">Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c-programming/operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c-programming/bitwise-operators.html">Bitwise Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c-programming/control-structures.html">Control Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c-programming/functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c-programming/header-files.html">Header Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c-programming/header-files.html#define">#define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c-programming/header-files.html#typedef">typedef</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c-programming/pointers.html">Pointers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c-programming/structs.html">Structs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c-programming/c_h_files.html"><code class="docutils literal"><span class="pre">.c</span></code> and <code class="docutils literal"><span class="pre">.h</span></code> Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c-programming/binary-hex-literals.html">Binary (0b) and Hexadecimal (0x) Literals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c-programming/integer-types.html">Integer Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c-programming/print-formatting.html">Print Formatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../c-programming/volatile-variables.html">Volatile Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide.html">Software Style Guide</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Technical</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#memory-allocation-and-malloc">Memory Allocation and <code class="docutils literal"><span class="pre">malloc()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#integer-types">Integer Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#infinite-loops-and-timeouts">Infinite Loops and Timeouts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#compiler-warnings">Compiler Warnings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#header-file-guards">Header File Guards</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="formatting.html">Formatting</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Electronics and Altium</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../electronics-and-altium.html">Electronics and Altium</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">UTAT Space Systems Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../software-and-programming.html">Software and Programming</a> &raquo;</li>
+        
+      <li>Technical</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/style-guide/technical.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="technical">
 <span id="technical"></span><h1>Technical<a class="headerlink" href="#technical" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="memory-allocation-and-malloc">
-<span id="memory-allocation-and-malloc"></span><h2>Memory Allocation and <code class="docutils literal notranslate"><span class="pre">malloc()</span></code><a class="headerlink" href="#memory-allocation-and-malloc" title="Permalink to this headline">¶</a></h2>
-<p><strong>You are not allowed to use <code class="docutils literal notranslate"><span class="pre">malloc()</span></code>.</strong> This is because our satellite is an embedded system and <code class="docutils literal notranslate"><span class="pre">malloc()</span></code> is a non-deterministic operation.</p>
+<span id="memory-allocation-and-malloc"></span><h2>Memory Allocation and <code class="docutils literal"><span class="pre">malloc()</span></code><a class="headerlink" href="#memory-allocation-and-malloc" title="Permalink to this headline">¶</a></h2>
+<p><strong>You are not allowed to use <code class="docutils literal"><span class="pre">malloc()</span></code>.</strong> This is because our satellite is an embedded system and <code class="docutils literal"><span class="pre">malloc()</span></code> is a non-deterministic operation.</p>
 <ul class="simple">
 <li>There is a limited amount of memory, so it is likely to fail.</li>
 <li>It may be very slow, blocking the system.</li>
@@ -43,15 +223,15 @@
 </div>
 <div class="section" id="integer-types">
 <span id="integer-types"></span><h2>Integer Types<a class="headerlink" href="#integer-types" title="Permalink to this headline">¶</a></h2>
-<p><strong>Avoid using the <code class="docutils literal notranslate"><span class="pre">int</span></code> type.</strong> All integer types should be declared with explicit sizes using types in the <code class="docutils literal notranslate"><span class="pre">&lt;stdint.h&gt;</span></code> library, such as <code class="docutils literal notranslate"><span class="pre">uint8_t</span></code>, <code class="docutils literal notranslate"><span class="pre">uint32_t</span></code>, and <code class="docutils literal notranslate"><span class="pre">int16_t</span></code>.</p>
+<p><strong>Avoid using the <code class="docutils literal"><span class="pre">int</span></code> type.</strong> All integer types should be declared with explicit sizes using types in the <code class="docutils literal"><span class="pre">&lt;stdint.h&gt;</span></code> library, such as <code class="docutils literal"><span class="pre">uint8_t</span></code>, <code class="docutils literal"><span class="pre">uint32_t</span></code>, and <code class="docutils literal"><span class="pre">int16_t</span></code>.</p>
 <p><strong>Be careful about integer sizes.</strong> We need to avoid integer overflows at all costs, so make sure your integer types are large enough for the values they will contain.</p>
 </div>
 <div class="section" id="infinite-loops-and-timeouts">
 <span id="infinite-loops-and-timeouts"></span><h2>Infinite Loops and Timeouts<a class="headerlink" href="#infinite-loops-and-timeouts" title="Permalink to this headline">¶</a></h2>
 <p><strong>Do not allow the possibility of an infinite loop.</strong> Do not assume hardware will always behave as expected. Always add a timer as a fallback for loops waiting for a hardware event so the MCU cannot get stuck in an infinite loop. Every loop should have a guaranteed upper bound on the number of times it executes.</p>
-<p>The most common timeout value is (2^16 - 1) or 65,535 with a <code class="docutils literal notranslate"><span class="pre">uint16_t</span></code> type counting down to 0.</p>
+<p>The most common timeout value is (2^16 - 1) or 65,535 with a <code class="docutils literal"><span class="pre">uint16_t</span></code> type counting down to 0.</p>
 <p>For example, say we are waiting for the pin PB0 to go low before proceeding.</p>
-<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="c1">// bad, could infinte loop</span>
+<div class="highlight-C"><div class="highlight"><pre><span></span><span class="c1">// bad, could infinte loop</span>
 <span class="k">while</span> <span class="p">(</span><span class="n">bit_is_set</span><span class="p">(</span><span class="n">PINB</span><span class="p">,</span> <span class="n">PB0</span><span class="p">))</span> <span class="p">{</span>
     <span class="k">continue</span><span class="p">;</span>
 <span class="p">}</span>
@@ -70,9 +250,9 @@
 </div>
 <div class="section" id="header-file-guards">
 <span id="header-file-guards"></span><h2>Header File Guards<a class="headerlink" href="#header-file-guards" title="Permalink to this headline">¶</a></h2>
-<p>All header files (<code class="docutils literal notranslate"><span class="pre">.h</span></code>) should have a guard statement to prevent duplicate declarations when included multiple times.</p>
-<p>Say we have a header file called <code class="docutils literal notranslate"><span class="pre">file.h</span></code>:</p>
-<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef FILE_H</span>
+<p>All header files (<code class="docutils literal"><span class="pre">.h</span></code>) should have a guard statement to prevent duplicate declarations when included multiple times.</p>
+<p>Say we have a header file called <code class="docutils literal"><span class="pre">file.h</span></code>:</p>
+<div class="highlight-C"><div class="highlight"><pre><span></span><span class="cp">#ifndef FILE_H</span>
 <span class="cp">#define FILE_H</span>
 
 <span class="o">&lt;</span><span class="n">code</span><span class="o">&gt;</span>
@@ -84,66 +264,69 @@
 </div>
 
 
+           </div>
+           
           </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="formatting.html" class="btn btn-neutral float-right" title="Formatting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="style-guide.html" class="btn btn-neutral" title="Software Style Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, University of Toronto Aerospace Team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table Of Contents</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">Technical</a><ul>
-<li><a class="reference internal" href="#memory-allocation-and-malloc">Memory Allocation and <code class="docutils literal notranslate"><span class="pre">malloc()</span></code></a></li>
-<li><a class="reference internal" href="#integer-types">Integer Types</a></li>
-<li><a class="reference internal" href="#infinite-loops-and-timeouts">Infinite Loops and Timeouts</a></li>
-<li><a class="reference internal" href="#compiler-warnings">Compiler Warnings</a></li>
-<li><a class="reference internal" href="#header-file-guards">Header File Guards</a></li>
-</ul>
-</li>
-</ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
-  </ul></li>
-</ul>
-</div>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/style-guide/technical.md.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-    </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2018, University of Toronto Aerospace Team [D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[D[C[D[D[D[D[D[D[D[D[D[D[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C): University of Toronto Aerospace Team.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
-      
-      |
-      <a href="../_sources/style-guide/technical.md.txt"
-          rel="nofollow">Page source</a>
-    </div>
 
-    
+    </section>
 
-    
-  </body>
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>

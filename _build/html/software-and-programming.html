@@ -1,0 +1,477 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Software and Programming &mdash; UTAT Space Systems Documentation 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Software Workflow" href="software-tools/software-workflow.html" />
+    <link rel="prev" title="Git and Github" href="getting-started/git-and-github.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> UTAT Space Systems Documentation
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/rtsys.html">Real-Time Embedded Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/satellite-software.html">Satellite Software</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/command-line.html">Command Line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/avr-toolchain.html">The AVR Toolchain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/install.html">Software Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/install-mac.html">Software Installation - macOS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/install-win.html">Software Installation - Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/install-linux.html">Software Installation - Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/atmega32m1.html">The ATMega32M1 Microcontroller</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/hello-world.html">Hello World ATMega32M1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting-started/git-and-github.html">Git and Github</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Software and Programming</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Software and Programming</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/software-workflow.html">Software Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/test-harness.html">Test Harness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/our_toolchain.html">Our Toolchain</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/lib-common.html">lib-common</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/lib-common.html#switch-lib-common-to-a-different-branch">Switch lib-common to a Different Branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/uart-terminal.html">UART Terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting/troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded/microcontrollers.html">Microcontrollers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded/registers.html">Registers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded/interrupts.html">Interrupts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded/avr-fuses.html">AVR Fuses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded/uploading-code-mac.html">Uploading Code (Mac)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/communication-protocols.html">Communication Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/can.html">CAN (Controller Area Network)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/can-mobs.html">Message Objects (MObs)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/can-mob-allocation.html">MOb Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/spi.html">SPI (Serial Peripheral Interface)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/spi-bus.html">SPI Bus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/spi-using-spi.html">Using our SPI Library</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/uart.html">UART (Universal Asynchronous Receiver Transmitter)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/introduction.html">C Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/variables.html">Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/operators.html">Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/bitwise-operators.html">Bitwise Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/control-structures.html">Control Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/functions.html">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/header-files.html">Header Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/header-files.html#define">#define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/header-files.html#typedef">typedef</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/pointers.html">Pointers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/structs.html">Structs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/c_h_files.html"><code class="docutils literal"><span class="pre">.c</span></code> and <code class="docutils literal"><span class="pre">.h</span></code> Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/binary-hex-literals.html">Binary (0b) and Hexadecimal (0x) Literals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/integer-types.html">Integer Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/print-formatting.html">Print Formatting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/volatile-variables.html">Volatile Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/style-guide.html">Software Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/technical.html">Technical</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/formatting.html">Formatting</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Electronics and Altium</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="electronics-and-altium.html">Electronics and Altium</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">UTAT Space Systems Documentation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Software and Programming</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/software-and-programming.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="software-and-programming">
+<h1>Software and Programming<a class="headerlink" href="#software-and-programming" title="Permalink to this headline">¶</a></h1>
+<p>This part of the documentation contains information related to software development and programming for the Heron MkII project.</p>
+<ul class="simple">
+<li><a class="reference internal" href="#software-tools"><span class="std std-ref">Software Tools</span></a></li>
+<li><a class="reference internal" href="#troubleshooting"><span class="std std-ref">Troubleshooting</span></a></li>
+<li><a class="reference internal" href="#embedded-systems"><span class="std std-ref">Embedded Systems</span></a></li>
+<li><a class="reference internal" href="#communication-protocols"><span class="std std-ref">Communication Protocols</span></a></li>
+<li><span class="xref std std-ref">programming-c</span></li>
+<li><a class="reference internal" href="#software-style-guide"><span class="std std-ref">Software Style Guide</span></a></li>
+</ul>
+<div class="toctree-wrapper compound" id="software-tools">
+<p class="caption"><span class="caption-text">Software Tools</span><a class="headerlink" href="#software-tools" title="Permalink to this toctree">¶</a></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="software-tools/software-workflow.html">Software Workflow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/software-workflow.html#github-repositories">GitHub Repositories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/software-workflow.html#cloning-a-repository">Cloning a Repository</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/software-workflow.html#editing-code">Editing Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/software-workflow.html#project-structure">Project Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/software-workflow.html#compiling-and-uploading-a-program">Compiling and Uploading a Program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/software-workflow.html#finding-the-correct-usb-port">Finding the Correct USB Port</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/software-workflow.html#committing-and-pushing-to-github">Committing and Pushing to GitHub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/software-workflow.html#branches-and-pull-requests">Branches and Pull Requests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="software-tools/test-harness.html">Test Harness</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/test-harness.html#running-the-test-harness">Running the Test Harness</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="software-tools/our_toolchain.html">Our Toolchain</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/our_toolchain.html#background">Background</a></li>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/our_toolchain.html#our-avr-toolchain">Our AVR Toolchain</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="software-tools/lib-common.html">lib-common</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="software-tools/lib-common.html#update-lib-common">Update lib-common</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="software-tools/lib-common.html#switch-lib-common-to-a-different-branch">Switch lib-common to a Different Branch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software-tools/uart-terminal.html">UART Terminal</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound" id="troubleshooting">
+<p class="caption"><span class="caption-text">Troubleshooting</span><a class="headerlink" href="#troubleshooting" title="Permalink to this toctree">¶</a></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting/troubleshooting.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting/troubleshooting.html#hardware">Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting/troubleshooting.html#software">Software</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound" id="embedded-systems">
+<p class="caption"><span class="caption-text">Embedded Systems</span><a class="headerlink" href="#embedded-systems" title="Permalink to this toctree">¶</a></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="embedded/microcontrollers.html">Microcontrollers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="embedded/microcontrollers.html#atmega32m1-avr">ATmega32M1 (AVR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embedded/microcontrollers.html#arduino">Arduino</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="embedded/registers.html">Registers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="embedded/interrupts.html">Interrupts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="embedded/interrupts.html#handling-interrupts">Handling Interrupts</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="embedded/avr-fuses.html">AVR Fuses</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="embedded/avr-fuses.html#setting-fuse-bits">Setting Fuse Bits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="embedded/uploading-code-mac.html">Uploading Code (Mac)</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound" id="communication-protocols">
+<p class="caption"><span class="caption-text">Communication Protocols</span><a class="headerlink" href="#communication-protocols" title="Permalink to this toctree">¶</a></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="communication-protocols/communication-protocols.html">Communication Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication-protocols/can.html">CAN (Controller Area Network)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/can.html#acronyms">Acronyms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/can.html#hardware">Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/can.html#mobs">MOBs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/can.html#rx-mobs">RX MOBs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/can.html#tx-mobs">TX MOBs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/can.html#initializing-can">Initializing CAN</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="communication-protocols/can-mobs.html">Message Objects (MObs)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/can-mobs.html#mob-num">mob_num</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/can-mobs.html#id-tag-and-id-mask">id_tag and id_mask</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/can-mobs.html#ctrl-and-mob-type">ctrl and mob_type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/can-mobs.html#dlc">dlc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/can-mobs.html#rx-cb-tx-data-cb-and-data-8">rx_cb, tx_data_cb and data[8]</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="communication-protocols/can-mob-allocation.html">MOb Allocation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="communication-protocols/spi.html">SPI (Serial Peripheral Interface)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/spi.html#what-is-spi">What is SPI?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="communication-protocols/spi-bus.html">SPI Bus</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/spi-bus.html#sck-sclk-source-clock">SCK/SCLK (Source Clock)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/spi-bus.html#mosi-master-out-slave-in">MOSI (Master Out Slave In)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/spi-bus.html#miso-master-in-slave-out">MISO (Master In Slave Out)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/spi-bus.html#cs-ss-chip-select-slave-select">CS/SS (Chip Select / Slave Select)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/spi-bus.html#hardware-signal">Hardware Signal</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="communication-protocols/spi-using-spi.html">Using our SPI Library</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/spi-using-spi.html#cs-pin">CS Pin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/spi-using-spi.html#initialize-spi">Initialize SPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/spi-using-spi.html#sending-a-spi-message">Sending a SPI message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/spi-using-spi.html#example-spi-code">Example SPI Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="communication-protocols/spi-using-spi.html#more-clock-settings-advanced">More Clock Settings (advanced)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="communication-protocols/uart.html">UART (Universal Asynchronous Receiver Transmitter)</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">C Programming</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="c-programming/introduction.html">C Programming</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/introduction.html#so-what-makes-c-different-than-other-programming-languages">So, what makes C different than other programming languages?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="c-programming/variables.html">Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-programming/operators.html">Operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/operators.html#mathematical">Mathematical</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/operators.html#comparative">Comparative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/operators.html#logical">Logical</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/operators.html#increment-and-decrement">Increment and Decrement</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="c-programming/bitwise-operators.html">Bitwise Operators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/bitwise-operators.html#single-bit-operations">Single Bit Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/bitwise-operators.html#multi-bit-operations">Multi-Bit Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/bitwise-operators.html#and">AND (<code class="docutils literal"><span class="pre">&amp;</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/bitwise-operators.html#or">OR (<code class="docutils literal"><span class="pre">|</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/bitwise-operators.html#xor">XOR (<code class="docutils literal"><span class="pre">^</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/bitwise-operators.html#not">NOT (<code class="docutils literal"><span class="pre">~</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/bitwise-operators.html#bitwise-vs-logical-operators">Bitwise vs. Logical Operators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/bitwise-operators.html#modified-assignment">Modified Assignment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/bitwise-operators.html#bitwise-shifts">Bitwise Shifts (<code class="docutils literal"><span class="pre">&lt;&lt;</span></code>, <code class="docutils literal"><span class="pre">&gt;&gt;</span></code>)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/bitwise-operators.html#applications">Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="c-programming/control-structures.html">Control Structures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/control-structures.html#if-statements">If Statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/control-structures.html#switch-statements">Switch Statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/control-structures.html#while-loops">While Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/control-structures.html#for-loops">For Loops</a></li>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/control-structures.html#break-and-continue">Break and Continue</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="c-programming/functions.html">Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-programming/header-files.html">Header Files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-programming/header-files.html#define">#define</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-programming/header-files.html#typedef">typedef</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-programming/pointers.html">Pointers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-programming/structs.html">Structs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-programming/c_h_files.html"><code class="docutils literal"><span class="pre">.c</span></code> and <code class="docutils literal"><span class="pre">.h</span></code> Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/c_h_files.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="c-programming/binary-hex-literals.html">Binary (0b) and Hexadecimal (0x) Literals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-programming/integer-types.html">Integer Types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c-programming/print-formatting.html">Print Formatting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="c-programming/print-formatting.html#integer-formatting">Integer Formatting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="c-programming/volatile-variables.html">Volatile Variables</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound" id="software-style-guide">
+<p class="caption"><span class="caption-text">Software Style Guide</span><a class="headerlink" href="#software-style-guide" title="Permalink to this toctree">¶</a></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="style-guide/style-guide.html">Software Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="style-guide/technical.html">Technical</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/technical.html#memory-allocation-and-malloc">Memory Allocation and <code class="docutils literal"><span class="pre">malloc()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/technical.html#integer-types">Integer Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/technical.html#infinite-loops-and-timeouts">Infinite Loops and Timeouts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/technical.html#compiler-warnings">Compiler Warnings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/technical.html#header-file-guards">Header File Guards</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="style-guide/formatting.html">Formatting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/formatting.html#spaces">Spaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/formatting.html#naming">Naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/formatting.html#operator-spacing">Operator Spacing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/formatting.html#punctuation-spacing">Punctuation Spacing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/formatting.html#functions">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/formatting.html#parentheses">Parentheses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/formatting.html#comments">Comments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/formatting.html#scope">Scope</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/formatting.html#whitespace">Whitespace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/formatting.html#file-organization">File Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/formatting.html#magic-numbers">Magic Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/formatting.html#line-length">Line Length</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style-guide/formatting.html#testing">Testing</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="software-tools/software-workflow.html" class="btn btn-neutral float-right" title="Software Workflow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="getting-started/git-and-github.html" class="btn btn-neutral" title="Git and Github" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, University of Toronto Aerospace Team.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
