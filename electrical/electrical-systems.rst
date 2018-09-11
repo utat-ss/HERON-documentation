@@ -8,6 +8,7 @@ This section details different aspects of electronics design.
 
 	websites
 	components
+	analog-digital
 	equipment
 	circuit-platforms
 	pcb-design
