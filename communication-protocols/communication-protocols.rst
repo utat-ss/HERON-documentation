@@ -12,9 +12,5 @@ The satellite uses three communication protocols:
 	:maxdepth: 2
 
 	can
-	can-mobs
-	can-mob-allocation
 	spi
-	spi-bus
-	spi-using-spi
 	uart
