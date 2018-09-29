@@ -11,7 +11,7 @@ Please ask one of the leads if you encounter any issues or are not familiar with
 
 ## Xcode Command Line Tools (macOS only)
 
-This is a package of common development tools you will need. Note that this is a small package and is not the full Xcode application.
+This is a package of common development tools you will need. Note that this will just install a small package, not the full Xcode application.
 
 Run the following:
 
@@ -19,9 +19,9 @@ Run the following:
 $ xcode-select --install
 ```
 
-If a dialog box pops up, click `Install`.
+If it says you already have this installed, continue to the next step.
 
-When it is done, verify it is installed:
+If a dialog box pops up, click `Install`. When it is done, verify it is installed:
 
 ```
 $ xcode-select -p
@@ -87,13 +87,13 @@ set.
 
 ### Windows
 
-1. Download and install [WinAVR](https://sourceforge.net/projects/winavr/files/WinAVR/20100110/). Make sure you get `WinAVR-20100110`. Remember where you installed it - we will call the path `<install>` here. By default, it is `C:\WinAVR-20100110`. Leave all of the default installation options (but uncheck "install programmer's notepad").
+1. Download and install the latest version of [WinAVR](https://sourceforge.net/projects/winavr/files/WinAVR/20100110/). Remember where you installed it - we will call the path `<install>` here. By default, it is `C:\WinAVR-20100110`. Leave the default installation options, but uncheck "install programmer's notepad".
 
-2. Add `<install>/bin` and `<install>/utils/bin` to your `PATH` variable. Do this from `Control Panel > System > Advanced System Settings > Environment variables`, by choosing to edit the Path variable on the **top** list in the window that pops up. Move `<install>/bin` to the top of the list, and `<install>/utils/bin` to second place.
+2. Open Control Panel and go to `System and Security > System > Advanced system settings` and click on Environment Variables. In the window that pops up, edit the Path variable in the **top** list. Add `<install>\bin` and move it to the top of the list. Add `<install>\utils\bin` and move it to second in the list. Click OK and exit the window.
 
 3. Download [this zip file](https://drive.google.com/file/d/1fWXrAz3peHORZjkVtChWaw8oGPStPxiM/view?usp=sharing). Unzip this file. Within the extracted folder, take the `WinAVR-20100110` folder and replace the `<install>` folder with it.
 
-[Reference instructions]( http://fab.cba.mit.edu/classes/863.16/doc/projects/ftsmin/windows_avr.html) (don't follow them)
+[Reference instructions]( http://fab.cba.mit.edu/classes/863.16/doc/projects/ftsmin/windows_avr.html) (**Do not actually follow these instructions**)
 
 
 
