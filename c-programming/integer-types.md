@@ -14,13 +14,13 @@ For example, we can't use the literal `1000000` because the maximum 16-bit unsig
 
 ## Available Types
 
-| Type | Integer | Literal Suffix | sizeof |
-| :--- | :--- | :--- | :--- | :--- |
-| `int8_t` | signed 8-bit | None | 1 |
-| `uint8_t` | unsigned 8-bit | None | 1 |
-| `int16_t` | signed 16-bit | None | 2 |
-| `uint16_t` | unsigned 16-bit | None | 2 |
-| `int32_t` | signed 32-bit | `L` (long) | 4 |
-| `uint32_t` | unsigned 32-bit | `UL` (unsigned long) | 4 |
-| `int64_t` | signed 64-bit | `LL` (long long) | 8 |
-| `uint64_t` | unsigned 64-bit | `ULL` (unsigned long long) | 8 |
+Type | Integer | Literal Suffix | sizeof
+:--- | :--- | :--- | :---
+`int8_t` | signed 8-bit | None | 1
+`uint8_t` | unsigned 8-bit | None | 1
+`int16_t` | signed 16-bit | None | 2
+`uint16_t` | unsigned 16-bit | None | 2
+`int32_t` | signed 32-bit | `L` (long) | 4
+`uint32_t` | unsigned 32-bit | `UL` (unsigned long) | 4
+`int64_t` | signed 64-bit | `LL` (long long) | 8
+`uint64_t` | unsigned 64-bit | `ULL` (unsigned long long) | 8
