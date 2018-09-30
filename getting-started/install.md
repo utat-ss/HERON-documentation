@@ -84,18 +84,15 @@ $ which avr-gcc
 This should print something like `/usr/local/bin/avr-gcc`. If so, you're all
 set.
 
-
 ### Windows
 
 1. Download and install the latest version of [WinAVR](https://sourceforge.net/projects/winavr/files/WinAVR/20100110/). Remember where you installed it - we will call the path `<install>` here. By default, it is `C:\WinAVR-20100110`. Leave the default installation options, but uncheck "install programmer's notepad".
 
 2. Open Control Panel and go to `System and Security > System > Advanced system settings` and click on Environment Variables. In the window that pops up, edit the Path variable in the **top** list. Add `<install>\bin` and move it to the top of the list. Add `<install>\utils\bin` and move it to second in the list. Click OK and exit the window.
 
-3. Download [this zip file](https://drive.google.com/file/d/1fWXrAz3peHORZjkVtChWaw8oGPStPxiM/view?usp=sharing). Unzip this file. Within the extracted folder, take the `WinAVR-20100110` folder and replace the `<install>` folder with it.
+3. Download [this zip file](https://drive.google.com/file/d/1fWXrAz3peHORZjkVtChWaw8oGPStPxiM/view?usp=sharing), which contains necessary modifications we made to some files so it works. You may need to retry the download if it doesn't work. Unzip this file. Within the extracted folder, take the `WinAVR-20100110` folder and replace the `<install>` folder on your computer with it.
 
 [Reference instructions]( http://fab.cba.mit.edu/classes/863.16/doc/projects/ftsmin/windows_avr.html) (**Do not actually follow these instructions**)
-
-
 
 
 ## Make
@@ -108,7 +105,7 @@ This is already installed with the Xcode command line tools.
 
 ### Windows
 
-Download and install the latest version of Make from [here](https://www.gnu.org/software/make/).
+Download and run the setup program from [here](http://gnuwin32.sourceforge.net/packages/make.htm).
 
 
 ## Git
@@ -121,14 +118,14 @@ This is already installed with the Xcode command line tools.
 
 ### Windows
 
-Download and install Git from [here](https://git-scm.com).
+Download and install Git from [here](https://git-scm.com). In the installer, use all of the default settings.
 
 
 ## GitHub
 
 GitHub is a platform that builds on top of Git to provide extra features, including a web interface for viewing and managing projects and code.
 
-Create an account [here](https://github.com/). Ask one of the leads to add you to the Heron Mk II organization so you can contribute code.
+Create an account [here](https://github.com/). If you are contributing code to the Heron Mk II codebase, ask one of the leads to add you to the Heron Mk II organization.
 
 
 ## GitHub Desktop
@@ -148,7 +145,7 @@ Run the installer.
 
 ## Atom
 
-This is a text editor that we use to write our code. We recommend Atom, but you can use other text editors such as Sublime and Notepad++.
+This is a text editor that we use to write our code. We recommend Atom, but you can use other text editors such as Sublime or Notepad++.
 
 Download it from [here](https://atom.io/).
 
@@ -171,20 +168,15 @@ Download it for your operating system from [here](http://freeware.the-meiers.org
 
 Open the downloaded `CoolTermMac.dmg` file. In the window the opens, move the `CoolTerm` application to the Applications folder on your computer.
 
-You may get the message `"CoolTerm" can't be opened becuase it is from an unidentified developer`. If this happens, open it by right-clicking the application and selecting `Open` instead.
+You may get the message `"CoolTerm" can't be opened becuase it is from an unidentified developer`. If this happens, open it by right-clicking the application and selecting `Open`.
 
 ### Windows
 
-Run the installer.
+Extract the zip file. CoolTerm does not have an installer; you can move it and run `CoolTerm.exe` from anywhere on your computer as long you move the entire `CoolTermWin` folder containing the necessary libraries. We recommend moving it to your `Documents` folder, but you can move it somewhere else if you want.
 
 
 ## Linux Software Installation
 
 If you want to use the Windows Subsystem for Linux, follow the instructions [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10). If you don't know which distro to use, pick Ubuntu.
 
-Follow the installation instructions for macOS to install the same tools, but for command line packages use `sudo apt-get` instead of `brew`. GitHub Desktop is currently not available for Linux, so you will need to use command-line Git.
-
-
-## Miscellaneous Troubleshooting
-
-**Note**: It may be necessary to patch `avrdude.conf` to support the m32m1. This can be found online.
+Follow the installation instructions for macOS to install the same tools, but for command line packages use `sudo apt-get` instead of `brew`. The Xcode command line tools are not available for Linux, so you will need to install particular software components individually. GitHub Desktop is currently not available for Linux, so you will need to use command-line Git.
