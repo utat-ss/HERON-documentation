@@ -52,6 +52,13 @@ Our documentation is organized into the following sections:
 	datasheets/reading-datasheets
 
 
+.. _our-protocols:
+.. toctree::
+	:maxdepth: 2
+	:caption: Our Protocols
+
+	our-protocols/our-protocols
+
 
 If you would like to contribute to our documentation, create a branch and start a pull request. If you would like to report an error, please `submit an issue`_.
 
