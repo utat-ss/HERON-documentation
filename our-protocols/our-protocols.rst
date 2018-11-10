@@ -5,5 +5,5 @@ Our Protocols
     :maxdepth: 2
 
     can
-    ground-station
+    ground-station-to-satellite
     ground-station-ideas
