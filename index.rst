@@ -27,6 +27,7 @@ Our documentation is organized into the following sections:
 	:caption: Getting Started
 
 	getting-started/getting-started
+	useful-websites/useful-websites
 
 
 .. _software-and-programming:

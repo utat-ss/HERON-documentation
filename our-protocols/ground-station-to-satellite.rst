@@ -1,9 +1,11 @@
-Ground Station to Satellite
-===========================
+Ground Station to Satellite Protocol
+====================================
 
 The current protocol between the ground station and satellite, to be created one step at a time.
 
 This integrates heavily with the memory protocol (in a separate document).
+
+`AX25 Protocol <https://www.tapr.org/pub_ax25.html>`_
 
 The ground station and transceiver both use the AX25 protocol to send messages.
 
