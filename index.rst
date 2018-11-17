@@ -51,6 +51,7 @@ Our documentation is organized into the following sections:
 	altium/altium
 	electrical/electrical-systems
 	datasheets/reading-datasheets
+	elec-style-guide/elec-style-guide
 
 
 .. _our-protocols:
