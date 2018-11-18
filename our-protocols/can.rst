@@ -141,46 +141,40 @@ General data about the state of the power systems (voltage, current, temperature
       - Field Number
       - Data Format
     * - Buck-boost converter output voltage
-      - ``0x00``
+      - 0
       - ADS7952
-    * - Buck-boost converter 1 output current
-      - ``0x01``
-      - ADS7952
-    * - Buck-boost converter 2 output current
-      - ``0x02``
+    * - Buck-boost converter output current
+      - 1
       - ADS7952
     * - Boost converter output voltage
-      - ``0x03``
+      - 2
       - ADS7952
-    * - Boost converter 1 output voltage
-      - ``0x04``
-      - ADS7952
-    * - Battery pack negative voltage
-      - ``0x05``
+    * - Boost converter output current
+      - 3
       - ADS7952
     * - +X solar cell output current
-      - ``0x06``
+      - 4
       - ADS7952
     * - -X solar cell output current
-      - ``0x07``
+      - 5
       - ADS7952
     * - +Y solar cell output current
-      - ``0x08``
+      - 6
       - ADS7952
     * - -Y solar cell output current
-      - ``0x09``
+      - 7
       - ADS7952
-    * - Battery pack positive voltage
-      - ``0x0A``
+    * - Battery pack output voltage
+      - 8
       - ADS7952
-    * - Battery output current
-      - ``0x0B``
+    * - Battery pack output current
+      - 9
       - ADS7952
-    * - Battery thermistor 1 voltage
-      - ``0x0C``
+    * - Battery thermistor 1 temperature
+      - 10
       - ADS7952
-    * - Battery thermistor 2 voltage
-      - ``0x0D``
+    * - Battery thermistor 2 temperature
+      - 11
       - ADS7952
 
 
@@ -198,11 +192,11 @@ General data about the state of the payload (temperature, pressure, humidity).
       - Field Number
       - Data Format
     * - Temperature sensor measurement
-      - ``0x00``
+      - 0
     * - Humidity sensor measurement
-      - ``0x01``
+      - 1
     * - Pressure sensor measurement
-      - ``0x02``
+      - 2
 
 
 Payload (PAY) Optical
@@ -219,7 +213,7 @@ Optical sensor data from the experiment (wells with cells).
       - Field Number
       - Data Format
     * - 36 wells
-      - ``0x00`` to ``0x23``
+      - ``0`` to ``35``
       - AD7194
 
 
@@ -237,16 +231,16 @@ Control of the experiment (deployment with motors popping blister packs and the 
       - Field Number
       - Data Format
     * - Left motor proximity sensor measurement
-      - ``0x00``
+      - 0
       - ADS7952
     * - Right motor proximity sensor measurement
-      - ``0x01``
+      - 1
       - ADS7952
     * - Level actuation plate
-      - ``0x02``
+      - 2
       - Confirmation
     * - Pop blister packs
-      - ``0x03``
+      - 3
       - Confirmation
 
 
