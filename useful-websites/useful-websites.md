@@ -2,6 +2,8 @@
 
 [Mbedded Ninja](http://blog.mbedded.ninja) - General electronics and software (**very helpful!**)
 
+[All About Circuits](https://www.allaboutcircuits.com) - General electronics and PCB design
+
 [PCB 3D](http://www.pcb-3d.com/tutorials/) - PCB design and footprints
 
 [SnapEDA](https://www.snapeda.com) - PCB schematic symbols, footprints, 3D CAD models

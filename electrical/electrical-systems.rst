@@ -12,3 +12,4 @@ This section details different aspects of electronics design.
 	circuit-platforms
 	pcb-design
 	footprints
+	differential-signals
