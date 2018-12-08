@@ -1,4 +1,4 @@
-nsceiver Interface and Debugging
+Transceiver Interface and Debugging
 ===================================
 
 The current tools we have to communicate with the transcevier, debug it, and safely handle it.
