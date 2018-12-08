@@ -13,4 +13,5 @@ The satellite uses three communication protocols:
 
 	can
 	spi
+	i2c
 	uart
