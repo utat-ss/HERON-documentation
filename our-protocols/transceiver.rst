@@ -26,11 +26,12 @@ We can't connect the transceiver coax output to the oscilloscope because the imp
 Endurosat made a terminal app with predefined macros, available in the "Endurosat USB Contents" folder on the Google Drive. It should be easier to use this, but you can use CoolTerm or another terminal application if you want.
 
 
-2018-12-08 testing results (sent followed by received):
+2018-12-08 testing results:
+---------------------------
 
-ES+R2200
+(sent followed by received)
 
-OK+0022B90303
+ES+R2200, OK+0022B90303
 
 Different from datasheet, assumptions are:
 
@@ -53,3 +54,27 @@ ES+R2207, OK+0000000001
 
 Transceiver's number of packets transmitted kept going up by 1 every second (in beacon mode, text beacon).
 Received some data in GNU Radio but it didn't make sense, maybe not demodulating correctly or baud/sampling rate is wrong?
+
+
+2018-12-15 testing results:
+---------------------------
+
+Change setting: CoolTerm -> Options (in toolbar) -> Terminal -> Enter Key Emulation = CR
+
+In CoolTerm, when sending a command through the "Send String" Dialog, you need to press Enter at the end to add the '<CR>' (0x0D) character.
+
+Read the status register:
+ES+R2200, OK+0022CF0343
+
+Write status register (beacon mode off):
+ES+W22000303, OK+0303
+
+Tried test with:
+
+.. code-block:: C
+
+    init_uart();
+    print("\n\n\r");
+    read_trans_scw(); // just a single print statement: "ES+R2200\r"
+
+When we didn't have the print statement right after init_uart(), the transceiver did not respond to the first command sent after uploading a new program. When we pressed the reset button on OBC, the transceiver responded to the first command. We think the programming UART messes it up. This was fixed by printing a '\r' before sending any transceiver commands, which should reset the transceiver's received command buffer.
