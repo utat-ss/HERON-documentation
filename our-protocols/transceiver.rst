@@ -77,4 +77,6 @@ Tried test with:
     print("\n\n\r");
     read_trans_scw(); // just a single print statement: "ES+R2200\r"
 
-When we didn't have the print statement right after init_uart(), the transceiver did not respond to the first command sent after uploading a new program. When we pressed the reset button on OBC, the transceiver responded to the first command. We think the programming UART messes it up. This was fixed by printing a '\r' before sending any transceiver commands, which should reset the transceiver's received command buffer.
+When we didn't have the print statement right after init_uart(), the transceiver did not respond to the first command sent after uploading a new program. When we pressed the reset button on OBC, the transceiver responded to the first command. We think the programming UART messes it up. This was fixed by printing a '\\r' before sending any transceiver commands, which should reset the transceiver's received command buffer.
+
+We ran the `obc/manual_tests/transceiver_test` program, connecting OBC to the transceiver. We got OBC to send the transceiver a read status control register command and the transceiver responded to it, but OBC did not properly recognize the response back from the transceiver. When OBC should have read a response like "OK+0022CF0343" (correctly observed with another laptop over CoolTerm), OBC would only recognize something like "OK3\r", "OK20\n", or "OK\r".
