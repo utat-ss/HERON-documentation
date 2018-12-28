@@ -25,6 +25,15 @@ We can't connect the transceiver coax output to the oscilloscope because the imp
 
 Endurosat made a terminal app with predefined macros, available in the "Endurosat USB Contents" folder on the Google Drive. It should be easier to use this, but you can use CoolTerm or another terminal application if you want.
 
+Testing/Debugging
+-----------------
+
+* Change setting: CoolTerm -> Options (in toolbar) -> Terminal -> Enter Key Emulation = CR
+* In CoolTerm, when sending a command through the "Send String" Dialog, you need to press Enter at the end to add the '<CR>' (0x0D) character.
+* If the transceiver is on (you can tell it's powered if the lights on one side flash when you turn on power) but it does not respond to any UART:
+    - Send a <CR> at the beginning of your message (this clears any input the transceiver got before)
+    - Try changing your baud rate because the transceiver's baud rate may have changed accidentally (try 1200, 9600, 19200, and  115200 as listed on p.15 of the datasheet)
+
 
 2018-12-08 testing results:
 ---------------------------
@@ -58,10 +67,6 @@ Received some data in GNU Radio but it didn't make sense, maybe not demodulating
 
 2018-12-15 testing results:
 ---------------------------
-
-Change setting: CoolTerm -> Options (in toolbar) -> Terminal -> Enter Key Emulation = CR
-
-In CoolTerm, when sending a command through the "Send String" Dialog, you need to press Enter at the end to add the '<CR>' (0x0D) character.
 
 Read the status register:
 ES+R2200, OK+0022CF0343
