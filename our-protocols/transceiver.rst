@@ -33,6 +33,7 @@ Testing/Debugging
 * If the transceiver is on (you can tell it's powered if the lights on one side flash when you turn on power) but it does not respond to any UART:
     - Send a <CR> at the beginning of your message (this clears any input the transceiver got before)
     - Try changing your baud rate because the transceiver's baud rate may have changed accidentally (try 1200, 9600, 19200, and  115200 as listed on p.15 of the datasheet)
+* When trying to set (change) the beacon message, you may need to turn off beacon mode or toggle beacon mode off then on. This should give the correct result (the new message) when you get the beacon message.
 
 
 2018-12-08 testing results:
