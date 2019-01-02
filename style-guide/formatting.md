@@ -15,6 +15,32 @@ If you are using Atom, this is done as follows: in the menu bar, select `Atom > 
 
 ## Naming
 
+Functions should be named similar to a command or action, as close as reasonably possible to how you would describe an action in English.
+
+```C
+// bad, not as natural
+void uart_init(void) {
+}
+
+// good, closer to English action
+void init_uart(void) {
+}
+```
+
+A function's name should give some indication of which library is comes from, generally by having the library's name (or a shortened form/acronym of it) in the name.
+
+```C
+// bad, don't know what kind of callback we are registering
+// (could be UART, timer, CAN, etc.)
+void register_callback(void) {
+}
+
+// good, we know  this is a UART callback
+void register_uart_callback(void) {
+
+}
+```
+
 Variables, functions, and types are named using the "lower snake case" convention, where all letters are lowercase and all words are separated with underscores.
 
 ```C
@@ -49,18 +75,24 @@ Preprocessor macros (including constants) should be named with the "upper snake 
 #define ADC_CS PB3
 ```
 
-Struct names should end with `_t` to represent a type.
+Struct and enum names should end with `_t` to represent a type.
 
 ```C
 // bad
 typedef struct {
     ...
 } mob;
+typedef enum {
+    ...
+} clk;
 
 // good
 typedef struct {
     ...
 } mob_t;
+typedef enum {
+    ...
+} clk_t;
 ```
 
 
@@ -123,20 +155,6 @@ for (int i = 0; i < 5; i++) {
 
 ## Functions
 
-Functions that do not take any parameters should have `void` in the parentheses.
-
-```C
-// bad
-int main() {
-    ...
-}
-
-// good
-int main(void) {
-    ...
-}
-```
-
 A function should generally not be more than 40 lines long (including comments and whitespace). An easy check is that all of its code should be able to fit on your screen at once.
 
 
@@ -177,9 +195,25 @@ if (condition) {
 
 ## Comments
 
-Every file should have a comment at the top with a high-level description of the code in the file. It should describe what the code does, and list the author(s) of the file. If the file contains code to control an electrical component, it should give the part number and list important page numbers in the datasheet.
+Every file should have a comment at the top with a high-level description of the code in the file. It should describe what the code does, and list the author(s) of the file. If the file contains code to control a particular component, it should give the part number, a link to its datasheet, and a list of important page numbers in the datasheet. It should also describe any assumptions or operational modes used.
 
-Every function should have a comment before it with a high-level description of what it does, its parameters, and its return value (if applicable).
+Example:
+
+```C
+/*
+MCP23S17 port expander (PEX)
+Datasheet: http://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf
+
+A port expander is a device with many GPIO (general purpose input/output) pins.
+Each GPIO pin can function as either an input or an output, depending on what
+you want to use it for. Using a port expander gives us more GPIO pins to work
+with since we have a limited number on the 32M1 itself.
+...
+AUTHORS: Dylan Vogel, Shimi Smith, Bruno Almeida, Siddharth Mahendraker
+*/
+```
+
+Every function should have a comment before it with a description of what it does. On separate lines, it should describe each of its parameters (including scientific units if applicable) and its return value (if applicable).
 
 ```C
 // bad
@@ -193,7 +227,8 @@ uint8_t send_spi(uint8_t cmd) {
 
 /*
 Transmits 8 bits of data while simultaneously receiving 8 bits of data over the SPI bus.
-Transmits the provided data `cmd` and returns the received data.
+cmd - byte of data to transmit
+Returns - byte of data received
 */
 uint8_t send_spi(uint8_t cmd) {
     ...
@@ -221,13 +256,13 @@ Comments should not explain things that are obvious from C syntax.
 // bad
 
 // An integer representing the number of errors occurred
-int num_errors = 5;
+uint8_t num_errors = 5;
 
 
 // good
 
 // The number of errors occurred
-int num_errors = 5;
+uint8_t num_errors = 5;
 ```
 
 
@@ -237,19 +272,19 @@ Declare variables at the smallest possible level of scope for their use. Do not 
 
 ```C
 // bad
-int count = 0;
+uint8_t count = 0;
 ...
-for (int i = 0; i < 5; i++) {
-    int count = 0;
+for (uint8_t i = 0; i < 5; i++) {
+    uint8_t count = 0;
     ...
 }
 
 
 // good
-int count = 0;
+uint8_t count = 0;
 ...
-for (int i = 0; i < 5; i++) {
-    int count_inner = 0;
+for (uint8_t i = 0; i < 5; i++) {
+    uint8_t count_inner = 0;
     ...
 }
 ```
@@ -268,26 +303,59 @@ For a pair of `.c` and `.h` files, `#include` statements should generally be in 
 
 Includes, constants, macros, and global variables should generally come first in a file.
 
+Here is the general structure of a `.c` file, say it is called `file.c`:
+
+```
+introductory file/library comment block
+#include "file.h" (corresponding header file)
+global variables
+functions (with comments)
+```
+
+Here is the general structure of a `.h` file, say it is called `file.h`:
+
+```
+#ifndef FILE_H
+#define FILE_H
+
+standard C library includes (e.g. <stdint.h>)
+AVR library includes (e.g. <avr/interrupt.h>)
+lib-common includes (e.g. <uart/uart.h>)
+local file includes (same folder, e.g. "other_file.h")
+#define constants
+typedefs, struct definitions, enum definitions
+function prototypes
+
+#endif  // for FILE_H
+```
+
 
 ## Magic Numbers
 
-Avoid hard-coding constants such as conversion ratios and array sizes. These should be declared as easy to read constants using `#define`.
+Try to avoid hard-coding constants such as conversion ratios and array sizes. These should be declared as easy to read constants using `#define`.
 
 ```C
-/// bad
+// bad
 uint8_t can_message[8];
+for (uint8_t i = 0; i < 8; i++) {
+    can_message[i] = ...
+}
 
-/// good
+// good
 #define CAN_MESSAGE_LENGTH 8
+...
 uint8_t can_message[CAN_MESSAGE_LENGTH];
+for (uint8_t i = 0; i < CAN_MESSAGE_LENGTH; i++) {
+    can_message[i] = ...
+}
 ```
 
 
 ## Line Length
 
-Lines should generally be no more than 80 characters long. This is a common standard for text width in editor windows.
+Lines should be no more than 80 characters wide. This is a common standard for text width in editor windows.
 
 
 ## Testing
 
-When developing libraries of code, do not put temporary testing code in `main.c` and/or `main.h`. Any code that is for testing specific functions in a library should be written in a separate program in the `examples` or `tests` folder, separate from the main program.
+When developing libraries of code, do not put temporary testing code in `main.c`. Any code that is for testing specific functions in a library should be written in a separate program in the `examples`, `harness_tests`, or `manual_tests` folders, separate from the main program.

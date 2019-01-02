@@ -4,6 +4,6 @@ Style Guide
 .. toctree::
 	:maxdepth: 2
 
-	style-guide
+	intro
 	technical
 	formatting
