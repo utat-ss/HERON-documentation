@@ -41,6 +41,7 @@ Our documentation is organized into the following sections:
 	communication-protocols/communication-protocols
 	c-programming/c-programming
 	style-guide/style-guide
+	software-testing/software-testing
 
 
 .. _electronics-and-altium:

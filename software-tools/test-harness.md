@@ -33,4 +33,9 @@ The command to run the test harness is:
 
 **If you are running tests that use 2 boards** (e.g. CAN), you must specify a second port with a space after the first port, e.g. `$ python harness.py -p /dev/tty.usbmodem00208212 /dev/tty.usbmodem00187462 -d tests`.
 
-See the [pull request for the test harness' development](https://github.com/HeronMkII/lib-common/pull/28) for more details.
+
+## Useful Links
+
+[Pull request for test harness development](https://github.com/HeronMkII/lib-common/pull/28) for more details.
+
+[Available assertion commnads](https://github.com/HeronMkII/lib-common/blob/master/include/test/test.h)
