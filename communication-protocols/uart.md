@@ -17,3 +17,5 @@ The `print()` function behaves like C's `printf()` function (but prints to UART 
 [Wikipedia](https://en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter)
 
 [Circuit Basics](http://www.circuitbasics.com/basics-uart-communication/)
+
+[AVR Beginners - UART](http://www.avrbeginners.net/architecture/uart/uart.html)

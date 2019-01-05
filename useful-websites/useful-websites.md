@@ -4,6 +4,10 @@
 
 [All About Circuits](https://www.allaboutcircuits.com) - General electronics and PCB design
 
+[Explore Embedded](https://www.exploreembedded.com)
+
+[AVR Beginners](http://www.avrbeginners.net)
+
 [PCB 3D](http://www.pcb-3d.com/tutorials/) - PCB design and footprints
 
 [SnapEDA](https://www.snapeda.com) - PCB schematic symbols, footprints, 3D CAD models
