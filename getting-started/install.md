@@ -6,7 +6,9 @@ Please ask one of the leads if you encounter any issues or are not familiar with
 
 **macOS**: Open the Terminal application.
 
-**Windows**: Open the Command Prompt application.
+**Windows**: Open the Powershell or Command Prompt application.
+
+**Linux**: Open the Terminal application.
 
 
 ## Xcode Command Line Tools (macOS only)
@@ -94,6 +96,17 @@ set.
 
 [Reference instructions]( http://fab.cba.mit.edu/classes/863.16/doc/projects/ftsmin/windows_avr.html) (**Do not actually follow these instructions**)
 
+### Linux
+
+Run the following commands:
+
+```
+sudo apt-get update
+sudo apt-get upgrade all
+sudo apt-get install gcc-avr binutils-avr avr-libc
+sudo apt-get install avrdude
+```
+
 
 ## Make
 
@@ -107,6 +120,10 @@ This is already installed with the Xcode command line tools.
 
 Download and run the setup program from [here](http://gnuwin32.sourceforge.net/packages/make.htm).
 
+### Linux
+
+This should already be installed.
+
 
 ## Git
 
@@ -119,6 +136,10 @@ This is already installed with the Xcode command line tools.
 ### Windows
 
 Download and install Git from [here](https://git-scm.com). In the installer, use all of the default settings.
+
+### Linux
+
+This should already be installed.
 
 
 ## GitHub
@@ -142,6 +163,10 @@ Move the application to your Applications folder.
 
 Run the installer.
 
+### Linux
+
+This app is not available for Linux.
+
 
 ## Atom
 
@@ -154,6 +179,10 @@ Download it from [here](https://atom.io/).
 Move the application to your Applications folder.
 
 ### Windows
+
+Run the installer.
+
+### Linux
 
 Run the installer.
 
@@ -174,9 +203,15 @@ You may get the message `"CoolTerm" can't be opened becuase it is from an uniden
 
 Extract the zip file. CoolTerm does not have an installer; you can move it and run `CoolTerm.exe` from anywhere on your computer as long you move the entire `CoolTermWin` folder containing the necessary libraries. We recommend moving it to your `Documents` folder, but you can move it somewhere else if you want.
 
+### Linux
 
-## Linux Software Installation
+Run the application.
+
+
+## Linux Reference Instructions
+
+The Linux instructions were based off of the following links (you can check them for reference):
+- [Reference 1](http://maxembedded.com/2015/06/setting-up-avr-gcc-toolchain-on-linux-and-mac-os-x/)
+- [Reference 2](http://www.linuxandubuntu.com/home/setting-up-avr-gcc-toolchain-and-avrdude-to-program-an-avr-development-board-in-ubuntu)
 
 If you want to use the Windows Subsystem for Linux, follow the instructions [here](https://docs.microsoft.com/en-us/windows/wsl/install-win10). If you don't know which distro to use, pick Ubuntu.
-
-Follow the installation instructions for macOS to install the same tools, but for command line packages use `sudo apt-get` instead of `brew`. The Xcode command line tools are not available for Linux, so you will need to install particular software components individually. GitHub Desktop is currently not available for Linux, so you will need to use command-line Git.
