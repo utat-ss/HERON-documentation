@@ -44,7 +44,7 @@ while (bit_is_set(PINB, PB0) && timeout > 0) {
 
 Remember that when running this embedded system, the program may be interrupted at any time. See [this link on interrupts](https://utat-ss.readthedocs.io/en/master/embedded/interrupts.html). Generally, your program is prepared to be interrupted at any line of code. But sometimes, there are certain operations (blocks of code) where you want to guarantee that the program will not be interrupted. This is called an **atomic operation**.
 
-When you want to guarantee that a section of code will not be interrupted, you enclose it in an atomic block (see [here](https://github.com/HeronMkII/lib-common/issues/77)). You put `ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {` before and `}` after the atomic code. This will temporarily disable interrupts in the microcontroller, then restore the previous interrupt state.
+When you want to guarantee that a section of code will not be interrupted, you enclose it in an atomic block (see [here](https://www.nongnu.org/avr-libc/user-manual/group__util__atomic.html) and [here](https://github.com/HeronMkII/lib-common/issues/77)). You put `ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {` before and `}` after the atomic code. This will temporarily disable interrupts in the microcontroller, then restore the previous interrupt state.
 
 A common use case is when reading or writing a 16-bit register. The microcontroller can only read/write 8 bits per instruction, so you should enclose a 16-bit read/write operation in an atomic block.
 
