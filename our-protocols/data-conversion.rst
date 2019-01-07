@@ -5,10 +5,16 @@ This protocol describes all the data used in the satellite, including all the di
 
 When sending data around the satellite or between the satellite and ground station, we can't send floating-point representations. Therefore, we send the "raw data" as an integer value, which can be converted to the real-world value by the receiver if desired.
 
+All data is big-endian (MSB first, LSB last).
+
 These data conversions are implemented in code in the ``lib-common/conversions`` library.
+
+TODO - add PAY environmental sensors
 
 ADC (Analog to Digital Converter, ADS7952)
 ------------------------------------------
+
+Note that this is considered the "main" ADC, different from "Optical ADC" mentioned later.
 
 Datasheet: http://www.ti.com/lit/ds/slas605c/slas605c.pdf
 
@@ -19,8 +25,8 @@ Datasheet: http://www.ti.com/lit/ds/slas605c/slas605c.pdf
 
 raw voltage [V] = (raw data / 0xFFF) * 2.5
 
-EPS Current
-^^^^^^^^^^^
+EPS Current (using INA214 current monitor)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 INA214 datasheet: http://www.ti.com/lit/ds/sbos437j/sbos437j.pdf
 
@@ -64,3 +70,31 @@ TODO - add voltage divider diagram
 Raw voltage to resistance: resistance = 10k * ((2.5 / raw voltage) - 1)
 
 Resistance to temperature: based on datasheet table, knowing resistance, find the two resistances it is between, straight line approximation of slope between them, estimate temperature
+
+IMU (Inertial Measurement Unit, BNO080)
+---------------------------------------
+
+Datasheet: https://cdn.sparkfun.com/assets/1/3/4/5/9/BNO080_Datasheet_v1.3.pdf
+
+SH-2 Reference Manual: https://cdn.sparkfun.com/assets/4/d/9/3/8/SH-2-Reference-Manual-v1.2.pdf
+
+All measurements (separate measurements for X, Y, Z axes) are 16 bits
+
+Using measurements (p. 36):
+- Accelerometer (p. 58) [m/s^2]
+- Gyroscope (Gyroscope Calibrated, p. 60) [rad/s]
+- Magnetic field (Magnetic Field Calibrated, p. 62) [uTesla]
+
+Optical ADC (Analog to Digital Converter, AD7194)
+------------------------------------------
+
+Note that this is considered the "secondary" ADC, specifically used for optical measurements, different from "ADC" mentioned previously.
+
+Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/ad7194.pdf
+
+- Raw data is 24 bits
+- Voltage reference (VREF) is 2.5 V.
+- Raw voltage is the voltage on the input pin to the ADC
+- Formula based on p. 31
+
+raw voltage [V] = ((raw data / gain) / 0x1000000) * 2.5
