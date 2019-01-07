@@ -6,6 +6,6 @@ Our Protocols
 
     can
     obc-mem
-    ground-station-to-satellite
+    ground-to-satellite
     transceiver
     data-conversion
