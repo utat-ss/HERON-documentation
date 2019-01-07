@@ -7,5 +7,5 @@ Our Protocols
     can
     obc-mem
     ground-station-to-satellite
-    ground-station-ideas
     transceiver
+    data-conversion
