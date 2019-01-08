@@ -158,6 +158,21 @@ for (int i = 0; i < 5; i++) {
 A function should generally not be more than 40 lines long (including comments and whitespace). An easy check is that all of its code should be able to fit on your screen at once.
 
 
+## Pointers
+
+Pointers should be declared with `*` beside the type name, not beside the variable name.
+
+```C
+// bad
+void my_func(uint8_t *ptr) {
+}
+
+// good
+void my_func(uint8_t* ptr) {
+}
+```
+
+
 ## Parentheses
 
 If statements, while loops, functions, structs, etc. should have the first curly brace on the same line as the declaration, not the following line. There should be a space between the closing parenthesis and the opening curly brace.
