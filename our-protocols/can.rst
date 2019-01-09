@@ -142,40 +142,67 @@ General data about the state of the power systems (voltage, current, temperature
       - Data Format
     * - Buck-boost converter output voltage
       - 0
-      - ADS7952
+      - ADC - EPS Voltage
     * - Buck-boost converter output current
       - 1
-      - ADS7952
+      - ADC - EPS Current
     * - Boost converter output voltage
       - 2
-      - ADS7952
+      - ADC - EPS Voltage
     * - Boost converter output current
       - 3
-      - ADS7952
+      - ADC - EPS Current
     * - +X solar cell output current
       - 4
-      - ADS7952
+      - ADC - EPS Current
     * - -X solar cell output current
       - 5
-      - ADS7952
+      - ADC - EPS Current
     * - +Y solar cell output current
       - 6
-      - ADS7952
+      - ADC - EPS Current
     * - -Y solar cell output current
       - 7
-      - ADS7952
+      - ADC - EPS Current
     * - Battery pack output voltage
       - 8
-      - ADS7952
+      - ADC - EPS Voltage
     * - Battery pack output current
       - 9
-      - ADS7952
+      - ADC - EPS Current
     * - Battery thermistor 1 temperature
       - 10
-      - ADS7952
+      - ADC - Thermistor
     * - Battery thermistor 2 temperature
       - 11
-      - ADS7952
+      - ADC - Thermistor
+    * - IMU Acceleration - X-Axis
+      - 12
+      - IMU - Acceleration
+    * - IMU Acceleration - Y-Axis
+      - 13
+      - IMU - Acceleration
+    * - IMU Acceleration - Z-Axis
+      - 14
+      - IMU - Acceleration
+    * - IMU Gyroscope - X-Axis
+      - 15
+      - IMU - Gyroscope
+    * - IMU Gyroscope - Y-Axis
+      - 16
+      - IMU - Gyroscope
+    * - IMU Gyroscope - Z-Axis
+      - 17
+      - IMU - Gyroscope
+    * - IMU Magnetometer - X-Axis
+      - 18
+      - IMU - Magnetometer
+    * - IMU Magnetometer - Y-Axis
+      - 19
+      - IMU - Magnetometer
+    * - IMU Magnetometer - Z-Axis
+      - 20
+      - IMU - Magnetometer
 
 
 Payload (PAY) Housekeeping
@@ -193,10 +220,13 @@ General data about the state of the payload (temperature, pressure, humidity).
       - Data Format
     * - Temperature sensor measurement
       - 0
+      - Temperature
     * - Humidity sensor measurement
       - 1
+      - Humidity
     * - Pressure sensor measurement
       - 2
+      - Pressure
 
 
 Payload (PAY) Optical
@@ -214,7 +244,7 @@ Optical sensor data from the experiment (wells with cells).
       - Data Format
     * - 36 wells
       - ``0`` to ``35``
-      - AD7194
+      - Optical ADC
 
 
 Payload (PAY) Experiment
@@ -232,35 +262,13 @@ Control of the experiment (deployment with motors popping blister packs and the 
       - Data Format
     * - Left motor proximity sensor measurement
       - 0
-      - ADS7952
+      - ADC - Actuation Distance
     * - Right motor proximity sensor measurement
       - 1
-      - ADS7952
+      - ADC - Actuation Distance
     * - Level actuation plate
       - 2
-      - Confirmation
+      - N/A
     * - Pop blister packs
       - 3
-      - Confirmation
-
-
-Data Formats
-~~~~~~~~~~~~
-
-Since we can't transmit floating-point numbers, we can only transmit integer representations of data (referred to as "raw data"). The conversion function must be performed by the receiver/ground station to get the meaningful values.
-
-All data is right-aligned to the least significant bits (zero-padded on the left, most significant bits).
-
-Conversion functions are defined in ``lib-common/src/conversions/conversions.c``.
-
-.. list-table::
-    :header-rows: 1
-
-    * - Data Format
-      - Data
-    * - ADS7952 (ADC)
-      - 12-bit raw data
-    * - AD7194 (Optical ADC)
-      - 24-bit raw data
-    * - Confirmation (that an action has been performed)
-      - 1 (success) or 0 (failure)
+      - N/A

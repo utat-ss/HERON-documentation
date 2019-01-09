@@ -5,7 +5,7 @@ This protocol describes all the data used in the satellite, including all the di
 
 When sending data around the satellite or between the satellite and ground station, we can't send floating-point representations. Therefore, we send the "raw data" as an integer value, which can be converted to the real-world value by the receiver if desired.
 
-All data is big-endian (MSB first, LSB last).
+All data is big-endian (MSB first, LSB last). All data is right-aligned to the least significant bits (zero-padded on the left, most significant bits).
 
 These data conversions are implemented in code in the ``lib-common/conversions`` library.
 
@@ -24,6 +24,11 @@ Datasheet: http://www.ti.com/lit/ds/slas605c/slas605c.pdf
 - Formula based on p. 38, 12-bit
 
 raw voltage [V] = (raw data / 0xFFF) * 2.5
+
+Actuation Distance
+^^^^^^^^^^^^^^^^^^
+
+TODO - ask Cindy
 
 EPS Current (using INA214 current monitor)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -78,12 +83,24 @@ Datasheet: https://cdn.sparkfun.com/assets/1/3/4/5/9/BNO080_Datasheet_v1.3.pdf
 
 SH-2 Reference Manual: https://cdn.sparkfun.com/assets/4/d/9/3/8/SH-2-Reference-Manual-v1.2.pdf
 
-All measurements (separate measurements for X, Y, Z axes) are 16 bits
+All measurements are 16 bits (separate measurements for X, Y, Z axes). Measurements are listed on p. 36.
 
-Using measurements (p. 36):
-- Accelerometer (p. 58) [m/s^2]
-- Gyroscope (Gyroscope Calibrated, p. 60) [rad/s]
-- Magnetic field (Magnetic Field Calibrated, p. 62) [uTesla]
+TODO - set precision of each measurement
+
+Accelerometer
+^^^^^^^^^^^^^
+
+Units [m/s^2] (Accelerometer, p. 58)
+
+Gyroscope
+^^^^^^^^^
+
+Units [rad/s] (Gyroscope Calibrated, p. 60)
+
+Magnetometer
+^^^^^^^^^^^^^
+
+Units [uTesla] (Magnetic Field Calibrated, p. 62)
 
 Optical ADC (Analog to Digital Converter, AD7194)
 ------------------------------------------
