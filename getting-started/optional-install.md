@@ -1,12 +1,16 @@
 # Optional Software installation
 
-This page contains miscellaneous software that is not normally used, but that you may want to install if you need it.
+This page contains miscellaneous software that is not essential, but that you may want to install sometime later when you need it.
 
 ## Pololu USB AVR Programmer v2
 
-This utility is for changing the settings of a hardware programmer device. Download and install the Pololu USB AVR Programmer v2 for your operating system [here](https://www.pololu.com/product/3170/resources). If you're using the older programmer, this might not work.
+This utility is for changing the settings of a hardware programmer device.
 
-## Test Harness - Python and Pyserial
+Download and install the Pololu USB AVR Programmer v2 for your operating system [here](https://www.pololu.com/product/3170/resources). If you're using the older programmer, this might not work.
+
+## Python and Pyserial
+
+These are needed to run the test harness, our automated software testing framework.
 
 We are only supporting Python 3 with the test harness, not Python 2. Open your command line and type `$ python -V` to check the version.
 
@@ -27,3 +31,9 @@ If you are on macOS, you might need to use `pip3` instead of `pip`.
 If this doesn't work, you might need to follow the instructions in the terminal to upgrade the version of pip on your computer.
 
 Please ask for help if you encounter any problems.
+
+## SpeedCrunch
+
+This app is useful for quickly converting numbers between decimal, hexadecimal, and binary.
+
+Download and install [here](https://speedcrunch.org/download.html).
