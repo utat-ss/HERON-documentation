@@ -15,6 +15,8 @@ TODO - need to figure out if we need to supply any header/status information for
 
 TODO - get satellite to send ACK immediately after receiving a message
 
+TODO - add checksum
+
 Each message contains the following:
 
 - Byte 0 - 0x00 (special character to indicate start of message)
@@ -58,6 +60,10 @@ Command Summary
       - Read Memory
     * - 0x0D
       - Write Memory
+    * - 0x0E
+      - Set EPS Heater DAC Setpoints
+    * - 0x0F
+      - Set PAY Heater DAC Setpoints
 
 
 
@@ -180,3 +186,21 @@ The satellite writes the specified data to flash memory starting at the specifie
 - Bytes 3-6 - 32-bit address
 - Byte 7 - 8-bit count (number of bytes)
 - Bytes 8-(`count`+8-1) (request only) - data (`count` bytes)
+
+
+Set EPS Heater DAC Setpoints
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The satellite changes the DAC setpoints that control the EPS heaters for the batteries
+
+- Bytes 3-5 - Setpoint 1 (12 bits)
+- Bytes 6-8 - Setpoint 2 (12 bits)
+
+
+Set PAY Heater DAC Setpoints
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The satellite changes the DAC setpoints that control the PAY heaters for the cells.
+
+- Bytes 3-5 - Setpoint 1 (12 bits)
+- Bytes 6-8 - Setpoint 2 (12 bits)

@@ -1,5 +1,5 @@
 CAN Protocol
-==============
+============
 
 MOb Allocation
 --------------
@@ -203,6 +203,18 @@ General data about the state of the power systems (voltage, current, temperature
     * - IMU Magnetometer - Z-Axis
       - 20
       - IMU - Magnetometer
+    * - Get battery temperature - DAC setpoint 1
+      - 21
+      - DAC
+    * - Get battery temperature - DAC setpoint 2
+      - 22
+      - DAC
+    * - Set battery temperature - DAC setpoint 1
+      - 23
+      - DAC
+    * - Set battery temperature - DAC setpoint 2
+      - 24
+      - DAC
 
 
 Payload (PAY) Housekeeping
@@ -227,6 +239,21 @@ General data about the state of the payload (temperature, pressure, humidity).
     * - Pressure sensor measurement
       - 2
       - Pressure
+    * - MF chip thermistor temperatures
+      - 3 to 12
+      - ADC - Thermistor
+    * - Get MF chip thermistors - DAC setpoint 1
+      - 13
+      - DAC
+    * - Get MF chip thermistors - DAC setpoint 2
+      - 14
+      - DAC
+    * - Set MF chip thermistors - DAC setpoint 1
+      - 15
+      - DAC
+    * - Set MF chip thermistors - DAC setpoint 2
+      - 16
+      - DAC
 
 
 Payload (PAY) Optical

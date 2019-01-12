@@ -60,8 +60,8 @@ TODO - diagram
 
 voltage = raw voltage * 0.5
 
-Thermistors
-^^^^^^^^^^^
+Thermistor
+^^^^^^^^^^
 
 Datasheet: https://www.murata.com/~/media/webrenewal/support/library/catalog/products/thermistor/r03e.ashx?la=en-us
 
@@ -75,6 +75,18 @@ TODO - add voltage divider diagram
 Raw voltage to resistance: resistance = 10k * ((2.5 / raw voltage) - 1)
 
 Resistance to temperature: based on datasheet table, knowing resistance, find the two resistances it is between, straight line approximation of slope between them, estimate temperature
+
+DAC (Digital to Analog Converter, DAC7562)
+------------------------------------------
+
+Datasheet: http://www.ti.com/lit/ds/symlink/dac8162.pdf
+
+- Reference voltage is 2.5 V
+- See p. 28 - 8.3.1
+- Raw data (Din) is 12 bits
+
+Raw data to voltage: Vout [V] = (Din / 2^n) x Vref [V] x Gain
+Voltage to raw data: Din = (Vout [V] x 2^n) / (Vref [V] x Gain)
 
 IMU (Inertial Measurement Unit, BNO080)
 ---------------------------------------
