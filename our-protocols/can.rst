@@ -1,10 +1,22 @@
 CAN Protocol
 ============
 
+This protocol defines how CAN messages are structured for data requests between
+OBC, PAY, and EPS. This is how OBC sends a message to either PAY or EPS to
+request a particular piece of data, and how either PAY or EPS responds with the
+appropriate data.
+
+Subsystems/Microcontrollers
+---------------------------
+
+OBC - On-Board Computer
+PAY - Payload
+EPS - Electrical Power Systems
+
 MOb Allocation
 --------------
 
-The limited number of CAN Message Objects that can be created on the ATmega32M1 \(only 6\) requires us to strictly allocate the purpose of each MOb. The allocation is done under the following assumptions:
+The limited number of CAN Message Objects that can be created on the ATmega32M1 (only 6) requires us to strictly allocate the purpose of each MOb. The allocation is done under the following assumptions:
 
 * No MOb shall be reinitialized or renamed
 * Only three subsystem microcontrollers are used, referred to as OBC, EPS and PAY
@@ -94,6 +106,15 @@ This allows selectivity in Receiver ID and MOb #, while remaining sender-agnosti
 Message Format
 --------------
 
+Each CAN message can have up to 8 bytes of data. Always transmit
+all 8 bytes for simplicity and ignore the unused bytes. We should revisit this
+later and consider using variable length messages.
+
+Bytes within a CAN message are numbered so that the first byte sent is Byte 0
+and the last byte sent is Byte 7.
+Bits within a byte are numbered so that the rightmost (least significant) bit is Bit 0
+and the leftmost (most significant) bit is Bit 7.
+
 Every CAN message is 8 bytes, structured as follows:
 
 * Byte 0 - Sender and Receiver
@@ -102,13 +123,20 @@ Every CAN message is 8 bytes, structured as follows:
 * Byte 1 - Message Type
     * Broad category of type of message
 * Byte 2 - Field Number
-    * Specific ID of a sensor or command
-* Bytes 3-5 - Data (optional)
+    * Specific ID/index of a sensor or command
+    * always numbered sequentially starting at 0
+    * e.g. which sensor to poll
+* Bytes 3-5 - Data (if applicable)
     * When OBC makes a request for data, this is unused
     * When PAY or EPS responds with data, it goes here
+    * If OBC sends an action command for setting something in EPS/PAY, there is data in the request but not the response
+    * If data is not applicable, sending a response message with the appropriate Bytes 0-2 acts as a confirmation that the action has been performed
+    * If the data is smaller than 24 bits, it is right-aligned to the least significant bits with padding zeros added on the left, e.g. a 12-bit value from an ADC (xxxx xxxxxxxx) is sent as a 24-bit value (00000000 0000xxxx xxxxxxxx)
 * Bytes 6-7 - Unused
 
-.. list-table:: Byte 0 format:
+Byte 0 format (for IDs, see MOB allocations above):
+
+.. list-table::
     :header-rows: 1
 
     * - Bits
@@ -117,9 +145,10 @@ Every CAN message is 8 bytes, structured as follows:
       - 1-0
     * -
       - Unused
-      - Sender ID (defined in MOB allocations above)
-      - Receiver ID (defined in MOB allocations above)
+      - Sender ID
+      - Receiver ID
 
+Bytes 1-2 are identical both when the request is sent from OBC to PAY/EPS and when the response is sent from PAY/EPS to OBC. This is so OBC can match the request message with the response message and verify it is receiving the correct message.
 
 Message Types
 ~~~~~~~~~~~~~
