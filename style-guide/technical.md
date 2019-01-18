@@ -60,6 +60,8 @@ ATOMIC_BLOCK(ATOMIC_RESTORESTATE) {
 }
 ```
 
+According to https://www.avrfreaks.net/forum/i-am-confused-atomicforceon-and-atomicrestorestate and https://hackaday.com/2015/10/02/embed-with-elliot-interrupts-the-ugly/, this macro automatically takes care of all scope exit paths. This means it is fine to have a return statement inside an atomic block because it will restore the interrupt state before returning. In our testing, the compiler does not recognize return statements inside atomic blocks (gives an error of a non-void function missing a return statement). Just add `return 0` (or whatever is appropriate) outside the atomic block to silence the warning, even though the code will never actually reach there.
+
 
 ## Functions
 
