@@ -208,6 +208,11 @@ if (condition) {
 ```
 
 
+## Switch Blocks
+
+Do not nest switch blocks within each other; only one switch block at a time. This is because having nested switch blocks is hard to read and make it easy to forget a `break` statement.
+
+
 ## Comments
 
 Every file should have a comment at the top with a high-level description of the code in the file. It should describe what the code does, and list the author(s) of the file. If the file contains code to control a particular component, it should give the part number, a link to its datasheet, and a list of important page numbers in the datasheet. It should also describe any assumptions or operational modes used.
@@ -374,3 +379,18 @@ Lines should be no more than 80 characters wide. This is a common standard for t
 ## Testing
 
 When developing libraries of code, do not put temporary testing code in `main.c`. Any code that is for testing specific functions in a library should be written in a separate program in the `examples`, `harness_tests`, or `manual_tests` folders, separate from the main program.
+
+
+## Manual tests
+
+When developing manual tests, try to print messages during the test to indicate what the user should check to see if the test is successful. This makes it more obvious for the person running the test so they don't have to memorize what things to check for. For example, print "CHECK:" when the user should check some result.
+
+For example,
+
+```C
+// ... code to set DAC output
+print("CHECK: DAC pin 1 (VOUT_A) is 2.1V\n");
+
+// ... other code to change DAC output
+print("CHECK: DAC pin 1 (VOUT_A) is 0.8V\n");
+```
