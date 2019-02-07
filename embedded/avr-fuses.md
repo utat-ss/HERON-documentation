@@ -7,6 +7,8 @@ The microcontroller contains fuses (fuse bits) that control settings such as the
 
 ## Setting Fuse Bits
 
+The default fuse bits (on the 64M1) are `FF 6F 62` (in hex).
+
 We always use the fuse bits `FF D7 FF` (in hex).
 
 If you need to set the fuse bits, run:
