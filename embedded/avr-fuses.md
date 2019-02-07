@@ -15,4 +15,6 @@ If you need to set the fuse bits, run:
 
 **You must replace** `<port>`  with the port the programmer is connected to (what you normally use to upload programs), such as `/dev/tty.usbmodem00208212` (Mac) or `COM3` (Windows).
 
+**If you are using the 64M1**, replace `m32m1` with `m64m1`. If this command doesn't work (says AVR device not supported), see the instructions for patching `avrdude.conf` with the 64M1.
+
 You can get help with calculating fuse bit configurations and what they mean at http://www.engbedded.com/fusecalc/.

@@ -6,6 +6,7 @@ Getting Started
 
     install
     optional-install
+    patching-avrdude
     rtsys
     satellite-software
     command-line
