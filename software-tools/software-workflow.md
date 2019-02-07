@@ -127,6 +127,7 @@ $ ls /dev/tty.usb*
 
 **Linux (Windows Subsystem)**: Follow the above instructions for Windows to get the port number from the Device Manager. In the Linux subsystem, these ports are mapped with the same numbers but slightly different names. As described [here](https://blogs.msdn.microsoft.com/wsl/2017/04/14/serial-support-on-the-windows-subsystem-for-linux/), `/dev/ttyS<N>` on Linux is tied to `COM<N>` on Windows. For example, use `dev/ttyS7` instead of `COM7`.
 
+**Linux (Native)**: Generally, the programming port is `ttyACM0` and the serial port is `ttyACM1`. You may need to run the command for giving permission to use the serial port: `sudo chmod 666 /dev/ttyACM0` (or the same with `ttyACM1`).
 
 ## Committing and Pushing to GitHub
 
