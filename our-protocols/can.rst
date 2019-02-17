@@ -161,8 +161,6 @@ Message Type: ``0x00``
 
 General data about the state of the power systems (voltage, current, temperature).
 
-**TODO** - sort out voltage/current/thermistor measurements
-
 .. list-table:: Field numbers:
     :header-rows: 1
 
@@ -175,81 +173,96 @@ General data about the state of the power systems (voltage, current, temperature
     * - Buck-boost converter output current
       - 1
       - ADC - EPS Current
-    * - Boost converter output voltage
+    * - -Y solar cell output current
       - 2
-      - ADC - EPS Voltage
-    * - Boost converter output current
-      - 3
       - ADC - EPS Current
     * - +X solar cell output current
+      - 3
+      - ADC - EPS Current
+    * - +Y solar cell output current
       - 4
       - ADC - EPS Current
     * - -X solar cell output current
       - 5
       - ADC - EPS Current
-    * - +Y solar cell output current
+    * - Battery thermistor 1 temperature
       - 6
-      - ADC - EPS Current
-    * - -Y solar cell output current
+      - ADC - Thermistor
+    * - Battery thermistor 2 temperature
       - 7
-      - ADC - EPS Current
+      - ADC - Thermistor
     * - Battery pack output voltage
       - 8
       - ADC - EPS Voltage
     * - Battery pack output current
       - 9
       - ADC - EPS Current
-    * - Battery thermistor 1 temperature
+    * - Boost converter output current
       - 10
-      - ADC - Thermistor
-    * - Battery thermistor 2 temperature
+      - ADC - EPS Current
+    * - Boost converter output voltage
       - 11
-      - ADC - Thermistor
-    * - IMU Acceleration - X-Axis
+      - ADC - EPS Voltage
+    * - Battery temperature - DAC setpoint 1
       - 12
-      - IMU - Acceleration
-    * - IMU Acceleration - Y-Axis
+      - DAC
+    * - Battery temperature - DAC setpoint 2
       - 13
-      - IMU - Acceleration
-    * - IMU Acceleration - Z-Axis
+      - DAC
+    * - IMU Acceleration - X-Axis
       - 14
       - IMU - Acceleration
-    * - IMU Gyroscope - X-Axis
+    * - IMU Acceleration - Y-Axis
       - 15
-      - IMU - Gyroscope
-    * - IMU Gyroscope - Y-Axis
+      - IMU - Acceleration
+    * - IMU Acceleration - Z-Axis
       - 16
-      - IMU - Gyroscope
-    * - IMU Gyroscope - Z-Axis
+      - IMU - Acceleration
+    * - IMU Gyroscope - X-Axis
       - 17
       - IMU - Gyroscope
-    * - IMU Magnetometer - X-Axis
+    * - IMU Gyroscope - Y-Axis
       - 18
-      - IMU - Magnetometer
-    * - IMU Magnetometer - Y-Axis
+      - IMU - Gyroscope
+    * - IMU Gyroscope - Z-Axis
       - 19
-      - IMU - Magnetometer
-    * - IMU Magnetometer - Z-Axis
+      - IMU - Gyroscope
+    * - IMU Magnetometer - X-Axis
       - 20
       - IMU - Magnetometer
-    * - Get battery temperature - DAC setpoint 1
+    * - IMU Magnetometer - Y-Axis
       - 21
-      - DAC
-    * - Get battery temperature - DAC setpoint 2
+      - IMU - Magnetometer
+    * - IMU Magnetometer - Z-Axis
       - 22
-      - DAC
+      - IMU - Magnetometer
+
+
+Electrical Power Systems (EPS) Control
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Message Type: ``0x01``
+
+Control actions for the power system (e.g. temperature setpoints, battery charging).
+
+.. list-table:: Field numbers:
+    :header-rows: 1
+
+    * - Data
+      - Field Number
+      - Data Format
     * - Set battery temperature - DAC setpoint 1
-      - 23
+      - 0
       - DAC
     * - Set battery temperature - DAC setpoint 2
-      - 24
+      - 1
       - DAC
 
 
 Payload (PAY) Housekeeping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Message Type: ``0x01``
+Message Type: ``0x02``
 
 General data about the state of the payload (temperature, pressure, humidity).
 
@@ -271,24 +284,24 @@ General data about the state of the payload (temperature, pressure, humidity).
     * - MF chip thermistor temperatures
       - 3 to 12
       - ADC - Thermistor
-    * - Get MF chip thermistors - DAC setpoint 1
+    * - MF chip thermistors - DAC setpoint 1
       - 13
       - DAC
-    * - Get MF chip thermistors - DAC setpoint 2
+    * - MF chip thermistors - DAC setpoint 2
       - 14
       - DAC
-    * - Set MF chip thermistors - DAC setpoint 1
+    * - Left motor proximity sensor measurement
       - 15
-      - DAC
-    * - Set MF chip thermistors - DAC setpoint 2
+      - ADC - Actuation Distance
+    * - Right motor proximity sensor measurement
       - 16
-      - DAC
+      - ADC - Actuation Distance
 
 
 Payload (PAY) Optical
 ^^^^^^^^^^^^^^^^^^^^^
 
-Message Type: ``0x02``
+Message Type: ``0x03``
 
 Optical sensor data from the experiment (wells with cells).
 
@@ -299,16 +312,16 @@ Optical sensor data from the experiment (wells with cells).
       - Field Number
       - Data Format
     * - 36 wells
-      - ``0`` to ``35``
+      - 0 to 35
       - Optical ADC
 
 
-Payload (PAY) Experiment
-^^^^^^^^^^^^^^^^^^^^^^^^
+Payload (PAY) Control
+^^^^^^^^^^^^^^^^^^^^^
 
-Message Type: ``0x03``
+Message Type: ``0x04``
 
-Control of the experiment (deployment with motors popping blister packs and the proximity sensors to the actuation plate).
+Control of payload functions and the experiment (e.g. temperature setpoints, deployment with motors popping blister packs and the proximity sensors to the actuation plate).
 
 .. list-table:: Field numbers:
     :header-rows: 1
@@ -316,12 +329,12 @@ Control of the experiment (deployment with motors popping blister packs and the 
     * - Data
       - Field Number
       - Data Format
-    * - Left motor proximity sensor measurement
+    * - Set MF chip thermistors - DAC setpoint 1
       - 0
-      - ADC - Actuation Distance
-    * - Right motor proximity sensor measurement
+      - DAC
+    * - Set MF chip thermistors - DAC setpoint 2
       - 1
-      - ADC - Actuation Distance
+      - DAC
     * - Level actuation plate
       - 2
       - N/A
