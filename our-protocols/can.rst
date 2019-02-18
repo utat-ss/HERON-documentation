@@ -203,10 +203,10 @@ General data about the state of the power systems (voltage, current, temperature
     * - Boost converter output voltage
       - 11
       - ADC - EPS Voltage
-    * - Battery temperature - DAC setpoint 1
+    * - Battery heater - setpoint 1
       - 12
       - DAC
-    * - Battery temperature - DAC setpoint 2
+    * - Battery heater - setpoint 2
       - 13
       - DAC
     * - IMU Acceleration - X-Axis
@@ -251,10 +251,10 @@ Control actions for the power system (e.g. temperature setpoints, battery chargi
     * - Data
       - Field Number
       - Data Format
-    * - Set battery temperature - DAC setpoint 1
+    * - Set battery heater - setpoint 1
       - 0
       - DAC
-    * - Set battery temperature - DAC setpoint 2
+    * - Set battery heater - setpoint 2
       - 1
       - DAC
 
@@ -284,10 +284,10 @@ General data about the state of the payload (temperature, pressure, humidity).
     * - MF chip thermistor temperatures
       - 3 to 12
       - ADC - Thermistor
-    * - MF chip thermistors - DAC setpoint 1
+    * - MF chip heater - setpoint 1
       - 13
       - DAC
-    * - MF chip thermistors - DAC setpoint 2
+    * - MF chip heater - setpoint 2
       - 14
       - DAC
     * - Left motor proximity sensor measurement
@@ -329,10 +329,10 @@ Control of payload functions and the experiment (e.g. temperature setpoints, dep
     * - Data
       - Field Number
       - Data Format
-    * - Set MF chip thermistors - DAC setpoint 1
+    * - Set MF chip heater - setpoint 1
       - 0
       - DAC
-    * - Set MF chip thermistors - DAC setpoint 2
+    * - Set MF chip heater - setpoint 2
       - 1
       - DAC
     * - Move actuation plate up
