@@ -34,51 +34,8 @@ Only for messages from the satellite to the ground station:
 - Bytes 9-... - Data (length depends on message type)
 
 
-Command Summary
----------------
-
-.. list-table::
-    :header-rows: 1
-
-    * - Command type
-      - Name
-    * - 0x00
-      - Status/ping
-    * - 0x01
-      - Reset
-    * - 0x02
-      - Low-power mode
-    * - 0x03
-      - EPS Housekeeping - Block
-    * - 0x04
-      - EPS Housekeeping - Field
-    * - 0x05
-      - PAY Housekeeping - Block
-    * - 0x06
-      - PAY Housekeeping - Field
-    * - 0x07
-      - PAY Optical - Block
-    * - 0x08
-      - PAY Optical - Field
-    * - 0x09
-      - PAY Experiment - Actuation Distances
-    * - 0x0A
-      - PAY Experiment - Actuate
-    * - 0x0B
-      - Experiment - Automatic Data Collection
-    * - 0x0C
-      - Read Memory
-    * - 0x0D
-      - Write Memory
-    * - 0x0E
-      - Set EPS Heater DAC Setpoints
-    * - 0x0F
-      - Set PAY Heater DAC Setpoints
-
-
-
-Command Details
----------------
+Commands
+--------
 
 Status/ping
 ^^^^^^^^^^^

@@ -335,9 +335,9 @@ Control of payload functions and the experiment (e.g. temperature setpoints, dep
     * - Set MF chip thermistors - DAC setpoint 2
       - 1
       - DAC
-    * - Level actuation plate
+    * - Move actuation plate up
       - 2
       - N/A
-    * - Pop blister packs
+    * - Move actuation plate down
       - 3
       - N/A
