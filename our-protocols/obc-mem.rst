@@ -4,35 +4,35 @@ OBC Flash Memory Protocol
 This protocol describes how data is stored and organized on the 3 flash memory chips connected to the OBC microcontroller.
 
 The 3 chips are treated as a single device with a continuous address space (3x the size of one chip's
-addresses). Each flash chip is 16Mbit (2MB or 2 megabytes) in size, so in total we have 6MB of flash memory (0x600000 bytes).
+addresses). Each flash chip is 16Mbit (2MB or 2 megabytes) in size, so in total we have 6MB of flash memory (0x600000 bytes). Each virtual address is 23 bits (2 bits to select the chip, 21 bits for the address on that chip)
 
 The memory is divided into **sections**, where one **section** stores one category of data (EPS housekeeping, PAY
 housekeeping, or PAY science).
 
-Each section contains some number of **blocks**. Each **block** contains a header followed by a set of **measurements** taken around the same time.
+Each section contains some number of **blocks**. Each **block** contains a header followed by a set of **measurements** taken around the same time. The **block number** can be up to 24 bits.
 
-Each **block** starts with an 8-byte **header** to identify and timestamp the block with data from the RTC (real-time clock). The RTC date and time are for when those measurements were taken (there is some delay between measurements but usually on the order of a few seconds).
+Each **block** starts with a 10-byte **header** to identify and timestamp the block with data from the RTC (real-time clock). The RTC date and time are for when those measurements were taken (there is some delay between measurements but usually on the order of a few seconds).
 
 .. list-table::
     :header-rows: 1
 
-    * - Byte
+    * - Byte(s)
       - Description
-    * - 0
-      - Block number
-    * - 1
-      - Errors (TODO define this later)
-    * - 2
-      - RTC date (YY)
+    * - 0-2
+      - Block number (big-endian)
     * - 3
-      - RTC date (MM)
+      - Errors (TODO define this later)
     * - 4
-      - RTC date (DD)
+      - RTC date (YY)
     * - 5
-      - RTC time (HH)
+      - RTC date (MM)
     * - 6
-      - RTC time (MM)
+      - RTC date (DD)
     * - 7
+      - RTC time (HH)
+    * - 8
+      - RTC time (MM)
+    * - 9
       - RTC time (SS)
 
 
@@ -54,7 +54,7 @@ The **sections** are defined as follows:
       - Start Address
       - End Address
       - Number of fields per block
-      - Number of bytes per block (3 * fields/block + 8)
+      - Number of bytes per block (3 * fields/block + 10)
       - Description
     * - EPS Housekeeping
       - 0x000000
@@ -74,5 +74,3 @@ The **sections** are defined as follows:
       - 36
       - 116
       - Payload experiment data - optical measurements
-
-TODO - define motor actuation plate distances

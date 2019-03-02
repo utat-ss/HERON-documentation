@@ -115,7 +115,7 @@ Magnetometer
 Units [uTesla] (Magnetic Field Calibrated, p. 62)
 
 Optical ADC (Analog to Digital Converter, AD7194)
-------------------------------------------
+-------------------------------------------------
 
 Note that this is considered the "secondary" ADC, specifically used for optical measurements, different from "ADC" mentioned previously.
 

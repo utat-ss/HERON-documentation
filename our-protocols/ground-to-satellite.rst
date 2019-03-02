@@ -59,7 +59,7 @@ EPS Housekeeping - Read Local Block
 Reads the block of EPS HK data stored locally in the microcontroller's program memory.
 
 - Message type - 0x02
-- Data - 77 bytes - header (8 bytes), 23 fields (3 bytes each)
+- Data - 79 bytes - header (10 bytes), 23 fields (3 bytes each)
 
 EPS Housekeeping - Read Memory Block
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -68,7 +68,7 @@ The satellite sends back the specified block of EPS HK data stored in flash memo
 
 - Message type - 0x03
 - Argument 1 - block number
-- Data - 77 bytes - header (8 bytes), 23 fields (3 bytes each)
+- Data - 79 bytes - header (10 bytes), 23 fields (3 bytes each)
 
 PAY Housekeeping - Collect Block
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -84,7 +84,7 @@ PAY Housekeeping - Read Local Block
 Reads the block of PAY HK data stored locally in the microcontroller's program memory.
 
 - Message type - 0x05
-- Data - 59 bytes - header (8 bytes), 17 fields (3 bytes each)
+- Data - 61 bytes - header (10 bytes), 17 fields (3 bytes each)
 
 PAY Housekeeping - Read Memory Block
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -93,7 +93,7 @@ The satellite sends back the specified block of PAY HK data stored in flash memo
 
 - Message type - 0x06
 - Argument 1 - block number
-- Data - 59 bytes - header (8 bytes), 17 fields (3 bytes each)
+- Data - 61 bytes - header (10 bytes), 17 fields (3 bytes each)
 
 PAY Optical - Collect Block
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -109,7 +109,7 @@ PAY Optical - Read Local Block
 Reads the block of PAY OPT data stored locally in the microcontroller's program memory.
 
 - Message type - 0x08
-- Data - 116 bytes - header (8 bytes), 36 fields (3 bytes each)
+- Data - 118 bytes - header (10 bytes), 36 fields (3 bytes each)
 
 PAY Optical - Read Memory Block
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -118,7 +118,7 @@ The satellite sends back the specified block of PAY OPT data stored in flash mem
 
 - Message type - 0x09
 - Argument 1 - block number
-- Data - 116 bytes - header (8 bytes), 36 fields (3 bytes each)
+- Data - 118 bytes - header (10 bytes), 36 fields (3 bytes each)
 
 PAY Control - Actuate Motors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
