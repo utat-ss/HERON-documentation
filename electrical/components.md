@@ -52,6 +52,16 @@ DC/DC converters, also known as regulators, are a class of switching devices use
 
 The three main types of converters are discussed below. For all converters, there are three important variables: input voltage Vg, output voltage V, and duty ratio D.
 
+### What doesn't work?
+
+Consider the following goal: A sensitive load requires 5 V but you only have a voltage source at 10 V. How would you reduce the voltage to be appropriate for the load?
+
+A possible response would be to use a resistor divider network. Using the equation V = Vin*(R1/(R1+R2)), all you need to do is connect two identical resistors (say, 10 Ω each) in series, and the voltage between them is half of the input. Equivalently, using the load itself as R2 and a resistor equivalent to the load resistance as R1 yields the same result. However, this is hardly a desirable solution when **efficiency** is considered.
+
+In this resistor divider circuit, the source is supplying 10 V at, by Ohm's law, 0.5 A. According to the power equation, P = VI, the source is supplying 5 W of power. Now, the load is being supplied 5 V and draws the same 0.5 A, giving a power draw of 2.5 W. The efficiency is 50%; half of the power from the supply is wasted!
+
+Voltage regulators, on the other hand, are able to perform this voltage conversion with minimal power loss, typically achieving over 90% efficiency.
+
 ### Buck Converter
 
 If the output voltage is lower than the input voltage, a simple solution not requiring any switching devices is the voltage divider circuit.
@@ -64,4 +74,4 @@ Buck converters are designed to "buck" down the voltage while maintaining close 
 
 The equation governing the operation of the buck converter is:
 
-V/Vg = D
+![](../figures/MD_buck.jpg)
