@@ -178,9 +178,8 @@ Set EPS Heater DAC Setpoints
 The satellite changes the DAC setpoints that control the EPS heaters for the batteries.
 
 - Message type - 0x10
-- Argument 1 - Setpoint 1 (12 bits)
-- Argument 2 - Setpoint 2 (12 bits)
-
+- Argument 1 - 0 or 1
+- Argument 2 - Setpoint (12 bits)
 
 Set PAY Heater DAC Setpoints
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -188,8 +187,8 @@ Set PAY Heater DAC Setpoints
 The satellite changes the DAC setpoints that control the PAY heaters for the cells.
 
 - Message type - 0x11
-- Argument 1 - Setpoint 1 (12 bits)
-- Argument 2 - Setpoint 2 (12 bits)
+- Argument 1 - 0 or 1
+- Argument 2 - Setpoint (12 bits)
 
 
 Ideas for Future Commands
