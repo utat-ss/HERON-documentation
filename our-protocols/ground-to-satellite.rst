@@ -128,20 +128,37 @@ Actuates the motors in the payload.
 - Message type - 0x0A
 - Argument 1 - 1 (move plate up) or 2 (move plate down)
 
-Experiment - Automatic Data Collection
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Automatic Data Collection - Enable/Disable
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Turns off or on automatic data collection for each type of data.
+Turns off or on automatic data collection for one type of data.
 
 - Message type - 0x0B
-- Argument 1 (0 to disable, 1 to enable) - bit 2 (EPS HK), bit 1 (PAY HK), bit 0 (PAY OPT)
+- Argument 1 - data block number (TODO define separately) - 0 (EPS HK), 1 (PAY HK), or 2 (PAY OPT)
+- Argument 2 - 0 (disable) or 1 (enable)
+
+Automatic Data Collection - Period
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets the automatic data collection period for one type of data.
+
+- Message type - 0x0C
+- Argument 1 - data block number (TODO define separately) - 0 (EPS HK), 1 (PAY HK), or 2 (PAY OPT)
+- Argument 2 - period (in seconds)
+
+Automatic Data Collection - Resync
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Resynchronizes data collection for all types of data so they start at the same time
+
+- Message type - 0x0D
 
 Read Memory
 ^^^^^^^^^^^
 
 The satellite reads and sends back the contents of the flash memory starting at the specified address and reading the specified number of bytes.
 
-- Message type - 0x0C
+- Message type - 0x0E
 - Argument 1 - starting address (in bytes)
 - Argument 2 - count (number of bytes)
 - Data - `count` bytes - read data
@@ -151,7 +168,7 @@ Erase Memory
 
 The satellite erases the flash memory (sets every byte to 0xFF, i.e. all 1's) starting at the specified address and for the specified number of bytes.
 
-- Message type - 0x0D
+- Message type - 0x0F
 - Argument 1 - starting address (in bytes)
 - Argument 2 - count (number of bytes)
 
@@ -160,7 +177,7 @@ Set EPS Heater DAC Setpoints
 
 The satellite changes the DAC setpoints that control the EPS heaters for the batteries.
 
-- Message type - 0x0E
+- Message type - 0x10
 - Argument 1 - Setpoint 1 (12 bits)
 - Argument 2 - Setpoint 2 (12 bits)
 
@@ -170,7 +187,7 @@ Set PAY Heater DAC Setpoints
 
 The satellite changes the DAC setpoints that control the PAY heaters for the cells.
 
-- Message type - 0x0F
+- Message type - 0x11
 - Argument 1 - Setpoint 1 (12 bits)
 - Argument 2 - Setpoint 2 (12 bits)
 
