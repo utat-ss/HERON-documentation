@@ -33,6 +33,26 @@ Only for messages from the satellite to the ground station:
 
 - Bytes 9-... - Data (length depends on message type)
 
+Constants
+---------
+
+Subsystem
+^^^^^^^^^
+
+One of the three subsystems of the satellite. (TODO - PAY SSM/Optical?)
+
+- 0 - OBC
+- 1 - EPS
+- 2 - PAY
+
+Block Type
+^^^^^^^^^^
+
+This is used as an argument in some commands to identify a type of data.
+
+- 0 - EPS HK
+- 1 - PAY HK
+- 2 - PAY OPT
 
 Commands
 --------
@@ -45,120 +65,33 @@ If the satellite receives this command, it responds with data "UTAT" (no string 
 - Message type - 0x00
 - Data - 4 bytes - "UTAT"
 
-EPS Housekeeping - Collect Block
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Get Restart Count, Restart Date/Time, Uptime
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Triggers EPS HK data collection of a block and writes it to flash memory.
+Gets the restart count (number of times OBC has restarted its program), restart date/time (RTC date/time of most recent restart), and uptime (time since most recent restart)
 
 - Message type - 0x01
-- Data - 4 bytes - block number
+- Data - 14 bytes - restart count (4 bytes), restart date (3 bytes), restart time (3 bytes), uptime (4 bytes)
 
-EPS Housekeeping - Read Local Block
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Reads the block of EPS HK data stored locally in the microcontroller's program memory.
+Get RTC Date/Time
+^^^^^^^^^^^^^^^^^
 
 - Message type - 0x02
-- Data - 79 bytes - header (10 bytes), 23 fields (3 bytes each)
+- Data - 6 bytes - date YY, date MM, date DD, time HH, time MM, time SS
 
-EPS Housekeeping - Read Memory Block
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The satellite sends back the specified block of EPS HK data stored in flash memory.
+Set RTC Date/Time
+^^^^^^^^^^^^^^^^^
 
 - Message type - 0x03
-- Argument 1 - block number
-- Data - 79 bytes - header (10 bytes), 23 fields (3 bytes each)
-
-PAY Housekeeping - Collect Block
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Triggers PAY HK data collection of a block and writes it to flash memory.
-
-- Message type - 0x04
-- Data - 4 bytes - block number
-
-PAY Housekeeping - Read Local Block
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Reads the block of PAY HK data stored locally in the microcontroller's program memory.
-
-- Message type - 0x05
-- Data - 61 bytes - header (10 bytes), 17 fields (3 bytes each)
-
-PAY Housekeeping - Read Memory Block
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The satellite sends back the specified block of PAY HK data stored in flash memory.
-
-- Message type - 0x06
-- Argument 1 - block number
-- Data - 61 bytes - header (10 bytes), 17 fields (3 bytes each)
-
-PAY Optical - Collect Block
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Triggers PAY OPT data collection of a block and writes it to flash memory.
-
-- Message type - 0x07
-- Data - 4 bytes - block number
-
-PAY Optical - Read Local Block
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Reads the block of PAY OPT data stored locally in the microcontroller's program memory.
-
-- Message type - 0x08
-- Data - 118 bytes - header (10 bytes), 36 fields (3 bytes each)
-
-PAY Optical - Read Memory Block
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The satellite sends back the specified block of PAY OPT data stored in flash memory.
-
-- Message type - 0x09
-- Argument 1 - block number
-- Data - 118 bytes - header (10 bytes), 36 fields (3 bytes each)
-
-PAY Control - Actuate Motors
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Actuates the motors in the payload.
-
-- Message type - 0x0A
-- Argument 1 - 1 (move plate up) or 2 (move plate down)
-
-Automatic Data Collection - Enable/Disable
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Turns off or on automatic data collection for one type of data.
-
-- Message type - 0x0B
-- Argument 1 - data block number (TODO define separately) - 0 (EPS HK), 1 (PAY HK), or 2 (PAY OPT)
-- Argument 2 - 0 (disable) or 1 (enable)
-
-Automatic Data Collection - Period
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sets the automatic data collection period for one type of data.
-
-- Message type - 0x0C
-- Argument 1 - data block number (TODO define separately) - 0 (EPS HK), 1 (PAY HK), or 2 (PAY OPT)
-- Argument 2 - period (in seconds)
-
-Automatic Data Collection - Resync
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Resynchronizes data collection for all types of data so they start at the same time
-
-- Message type - 0x0D
+- Argument 1 - date (8 bits YY, 8 bits MM, 8 bits DD)
+- Argument 2 - time (8 bits HH, 8 bits MM, 8 bits SS)
 
 Read Memory
 ^^^^^^^^^^^
 
 The satellite reads and sends back the contents of the flash memory starting at the specified address and reading the specified number of bytes.
 
-- Message type - 0x0E
+- Message type - 0x04
 - Argument 1 - starting address (in bytes)
 - Argument 2 - count (number of bytes)
 - Data - `count` bytes - read data
@@ -168,16 +101,69 @@ Erase Memory
 
 The satellite erases the flash memory (sets every byte to 0xFF, i.e. all 1's) starting at the specified address and for the specified number of bytes.
 
-- Message type - 0x0F
+- Message type - 0x05
 - Argument 1 - starting address (in bytes)
 - Argument 2 - count (number of bytes)
+
+Collect Block
+^^^^^^^^^^^^^
+
+Triggers data collection of a block and writes it to flash memory.
+
+- Message type - 0x06
+- Argument 1 - block type
+- Data - 4 bytes - block number
+
+Read Local Block
+^^^^^^^^^^^^^^^^
+
+Reads the block of data stored locally in the microcontroller's program memory.
+
+- Message type - 0x07
+- Argument 1 - block type
+- Data - 10 bytes (header) + (3 bytes * number of fields) - 79 bytes (EPS HK) or 61 bytes (PAY HK) or 118 bytes (PAY OPT)
+
+Read Memory Block
+^^^^^^^^^^^^^^^^^
+
+The satellite sends back the specified block of data stored in flash memory.
+
+- Message type - 0x08
+- Argument 1 - block type
+- Argument 2 - block number
+- Data - 10 bytes (header) + (3 bytes * number of fields) - 79 bytes (EPS HK) or 61 bytes (PAY HK) or 118 bytes (PAY OPT)
+
+Automatic Data Collection - Enable/Disable
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Turns off or on automatic data collection for one type of data.
+
+- Message type - 0x09
+- Argument 1 - block type
+- Argument 2 - 0 (disable) or 1 (enable)
+
+Automatic Data Collection - Period
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets the automatic data collection period for one type of data.
+
+- Message type - 0x0A
+- Argument 1 - block type
+- Argument 2 - period (in seconds)
+
+Automatic Data Collection - Resync
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Resynchronizes timers for data collection for all types of data so they start counting at the same time.
+
+- Message type - 0x0B
 
 Set EPS Heater DAC Setpoints
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The satellite changes the DAC setpoints that control the EPS heaters for the batteries.
 
-- Message type - 0x10
+- Message type - 0x0C
 - Argument 1 - 0 or 1
 - Argument 2 - Setpoint (12 bits)
 
@@ -186,10 +172,26 @@ Set PAY Heater DAC Setpoints
 
 The satellite changes the DAC setpoints that control the PAY heaters for the cells.
 
-- Message type - 0x11
+- Message type - 0x0D
 - Argument 1 - 0 or 1
 - Argument 2 - Setpoint (12 bits)
 
+PAY Control - Actuate Motors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Actuates the motors in the payload.
+
+- Message type - 0x0E
+- Argument 1 - 1 (move plate up) or 2 (move plate down)
+
+Reset
+^^^^^
+
+Resets the microcontroller for the specified subsytem (makes it restart its program)
+
+- Message type - 0x0F
+- Argument 1 - subsystem
+- No response message back to ground station
 
 Ideas for Future Commands
 -------------------------
@@ -198,7 +200,6 @@ Reset
 ^^^^^
 
 Resets everything in the satellite.
-
 
 Low-power mode
 ^^^^^^^^^^^^^^
@@ -229,18 +230,9 @@ The satellite sends back the specified field of PAY optical data.
 - Byte 3 - field number (0 to 35)
 - Bytes 4-6 (response only) - data (1 field, 3 bytes)
 
-Write Memory
-^^^^^^^^^^^^
-
-The satellite writes the specified data to flash memory starting at the specified address and with the specified number of bytes.
-
-- Bytes 3-6 - 32-bit address
-- Byte 7 - 8-bit count (number of bytes)
-- Bytes 8-(`count`+8-1) (request only) - data (`count` bytes)
-
 PAY Experiment - Actuate
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-The satellite starts the experiment. Actuates the motors to pop the blister packs. Starts a timer which will go off every 30 minutes, collecting all data in the satellite and storing it in memory.
+Actuates the motors to pop the blister packs.
 
 - Byte 3 - 0x00 (align plate only) or 0x01 (pop blister packs)
