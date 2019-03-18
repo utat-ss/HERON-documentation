@@ -187,11 +187,41 @@ Actuates the motors in the payload.
 Reset
 ^^^^^
 
-Resets the microcontroller for the specified subsytem (makes it restart its program)
+Resets the microcontroller for the specified subsytem (makes it restart its program).
 
 - Message type - 0x0F
 - Argument 1 - subsystem
 - No response message back to ground station
+
+Send CAN Message - EPS
+^^^^^^^^^^^^^^^^^^^^^^
+
+OBC sends a CAN message (8 bytes) to EPS and gets a response (8 bytes) back.
+
+- Message type - 0x10
+- Argument 1 - first 4 bytes of message to send
+- Argument 2 - last 4 bytes of message to send
+- Data (8 bytes) - response from EPS
+
+Send CAN Message - PAY
+^^^^^^^^^^^^^^^^^^^^^^
+
+OBC sends a CAN message (8 bytes) to PAY and gets a response (8 bytes) back.
+
+- Message type - 0x11
+- Argument 1 - first 4 bytes of message to send
+- Argument 2 - last 4 bytes of message to send
+- Data (8 bytes) - response from PAY
+
+Read EEPROM
+^^^^^^^^^^^
+
+Reads 4 bytes (a `dword` i.e. double word) from EEPROM memory of the specified subsystem.
+
+- Message type - 0x12
+- Argument 1 - subsystem
+- Argument 2 - 32-bit address
+- Data (4 bytes) - read data
 
 Ideas for Future Commands
 -------------------------
@@ -236,3 +266,6 @@ PAY Experiment - Actuate
 Actuates the motors to pop the blister packs.
 
 - Byte 3 - 0x00 (align plate only) or 0x01 (pop blister packs)
+
+Write EEPROM
+^^^^^^^^^^^^
