@@ -223,6 +223,15 @@ Reads 4 bytes (a `dword` i.e. double word) from EEPROM memory of the specified s
 - Argument 2 - 32-bit address
 - Data (4 bytes) - read data
 
+Get Current Block Number
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Gets the current block number for the specified block type. The block number represents the index of the block that will be written to memory the next time collection is triggered for that section, i.e. if the current block number is x, blocks 0 to (n - 1) have already been collected and written to memory but block x has not.
+
+- Message type - 0x13
+- Argument 1 - block type
+- Data (4 bytes) - block number (should only be 3 bytes max)
+
 Ideas for Future Commands
 -------------------------
 
