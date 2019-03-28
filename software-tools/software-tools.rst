@@ -9,3 +9,4 @@ Software Tools
 	our_toolchain
 	lib-common
 	uart-terminal
+	coolterm-capture
