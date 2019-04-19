@@ -110,7 +110,7 @@ Gyroscope
 Units [rad/s] (Gyroscope Calibrated, p. 60)
 
 Magnetometer
-^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
 Units [uTesla] (Magnetic Field Calibrated, p. 62)
 
@@ -127,3 +127,18 @@ Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/a
 - Formula based on p. 31
 
 raw voltage [V] = ((raw data / gain) / 0x1000000) * 2.5
+
+EEPROM
+------
+
+Address
+^^^^^^^
+
+- 16 bits
+
+Data
+^^^^
+
+- 32 bits
+- TODO - figure out how to deal with this in CAN messages
+- TODO - check big-endian or little-endian, maybe flip bytes

@@ -257,6 +257,12 @@ Control actions for the power system (e.g. temperature setpoints, battery chargi
     * - Set battery heater - setpoint 2
       - 1
       - DAC
+    * - Reset
+      - 2
+      - N/A
+    * - Read EEPROM
+      - 3
+      - EEPROM Address (OBC to EPS) or EEPROM data (EPS to OBC)
 
 
 Payload (PAY) Housekeeping
@@ -341,3 +347,9 @@ Control of payload functions and the experiment (e.g. temperature setpoints, dep
     * - Move actuation plate down
       - 3
       - N/A
+    * - Reset
+      - 4
+      - N/A
+    * - Read EEPROM
+      - 5
+      - EEPROM Address (OBC to PAY) or EEPROM data (PAY to OBC)
