@@ -62,11 +62,7 @@ In this resistor divider circuit, the source is supplying 10 V at, by Ohm's law,
 
 Voltage regulators, on the other hand, are able to perform this voltage conversion with minimal power loss, typically achieving over 90% efficiency.
 
-### Buck Converter
-
-If the output voltage is lower than the input voltage, a simple solution not requiring any switching devices is the voltage divider circuit.
-
-While this circuit might appear to achieve the goal, there is one major drawback: the power delivered to the load is also decreased. This means a 40% reduction in voltage brings a 40% reduction in power, corresponding to an efficiency of 60%.
+### Buck converter
 
 Buck converters are designed to "buck" down the voltage while maintaining close to 100% efficiency. The schematic of a buck converter is shown below:
 
@@ -74,4 +70,11 @@ Buck converters are designed to "buck" down the voltage while maintaining close 
 
 The equation governing the operation of the buck converter is:
 
-![](../figures/MD_buck.jpg)
+![](../figures/MD_buck.png)
+
+In terms of conversion ratio, the buck converter is the most straightforward. The duty ratio simply sets the ratio of the output voltage to the input voltage! Remember that since D is always less than 1, the output voltage will always be lower than the input voltage.
+
+### Boost converter
+
+A boost converter takes a lower input voltage and outputs a higher output voltage. The schematic of a boost converter is shown below:
+
