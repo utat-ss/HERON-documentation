@@ -10,23 +10,35 @@ Subsystems/Microcontrollers
 ---------------------------
 
 OBC - On-Board Computer
+
 PAY - Payload
+
 EPS - Electrical Power Systems
 
 MOb Allocation
 --------------
 
-The limited number of CAN Message Objects that can be created on the ATmega32M1 (only 6) requires us to strictly allocate the purpose of each MOb. The allocation is done under the following assumptions:
+The limited number of CAN Message Objects that can be created on the ATmega32M1/64M1 (only 6) requires us to strictly allocate the purpose of each MOb. The allocation is done under the following assumptions:
 
 * No MOb shall be reinitialized or renamed
-* Only three subsystem microcontrollers are used, referred to as OBC, EPS and PAY
-* EPS and PAY do not communicate with each other
-* A message cannot have multiple recipients, but multiple senders can send to the same MOb
+* Only three subsystem microcontrollers are used, referred to as OBC, PAY, and EPS
+* A message cannot have multiple recipients, but multiple senders can send messages to the same receiving MOb
 * No two MObs on the bus can have the same ID
 
-The MOb names are with respect to the OBC (e.g. STATUS_TX is transmitted from the OBC, STATUS_RX is received on the OBC).
+The first three mobs (0-2) are used for heartbeat, noting the following:
 
-.. list-table:: The MOBs are allocated as follows:
+* Each subsystem receives on one MOB and sends on the other two mobs, i.e. two TX mobs send to one RX mob
+
+The next three mobs (3-5) are used for commands, noting the following:
+
+* MOB names are defined with respect to OBC
+* PAY and EPS do not communicate with each other
+
+The command MOb names are with respect to the OBC (e.g. PAY_CMD_MOB is from OBC to PAY, CMD_RESP_MOB is from PAY to OBC).
+
+The MOBs are allocated as follows:
+
+.. list-table::
     :header-rows: 1
     :stub-columns: 1
 
@@ -36,32 +48,32 @@ The MOb names are with respect to the OBC (e.g. STATUS_TX is transmitted from th
       - PAY
       - EPS
     * - 0
-      - STATUS_TX_MOB
+      - OBC_HB_MOB
+      - RX
       - TX
-      - RX
-      - RX
+      - TX
     * - 1
-      - STATUS_RX_MOB
-      - RX
+      - PAY_HB_MOB
       - TX
+      - RX
       - TX
     * - 2
-      - CMD_RX_MOB
+      - EPS_HB_MOB
+      - TX
+      - TX
       - RX
-      - TX
-      - TX
     * - 3
-      - PAY_CMD_TX_MOB
+      - PAY_CMD_MOB
       - TX
       - RX
       - N/A
     * - 4
-      - EPS_CMD_TX_MOB
+      - EPS_CMD_MOB
       - TX
       - N/A
       - RX
     * - 5
-      - DATA_RX_MOB
+      - CMD_RESP_MOB
       - RX
       - TX
       - TX
