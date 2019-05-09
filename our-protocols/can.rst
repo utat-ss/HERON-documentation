@@ -119,8 +119,7 @@ Message Format
 --------------
 
 Each CAN message can have up to 8 bytes of data. Always transmit
-all 8 bytes for simplicity and ignore the unused bytes. We should revisit this
-later and consider using variable length messages.
+all 8 bytes for simplicity and ignore the unused bytes.
 
 Bytes within a CAN message are numbered so that the first byte sent is Byte 0
 and the last byte sent is Byte 7.
@@ -129,38 +128,29 @@ and the leftmost (most significant) bit is Bit 7.
 
 Every CAN message is 8 bytes, structured as follows:
 
-* Byte 0 - Sender and Receiver
-    * Which boards are sending and receiving the message
-    * Might be necessary depending on MOB allocations if one board is sending a message to multiple other boards
-* Byte 1 - Message Type
+Heartbeat
+_________
+
+TODO - see code
+
+Commands
+________
+
+* Byte 0 - Message Type
     * Broad category of type of message
-* Byte 2 - Field Number
+* Byte 1 - Field Number
     * Specific ID/index of a sensor or command
     * always numbered sequentially starting at 0
     * e.g. which sensor to poll
-* Bytes 3-5 - Data (if applicable)
+* Bytes 2-5 - Data (if applicable)
     * When OBC makes a request for data, this is unused
     * When PAY or EPS responds with data, it goes here
     * If OBC sends an action command for setting something in EPS/PAY, there is data in the request but not the response
-    * If data is not applicable, sending a response message with the appropriate Bytes 0-2 acts as a confirmation that the action has been performed
-    * If the data is smaller than 24 bits, it is right-aligned to the least significant bits with padding zeros added on the left, e.g. a 12-bit value from an ADC (xxxx xxxxxxxx) is sent as a 24-bit value (00000000 0000xxxx xxxxxxxx)
+    * If data is not applicable, sending a response message with the appropriate Bytes 0-1 acts as a confirmation that the action has been performed
+    * If the data is smaller than 32 bits, it is right-aligned to the least significant bits with padding zeros added on the left, e.g. a 12-bit value from an ADC (xxxx xxxxxxxx) is sent as a 32-bit value (00000000 00000000 0000xxxx xxxxxxxx)
 * Bytes 6-7 - Unused
 
-Byte 0 format (for IDs, see MOB allocations above):
-
-.. list-table::
-    :header-rows: 1
-
-    * - Bits
-      - 7-4
-      - 3-2
-      - 1-0
-    * -
-      - Unused
-      - Sender ID
-      - Receiver ID
-
-Bytes 1-2 are identical both when the request is sent from OBC to PAY/EPS and when the response is sent from PAY/EPS to OBC. This is so OBC can match the request message with the response message and verify it is receiving the correct message.
+Bytes 0-1 are identical both when the request is sent from OBC to PAY/EPS and when the response is sent from PAY/EPS to OBC. This is so OBC can match the request message with the response message and verify it is receiving the correct message.
 
 Message Types
 ~~~~~~~~~~~~~
@@ -221,33 +211,24 @@ General data about the state of the power systems (voltage, current, temperature
     * - Battery heater - setpoint 2
       - 13
       - DAC
-    * - IMU Acceleration - X-Axis
+    * - IMU Gyroscope (Uncalibrated) - X-Axis
       - 14
-      - IMU - Acceleration
-    * - IMU Acceleration - Y-Axis
+      - IMU - Gyroscope
+    * - IMU Gyroscope (Uncalibrated) - Y-Axis
       - 15
-      - IMU - Acceleration
-    * - IMU Acceleration - Z-Axis
+      - IMU - Gyroscope
+    * - IMU Gyroscope (Uncalibrated) - Z-Axis
       - 16
-      - IMU - Acceleration
-    * - IMU Gyroscope - X-Axis
+      - IMU - Gyroscope
+    * - IMU Gyroscope (Calibrated) - X-Axis
       - 17
       - IMU - Gyroscope
-    * - IMU Gyroscope - Y-Axis
+    * - IMU Gyroscope (Calibrated) - Y-Axis
       - 18
       - IMU - Gyroscope
-    * - IMU Gyroscope - Z-Axis
+    * - IMU Gyroscope (Calibrated) - Z-Axis
       - 19
       - IMU - Gyroscope
-    * - IMU Magnetometer - X-Axis
-      - 20
-      - IMU - Magnetometer
-    * - IMU Magnetometer - Y-Axis
-      - 21
-      - IMU - Magnetometer
-    * - IMU Magnetometer - Z-Axis
-      - 22
-      - IMU - Magnetometer
 
 
 Electrical Power Systems (EPS) Control
@@ -322,6 +303,8 @@ Payload (PAY) Optical
 Message Type: ``0x03``
 
 Optical sensor data from the experiment (wells with cells).
+
+TODO - confirm number of fields and mapping of field numbers
 
 .. list-table:: Field numbers:
     :header-rows: 1

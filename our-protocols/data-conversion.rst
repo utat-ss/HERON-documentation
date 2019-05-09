@@ -88,31 +88,18 @@ Datasheet: http://www.ti.com/lit/ds/symlink/dac8162.pdf
 Raw data to voltage: Vout [V] = (Din / 2^n) x Vref [V] x Gain
 Voltage to raw data: Din = (Vout [V] x 2^n) / (Vref [V] x Gain)
 
-IMU (Inertial Measurement Unit, BNO080)
----------------------------------------
+IMU (Inertial Measurement Unit, BNO080) - Gyroscope
+---------------------------------------------------
 
 Datasheet: https://cdn.sparkfun.com/assets/1/3/4/5/9/BNO080_Datasheet_v1.3.pdf
 
 SH-2 Reference Manual: https://cdn.sparkfun.com/assets/4/d/9/3/8/SH-2-Reference-Manual-v1.2.pdf
 
-All measurements are 16 bits (separate measurements for X, Y, Z axes). Measurements are listed on p. 36.
+All measurements are 16 bits (separate measurements for X, Y, Z axes). Measurements are listed on p. 36 (Gyroscope Calibrated on p.60).
 
-TODO - set precision of each measurement
+The gyroscope is represented as 16 bits in signed fixed-point format, with a Q point of 9, i.e. the least significant 9 bits form the fraction after the binary point.
 
-Accelerometer
-^^^^^^^^^^^^^
-
-Units [m/s^2] (Accelerometer, p. 58)
-
-Gyroscope
-^^^^^^^^^
-
-Units [rad/s] (Gyroscope Calibrated, p. 60)
-
-Magnetometer
-^^^^^^^^^^^^
-
-Units [uTesla] (Magnetic Field Calibrated, p. 62)
+Angular Velocity [rad/s] = (Raw Data [16 bits, signed `int16_t`]) / (2^9)
 
 Optical ADC (Analog to Digital Converter, AD7194)
 -------------------------------------------------
