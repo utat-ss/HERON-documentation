@@ -7,7 +7,7 @@ The 3 chips are treated as a single device with a continuous address space (3x t
 addresses). Each flash chip is 16Mbit (2MB or 2 megabytes) in size, so in total we have 6MB of flash memory (0x600000 bytes). Each virtual address is 23 bits (2 bits to select the chip, 21 bits for the address on that chip)
 
 The memory is divided into **sections**, where one **section** stores one category of data (EPS housekeeping, PAY
-housekeeping, or PAY science).
+housekeeping, or PAY optical). The fourth section stores a command log of all commands executed on the satellite.
 
 Each section contains some number of **blocks**. Each **block** contains a header followed by a set of **measurements** taken around the same time. The **block number** can be up to 24 bits.
 
@@ -38,8 +38,22 @@ Each **block** starts with a 10-byte **header** to identify and timestamp the bl
 
 
 
-The **header** is followed by some number of **fields**, where each field is 3 bytes (24 bits) for one measurement.
+The **header** is followed by some number of **fields**. For the 3 data sections, each field is 3 bytes (24 bits) for one measurement.
 The number of fields varies between sections but is constant within a section.
+
+For the command section, the header is followed by a special set of data (9 bytes), with values as defined in the ground station to satellite protocol:
+
+.. list-table::
+    :header-rows: 1
+
+    * - Byte(s)
+      - Description
+    * - 0
+      - Command number
+    * - 1-4
+      - Argument 1
+    * - 5-8
+      - Argument 2
 
 **EEPROM** (Electronically Erasable Programmable Read Only Memory) is a non-volatile memory in the microcontroller,
 meaning the data persists even if the microcontroller is turned off or reset. We use it to keep track of
@@ -68,9 +82,15 @@ The **sections** are defined as follows:
       - 3
       - 17
       - State of payload environment - temperature, pressure, humidity
-    * - PAY Science
+    * - PAY Optical
       - 0x300000
-      - 0x5FFFFF
+      - 0x3FFFFF
       - 36
       - 116
       - Payload experiment data - optical measurements
+    * - Command Log
+      - 0x400000
+      - 0x5FFFFF
+      - N/A
+      - 19
+      - Log of all commands executed by OBC
