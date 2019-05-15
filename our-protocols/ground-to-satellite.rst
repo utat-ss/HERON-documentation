@@ -1,37 +1,43 @@
 Ground Station to Satellite Protocol
 ====================================
 
-The current protocol between the ground station and satellite, to be created one step at a time.
+The current protocol for communication of packets between the ground station and satellite.
 
 This integrates heavily with the memory protocol (in a separate document).
 
 `AX25 Protocol <https://www.tapr.org/pub_ax25.html>`_
 
-The ground station and transceiver both use the AX25 protocol to send messages.
-
 All multi-byte data is big-endian.
 
-TODO - need to figure out if we need to supply any header/status information for the AX25 protocol itself, but this document currently only covers the content of the messages itself.
+OBC only deals with the message component of any packet, i.e. for RX it only receives the message and for TX is only sends the message. The transceiver handles all of the packetization, including header/status information and checksum.
+
+Beacon mode: Wraps the message using the AX25 protocol.
+
+PIPE mode: Does not wrap the message using the AX25 protocol.
 
 TODO - get satellite to send ACK immediately after receiving a message
 
-TODO - add checksum
+The transceiver terminates a message when the ``\r`` (i.e. ``<CR>``, decimal 13, hex 0x0D) character is sent. Therefore, we can't sent raw messages because they will often contain the byte 0x0D. Therefore, represent each raw byte (number 0-255) as 2 bytes in an ASCII hex representation, similar to how the transceiver's ES+ commands work. e.g. the one byte 0xA3 is represented as "A3", i.e. two bytes 0x41 0x33. Always use the capital letter rather than the lowercase letter representations.
 
-Tentatively (until we figure out AX25), each message (raw bytes) contains the following:
-
-- Byte 0 - 0x00 (special character to indicate start of message)
-- Byte 1 - number of characters in message (to follow after this byte, not including the first 2 bytes) - 0x00 is invalid
-- Byte 2-... - Message contents
-
-The message contents (the data we actually care about, independent of any encoding protocol, checksum, etc.):
+The **decoded message** is the message information that we actually care about:
 
 - Byte 0 - Message type
 - Bytes 1-4 (32-bit int) - Argument 1 (may be ignored but is still sent)
 - Bytes 5-8 (32-bit int) - Argument 2 (may be ignored but is still sent)
+- Bytes 9-... - Data (only for satellite to ground, length depends on message type)
 
-Only for messages from the satellite to the ground station:
+The **encoded message** is the full message (called "message" in the packetization protocol):
 
-- Bytes 9-... - Data (length depends on message type)
+- Byte 0 - 0x00 (special character to indicate start of message)
+- Byte 1 - number of characters in message (to follow after this byte, not including this byte or the previous byte) - 0x00 is invalid - this can't be 0x0D because it must be at least 18 (0x12)
+- Byte 2-... - Decoded message (in ASCII hex representation, twice the number of bytes as the decoded message)
+
+If the decoded message has ``n`` bytes, the encoded message always has ``2n + 2`` bytes.
+
+Even though the transceiver only accepts packets with a valid checksum, we add the start and count bytes in case characters are dropped over UART between the OBC and transceiver.
+
+
+
 
 Constants
 ---------
