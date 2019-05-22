@@ -155,6 +155,7 @@ Bytes 0-1 are identical both when the request is sent from OBC to PAY/EPS and wh
 Message Types
 ~~~~~~~~~~~~~
 
+The data collection message types start at field 0 to match numbering and organization in memory. The control message types start at field 1 to prevent commands from being accidentally being executed if sent with field 0.
 
 Electrical Power Systems (EPS) Housekeeping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -245,16 +246,16 @@ Control actions for the power system (e.g. temperature setpoints, battery chargi
       - Field Number
       - Data Format
     * - Set battery heater - setpoint 1
-      - 0
-      - DAC
-    * - Set battery heater - setpoint 2
       - 1
       - DAC
-    * - Reset
+    * - Set battery heater - setpoint 2
       - 2
+      - DAC
+    * - Reset
+      - 3
       - N/A
     * - Read EEPROM
-      - 3
+      - 4
       - EEPROM Address (OBC to EPS) or EEPROM data (EPS to OBC)
 
 
@@ -304,7 +305,7 @@ Message Type: ``0x03``
 
 Optical sensor data from the experiment (wells with cells).
 
-TODO - confirm number of fields and mapping of field numbers
+TODO - confirm number of fields and mapping of field numbers - will be 32 in the end
 
 .. list-table:: Field numbers:
     :header-rows: 1
@@ -331,20 +332,20 @@ Control of payload functions and the experiment (e.g. temperature setpoints, dep
       - Field Number
       - Data Format
     * - Set MF chip heater - setpoint 1
-      - 0
-      - DAC
-    * - Set MF chip heater - setpoint 2
       - 1
       - DAC
-    * - Move actuation plate up
+    * - Set MF chip heater - setpoint 2
       - 2
-      - N/A
-    * - Move actuation plate down
+      - DAC
+    * - Move actuation plate up
       - 3
       - N/A
-    * - Reset
+    * - Move actuation plate down
       - 4
       - N/A
-    * - Read EEPROM
+    * - Reset
       - 5
+      - N/A
+    * - Read EEPROM
+      - 6
       - EEPROM Address (OBC to PAY) or EEPROM data (PAY to OBC)
