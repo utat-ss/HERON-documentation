@@ -305,7 +305,7 @@ Message Type: ``0x03``
 
 Optical sensor data from the experiment (wells with cells).
 
-TODO - confirm number of fields and mapping of field numbers - will be 32 in the end
+TODO - get mapping of field numbers
 
 .. list-table:: Field numbers:
     :header-rows: 1
@@ -313,8 +313,8 @@ TODO - confirm number of fields and mapping of field numbers - will be 32 in the
     * - Data
       - Field Number
       - Data Format
-    * - 36 wells
-      - 0 to 35
+    * - 32 wells
+      - 0 to 31
       - Optical ADC
 
 
