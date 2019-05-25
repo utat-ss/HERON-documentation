@@ -10,3 +10,4 @@ Software Tools
 	lib-common
 	uart-terminal
 	coolterm-capture
+	atmel-studio
