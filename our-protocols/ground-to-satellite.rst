@@ -193,11 +193,11 @@ Actuates the motors in the payload.
 Reset
 ^^^^^
 
-Resets the microcontroller for the specified subsytem (makes it restart its program).
+Resets the microcontroller for the specified subsytem (intentionally runs out the watchdog timer to make it restart its program).
 
 - Message type - 0x0F
 - Argument 1 - subsystem
-- No response message back to ground station
+- If resetting OBC, no response message back to ground station
 
 Send CAN Message - EPS
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -208,6 +208,10 @@ OBC sends a CAN message (8 bytes) to EPS and gets a response (8 bytes) back.
 - Argument 1 - first 4 bytes of message to send
 - Argument 2 - last 4 bytes of message to send
 - Data (8 bytes) - response from EPS
+
+Ideas for use cases:
+
+- Request a single field of EPS_HK data (in case the block collection of all measurements at once fails).
 
 Send CAN Message - PAY
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -232,55 +236,19 @@ Reads 4 bytes (a `dword` i.e. double word) from EEPROM memory of the specified s
 Get Current Block Number
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Gets the current block number for the specified block type. The block number represents the index of the block that will be written to memory the next time collection is triggered for that section, i.e. if the current block number is x, blocks 0 to (n - 1) have already been collected and written to memory but block x has not.
+Gets the current block number for the specified block type. The block number represents the index of the block that will be written to memory the next time collection is triggered for that section, i.e. if the current block number is x, blocks 0 to (n-1) have already been collected and written to memory but block x has not.
 
 - Message type - 0x13
 - Argument 1 - block type
-- Data (4 bytes) - block number (should only be 3 bytes max)
+- Data (4 bytes) - block number
 
 Ideas for Future Commands
 -------------------------
-
-Reset
-^^^^^
-
-Resets everything in the satellite.
 
 Low-power mode
 ^^^^^^^^^^^^^^
 
 Puts the entire satellite in low-power mode.
-
-EPS Housekeeping - Field
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-The satellite sends back the specified field of EPS housekeeping data.
-
-- Byte 3 - field number (0 to 11)
-- Bytes 4-6 (response only) - data (1 field, 3 bytes)
-
-PAY Housekeeping - Field
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-The satellite sends back the specified field of PAY housekeeping data.
-
-- Byte 3 - field number (0 to 2)
-- Bytes 4-6 (response only) - data (1 field, 3 bytes)
-
-PAY Optical - Field
-^^^^^^^^^^^^^^^^^^^
-
-The satellite sends back the specified field of PAY optical data.
-
-- Byte 3 - field number (0 to 35)
-- Bytes 4-6 (response only) - data (1 field, 3 bytes)
-
-PAY Experiment - Actuate
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Actuates the motors to pop the blister packs.
-
-- Byte 3 - 0x00 (align plate only) or 0x01 (pop blister packs)
 
 Write EEPROM
 ^^^^^^^^^^^^
