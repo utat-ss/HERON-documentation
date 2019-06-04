@@ -11,3 +11,4 @@ Software Tools
 	uart-terminal
 	coolterm-capture
 	atmel-studio
+	git-troubleshooting
