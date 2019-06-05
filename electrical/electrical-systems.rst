@@ -11,5 +11,6 @@ This section details different aspects of electronics design.
 	equipment
 	circuit-platforms
 	pcb-design
+	pcb-checklist
 	footprints
 	differential-signals
