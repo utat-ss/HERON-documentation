@@ -110,3 +110,12 @@ Say we have a header file called `file.h`:
 ## Compiler Warnings
 
 **You should not have any compiler warnings.** These often detect non-obvious bugs such as bitshift overflows.
+
+
+## Delays
+
+The following comes from the `<util/delay.h>` header (located in `avr-gcc/8.2.0/avr/include/util/delay.h`) with our MCU running at 8 MHz.
+
+The maximal possible delay for `_delay_ms()` is 262.14 ms / 8 = **32.7675 ms** at the exact resolution. Any delays higher than this will have a 1/10 ms resolution up to 6.5535 seconds. Be aware of this in cases where you may need the precision.
+
+The same applies for `_delay_us()`, but the maximal possible delay at the exact resolution is 768 us / 8 = **96 us**.
