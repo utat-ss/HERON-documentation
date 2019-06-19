@@ -245,17 +245,23 @@ Control actions for the power system (e.g. temperature setpoints, battery chargi
     * - Data
       - Field Number
       - Data Format
-    * - Set battery heater - setpoint 1
+    * - Set battery heater - shadow setpoint 1
       - 1
       - DAC
-    * - Set battery heater - setpoint 2
+    * - Set battery heater - shadow setpoint 2
       - 2
       - DAC
-    * - Reset
+    * - Set battery heater - sun setpoint 1
       - 3
+      - DAC
+    * - Set battery heater - sun setpoint 2
+      - 4
+      - DAC
+    * - Reset
+      - 5
       - N/A
     * - Read EEPROM
-      - 4
+      - 6
       - EEPROM Address (OBC to EPS) or EEPROM data (EPS to OBC)
 
 

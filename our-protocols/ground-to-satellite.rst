@@ -170,7 +170,7 @@ Set EPS Heater DAC Setpoints
 The satellite changes the DAC setpoints that control the EPS heaters for the batteries.
 
 - Message type - 0x0C
-- Argument 1 - 0 or 1
+- Argument 1 - 0 (heater 1 shadow), 1 (heater 2 shadow), 2 (heater 1 sun), 3 (heater 2 sun)
 - Argument 2 - Setpoint (12 bits)
 
 Set PAY Heater DAC Setpoints
