@@ -7,6 +7,7 @@ Try to start each section/block of related values on an address that is a multip
 
 Use 4-byte values (dwords, i.e. double words) for all values - for simplicity and we have plenty of EEPROM space. Note all values are stored as little-endian in EEPROM and in the hexdump.
 
+
 .. list-table::
     :header-rows: 1
 
@@ -17,6 +18,7 @@ Use 4-byte values (dwords, i.e. double words) for all values - for simplicity an
     * - 0x00
       - Uptime
       - Restart count
+      - All
     * - 0x04
       - Uptime
       - Restart date
@@ -28,36 +30,48 @@ Use 4-byte values (dwords, i.e. double words) for all values - for simplicity an
     * - 0x0C
       - Uptime
       - Restart reason
+      - All
     * - 0x20
       - Comms
       - Comms delay done
+      - OBC
     * - 0x40
       - Memory
       - EPS_HK current block number
+      - OBC
     * - 0x44
       - Memory
       - PAY_HK current block number
+      - OBC
     * - 0x48
       - Memory
       - PAY_OPT current block number
+      - OBC
     * - 0x4C
       - Memory
       - Command log current block number
+      - OBC
     * - 0x60
       - EPS Heaters
       - Heater 1 shadow setpoint
+      - EPS
     * - 0x64
       - EPS Heaters
       - Heater 2 shadow setpoint
+      - EPS
     * - 0x68
       - EPS Heaters
       - Heater 1 sun setpoint
+      - EPS
     * - 0x6C
       - EPS Heaters
       - Heater 2 sun setpoint
+      - EPS
     * - 0x80
       - PAY Heaters
       - Heaters 1-4 setpoint
+      - PAY
     * - 0x84
       - PAY Heaters
       - Heater 5 setpoint
+      - PAY
