@@ -66,18 +66,23 @@ Commands
 Status/ping
 ^^^^^^^^^^^
 
-If the satellite receives this command, it responds with data "UTAT" (no string termination).
+Ping one of the subsystems to see if it responds. Should be used to check OBC responds to transceiver messages and EPS/PAY respond to CAN messages from OBC.
 
 - Message type - 0x00
-- Data - 4 bytes - "UTAT"
+- Argument 1 - Subsystem
 
 Get Restart Count, Restart Date/Time, Uptime
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Gets the restart count (number of times OBC has restarted its program), restart date/time (RTC date/time of most recent restart), and uptime (time since most recent restart)
+Gets the restart count (number of times OBC has restarted its program), restart date/time (RTC date/time of most recent restart), and uptime (time since most recent restart) for the specified subsystem.
 
 - Message type - 0x01
-- Data - 14 bytes - restart count (4 bytes), restart date (3 bytes), restart time (3 bytes), uptime (4 bytes)
+- Argument 1 - Subsystem
+- Data
+    - If OBC - 14 bytes - restart count (4 bytes), restart date (3 bytes), restart time (3 bytes), restart reason (1 byte), uptime (4 bytes)
+    - If EPS/PAY - 8 bytes - restart count (4 bytes), restart reason (1 byte), uptime (4 bytes)
+
+TODO - make unknown restart reason = 0
 
 Get RTC Date/Time
 ^^^^^^^^^^^^^^^^^
@@ -95,7 +100,7 @@ Set RTC Date/Time
 Read Memory
 ^^^^^^^^^^^
 
-The satellite reads and sends back the contents of the flash memory starting at the specified address and reading the specified number of bytes.
+The satellite reads and sends back the contents of the flash memory starting at the specified address and reading the specified number of bytes. The maximum number of bytes that can be read in one command is 106 bytes (to match the biggest block type of PAY_OPT, 10 byte header + 32 fields * 3 bytes, don't want to make the message buffers on OBC any longer).
 
 - Message type - 0x04
 - Argument 1 - starting address (in bytes)
@@ -105,7 +110,7 @@ The satellite reads and sends back the contents of the flash memory starting at 
 Erase Memory
 ^^^^^^^^^^^^
 
-The satellite erases the flash memory (sets every byte to 0xFF, i.e. all 1's) starting at the specified address and for the specified number of bytes.
+The satellite erases the flash memory (sets every byte to 0xFF, i.e. all 1's) starting at the specified address and for the specified number of bytes. The maximum number of bytes that can be erased in one command is 106 bytes (to match the Read Memory command).
 
 - Message type - 0x05
 - Argument 1 - starting address (in bytes)
@@ -114,7 +119,7 @@ The satellite erases the flash memory (sets every byte to 0xFF, i.e. all 1's) st
 Collect Block
 ^^^^^^^^^^^^^
 
-Triggers data collection of a block and writes it to flash memory.
+Triggers data collection of a block and writes it to flash memory on OBC.
 
 - Message type - 0x06
 - Argument 1 - block type
@@ -151,7 +156,7 @@ Turns off or on automatic data collection for one type of data.
 Automatic Data Collection - Period
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Sets the automatic data collection period for one type of data.
+Sets the automatic data collection period for one type of data. Must have `period >= 30` or else the state of OBC will not change. This is to prevent data collection from triggering too frequently and constantly filling up the command/CAN queues.
 
 - Message type - 0x0A
 - Argument 1 - block type
@@ -160,7 +165,7 @@ Sets the automatic data collection period for one type of data.
 Automatic Data Collection - Resync
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Resynchronizes timers for data collection for all types of data so they start counting at the same time.
+Resynchronizes timers for data collection for all types of data so they start counting at the same time (reset all to 0, counting up).
 
 - Message type - 0x0B
 
@@ -198,6 +203,8 @@ Resets the microcontroller for the specified subsytem (intentionally runs out th
 - Message type - 0x0F
 - Argument 1 - subsystem
 - If resetting OBC, no response message back to ground station
+
+It is recommended that the ground station team sends a follow-up message to check the uptime/restart time of the subsystem that should have been reset.
 
 Send CAN Message - EPS
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -242,6 +249,38 @@ Gets the current block number for the specified block type. The block number rep
 - Argument 1 - block type
 - Data (4 bytes) - block number
 
+Set Current Block Number
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets the current block number for the specified block type. The block number represents the index of the block that will be written to memory the next time collection is triggered for that section, i.e. if the current block number is x, blocks 0 to (n-1) have already been collected and written to memory but block x has not. This could be used to skip sections of flash memory that are found to be malfunctioning, to reset the block number to 0 when a section reaches the end of its memory and all existing data has already been safely downlinked, or ran when the start address of a section has been changed.
+
+- Message type - 0x14
+- Argument 1 - block type
+- Argument 2 - block number
+
+Set Memory Section Start Address
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets the starting address of a section in OBC flash memory. This could be used if one of the memory chips is found to be malfunctioning in orbit, allowing us to remap the memory sections from ground. Note that changing this will blindly overwrite any data previously in that part of memory.
+
+NOTE: This should be run consecutively with the "Set Memory Section End Address" command.
+
+- Message type - 0x15
+- Argument 1 - block type
+- Argument 2 - start address
+
+Set Memory Section End Address
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets the end address of a section in OBC flash memory. See above for motivation.
+
+NOTE: This should be run consecutively with the "Set Memory Section Start Address" command.
+
+- Message type - 0x16
+- Argument 1 - block type
+- Argument 2 - end address
+
+
 Ideas for Future Commands
 -------------------------
 
@@ -252,3 +291,12 @@ Puts the entire satellite in low-power mode.
 
 Write EEPROM
 ^^^^^^^^^^^^
+
+Writes 4 bytes (a `dword` i.e. double word) to EEPROM memory of the specified subsystem.
+
+- Message type - ...
+- Argument 1 - subsystem
+- Argument 2 - 32-bit address
+TODO - Argument 3 - 32-bit data
+
+TODO - is this safe?
