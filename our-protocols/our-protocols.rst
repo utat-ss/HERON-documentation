@@ -9,3 +9,4 @@ Our Protocols
     can
     obc-mem
     data-conversion
+    eeprom-map
