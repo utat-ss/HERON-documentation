@@ -18,6 +18,10 @@ Create a new project for the program you want to debug. Currently, to include ot
 
 ![](../figures/atmel_studio_addfile2.PNG)
 
+Note that when using Atmel Studio, you need to create an Atmel Studio project that uses an auto-generated makefile instead of our own makefiles. This even applies to lib-common files - we tried compiling lib-common with our own makefiles, but this did not work since we could not set breakpoints or step into code in lib-common, likely due to differences in compiler settings from the Atmel Studio build system.
+
+To run your program in debugWire mode with breakpoints, click the "Debug Program" button instead of the "Run Program" option. Note that you cannot change breakpoints while your program is running, so you need to set them before running or reupload your program.
+
 
 ## Breakpoints
 
