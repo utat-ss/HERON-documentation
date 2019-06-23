@@ -232,6 +232,18 @@ General data about the state of the power systems (voltage, current, temperature
     * - IMU Gyroscope (Calibrated) - Z-Axis
       - 19
       - IMU - Gyroscope
+    * - Battery heater - shadow setpoint 1
+      - 20
+      - DAC
+    * - Battery heater - shadow setpoint 2
+      - 21
+      - DAC
+    * - Battery heater - sun setpoint 1
+      - 22
+      - DAC
+    * - Battery heater - sun setpoint 2
+      - 23
+      - DAC
 
 
 Electrical Power Systems (EPS) Control
@@ -264,10 +276,10 @@ Control actions for the power system (e.g. temperature setpoints, battery chargi
       - DAC
     * - Set battery heater mode - lower current threshold
       - 5
-      - EPS Current
+      - ADC - EPS Current
     * - Set battery heater mode - upper current threshold
       - 6
-      - EPS Current
+      - ADC - EPS Current
     * - Reset
       - 7
       - N/A
