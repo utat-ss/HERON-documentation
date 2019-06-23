@@ -152,6 +152,8 @@ ________
 
 Bytes 0-1 are identical both when the request is sent from OBC to PAY/EPS and when the response is sent from PAY/EPS to OBC. This is so OBC can match the request message with the response message and verify it is receiving the correct message.
 
+TODO - implement 4-byte data
+
 Message Types
 ~~~~~~~~~~~~~
 
@@ -245,6 +247,9 @@ Control actions for the power system (e.g. temperature setpoints, battery chargi
     * - Data
       - Field Number
       - Data Format
+    * - Ping
+      - 0
+      - N/A
     * - Set battery heater - shadow setpoint 1
       - 1
       - DAC
@@ -257,12 +262,27 @@ Control actions for the power system (e.g. temperature setpoints, battery chargi
     * - Set battery heater - sun setpoint 2
       - 4
       - DAC
-    * - Reset
+    * - Set battery heater mode - lower current threshold
       - 5
+      - EPS Current
+    * - Set battery heater mode - upper current threshold
+      - 6
+      - EPS Current
+    * - Reset
+      - 7
       - N/A
     * - Read EEPROM
-      - 6
+      - 8
       - EEPROM Address (OBC to EPS) or EEPROM data (EPS to OBC)
+    * - Get restart count
+      - 9
+      - Count
+    * - Get restart reason
+      - 10
+      - See ``uptime.h`` for constants
+    * - Get uptime
+      - 11
+      - In seconds
 
 
 Payload (PAY) Housekeeping
@@ -337,6 +357,9 @@ Control of payload functions and the experiment (e.g. temperature setpoints, dep
     * - Data
       - Field Number
       - Data Format
+    * - Ping
+      - 0
+      - N/A
     * - Set MF chip heater - setpoint 1
       - 1
       - DAC
@@ -355,3 +378,6 @@ Control of payload functions and the experiment (e.g. temperature setpoints, dep
     * - Read EEPROM
       - 6
       - EEPROM Address (OBC to PAY) or EEPROM data (PAY to OBC)
+    * - Erase EEPROM
+      - 7
+      - EEPROM Address (OBC to PAY)

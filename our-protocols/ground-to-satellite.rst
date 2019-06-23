@@ -280,6 +280,26 @@ NOTE: This should be run consecutively with the "Set Memory Section Start Addres
 - Argument 1 - block type
 - Argument 2 - end address
 
+Erase EEPROM
+^^^^^^^^^^^^
+
+Erases 4 bytes (a `dword` i.e. double word) in EEPROM memory of the specified subsystem (sets to all 1's, i.e. 0xFFFFFFFF).
+
+- Message type - 0x17
+- Argument 1 - subsystem
+- Argument 2 - 32-bit address (in bytes)
+
+NOTE: Be careful using this, because for example it could force OBC to re-run its initial 30-minute comms delay and try to deploy the antenna again.
+
+Set EPS Heater Mode Current Threshold
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets the threshold of total (summed) solar panel current for which to switch the mode of shadow/sun for heater setpoints.
+
+- Message type - 0x18
+- Argument 1 - 0 (lower), 1 (upper)
+- Argument 2 - Current (12 bits, in ADC format)
+
 
 Ideas for Future Commands
 -------------------------
@@ -288,15 +308,3 @@ Low-power mode
 ^^^^^^^^^^^^^^
 
 Puts the entire satellite in low-power mode.
-
-Write EEPROM
-^^^^^^^^^^^^
-
-Writes 4 bytes (a `dword` i.e. double word) to EEPROM memory of the specified subsystem.
-
-- Message type - ...
-- Argument 1 - subsystem
-- Argument 2 - 32-bit address
-TODO - Argument 3 - 32-bit data
-
-TODO - is this safe?
