@@ -14,7 +14,7 @@ The default fuse bits on the 64M1 from the factory are `FF 6F 62` (in hex).
 We always use the fuse bits `FF D7 F8` (in hex).
 
 Key Settings:
-- BODLEVEL2 = 0, BODLEVEL1 = 0, BODLEVE0 = 0 - brownout detection at 2.6 V - see datasheet p. 399 - want this for flash/EEPROM protection, although it consumes some power for the BOD circuit
+- BODLEVEL2 = 0, BODLEVEL1 = 0, BODLEVEL0 = 0 - brownout detection at 2.6 V - see datasheet p. 37, 62, 67-69, 366, 377-378, 399, 411 - want this for flash/EEPROM protection, although it consumes some power for the BOD circuit
 
 
 ## Setting Fuse Bits
