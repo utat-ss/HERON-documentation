@@ -7,5 +7,6 @@ Embedded Systems
 	microcontrollers
 	registers
 	interrupts
+	brownout-detection
 	avr-fuses
 	uploading-code-mac

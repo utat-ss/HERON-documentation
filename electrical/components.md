@@ -25,6 +25,13 @@ Through hole resistors use colour-coded bands to indicate their value.
 
 Stores energy in the form of electrical energy. It can store charge and release it when necessary, so it is often used as a *decoupling capacitor* to smooth out fluctuations in a voltage.
 
+[Decoupling Capacitors](http://www.thebox.myzen.co.uk/Tutorial/De-coupling.html)
+
+
+## Inductor
+
+[Choke Coil](https://en.wikipedia.org/wiki/Choke_(electronics))
+
 
 ## Diode
 
@@ -77,4 +84,3 @@ In terms of conversion ratio, the buck converter is the most straightforward. Th
 ### Boost converter
 
 A boost converter takes a lower input voltage and outputs a higher output voltage. The schematic of a boost converter is shown below:
-
