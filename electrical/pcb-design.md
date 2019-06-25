@@ -46,6 +46,8 @@ The simplest PCB uses 1 layer and places all component on one side, but multiple
 
 ### Vias
 
+![](../figures/via-types.png)
+
 A via is a hole that connects a trace on one layer to another layer. They are useful for routing traces that cannot be routed on a single layer without crossing other traces. For example, you can start a trace on the top layer, place a via to the bottom layer, route it along the bottom layer, then place another via bringing it back to the top layer.
 
 
