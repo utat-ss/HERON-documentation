@@ -21,7 +21,7 @@ Key Settings:
 
 If you need to set the fuse bits, run:
 
-`$ avrdude -U lfuse:w:0xff:m -U hfuse:w:0xd7:m -U efuse:w:0xff:m -c stk500 -p m32m1 -P <port>`
+`$ avrdude -U lfuse:w:0xff:m -U hfuse:w:0xd7:m -U efuse:w:0xf8:m -c stk500 -p m32m1 -P <port>`
 
 **You must replace** `<port>`  with the port the programmer is connected to (what you normally use to upload programs), such as `/dev/tty.usbmodem00208212` (Mac) or `COM3` (Windows).
 
