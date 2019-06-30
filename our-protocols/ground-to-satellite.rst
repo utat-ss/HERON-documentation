@@ -107,14 +107,13 @@ The satellite reads and sends back the contents of the flash memory starting at 
 - Argument 2 - count (number of bytes)
 - Data - `count` bytes - read data
 
-Erase Memory
-^^^^^^^^^^^^
+Erase Memory Sector
+^^^^^^^^^^^^^^^^^^^
 
-The satellite erases the flash memory (sets every byte to 0xFF, i.e. all 1's) starting at the specified address and for the specified number of bytes. The maximum number of bytes that can be erased in one command is 106 bytes (to match the Read Memory command).
+The satellite erases one sector (4 kB) of the flash memory (sets every byte to 0xFF, i.e. all 1's). This will happen for the 4 kB sector that includes the specified address, aligned to a 4 kB boundary.
 
 - Message type - 0x05
-- Argument 1 - starting address (in bytes)
-- Argument 2 - count (number of bytes)
+- Argument 1 - address (in bytes) - ideally this should be specified as aligned to a 4 kB boundary, but will work nonetheless
 
 Collect Block
 ^^^^^^^^^^^^^
@@ -300,6 +299,14 @@ Sets the threshold of total (summed) solar panel current for which to switch the
 - Argument 1 - 0 (lower), 1 (upper)
 - Argument 2 - Current (12 bits, in ADC format)
 
+Erase All Memory
+^^^^^^^^^^^^^^^^
+
+The satellite erases all flash memory on all 3 chips (sets every byte to 0xFF, i.e. all 1's). This would generally be used when changing the satellite's current block number, allowing it to rewrite to addresses that were previously written to.
+
+BE VERY CAREFUL WITH THIS!!
+
+- Message type - 0x19
 
 Ideas for Future Commands
 -------------------------
