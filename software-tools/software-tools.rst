@@ -11,4 +11,5 @@ Software Tools
 	uart-terminal
 	coolterm-capture
 	atmel-studio
+	MPLAB-X-IDE
 	git-troubleshooting
