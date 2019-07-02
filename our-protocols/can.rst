@@ -286,14 +286,17 @@ Control actions for the power system (e.g. temperature setpoints, battery chargi
     * - Read EEPROM
       - 8
       - EEPROM Address (OBC to EPS) or EEPROM data (EPS to OBC)
-    * - Get restart count
+    * - Erase EEPROM
       - 9
+      - EEPROM Address (OBC to EPS)
+    * - Get restart count
+      - 10
       - Count
     * - Get restart reason
-      - 10
+      - 11
       - See ``uptime.h`` for constants
     * - Get uptime
-      - 11
+      - 12
       - In seconds
 
 
@@ -393,3 +396,12 @@ Control of payload functions and the experiment (e.g. temperature setpoints, dep
     * - Erase EEPROM
       - 7
       - EEPROM Address (OBC to PAY)
+    * - Get restart count
+      - 8
+      - Count
+    * - Get restart reason
+      - 9
+      - See ``uptime.h`` for constants
+    * - Get uptime
+      - 10
+      - In seconds
