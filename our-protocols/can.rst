@@ -298,6 +298,9 @@ Control actions for the power system (e.g. temperature setpoints, battery chargi
     * - Get uptime
       - 12
       - In seconds
+    * - Start temporary low-power mode (60 seconds)
+      - 13
+      - N/A
 
 
 Payload (PAY) Housekeeping
@@ -405,3 +408,6 @@ Control of payload functions and the experiment (e.g. temperature setpoints, dep
     * - Get uptime
       - 10
       - In seconds
+    * - Start temporary low-power mode (60 seconds)
+      - 11
+      - N/A
