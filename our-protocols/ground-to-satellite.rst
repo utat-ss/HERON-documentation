@@ -308,6 +308,17 @@ BE VERY CAREFUL WITH THIS!!
 
 - Message type - 0x19
 
+Erase Memory Physical Block
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+NOTE: The use of the term "block" here is different from all other uses in general.
+
+Deletes the block in memory containing the specified address. The block size can range from 8kb to 64kb - see pg. 5 of data sheet for memory map and pg. 25 for more details on block erase
+
+- Message type - 0x1A
+- Argument 1 - address (in bytes)
+
+
 Ideas for Future Commands
 -------------------------
 
