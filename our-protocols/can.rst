@@ -136,28 +136,29 @@ TODO - see code
 Commands
 ________
 
-* Byte 0 - Message Type
+* Byte 0 - Unused
+* Byte 1 - Unused
+* Byte 2 - Message Type
     * Broad category of type of message
-* Byte 1 - Field Number
+* Byte 3 - Field Number
     * Specific ID/index of a sensor or command
     * always numbered sequentially starting at 0
     * e.g. which sensor to poll
-* Bytes 2-5 - Data (if applicable)
+* Bytes 4-7 - Data (if applicable)
     * When OBC makes a request for data, this is unused
     * When PAY or EPS responds with data, it goes here
     * If OBC sends an action command for setting something in EPS/PAY, there is data in the request but not the response
     * If data is not applicable, sending a response message with the appropriate Bytes 0-1 acts as a confirmation that the action has been performed
     * If the data is smaller than 32 bits, it is right-aligned to the least significant bits with padding zeros added on the left, e.g. a 12-bit value from an ADC (xxxx xxxxxxxx) is sent as a 32-bit value (00000000 00000000 0000xxxx xxxxxxxx)
-* Bytes 6-7 - Unused
 
-Bytes 0-1 are identical both when the request is sent from OBC to PAY/EPS and when the response is sent from PAY/EPS to OBC. This is so OBC can match the request message with the response message and verify it is receiving the correct message.
+Bytes 0-3 are identical both when the request is sent from OBC to PAY/EPS and when the response is sent from PAY/EPS to OBC. This is so OBC can match the request message with the response message and verify it is receiving the correct message.
 
-TODO - implement 4-byte data
+TODO - implement 4-byte data in code
 
 Message Types
 ~~~~~~~~~~~~~
 
-The data collection message types start at field 0 to match numbering and organization in memory. The control message types start at field 1 to prevent commands from being accidentally being executed if sent with field 0.
+The data collection message types start at field 0 to match numbering and organization in memory. The control message types start at field 1 to prevent commands from being accidentally being executed if sent with field 0 (except for ping which is field 0).
 
 Electrical Power Systems (EPS) Housekeeping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
