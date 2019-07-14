@@ -63,24 +63,21 @@ This is used as an argument in some commands to identify a type of data.
 Commands
 --------
 
-Status/ping
-^^^^^^^^^^^
+Ping (OBC)
+^^^^^^^^^^
 
-Ping one of the subsystems to see if it responds. Should be used to check OBC responds to transceiver messages and EPS/PAY respond to CAN messages from OBC.
+Ping OBC to see if it responds. Should be used to check OBC responds to transceiver messages.
 
 - Message type - 0x00
-- Argument 1 - Subsystem
 
-Get Restart Count, Restart Date/Time, Uptime
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Get Subsystem Status (OBC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Gets the restart count (number of times OBC has restarted its program), restart date/time (RTC date/time of most recent restart), and uptime (time since most recent restart) for the specified subsystem.
+Gets the restart count (number of times OBC has restarted its program), restart date/time (RTC date/time of most recent restart), and uptime (time since most recent restart).
 
 - Message type - 0x01
 - Argument 1 - Subsystem
-- Data
-    - If OBC - 14 bytes - restart count (4 bytes), restart date (3 bytes), restart time (3 bytes), restart reason (1 byte), uptime (4 bytes)
-    - If EPS/PAY - 8 bytes - restart count (4 bytes), restart reason (1 byte), uptime (4 bytes)
+- Data - 15 bytes - restart count (4 bytes), restart date (3 bytes), restart time (3 bytes), restart reason (1 byte), uptime (4 bytes)
 
 TODO - make unknown restart reason = 0
 
@@ -107,8 +104,8 @@ The satellite reads and sends back the contents of the flash memory starting at 
 - Argument 2 - count (number of bytes)
 - Data - `count` bytes - read data
 
-Erase Memory Sector
-^^^^^^^^^^^^^^^^^^^
+Erase Memory Physical Sector
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The satellite erases one sector (4 kB) of the flash memory (sets every byte to 0xFF, i.e. all 1's). This will happen for the 4 kB sector that includes the specified address, aligned to a 4 kB boundary.
 
@@ -155,7 +152,7 @@ Turns off or on automatic data collection for one type of data.
 Automatic Data Collection - Period
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Sets the automatic data collection period for one type of data. Must have `period >= 30` or else the state of OBC will not change. This is to prevent data collection from triggering too frequently and constantly filling up the command/CAN queues.
+Sets the automatic data collection period for one type of data. Must have ``period >= 60`` or else the state of OBC will not change. This is to prevent data collection from triggering too frequently and constantly filling up the command/CAN queues.
 
 - Message type - 0x0A
 - Argument 1 - block type
@@ -168,28 +165,12 @@ Resynchronizes timers for data collection for all types of data so they start co
 
 - Message type - 0x0B
 
-Set EPS Heater DAC Setpoints
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The satellite changes the DAC setpoints that control the EPS heaters for the batteries.
-
-- Message type - 0x0C
-- Argument 1 - 0 (heater 1 shadow), 1 (heater 2 shadow), 2 (heater 1 sun), 3 (heater 2 sun)
-- Argument 2 - Setpoint (12 bits)
-
-Set PAY Heater DAC Setpoints
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The satellite changes the DAC setpoints that control the PAY heaters for the cells.
-
-- Message type - 0x0D
-- Argument 1 - 0 or 1
-- Argument 2 - Setpoint (12 bits)
-
 PAY Control - Actuate Motors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Actuates the motors in the payload.
+
+This gets its own command (instead of the generic CAN commands) so it can first send them CAN messages to activate temporary low-power mode.
 
 - Message type - 0x0E
 - Argument 1 - 1 (move plate up) or 2 (move plate down)
@@ -198,6 +179,8 @@ Reset
 ^^^^^
 
 Resets the microcontroller for the specified subsytem (intentionally runs out the watchdog timer to make it restart its program).
+
+This gets its own command (instead of the generic CAN commands) because EPS and PAY will not respond so it doesn't wait for them.
 
 - Message type - 0x0F
 - Argument 1 - subsystem
@@ -229,14 +212,13 @@ OBC sends a CAN message (8 bytes) to PAY and gets a response (8 bytes) back.
 - Argument 2 - last 4 bytes of message to send
 - Data (8 bytes) - response from PAY
 
-Read EEPROM
-^^^^^^^^^^^
+Read EEPROM (OBC)
+^^^^^^^^^^^^^^^^^
 
-Reads 4 bytes (a `dword` i.e. double word) from EEPROM memory of the specified subsystem.
+Reads 4 bytes (a `dword` i.e. double word) from EEPROM memory.
 
 - Message type - 0x12
-- Argument 1 - subsystem
-- Argument 2 - 32-bit address
+- Argument 1 - 32-bit address
 - Data (4 bytes) - read data
 
 Get Current Block Number
@@ -279,25 +261,15 @@ NOTE: This should be run consecutively with the "Set Memory Section Start Addres
 - Argument 1 - block type
 - Argument 2 - end address
 
-Erase EEPROM
-^^^^^^^^^^^^
+Erase EEPROM (OBC)
+^^^^^^^^^^^^^^^^^^
 
-Erases 4 bytes (a `dword` i.e. double word) in EEPROM memory of the specified subsystem (sets to all 1's, i.e. 0xFFFFFFFF).
+Erases 4 bytes (a `dword` i.e. double word) in EEPROM memory (sets to all 1's, i.e. 0xFFFFFFFF).
 
 - Message type - 0x17
-- Argument 1 - subsystem
-- Argument 2 - 32-bit address (in bytes)
+- Argument 1 - 32-bit address (in bytes)
 
 NOTE: Be careful using this, because for example it could force OBC to re-run its initial 30-minute comms delay and try to deploy the antenna again.
-
-Set EPS Heater Mode Current Threshold
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sets the threshold of total (summed) solar panel current for which to switch the mode of shadow/sun for heater setpoints.
-
-- Message type - 0x18
-- Argument 1 - 0 (lower), 1 (upper)
-- Argument 2 - Current (12 bits, in ADC format)
 
 Erase All Memory
 ^^^^^^^^^^^^^^^^
@@ -319,8 +291,25 @@ Deletes the block in memory containing the specified address. The block size can
 - Argument 1 - address (in bytes)
 
 
+General Descriptions for CAN Commands
+-------------------------------------
+
+Ping - EPS/PAY respond to CAN messages from OBC
+
+Set EPS Heater DAC Setpoints - The satellite changes the DAC setpoints that control the EPS heaters for the batteries.
+
+Set PAY Heater DAC Setpoints - The satellite changes the DAC setpoints that control the PAY heaters for the cells.
+
+Set EPS Heater Mode Current Threshold - Sets the threshold of total (summed) solar panel current for which to switch the mode of shadow/sun for heater setpoints.
+
+
 Ideas for Future Commands
 -------------------------
+
+CAN messages
+^^^^^^^^^^^^
+
+Maybe have distinct commands for generic CAN message (less data bytes, just send message type/field number or data) and raw CAN message (full 8 bytes)
 
 Low-power mode
 ^^^^^^^^^^^^^^
