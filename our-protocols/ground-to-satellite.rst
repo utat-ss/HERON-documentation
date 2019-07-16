@@ -94,8 +94,8 @@ Set RTC Date/Time
 - Argument 1 - date (8 bits YY, 8 bits MM, 8 bits DD)
 - Argument 2 - time (8 bits HH, 8 bits MM, 8 bits SS)
 
-Read Memory
-^^^^^^^^^^^
+Read Memory Bytes
+^^^^^^^^^^^^^^^^^
 
 The satellite reads and sends back the contents of the flash memory starting at the specified address and reading the specified number of bytes. The maximum number of bytes that can be read in one command is 106 bytes (to match the biggest block type of PAY_OPT, 10 byte header + 32 fields * 3 bytes, don't want to make the message buffers on OBC any longer).
 
@@ -175,8 +175,8 @@ This gets its own command (instead of the generic CAN commands) so it can first 
 - Message type - 0x0E
 - Argument 1 - 1 (move plate up) or 2 (move plate down)
 
-Reset
-^^^^^
+Reset Subsystem
+^^^^^^^^^^^^^^^
 
 Resets the microcontroller for the specified subsytem (intentionally runs out the watchdog timer to make it restart its program).
 
