@@ -25,6 +25,7 @@ The **decoded message** is the message information that we actually care about.
 The process for the ground station initiating communication and receiving response it as follows.
 
 Ground to satellite request:
+
 - Byte 0 - Message type
 - Bytes 1-4 (32-bit int) - Argument 1 (may be ignored but is still sent)
 - Bytes 5-8 (32-bit int) - Argument 2 (may be ignored but is still sent)
@@ -33,6 +34,7 @@ Ground to satellite request:
 The password is only checked for sensitive commands.
 
 Satellite to ground acknowledgement:
+
 - Byte 0 - Message type
 - Bytes 1-4 (32-bit int) - Argument 1
 - Bytes 5-8 (32-bit int) - Argument 2
@@ -41,6 +43,7 @@ Satellite to ground acknowledgement:
 The acknowledgement should be sent almost immediately after the satellite receives the request, even if it is currently in the process of executing another command. There is a delay between the acknowledgement and response to execute the command (depends on command type, e.g. collect block takes the longest by far).
 
 Satellite to ground response:
+
 - Byte 0 - Message type
 - Bytes 1-4 (32-bit int) - Argument 1
 - Bytes 5-8 (32-bit int) - Argument 2
@@ -88,25 +91,26 @@ We choose to not allow an encoded message to contain the byte 0 (0x00) because w
 Algorithm
 +++++++++
 
-Consider we have a sequence of an arbitrary number of decoded bytes (which we will call base-256, each can take on a value between 0 and 255) that we want to send. We can’t send it in this format since the value 13 is not allowed. Now consider we split this sequence into 7-byte sections, and have a final section for the leftover bytes (i.e. `n % 7` bytes).
+Consider we have a sequence of an arbitrary number of decoded bytes (which we will call base-256, each can take on a value between 0 and 255) that we want to send. We can’t send it in this format since the value 13 is not allowed. Now consider we split this sequence into 7-byte sections, and have a final section for the leftover bytes (i.e. ``n % 7`` bytes).
 
-We will start with how to encode each 7-byte section and discuss the remainder section later. We encode each 7-byte base-256 section as an 8-byte base-254 section, where each byte can take one of 254 possible values, i.e. decoded 0-11 are represented as encoded 1-12, but decoded 12-253 are represented as encoded 14-255. Then we have a sequence of 8 base-254 digits which are treated as a single unsigned integer in big-endian format. Using standard rules for numbers with different bases, you can take 8 bytes in base-254 (say we have an array uint8_t seq[8]) and convert it to an integer as follows: ``seq[0] * (254^7) + seq[1] * (254^6) + ... + seq[7]``.
+We will start with how to encode each 7-byte section and discuss the remainder section later. We encode each 7-byte base-256 section as an 8-byte base-254 section, where each byte can take one of 254 possible values, i.e. decoded 0-11 are represented as encoded 1-12, but decoded 12-253 are represented as encoded 14-255. Then we have a sequence of 8 base-254 digits which are treated as a single unsigned integer in big-endian format. Using standard rules for numbers with different bases, you can take 8 bytes in base-254 (say we have an array ``uint8_t seq[8]``) and convert it to an integer as follows: ``seq[0] * (254^7) + seq[1] * (254^6) + ... + seq[7]``.
 
 Note that the most significant byte in base-254 will usually be 0, and sometimes 1.
 
 Why choose base-254? This is because we have two values (0 and 13) out of 256 that we want to avoid.
 
-Why choose to group bytes such that decoded 7-byte base-256 -> encoded 8-byte base-254? This is because the biggest integer we can represent in software and do math on is 64 bits, i.e. ```uint64_t`` in C.
+Why choose to group bytes such that decoded 7-byte base-256 -> encoded 8-byte base-254? This is because the biggest integer we can represent in software and do math on is 64 bits, i.e. ``uint64_t`` in C.
 
-Why not use 8-byte -> 9-byte? We could do this, but it would assume that the ground station always sends the most significant byte in base-254 as either 0 or 1. Just in case it accidentally sends a higher number, we don't want to overflow a `uint64_t` in the satellite's software.
+Why not use 8-byte -> 9-byte? We could do this, but it would assume that the ground station always sends the most significant byte in base-254 as either 0 or 1. Just in case it accidentally sends a higher number, we don't want to overflow a ``uint64_t`` in the satellite's software.
 
-For the remaining bytes after creating 7-byte groups (e.g. say n = num_bytes % 7), we apply the same algorithm but encode the decoded `n` bytes -> encoded `n+1` bytes to ensure we can always represent all possible values of the bytes.
+For the remaining bytes after creating 7-byte groups (e.g. say ``n = num_bytes % 7``), we apply the same algorithm but encode the decoded ``n`` bytes -> encoded ``n+1`` bytes to ensure we can always represent all possible values of the bytes.
 
 We should have a ratio of encoded bytes to decoded bytes of around 8:7.
 
 If the decoded message has ``N`` bytes, the encoded message length is as follows:
-- If num_bytes % 7 == 0 -> (N / 7) * 8
-- If num_bytes % 7 != 0 -> (floor(N / 7) * 8) + ((N % 7) + 1)
+
+- If ``num_bytes % 7 == 0`` -> ``(N / 7) * 8``
+- If ``num_bytes % 7 != 0`` -> ``(floor(N / 7) * 8) + ((N % 7) + 1)``
 
 Example
 +++++++
@@ -115,42 +119,45 @@ Say we have a 9-byte decoded message, in hex ``f3:ff:34:9e:1e:28:9a:6e:b7``. We 
 
 Note that ``^`` represents a power operation, not XOR.
 
-Take the 7-byte chunk: ``f3:ff:34:9e:1e:28:9a``. We treat this as an unsigned 64-bit integer in big-endian format. Now calculate that 64-bit integer: 0xF3*256^6 + 0xFF*256^5 + 0x34*256^4 +0x9E*256^3 + 0x1E*256^2 + 0x28*256^1 + 0x9A*256^0 = 68679020796848282.
+Take the 7-byte chunk: ``f3:ff:34:9e:1e:28:9a``. We treat this as an unsigned 64-bit integer in big-endian format. Now calculate that 64-bit integer: ``0xF3*256^6 + 0xFF*256^5 + 0x34*256^4 +0x9E*256^3 + 0x1E*256^2 + 0x28*256^1 + 0x9A*256^0 = 68679020796848282``.
 
 Now let's take that integer and represent as 8 values in base-254:
-(note mod(a ; b) = a % b)
-mod(floor(68679020796848282 / 254^7) ; 254) = 1
-mod(floor(68679020796848282 / 254^6) ; 254) = 1
-mod(floor(68679020796848282 / 254^5) ; 254) = 191
-mod(floor(68679020796848282 / 254^4) ; 254) = 106
-mod(floor(68679020796848282 / 254^3) ; 254) = 189
-mod(floor(68679020796848282 / 254^2) ; 254) = 199
-mod(floor(68679020796848282 / 254^1) ; 254) = 13
-mod(floor(68679020796848282 / 254^0) ; 254) = 0
+
+(note ``mod(a ; b) = a % b``)
+
+``mod(floor(68679020796848282 / 254^7) ; 254) = 1``
+``mod(floor(68679020796848282 / 254^6) ; 254) = 1``
+``mod(floor(68679020796848282 / 254^5) ; 254) = 191``
+``mod(floor(68679020796848282 / 254^4) ; 254) = 106``
+``mod(floor(68679020796848282 / 254^3) ; 254) = 189``
+``mod(floor(68679020796848282 / 254^2) ; 254) = 199``
+``mod(floor(68679020796848282 / 254^1) ; 254) = 13``
+``mod(floor(68679020796848282 / 254^0) ; 254) = 0``
 
 Now to escape (not send through the transceiver) the bytes 0 and 13, we apply the mapping of 0-11 -> 1-12 and 12-253 -> 14-255. Now we get:
-1 -> 2 = 0x02
-1 -> 2 = 0x02
-191 -> 193 = 0xC1
-106 -> 108 = 0x6C
-189 -> 191 = 0xBF
-199 -> 201 = 0xC9
-13 -> 15 = 0x0F
-0 -> 1 = 0x01
+
+``1 -> 2 = 0x02``
+``1 -> 2 = 0x02``
+``191 -> 193 = 0xC1``
+``106 -> 108 = 0x6C``
+``189 -> 191 = 0xBF``
+``199 -> 201 = 0xC9``
+``13 -> 15 = 0x0F``
+``0 -> 1 = 0x01``
 
 Now we have the actual 8 bytes we send over the air (in hex): ``02:02:c1:6c:bf:c9:0f:01``
 
 Apply the same procedure to the remaining 2 byte chunk, ``6e:b7``, changing 2-byte base-256 to 3-byte base-254.
 
-0x6E*256^1 + 0xB7*256^0 = 28343
+``0x6E*256^1 + 0xB7*256^0 = 28343``
 
-mod(floor(28343 / 254^2) ; 254) = 0
-mod(floor(28343 / 254^1) ; 254) = 111
-mod(floor(28343 / 254^0) ; 254) = 149
+``mod(floor(28343 / 254^2) ; 254) = 0``
+``mod(floor(28343 / 254^1) ; 254) = 111``
+``mod(floor(28343 / 254^0) ; 254) = 149``
 
-0 -> 1 = 0x01
-111 -> 113 = 0x71
-149 -> 151 = 0x97
+``0 -> 1 = 0x01``
+``111 -> 113 = 0x71``
+``149 -> 151 = 0x97``
 
 Send over the air: ``01:71:97``
 
