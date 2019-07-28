@@ -137,12 +137,19 @@ Now let's take that integer and represent as 8 values in base-254:
 Now to escape (not send through the transceiver) the bytes 0 and 13, we apply the mapping of 0-11 -> 1-12 and 12-253 -> 14-255. Now we get:
 
 ``1 -> 2 = 0x02``
+
 ``1 -> 2 = 0x02``
+
 ``191 -> 193 = 0xC1``
+
 ``106 -> 108 = 0x6C``
+
 ``189 -> 191 = 0xBF``
+
 ``199 -> 201 = 0xC9``
+
 ``13 -> 15 = 0x0F``
+
 ``0 -> 1 = 0x01``
 
 Now we have the actual 8 bytes we send over the air (in hex): ``02:02:c1:6c:bf:c9:0f:01``
@@ -152,11 +159,15 @@ Apply the same procedure to the remaining 2 byte chunk, ``6e:b7``, changing 2-by
 ``0x6E*256^1 + 0xB7*256^0 = 28343``
 
 ``mod(floor(28343 / 254^2) ; 254) = 0``
+
 ``mod(floor(28343 / 254^1) ; 254) = 111``
+
 ``mod(floor(28343 / 254^0) ; 254) = 149``
 
 ``0 -> 1 = 0x01``
+
 ``111 -> 113 = 0x71``
+
 ``149 -> 151 = 0x97``
 
 Send over the air: ``01:71:97``
