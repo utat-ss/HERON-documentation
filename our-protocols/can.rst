@@ -160,6 +160,44 @@ Message Types
 
 The data collection message types start at field 0 to match numbering and organization in memory. The control message types start at field 1 to prevent commands from being accidentally being executed if sent with field 0 (except for ping which is field 0).
 
+Onboard Computer (OBC) Housekeeping
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Note that this does not use CAN; it is just included in this document for consistency in describing field numbering.
+
+General state of the main OBC.
+
+.. list-table:: Field numbers:
+    :header-rows: 1
+
+    * - Data
+      - Field Number
+      - Data Format
+    * - Uptime
+      - 0
+      - In seconds
+    * - Restart count
+      - 1
+      - Count
+    * - Restart reason
+      - 2
+      - See ``uptime.h`` for constants (TODO put in document)
+    * - Restart date
+      - 3
+      - 0x00YYMMDD
+    * - Restart time
+      - 4
+      - 0x00HHMMSS
+
+Get Subsystem Status (OBC)
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TODO
+
+Gets the restart count (number of times OBC has restarted its program), restart date/time (RTC date/time of most recent restart), and uptime (time since most recent restart).
+
+TODO - make unknown restart reason = 0
+
 Electrical Power Systems (EPS) Housekeeping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -245,6 +283,15 @@ General data about the state of the power systems (voltage, current, temperature
     * - Battery heater - sun setpoint 2
       - 23
       - DAC
+    * - Uptime
+      - 24
+      - In seconds
+    * - Restart count
+      - 25
+      - Count
+    * - Restart reason
+      - 26
+      - See ``uptime.h`` for constants (TODO put in document)
 
 
 Electrical Power Systems (EPS) Control
@@ -290,15 +337,6 @@ Control actions for the power system (e.g. temperature setpoints, battery chargi
     * - Erase EEPROM
       - 9
       - EEPROM Address (OBC to EPS)
-    * - Get restart count
-      - 10
-      - Count
-    * - Get restart reason
-      - 11
-      - See ``uptime.h`` for constants
-    * - Get uptime
-      - 12
-      - In seconds
     * - Start temporary low-power mode (60 seconds)
       - 13
       - N/A
@@ -341,6 +379,15 @@ General data about the state of the payload (temperature, pressure, humidity).
     * - Right motor proximity sensor measurement
       - 16
       - ADC - Actuation Distance
+    * - Uptime
+      - 17
+      - In seconds
+    * - Restart count
+      - 18
+      - Count
+    * - Restart reason
+      - 19
+      - See ``uptime.h`` for constants (TODO put in document)
 
 
 Payload (PAY) Optical
@@ -400,15 +447,6 @@ Control of payload functions and the experiment (e.g. temperature setpoints, dep
     * - Erase EEPROM
       - 7
       - EEPROM Address (OBC to PAY)
-    * - Get restart count
-      - 8
-      - Count
-    * - Get restart reason
-      - 9
-      - See ``uptime.h`` for constants
-    * - Get uptime
-      - 10
-      - In seconds
     * - Start temporary low-power mode (60 seconds)
       - 11
       - N/A

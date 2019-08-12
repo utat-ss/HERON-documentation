@@ -216,12 +216,6 @@ Commands - Summary
       - N/A
       - N/A
       - N/A
-    * - Get Subsystem Status (OBC)
-      - No
-      - 0x01
-      - Subsystem
-      - N/A
-      - 15 bytes - restart count (4 bytes), restart date (3 bytes), restart time (3 bytes), restart reason (1 byte), uptime (4 bytes)
     * - Get RTC Date/Time
       - No
       - 0x02
@@ -363,13 +357,6 @@ Ping (OBC)
 ^^^^^^^^^^
 
 Ping OBC to see if it responds. Should be used to check OBC responds to transceiver messages.
-
-Get Subsystem Status (OBC)
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Gets the restart count (number of times OBC has restarted its program), restart date/time (RTC date/time of most recent restart), and uptime (time since most recent restart).
-
-TODO - make unknown restart reason = 0
 
 Get RTC Date/Time
 ^^^^^^^^^^^^^^^^^
