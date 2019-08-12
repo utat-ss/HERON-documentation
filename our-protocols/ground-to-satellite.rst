@@ -195,7 +195,19 @@ This is used as an argument in some commands to identify a type of data.
 - 0 - EPS HK
 - 1 - PAY HK
 - 2 - PAY OPT
+- 3 - OBC HK (TODO make first)
 
+Block Size
+^^^^^^^^^^
+
+The number of bytes to store a block of a particular type of data, including both the header and data.
+
+size = 10 bytes (header) + (3 bytes * number of fields)
+
+- EPS HK - 91 bytes
+- PAY HK - 70 bytes
+- PAY OPT - 106 bytes
+- OBC HK - 25 bytes
 
 Commands - Summary
 ------------------
@@ -233,31 +245,31 @@ Commands - Summary
       - 0x04
       - Starting address (in bytes)
       - Count (number of bytes)
-      - `count` bytes - read data
+      - ``count`` bytes - read data
     * - Erase Memory Physical Sector
       - Yes
       - 0x05
-      - Address (in bytes) - ideally this should be specified as aligned to a 4 kB boundary, but will work nonetheless
+      - Address (in bytes)
       - N/A
       - N/A
     * - Collect Block
       - No
       - 0x06
       - block type
-      - N/A (TODO - argument for auto/manual scheduling?)
+      - N/A
       - 4 bytes - block number
     * - Read Local Block
       - No
       - 0x07
       - block type
       - N/A
-      - 10 bytes (header) + (3 bytes * number of fields) - 79 bytes (EPS HK) or 61 bytes (PAY HK) or 118 bytes (PAY OPT)
+      - Block size for argument 1
     * - Read Memory Block
       - No
       - 0x08
       - block type
       - block number
-      - 10 bytes (header) + (3 bytes * number of fields) - 79 bytes (EPS HK) or 61 bytes (PAY HK) or 118 bytes (PAY OPT)
+      - Block size for argument 1
     * - Automatic Data Collection - Enable/Disable
       - Yes
       - 0x09
@@ -376,10 +388,14 @@ The satellite reads and sends back the contents of the flash memory starting at 
 Erase Memory Physical Sector
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Ideally argument 1 (address in bytes) should be specified as aligned to a 4 kB boundary, but it will work nonetheless.
+
 The satellite erases one sector (4 kB) of the flash memory (sets every byte to 0xFF, i.e. all 1's). This will happen for the 4 kB sector that includes the specified address, aligned to a 4 kB boundary.
 
 Collect Block
 ^^^^^^^^^^^^^
+
+(TODO - argument for auto/manual scheduling?)
 
 Triggers data collection of a block and writes it to flash memory on OBC. Note that this does not send any data back to ground - see "read memory block" command.
 
