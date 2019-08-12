@@ -412,3 +412,15 @@ Control of payload functions and the experiment (e.g. temperature setpoints, dep
     * - Start temporary low-power mode (60 seconds)
       - 11
       - N/A
+
+
+General Descriptions for CAN Commands (TODO)
+--------------------------------------------
+
+Ping - EPS/PAY respond to CAN messages from OBC
+
+Set EPS Heater DAC Setpoints - The satellite changes the DAC setpoints that control the EPS heaters for the batteries.
+
+Set PAY Heater DAC Setpoints - The satellite changes the DAC setpoints that control the PAY heaters for the cells.
+
+Set EPS Heater Mode Current Threshold - Sets the threshold of total (summed) solar panel current for which to switch the mode of shadow/sun for heater setpoints.

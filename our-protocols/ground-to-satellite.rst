@@ -196,110 +196,230 @@ This is used as an argument in some commands to identify a type of data.
 - 1 - PAY HK
 - 2 - PAY OPT
 
-Commands
---------
+
+Commands - Summary
+------------------
+
+.. list-table::
+    :header-rows: 1
+    :stub-columns: 1
+
+    * - Name
+      - Password Protected
+      - Message Type
+      - Argument 1
+      - Argument 2
+      - Data
+    * - Ping (OBC)
+      - No
+      - 0x00
+      - N/A
+      - N/A
+      - N/A
+    * - Get Subsystem Status (OBC)
+      - No
+      - 0x01
+      - Subsystem
+      - N/A
+      - 15 bytes - restart count (4 bytes), restart date (3 bytes), restart time (3 bytes), restart reason (1 byte), uptime (4 bytes)
+    * - Get RTC Date/Time
+      - No
+      - 0x02
+      - N/A
+      - N/A
+      - 6 bytes - date YY, date MM, date DD, time HH, time MM, time SS
+    * - Set RTC Date/Time
+      - Yes
+      - 0x03
+      - date (8 bits YY, 8 bits MM, 8 bits DD)
+      - time (8 bits HH, 8 bits MM, 8 bits SS)
+      - N/A
+    * - Read Memory Bytes
+      - Yes
+      - 0x04
+      - Starting address (in bytes)
+      - Count (number of bytes)
+      - `count` bytes - read data
+    * - Erase Memory Physical Sector
+      - Yes
+      - 0x05
+      - Address (in bytes) - ideally this should be specified as aligned to a 4 kB boundary, but will work nonetheless
+      - N/A
+      - N/A
+    * - Collect Block
+      - No
+      - 0x06
+      - block type
+      - N/A (TODO - argument for auto/manual scheduling?)
+      - 4 bytes - block number
+    * - Read Local Block
+      - No
+      - 0x07
+      - block type
+      - N/A
+      - 10 bytes (header) + (3 bytes * number of fields) - 79 bytes (EPS HK) or 61 bytes (PAY HK) or 118 bytes (PAY OPT)
+    * - Read Memory Block
+      - No
+      - 0x08
+      - block type
+      - block number
+      - 10 bytes (header) + (3 bytes * number of fields) - 79 bytes (EPS HK) or 61 bytes (PAY HK) or 118 bytes (PAY OPT)
+    * - Automatic Data Collection - Enable/Disable
+      - Yes
+      - 0x09
+      - block type
+      - 0 (disable) or 1 (enable)
+      - N/A
+    * - Automatic Data Collection - Period
+      - Yes
+      - 0x0A
+      - block type
+      - period (in seconds)
+      - N/A
+    * - Automatic Data Collection - Resync
+      - Yes
+      - 0x0B
+      - N/A
+      - N/A
+      - N/A
+    * - PAY Control - Actuate Motors
+      - Yes
+      - 0x0E
+      - 1 (move plate up) or 2 (move plate down)
+      - N/A
+      - N/A
+    * - Reset Subsystem
+      - Yes
+      - 0x0F
+      - subsystem
+      - N/A
+      - N/A
+    * - Send CAN Message - EPS
+      - Yes
+      - 0x10
+      - first 4 bytes of message to send
+      - last 4 bytes of message to send
+      - (8 bytes) - response from EPS
+    * - Send CAN Message - PAY
+      - Yes
+      - 0x11
+      - first 4 bytes of message to send
+      - last 4 bytes of message to send
+      - (8 bytes) - response from PAY
+    * - Read EEPROM (OBC)
+      - Yes
+      - 0x12
+      - 32-bit address
+      - N/A
+      - (4 bytes) - read data
+    * - Get Current Block Number
+      - No
+      - 0x13
+      - block type
+      - N/A
+      - (4 bytes) - block number
+    * - Set Current Block Number
+      - Yes
+      - 0x14
+      - block type
+      - block number
+      - N/A
+    * - Set Memory Section Start Address
+      - Yes
+      - 0x15
+      - block type
+      - start address
+      - N/A
+    * - Set Memory Section End Address
+      - Yes
+      - 0x16
+      - block type
+      - end address
+      - N/A
+    * - Erase EEPROM (OBC)
+      - Yes
+      - 0x17
+      - 32-bit address (in bytes)
+      - N/A
+      - N/A
+    * - Erase All Memory
+      - Yes
+      - 0x19
+      - N/A
+      - N/A
+      - N/A
+    * - Erase Memory Physical Block
+      - Yes
+      - 0x1A
+      - address (in bytes)
+      - N/A
+      - N/A
+
+
+Commands - Descriptions
+-----------------------
 
 Ping (OBC)
 ^^^^^^^^^^
 
 Ping OBC to see if it responds. Should be used to check OBC responds to transceiver messages.
 
-- Message type - 0x00
-
 Get Subsystem Status (OBC)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Gets the restart count (number of times OBC has restarted its program), restart date/time (RTC date/time of most recent restart), and uptime (time since most recent restart).
-
-- Message type - 0x01
-- Argument 1 - Subsystem
-- Data - 15 bytes - restart count (4 bytes), restart date (3 bytes), restart time (3 bytes), restart reason (1 byte), uptime (4 bytes)
 
 TODO - make unknown restart reason = 0
 
 Get RTC Date/Time
 ^^^^^^^^^^^^^^^^^
 
-- Message type - 0x02
-- Data - 6 bytes - date YY, date MM, date DD, time HH, time MM, time SS
+TODO
 
 Set RTC Date/Time
 ^^^^^^^^^^^^^^^^^
 
-- Message type - 0x03
-- Argument 1 - date (8 bits YY, 8 bits MM, 8 bits DD)
-- Argument 2 - time (8 bits HH, 8 bits MM, 8 bits SS)
+TODO
 
 Read Memory Bytes
 ^^^^^^^^^^^^^^^^^
 
 The satellite reads and sends back the contents of the flash memory starting at the specified address and reading the specified number of bytes. The maximum number of bytes that can be read in one command is 106 bytes (to match the biggest block type of PAY_OPT, 10 byte header + 32 fields * 3 bytes, don't want to make the message buffers on OBC any longer).
 
-- Message type - 0x04
-- Argument 1 - starting address (in bytes)
-- Argument 2 - count (number of bytes)
-- Data - `count` bytes - read data
-
 Erase Memory Physical Sector
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The satellite erases one sector (4 kB) of the flash memory (sets every byte to 0xFF, i.e. all 1's). This will happen for the 4 kB sector that includes the specified address, aligned to a 4 kB boundary.
 
-- Message type - 0x05
-- Argument 1 - address (in bytes) - ideally this should be specified as aligned to a 4 kB boundary, but will work nonetheless
-
 Collect Block
 ^^^^^^^^^^^^^
 
-Triggers data collection of a block and writes it to flash memory on OBC.
-
-- Message type - 0x06
-- Argument 1 - block type
-- Data - 4 bytes - block number
+Triggers data collection of a block and writes it to flash memory on OBC. Note that this does not send any data back to ground - see "read memory block" command.
 
 Read Local Block
 ^^^^^^^^^^^^^^^^
 
 Reads the block of data stored locally in the microcontroller's program memory.
 
-- Message type - 0x07
-- Argument 1 - block type
-- Data - 10 bytes (header) + (3 bytes * number of fields) - 79 bytes (EPS HK) or 61 bytes (PAY HK) or 118 bytes (PAY OPT)
-
 Read Memory Block
 ^^^^^^^^^^^^^^^^^
 
 The satellite sends back the specified block of data stored in flash memory.
-
-- Message type - 0x08
-- Argument 1 - block type
-- Argument 2 - block number
-- Data - 10 bytes (header) + (3 bytes * number of fields) - 79 bytes (EPS HK) or 61 bytes (PAY HK) or 118 bytes (PAY OPT)
 
 Automatic Data Collection - Enable/Disable
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Turns off or on automatic data collection for one type of data.
 
-- Message type - 0x09
-- Argument 1 - block type
-- Argument 2 - 0 (disable) or 1 (enable)
-
 Automatic Data Collection - Period
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Sets the automatic data collection period for one type of data. Must have ``period >= 60`` or else the state of OBC will not change. This is to prevent data collection from triggering too frequently and constantly filling up the command/CAN queues.
 
-- Message type - 0x0A
-- Argument 1 - block type
-- Argument 2 - period (in seconds)
-
 Automatic Data Collection - Resync
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Resynchronizes timers for data collection for all types of data so they start counting at the same time (reset all to 0, counting up).
-
-- Message type - 0x0B
 
 PAY Control - Actuate Motors
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -308,9 +428,6 @@ Actuates the motors in the payload.
 
 This gets its own command (instead of the generic CAN commands) so it can first send them CAN messages to activate temporary low-power mode.
 
-- Message type - 0x0E
-- Argument 1 - 1 (move plate up) or 2 (move plate down)
-
 Reset Subsystem
 ^^^^^^^^^^^^^^^
 
@@ -318,9 +435,7 @@ Resets the microcontroller for the specified subsytem (intentionally runs out th
 
 This gets its own command (instead of the generic CAN commands) because EPS and PAY will not respond so it doesn't wait for them.
 
-- Message type - 0x0F
-- Argument 1 - subsystem
-- If resetting OBC, no response message back to ground station
+If resetting OBC, no response message back to ground station.
 
 It is recommended that the ground station team sends a follow-up message to check the uptime/restart time of the subsystem that should have been reset.
 
@@ -328,11 +443,6 @@ Send CAN Message - EPS
 ^^^^^^^^^^^^^^^^^^^^^^
 
 OBC sends a CAN message (8 bytes) to EPS and gets a response (8 bytes) back.
-
-- Message type - 0x10
-- Argument 1 - first 4 bytes of message to send
-- Argument 2 - last 4 bytes of message to send
-- Data (8 bytes) - response from EPS
 
 Ideas for use cases:
 
@@ -343,37 +453,20 @@ Send CAN Message - PAY
 
 OBC sends a CAN message (8 bytes) to PAY and gets a response (8 bytes) back.
 
-- Message type - 0x11
-- Argument 1 - first 4 bytes of message to send
-- Argument 2 - last 4 bytes of message to send
-- Data (8 bytes) - response from PAY
-
 Read EEPROM (OBC)
 ^^^^^^^^^^^^^^^^^
 
 Reads 4 bytes (a `dword` i.e. double word) from EEPROM memory.
-
-- Message type - 0x12
-- Argument 1 - 32-bit address
-- Data (4 bytes) - read data
 
 Get Current Block Number
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Gets the current block number for the specified block type. The block number represents the index of the block that will be written to memory the next time collection is triggered for that section, i.e. if the current block number is x, blocks 0 to (n-1) have already been collected and written to memory but block x has not.
 
-- Message type - 0x13
-- Argument 1 - block type
-- Data (4 bytes) - block number
-
 Set Current Block Number
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 Sets the current block number for the specified block type. The block number represents the index of the block that will be written to memory the next time collection is triggered for that section, i.e. if the current block number is x, blocks 0 to (n-1) have already been collected and written to memory but block x has not. This could be used to skip sections of flash memory that are found to be malfunctioning, to reset the block number to 0 when a section reaches the end of its memory and all existing data has already been safely downlinked, or ran when the start address of a section has been changed.
-
-- Message type - 0x14
-- Argument 1 - block type
-- Argument 2 - block number
 
 Set Memory Section Start Address
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -382,10 +475,6 @@ Sets the starting address of a section in OBC flash memory. This could be used i
 
 NOTE: This should be run consecutively with the "Set Memory Section End Address" command.
 
-- Message type - 0x15
-- Argument 1 - block type
-- Argument 2 - start address
-
 Set Memory Section End Address
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -393,17 +482,10 @@ Sets the end address of a section in OBC flash memory. See above for motivation.
 
 NOTE: This should be run consecutively with the "Set Memory Section Start Address" command.
 
-- Message type - 0x16
-- Argument 1 - block type
-- Argument 2 - end address
-
 Erase EEPROM (OBC)
 ^^^^^^^^^^^^^^^^^^
 
 Erases 4 bytes (a `dword` i.e. double word) in EEPROM memory (sets to all 1's, i.e. 0xFFFFFFFF).
-
-- Message type - 0x17
-- Argument 1 - 32-bit address (in bytes)
 
 NOTE: Be careful using this, because for example it could force OBC to re-run its initial 30-minute comms delay and try to deploy the antenna again.
 
@@ -414,8 +496,6 @@ The satellite erases all flash memory on all 3 chips (sets every byte to 0xFF, i
 
 BE VERY CAREFUL WITH THIS!!
 
-- Message type - 0x19
-
 Erase Memory Physical Block
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -423,20 +503,7 @@ NOTE: The use of the term "block" here is different from all other uses in gener
 
 Deletes the block in memory containing the specified address. The block size can range from 8kb to 64kb - see pg. 5 of data sheet for memory map and pg. 25 for more details on block erase
 
-- Message type - 0x1A
-- Argument 1 - address (in bytes)
 
-
-General Descriptions for CAN Commands
--------------------------------------
-
-Ping - EPS/PAY respond to CAN messages from OBC
-
-Set EPS Heater DAC Setpoints - The satellite changes the DAC setpoints that control the EPS heaters for the batteries.
-
-Set PAY Heater DAC Setpoints - The satellite changes the DAC setpoints that control the PAY heaters for the cells.
-
-Set EPS Heater Mode Current Threshold - Sets the threshold of total (summed) solar panel current for which to switch the mode of shadow/sun for heater setpoints.
 
 
 Ideas for Future Commands
