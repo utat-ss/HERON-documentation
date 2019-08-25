@@ -21,57 +21,93 @@ Use 4-byte values (dwords, i.e. double words) for all values - for simplicity an
       - All
     * - 0x04
       - Uptime
-      - Restart date
-      - OBC
+      - Restart reason
+      - All
     * - 0x08
       - Uptime
-      - Restart time
+      - Restart date
       - OBC
     * - 0x0C
       - Uptime
-      - Restart reason
-      - All
+      - Restart time
+      - OBC
     * - 0x20
       - Comms
       - Comms delay done
       - OBC
     * - 0x40
-      - Memory
+      - Data Collection
       - EPS_HK current block number
       - OBC
     * - 0x44
-      - Memory
-      - PAY_HK current block number
+      - Data Collection
+      - EPS_HK auto data collection enable (0 = disabled, 1 = enabled)
       - OBC
     * - 0x48
-      - Memory
+      - Data Collection
+      - EPS_HK auto data collection period (in seconds)
+      - OBC
+    * - 0x50
+      - Data Collection
+      - PAY_HK current block number
+      - OBC
+    * - 0x54
+      - Data Collection
+      - PAY_HK auto data collection enable (0 = disabled, 1 = enabled)
+      - OBC
+    * - 0x58
+      - Data Collection
+      - PAY_HK auto data collection period (in seconds)
+      - OBC
+    * - 0x60
+      - Data Collection
       - PAY_OPT current block number
       - OBC
-    * - 0x4C
+    * - 0x64
+      - Data Collection
+      - PAY_OPT auto data collection enable (0 = disabled, 1 = enabled)
+      - OBC
+    * - 0x68
+      - Data Collection
+      - PAY_OPT auto data collection period (in seconds)
+      - OBC
+    * - 0x70
+      - Data Collection
+      - OBC_HK current block number
+      - OBC
+    * - 0x74
+      - Data Collection
+      - OBC_HK auto data collection enable (0 = disabled, 1 = enabled)
+      - OBC
+    * - 0x78
+      - Data Collection
+      - OBC_HK auto data collection period (in seconds)
+      - OBC
+    * - 0x80
       - Memory
       - Command log current block number
       - OBC
-    * - 0x60
+    * - 0x100
       - EPS Heaters
       - Heater 1 shadow setpoint
       - EPS
-    * - 0x64
+    * - 0x104
       - EPS Heaters
       - Heater 2 shadow setpoint
       - EPS
-    * - 0x68
+    * - 0x108
       - EPS Heaters
       - Heater 1 sun setpoint
       - EPS
-    * - 0x6C
+    * - 0x10C
       - EPS Heaters
       - Heater 2 sun setpoint
       - EPS
-    * - 0x80
+    * - 0x200
       - PAY Heaters
       - Heaters 1-4 setpoint
       - PAY
-    * - 0x84
+    * - 0x204
       - PAY Heaters
       - Heater 5 setpoint
       - PAY

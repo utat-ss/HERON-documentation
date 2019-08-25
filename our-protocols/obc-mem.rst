@@ -21,7 +21,7 @@ Each **block** starts with a 10-byte **header** to identify and timestamp the bl
     * - 0-2
       - Block number (big-endian)
     * - 3
-      - Errors (TODO define this later)
+      - Success Count (0 = fail, 1 = succeed)
     * - 4
       - RTC date (YY)
     * - 5
@@ -35,13 +35,14 @@ Each **block** starts with a 10-byte **header** to identify and timestamp the bl
     * - 9
       - RTC time (SS)
 
+TODO - move success count to end
 
-
+The collect block command uses the success count to count the number of fields successfully received back over CAN from the intended subsystem. If it is equal to the number of fields of that data type, the command was successful.
 
 The **header** is followed by some number of **fields**. For the 3 data sections, each field is 3 bytes (24 bits) for one measurement.
 The number of fields varies between sections but is constant within a section.
 
-For the command section, the header is followed by a special set of data (9 bytes), with values as defined in the ground station to satellite protocol:
+For the command section, the header is followed by a special set of data (10 bytes), with values as defined in the ground station to satellite protocol:
 
 .. list-table::
     :header-rows: 1
@@ -54,6 +55,8 @@ For the command section, the header is followed by a special set of data (9 byte
       - Argument 1
     * - 5-8
       - Argument 2
+    * - 9
+      - Success count (see above)
 
 **EEPROM** (Electronically Erasable Programmable Read Only Memory) is a non-volatile memory in the microcontroller,
 meaning the data persists even if the microcontroller is turned off or reset. We use it to keep track of
@@ -88,8 +91,14 @@ The **sections** are defined as follows:
       - 36
       - 116
       - Payload experiment data - optical measurements
-    * - Command Log
+    * - OBC Housekeeping
       - 0x400000
+      - 0x4FFFFF
+      - 36
+      - 116
+      - Payload experiment data - optical measurements
+    * - Command Log
+      - 0x500000
       - 0x5FFFFF
       - N/A
       - 19

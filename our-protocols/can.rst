@@ -131,15 +131,19 @@ Every CAN message is 8 bytes, structured as follows:
 Heartbeat
 _________
 
-TODO - see code
+TODO - update code
+
+* Byte 0 - Sender
+* Byte 1 - Receiver
+* Byte 2 - Opcode (1 = ping request, 2 = ping response)
 
 Commands
 ________
 
 * Byte 0 - Unused
 * Byte 1 - Unused
-* Byte 2 - Message Type
-    * Broad category of type of message
+* Byte 2 - Opcode
+    * Broad category of type of message/command
 * Byte 3 - Field Number
     * Specific ID/index of a sensor or command
     * always numbered sequentially starting at 0
@@ -152,8 +156,6 @@ ________
     * If the data is smaller than 32 bits, it is right-aligned to the least significant bits with padding zeros added on the left, e.g. a 12-bit value from an ADC (xxxx xxxxxxxx) is sent as a 32-bit value (00000000 00000000 0000xxxx xxxxxxxx)
 
 Bytes 0-3 are identical both when the request is sent from OBC to PAY/EPS and when the response is sent from PAY/EPS to OBC. This is so OBC can match the request message with the response message and verify it is receiving the correct message.
-
-TODO - implement 4-byte data in code
 
 Message Types
 ~~~~~~~~~~~~~
@@ -181,7 +183,7 @@ General state of the main OBC.
       - Count
     * - Restart reason
       - 2
-      - See ``uptime.h`` for constants (TODO put in document)
+      - See data conversion protocol
     * - Restart date
       - 3
       - 0x00YYMMDD
@@ -338,9 +340,16 @@ Control actions for the power system (e.g. temperature setpoints, battery chargi
       - 9
       - EEPROM Address (OBC to EPS)
     * - Start temporary low-power mode (60 seconds)
-      - 13
+      - 10
       - N/A
 
+TODO - set limits for setpoints
+
+Ping - Respond to a CAN message from OBC
+
+Set EPS Heater DAC Setpoints - The satellite changes the DAC setpoints that control the EPS heaters for the batteries.
+
+Set EPS Heater Mode Current Threshold - Sets the threshold of total (summed) solar panel current for which to switch the mode of shadow/sun for heater setpoints.
 
 Payload (PAY) Housekeeping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -448,17 +457,9 @@ Control of payload functions and the experiment (e.g. temperature setpoints, dep
       - 7
       - EEPROM Address (OBC to PAY)
     * - Start temporary low-power mode (60 seconds)
-      - 11
+      - 8
       - N/A
 
-
-General Descriptions for CAN Commands (TODO)
---------------------------------------------
-
-Ping - EPS/PAY respond to CAN messages from OBC
-
-Set EPS Heater DAC Setpoints - The satellite changes the DAC setpoints that control the EPS heaters for the batteries.
+Ping - Respond to a CAN message from OBC
 
 Set PAY Heater DAC Setpoints - The satellite changes the DAC setpoints that control the PAY heaters for the cells.
-
-Set EPS Heater Mode Current Threshold - Sets the threshold of total (summed) solar panel current for which to switch the mode of shadow/sun for heater setpoints.

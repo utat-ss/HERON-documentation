@@ -129,3 +129,28 @@ Data
 - 32 bits
 - TODO - figure out how to deal with this in CAN messages
 - TODO - check big-endian or little-endian, maybe flip bytes
+
+Restart Reason
+--------------
+
+.. list-table::
+    :header-rows: 1
+
+    * - Reason
+      - Value
+    * - Unintentional watchdog timeout (hang)
+      - 0x01
+    * - Intentional reset command
+      - 0x02
+    * - No command received for some amount of time
+      - 0x03
+    * - Watchdog system reset (not caught by intentionally timing out the watchdog, i.e. WDRF)
+      - 0x04
+    * - Brown-out reset
+      - 0x05
+    * - External reset (could be from heartbeat failed ping response)
+      - 0x06
+    * - Power-on reset
+      - 0x07
+    * - Unknown
+      - 0x00 or 0xFF

@@ -26,28 +26,30 @@ The process for the ground station initiating communication and receiving respon
 
 Ground to satellite request:
 
-- Byte 0 - Message type
-- Bytes 1-4 (32-bit int) - Argument 1 (may be ignored but is still sent)
-- Bytes 5-8 (32-bit int) - Argument 2 (may be ignored but is still sent)
-- Bytes 9-12 (32-bit int) - Password (may be ignored but is still sent)
-
-The password is only checked for sensitive commands.
-
-Satellite to ground acknowledgement:
-
-- Byte 0 - Message type
+- Byte 0 - Opcode
 - Bytes 1-4 (32-bit int) - Argument 1
 - Bytes 5-8 (32-bit int) - Argument 2
-- Bytes 9 - Status - 0 = OK (either correct password or don't care about password for that command), 1 = Invalid Password, 2 = Invalid Command
+- Bytes 9-12 (32-bit int) - Password
+
+The argument 1, argument 2, and password are sometimes not used, but are always sent in packets. The password is only checked for sensitive commands.
+
+TODO - revisit variable-length or omission of arguments
+
+Satellite to ground acknowledgement (ACK or NACK):
+
+- Byte 0 - Opcode
+- Bytes 1-4 (32-bit int) - Argument 1
+- Bytes 5-8 (32-bit int) - Argument 2
+- Bytes 9 - Status - 0 = OK (valid command, password is correct or don't care), 1 = Invalid Command, 2 = Invalid Password
 
 The acknowledgement should be sent almost immediately after the satellite receives the request, even if it is currently in the process of executing another command. There is a delay between the acknowledgement and response to execute the command (depends on command type, e.g. collect block takes the longest by far).
 
 Satellite to ground response:
 
-- Byte 0 - Message type
+- Byte 0 - Opcode
 - Bytes 1-4 (32-bit int) - Argument 1
 - Bytes 5-8 (32-bit int) - Argument 2
-- Bytes 9-... - Data (length depends on message type)
+- Bytes 9-... - Data (length depends on opcode)
 
 Message Encoding
 ----------------
@@ -55,14 +57,12 @@ Message Encoding
 The **encoded message** is the full message (called "message" in the packetization protocol), i.e. what is actually sent through the transceiver and over the air.
 
 - Byte 0 - 0x00 (special character to indicate start of message)
-- Byte 1 - number of bytes in message (starting at byte 3 but not including the last byte, i.e. subtract 4 from total number of characters) - 0x00 is invalid
+- Byte 1 - number of bytes in decoded message with base-254 algorithm applied + 16 (i.e. +0x10, to avoid ever sending the byte 0x0D, should never overflow 255) (starting at byte 3 but not including byte n-1, i.e. subtract 4 from total number of characters) - number<=16 is invalid
 - Byte 2 - 0x00 (special character to separate length from message contents)
 - Byte 3-... - Decoded message with base-254 algorithm applied (see below)
 - Byte (n-1) - 0x00 (special character to indicate end of message)
 
 Even though the transceiver only accepts packets with a valid checksum, we add the start and count bytes in case characters are dropped over UART between the OBC and transceiver.
-
-TODO - will the length ever be 13? Maybe add an extra byte for padding and just have minimum rather than exact length.
 
 Base-254 Algorithm
 ^^^^^^^^^^^^^^^^^^
@@ -190,6 +190,8 @@ One of the three subsystems of the satellite. (TODO - PAY SSM/Optical?)
 Block Type
 ^^^^^^^^^^
 
+TODO - update
+
 This is used as an argument in some commands to identify a type of data.
 
 - 0 - EPS HK
@@ -199,6 +201,8 @@ This is used as an argument in some commands to identify a type of data.
 
 Block Size
 ^^^^^^^^^^
+
+TODO - update
 
 The number of bytes to store a block of a particular type of data, including both the header and data.
 
@@ -218,7 +222,7 @@ Commands - Summary
 
     * - Name
       - Password Protected
-      - Message Type
+      - Opcode
       - Argument 1
       - Argument 2
       - Data
@@ -256,15 +260,15 @@ Commands - Summary
       - No
       - 0x06
       - block type
-      - N/A
-      - 4 bytes - block number
-    * - Read Local Block
+      - automatic
+      - 3 bytes - block number
+    * - Read Recent Local Block
       - No
       - 0x07
       - block type
       - N/A
       - Block size for argument 1
-    * - Read Memory Block
+    * - Read Block
       - No
       - 0x08
       - block type
@@ -360,6 +364,19 @@ Commands - Summary
       - address (in bytes)
       - N/A
       - N/A
+    * - Enable/Disable Indefinite Low-Power Mode
+      - Yes
+      - 0x1B
+      - 0 to disable, 1 to enable
+      - N/A
+      - N/A
+    * - Get Most Recent Status Info
+      - No
+      - 0x1C
+      - N/A
+      - N/A
+      - 27 bytes - OBC uptime (3 bytes), OBC restart count (3 bytes), OBC restart reason (1 byte), OBC restart date (3 bytes), OBC restart time (3 bytes), EPS uptime (3 bytes), EPS restart count (3 bytes), EPS restart reason (1 byte), PAY uptime (3 bytes), PAY restart count (3 bytes), PAY restart reason (1 byte)
+
 
 
 Commands - Descriptions
@@ -395,17 +412,19 @@ The satellite erases one sector (4 kB) of the flash memory (sets every byte to 0
 Collect Block
 ^^^^^^^^^^^^^
 
-(TODO - argument for auto/manual scheduling?)
+Note the "automatic" argument indicates whether the command was sent manually from the ground station (0) or was scheduled by automatic data collection (1). The ground station should only send this as 0. A value of 1 will cause OBC to not send a transceiver packet response through the downlink. This is to save power for a frequent operation and to prevent OBC from spamming the ground station with packets when the ground station did not request anything.
 
-Triggers data collection of a block and writes it to flash memory on OBC. Note that this does not send any data back to ground - see "read memory block" command.
+Triggers data collection of a block and writes it to flash memory on OBC. Note that this does not send any data back to ground - see "read block" command.
 
-Read Local Block
-^^^^^^^^^^^^^^^^
+Read Recent Local Block
+^^^^^^^^^^^^^^^^^^^^^^^
 
-Reads the block of data stored locally in the microcontroller's program memory.
+Reads the block of data stored locally in the microcontroller's program memory. This should be the most recent block it has collected, if OBC has not restarted since it collected it.
 
-Read Memory Block
-^^^^^^^^^^^^^^^^^
+Generally, this should not be used. It can be used for debugging and very infrequent data collection in case flash memory storage fails.
+
+Read Block
+^^^^^^^^^^
 
 The satellite sends back the specified block of data stored in flash memory.
 
@@ -506,18 +525,14 @@ NOTE: The use of the term "block" here is different from all other uses in gener
 
 Deletes the block in memory containing the specified address. The block size can range from 8kb to 64kb - see pg. 5 of data sheet for memory map and pg. 25 for more details on block erase
 
+Enable/Disable Indefinite Low-Power Mode
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+TODO - figure out what this should do
 
+Get Most Recent Status Info
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Ideas for Future Commands
--------------------------
+Gets the most recently saved (in flash memory) status information for each subsystem. This is done by subtracting one from each section's current block number and reading that block in memory (does not actually modify the current block number for any sections).
 
-CAN messages
-^^^^^^^^^^^^
-
-Maybe have distinct commands for generic CAN message (less data bytes, just send message type/field number or data) and raw CAN message (full 8 bytes)
-
-Low-power mode
-^^^^^^^^^^^^^^
-
-Puts the entire satellite in low-power mode.
+This is intended to be used at the beginning of the pass to detect any restarts or critical status information that should all be obtained in one command.
