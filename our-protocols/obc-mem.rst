@@ -21,21 +21,21 @@ Each **block** starts with a 10-byte **header** to identify and timestamp the bl
     * - 0-2
       - Block number (big-endian)
     * - 3
-      - Success Count (0 = fail, 1 = succeed)
-    * - 4
       - RTC date (YY)
-    * - 5
+    * - 4
       - RTC date (MM)
-    * - 6
+    * - 5
       - RTC date (DD)
-    * - 7
+    * - 6
       - RTC time (HH)
-    * - 8
+    * - 7
       - RTC time (MM)
-    * - 9
+    * - 8
       - RTC time (SS)
+    * - 9
+      - Success Count (0xFF = fail, otherwise success)
 
-TODO - move success count to end
+The success count byte will not be written when a command is started, so its default value of 0xFF means a fail. After a command it is executed and succeesed, the byte will be written to 1.
 
 The collect block command uses the success count to count the number of fields successfully received back over CAN from the intended subsystem. If it is equal to the number of fields of that data type, the command was successful.
 
@@ -55,8 +55,6 @@ For the command section, the header is followed by a special set of data (10 byt
       - Argument 1
     * - 5-8
       - Argument 2
-    * - 9
-      - Success count (see above)
 
 **EEPROM** (Electronically Erasable Programmable Read Only Memory) is a non-volatile memory in the microcontroller,
 meaning the data persists even if the microcontroller is turned off or reset. We use it to keep track of
@@ -103,3 +101,5 @@ The **sections** are defined as follows:
       - N/A
       - 19
       - Log of all commands executed by OBC
+
+TODO - OBC HK first
