@@ -40,7 +40,7 @@ Satellite to ground acknowledgement (ACK or NACK):
 - Byte 0 - Opcode
 - Bytes 1-4 (32-bit int) - Argument 1
 - Bytes 5-8 (32-bit int) - Argument 2
-- Bytes 9 - Status - 0 = OK (valid command, password is correct or don't care), 1 = Invalid Command, 2 = Invalid Password
+- Bytes 9 - Status - 0 = OK (valid command and (valid password or don't care)), 1 = Invalid Length, 2 = Invalid Decoded Format, 3 = Invalid Opcode, 4 = Invalid Password
 
 The acknowledgement should be sent almost immediately after the satellite receives the request, even if it is currently in the process of executing another command. There is a delay between the acknowledgement and response to execute the command (depends on command type, e.g. collect block takes the longest by far).
 
