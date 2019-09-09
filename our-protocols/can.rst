@@ -468,7 +468,7 @@ Payload (PAY) SPI Protocol
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 Optical SPI - This microcontroller (PAY-Optical) functions as a SPI slave. The PAY microcontroller functions as the SPI master.
 
-When PAY sends a request to PAY-Optical to request reading of a sensor, PAY will send a byte over SPI.
+When PAY sends a request to PAY-Optical to request reading of a sensor, PAY will send a byte over SPI. It will start with two 1's ("0B11xxxxx") to signalify to Pay-Optical that it is requesting an instrumentation reading: optical density or fluorescence.
 
 +-----+-----+-----------+-----+-----+-----+-----+
 | Byte                                          |
@@ -479,7 +479,7 @@ When PAY sends a request to PAY-Optical to request reading of a sensor, PAY will
 +-----+-----+-----------+-----+-----+-----+-----+
 
 * OD (optical density) = 1
-* FLUOR (Fluorescence)) = 0
+* FLUOR (Fluorescence) = 0
 * bank = 0,1,2,3
 * channel = 0,1,2,3,4,5,6,7
 
