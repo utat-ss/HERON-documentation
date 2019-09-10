@@ -10,3 +10,4 @@ Our Protocols
     obc-mem
     data-conversion
     eeprom-map
+    optical-spi
