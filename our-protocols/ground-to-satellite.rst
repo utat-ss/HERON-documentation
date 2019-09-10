@@ -260,15 +260,15 @@ Commands - Summary
       - No
       - 0x06
       - block type
-      - automatic
-      - 3 bytes - block number
+      - automatic (1 for auto)
+      - 3 bytes - block number (only sends a downlink packet if auto)
     * - Read Recent Local Block
       - No
       - 0x07
       - block type
       - N/A
       - Block size for argument 1
-    * - Read Block
+    * - Read Data Block
       - No
       - 0x08
       - block type
@@ -376,7 +376,24 @@ Commands - Summary
       - N/A
       - N/A
       - 27 bytes - OBC uptime (3 bytes), OBC restart count (3 bytes), OBC restart reason (1 byte), OBC restart date (3 bytes), OBC restart time (3 bytes), EPS uptime (3 bytes), EPS restart count (3 bytes), EPS restart reason (1 byte), PAY uptime (3 bytes), PAY restart count (3 bytes), PAY restart reason (1 byte)
-
+    * - Read Primary Command Blocks
+      - No
+      - 0x1D
+      - starting block number
+      - number of blocks (count, must be <= 5 or else nothing will be read and 0 bytes of data will be given back)
+      - (19 * `count`) bytes - block size for `count` number of command blocks (19 bytes each)
+    * - Read Secondary Command Blocks
+      - No
+      - 0x1E
+      - starting block number
+      - number of blocks (count, must be <= 5 or else nothing will be read and 0 bytes of data will be given back)
+      - (19 * `count`) bytes - block size for `count` number of command blocks (19 bytes each)
+    * - Read RAM Byte (OBC)
+      - Yes
+      - 0x1F
+      - Address (in bytes)
+      - N/A
+      - 1 byte - value
 
 
 Commands - Descriptions
@@ -423,8 +440,8 @@ Reads the block of data stored locally in the microcontroller's program memory. 
 
 Generally, this should not be used. It can be used for debugging and very infrequent data collection in case flash memory storage fails.
 
-Read Block
-^^^^^^^^^^
+Read Data Block
+^^^^^^^^^^^^^^^
 
 The satellite sends back the specified block of data stored in flash memory.
 
@@ -536,3 +553,20 @@ Get Most Recent Status Info
 Gets the most recently saved (in flash memory) status information for each subsystem. This is done by subtracting one from each section's current block number and reading that block in memory (does not actually modify the current block number for any sections).
 
 This is intended to be used at the beginning of the pass to detect any restarts or critical status information that should all be obtained in one command.
+
+Read Primary Command Blocks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The satellite sends back the specified block(s) of primary command data stored in flash memory.
+
+Read Secondary Command Blocks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The satellite sends back the specified block(s) of secondary command data stored in flash memory.
+
+Read RAM Byte (OBC)
+^^^^^^^^^^^^^^^^^^^
+
+Reads a byte from the "data memory" (i.e. RAM) in the OBC microcontroller (see http://download.mikroe.com/documents/compilers/mikroc/avr/help/avr_memory_organization.htm). This is intended to read register values in the MCU for debugging purposes.
+
+TODO - could this be dangerous if reading from an unintended location?

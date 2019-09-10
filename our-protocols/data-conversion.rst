@@ -138,6 +138,8 @@ Restart Reason
 
     * - Reason
       - Value
+    * - Unknown
+      - 0x00 or 0xFF
     * - Unintentional watchdog timeout (hang)
       - 0x01
     * - Intentional reset command
@@ -152,5 +154,3 @@ Restart Reason
       - 0x06
     * - Power-on reset
       - 0x07
-    * - Unknown
-      - 0x00 or 0xFF

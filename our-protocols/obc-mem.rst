@@ -71,8 +71,14 @@ The **sections** are defined as follows:
       - Number of fields per block
       - Number of bytes per block (3 * fields/block + 10)
       - Description
-    * - EPS Housekeeping
+    * - OBC Housekeeping
       - 0x000000
+      - 0x0FFFFF
+      - 36
+      - 116
+      - Payload experiment data - optical measurements
+    * - EPS Housekeeping
+      - 0x100000
       - 0x1FFFFF
       - 12
       - 44
@@ -89,17 +95,21 @@ The **sections** are defined as follows:
       - 36
       - 116
       - Payload experiment data - optical measurements
-    * - OBC Housekeeping
+    * - Primary Command Log
       - 0x400000
       - 0x4FFFFF
-      - 36
-      - 116
-      - Payload experiment data - optical measurements
-    * - Command Log
+      - N/A
+      - 19
+      - Log of all commands executed by OBC, except for Read Data Block, Read Primary Command Blocks, and Read Secondary Command Blocks
+    * - Second Command Log
       - 0x500000
       - 0x5FFFFF
       - N/A
       - 19
-      - Log of all commands executed by OBC
+      - Log of all commands executed by OBC, only for Read Data Block, Read Primary Command Blocks, and Read Secondary Command Blocks
 
-TODO - OBC HK first
+If auto data collection is enabled and the current block number of OBC reaches the end of the allocated memory for that section, the current block number will automatically be set back to 0 by the OBC on its own by enqueuing and executing a "Set Block Number" command.
+
+TODO - different number of bytes/measurement for each section?
+
+TODO - separate sections for uptime/restart count/restart reason?

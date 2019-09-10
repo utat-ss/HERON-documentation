@@ -133,9 +133,11 @@ _________
 
 TODO - update code
 
-* Byte 0 - Sender
-* Byte 1 - Receiver
-* Byte 2 - Opcode (1 = ping request, 2 = ping response)
+* Byte 0 - Unused
+* Byte 1 - Sender
+* Byte 2 - Receiver
+* Byte 3 - Opcode (1 = ping request, 2 = ping response, 3 = restart count request, 4 = restart count response)
+* Bytes 4-7 - Data (if responding to a restart count request)
 
 Commands
 ________
@@ -165,11 +167,15 @@ The data collection message types start at field 0 to match numbering and organi
 Onboard Computer (OBC) Housekeeping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Message Type: N/A
+
 Note that this does not use CAN; it is just included in this document for consistency in describing field numbering.
 
 General state of the main OBC.
 
-.. list-table:: Field numbers:
+Field numbers:
+
+.. list-table::
     :header-rows: 1
 
     * - Data
@@ -191,23 +197,18 @@ General state of the main OBC.
       - 4
       - 0x00HHMMSS
 
-Get Subsystem Status (OBC)
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-TODO
-
-Gets the restart count (number of times OBC has restarted its program), restart date/time (RTC date/time of most recent restart), and uptime (time since most recent restart).
-
 TODO - make unknown restart reason = 0
 
 Electrical Power Systems (EPS) Housekeeping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Message Type: ``0x00``
+Message Type: ``0x01``
 
 General data about the state of the power systems (voltage, current, temperature).
 
-.. list-table:: Field numbers:
+Field numbers:
+
+.. list-table::
     :header-rows: 1
 
     * - Data
@@ -299,11 +300,13 @@ General data about the state of the power systems (voltage, current, temperature
 Electrical Power Systems (EPS) Control
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Message Type: ``0x01``
+Message Type: ``0x02``
 
 Control actions for the power system (e.g. temperature setpoints, battery charging).
 
-.. list-table:: Field numbers:
+Field numbers:
+
+.. list-table::
     :header-rows: 1
 
     * - Data
@@ -342,6 +345,9 @@ Control actions for the power system (e.g. temperature setpoints, battery chargi
     * - Start temporary low-power mode (60 seconds)
       - 10
       - N/A
+    * - Read RAM Byte
+      - 11
+      - RAM Address (OBC to EPS) or RAM data (EPS to OBC)
 
 TODO - set limits for setpoints
 
@@ -354,11 +360,13 @@ Set EPS Heater Mode Current Threshold - Sets the threshold of total (summed) sol
 Payload (PAY) Housekeeping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Message Type: ``0x02``
+Message Type: ``0x03``
 
 General data about the state of the payload (temperature, pressure, humidity).
 
-.. list-table:: Field numbers:
+Field numbers:
+
+.. list-table::
     :header-rows: 1
 
     * - Data
@@ -402,13 +410,15 @@ General data about the state of the payload (temperature, pressure, humidity).
 Payload (PAY) Optical
 ^^^^^^^^^^^^^^^^^^^^^
 
-Message Type: ``0x03``
+Message Type: ``0x04``
 
 Optical sensor data from the experiment (wells with cells).
 
 TODO - get mapping of field numbers
 
-.. list-table:: Field numbers:
+Field numbers:
+
+.. list-table::
     :header-rows: 1
 
     * - Data
@@ -422,11 +432,13 @@ TODO - get mapping of field numbers
 Payload (PAY) Control
 ^^^^^^^^^^^^^^^^^^^^^
 
-Message Type: ``0x04``
+Message Type: ``0x05``
 
 Control of payload functions and the experiment (e.g. temperature setpoints, deployment with motors popping blister packs and the proximity sensors to the actuation plate).
 
-.. list-table:: Field numbers:
+Field numbers:
+
+.. list-table::
     :header-rows: 1
 
     * - Data
@@ -459,6 +471,9 @@ Control of payload functions and the experiment (e.g. temperature setpoints, dep
     * - Start temporary low-power mode (60 seconds)
       - 8
       - N/A
+    * - Read RAM Byte
+      - 9
+      - RAM Address (OBC to PAY) or RAM data (PAY to OBC)
 
 Ping - Respond to a CAN message from OBC
 
