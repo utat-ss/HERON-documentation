@@ -100,13 +100,13 @@ The **sections** are defined as follows:
       - 0x4FFFFF
       - N/A
       - 19
-      - Log of all commands executed by OBC, except for Read Data Block, Read Primary Command Blocks, and Read Secondary Command Blocks
-    * - Second Command Log
+      - Log of commands executed by OBC, except for Read Data Block, Read Primary Command Blocks, and Read Secondary Command Blocks
+    * - Secondary Command Log
       - 0x500000
       - 0x5FFFFF
       - N/A
       - 19
-      - Log of all commands executed by OBC, only for Read Data Block, Read Primary Command Blocks, and Read Secondary Command Blocks
+      - Log of commands executed by OBC, only for Read Data Block, Read Primary Command Blocks, and Read Secondary Command Blocks
 
 If auto data collection is enabled and the current block number of OBC reaches the end of the allocated memory for that section, the current block number will automatically be set back to 0 by the OBC on its own by enqueuing and executing a "Set Block Number" command.
 
