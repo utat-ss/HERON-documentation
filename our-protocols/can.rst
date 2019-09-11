@@ -162,7 +162,7 @@ Bytes 0-3 are identical both when the request is sent from OBC to PAY/EPS and wh
 Message Types
 ~~~~~~~~~~~~~
 
-The data collection message types start at field 0 to match numbering and organization in memory. The control message types start at field 1 to prevent commands from being accidentally being executed if sent with field 0 (except for ping which is field 0).
+The data collection message types start at field 0 to match numbering and organization in memory.
 
 Onboard Computer (OBC) Housekeeping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -372,39 +372,45 @@ Field numbers:
     * - Data
       - Field Number
       - Data Format
-    * - Temperature sensor measurement
-      - 0
-      - Temperature
     * - Humidity sensor measurement
-      - 1
+      - 0
       - Humidity
     * - Pressure sensor measurement
-      - 2
+      - 1
       - Pressure
-    * - MF chip thermistor temperatures
-      - 3 to 12
+    * - Temperature sensor measurement (ambient)
+      - 2
       - ADC - Thermistor
-    * - MF chip heater - setpoint 1
-      - 13
-      - DAC
-    * - MF chip heater - setpoint 2
-      - 14
-      - DAC
-    * - Left motor proximity sensor measurement
-      - 15
-      - ADC - Actuation Distance
-    * - Right motor proximity sensor measurement
-      - 16
-      - ADC - Actuation Distance
+    * - Temperature sensor measurement (motor driver 1)
+      - 3
+      - ADC - Thermistor
+    * - Temperature sensor measurement (motor driver 2)
+      - 4
+      - ADC - Thermistor
+    * - Temperature sensor measurement (boost 10V inductor)
+      - 5
+      - ADC - Thermistor
+    * - Temperature sensor measurement (boost 6V inductor)
+      - 6
+      - ADC - Thermistor
+    * - MF chip thermistor temperatures (1 to 12)
+      - 7 to 18
+      - ADC - Thermistor
+    * - Heater enabled states
+      - 19
+      - 5 bits - 1 bit for each heater state (0 = off, 1 = on) - bit 4 = heater 5, bit 0 = heater 1
+    * - Limit switch measurements
+      - 20
+      - 4 bits - 1 bit for each switch state (0 = not pressed, 1 = pressed) - bit 3 = top 1, bit 2 = top 2, bit 1 = bot 1, bit 0 = bot 2
     * - Uptime
-      - 17
+      - 21
       - In seconds
     * - Restart count
-      - 18
+      - 22
       - Count
     * - Restart reason
-      - 19
-      - See ``uptime.h`` for constants (TODO put in document)
+      - 23
+      - See ``uptime.h`` for constants
 
 
 Payload (PAY) Optical
@@ -426,7 +432,7 @@ Field numbers:
       - Data Format
     * - 32 wells
       - 0 to 31
-      - Optical ADC
+      - Optical Sensor
 
 
 Payload (PAY) Control
@@ -447,32 +453,71 @@ Field numbers:
     * - Ping
       - 0
       - N/A
-    * - Set MF chip heater - setpoint 1
+    * - Turn heater 1 off
       - 1
-      - DAC
-    * - Set MF chip heater - setpoint 2
+      - N/A
+    * - Turn heater 1 on
       - 2
-      - DAC
-    * - Move actuation plate up
+      - N/A
+    * - Turn heater 2 off
       - 3
       - N/A
-    * - Move actuation plate down
+    * - Turn heater 2 on
       - 4
       - N/A
-    * - Reset
+    * - Turn heater 3 off
       - 5
       - N/A
-    * - Read EEPROM
+    * - Turn heater 3 on
       - 6
-      - EEPROM Address (OBC to PAY) or EEPROM data (PAY to OBC)
-    * - Erase EEPROM
+      - N/A
+    * - Turn heater 4 off
       - 7
-      - EEPROM Address (OBC to PAY)
-    * - Start temporary low-power mode (60 seconds)
+      - N/A
+    * - Turn heater 4 on
       - 8
       - N/A
-    * - Read RAM Byte
+    * - Turn heater 5 off
       - 9
+      - N/A
+    * - Turn heater 5 on
+      - 10
+      - N/A
+    * - Disable 6V boost converter
+      - 11
+      - N/A
+    * - Enable 6V boost converter
+      - 12
+      - N/A
+    * - Disable 10V boost converter
+      - 13
+      - N/A
+    * - Enable 10V boost converter
+      - 14
+      - N/A
+    * - Move actuation plate up
+      - 15
+      - N/A
+    * - Move actuation plate down
+      - 16
+      - N/A
+    * - Run blister pack deployment sequence
+      - 17
+      - N/A
+    * - Reset
+      - 18
+      - N/A
+    * - Read EEPROM
+      - 19
+      - EEPROM Address (OBC to PAY) or EEPROM data (PAY to OBC)
+    * - Erase EEPROM
+      - 20
+      - EEPROM Address (OBC to PAY)
+    * - Start temporary low-power mode (60 seconds)
+      - 21
+      - N/A
+    * - Read RAM Byte
+      - 22
       - RAM Address (OBC to PAY) or RAM data (PAY to OBC)
 
 Ping - Respond to a CAN message from OBC
