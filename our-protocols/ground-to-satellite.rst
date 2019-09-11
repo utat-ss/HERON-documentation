@@ -183,23 +183,21 @@ Constants
 Subsystem
 ^^^^^^^^^
 
-One of the three subsystems of the satellite. (TODO - PAY SSM/Optical?)
+One of the three primary subsystems of the satellite.
 
-- 0 - OBC
-- 1 - EPS
-- 2 - PAY
+- 1 - OBC
+- 2 - EPS
+- 3 - PAY (SSM)
 
 Block Type
 ^^^^^^^^^^
 
-TODO - update
-
 This is used as an argument in some commands to identify a type of data.
 
-- 0 - EPS HK
-- 1 - PAY HK
-- 2 - PAY OPT
-- 3 - OBC HK (TODO make first)
+- 1 - OBC_HK
+- 2 - EPS_HK
+- 3 - PAY_HK
+- 4 - PAY_OPT
 
 Block Size
 ^^^^^^^^^^
@@ -210,10 +208,11 @@ The number of bytes to store a block of a particular type of data, including bot
 
 size = 10 bytes (header) + (3 bytes * number of fields)
 
-- EPS HK - 91 bytes
-- PAY HK - 70 bytes
-- PAY OPT - 106 bytes
-- OBC HK - 25 bytes
+- OBC_HK - 25 bytes
+- EPS_HK - 91 bytes
+- PAY_HK - 82 bytes
+- PAY_OPT - 106 bytes
+
 
 Commands - Summary
 ------------------
@@ -264,19 +263,19 @@ Commands - Summary
       - Address (in bytes)
       - N/A
       - 1 byte
-    * - Send CAN Message - EPS
+    * - Send EPS CAN Message
       - Yes
       - 0x06
       - first 4 bytes of message to send
       - last 4 bytes of message to send
       - 8 bytes
-    * - Send CAN Message - PAY
+    * - Send PAY CAN Message
       - Yes
       - 0x07
       - first 4 bytes of message to send
       - last 4 bytes of message to send
       - 8 bytes
-    * - PAY Control - Actuate Motors
+    * - Actuate PAY Motors
       - Yes
       - 0x08
       - 1 (move plate up) or 2 (move plate down)
@@ -288,7 +287,7 @@ Commands - Summary
       - subsystem
       - N/A
       - N/A
-    * - Enable/Disable Indefinite Low-Power Mode
+    * - Set Indefinite Low-Power Mode Enable
       - Yes
       - 0x0A
       - 0 to disable, 1 to enable
@@ -443,8 +442,8 @@ Data - read value
 
 TODO - could this be dangerous if reading from an unintended location?
 
-Send CAN Message - EPS
-^^^^^^^^^^^^^^^^^^^^^^
+Send EPS CAN Message
+^^^^^^^^^^^^^^^^^^^^
 
 OBC sends a CAN message (8 bytes) to EPS and gets a response (8 bytes) back.
 
@@ -454,15 +453,15 @@ Ideas for use cases:
 
 Data - response from EPS
 
-Send CAN Message - PAY
-^^^^^^^^^^^^^^^^^^^^^^
+Send PAY CAN Message
+^^^^^^^^^^^^^^^^^^^^
 
 OBC sends a CAN message (8 bytes) to PAY and gets a response (8 bytes) back.
 
 Data - response from PAY
 
-PAY Control - Actuate Motors
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Actuate PAY Motors
+^^^^^^^^^^^^^^^^^^
 
 Actuates the motors in the payload.
 
@@ -479,8 +478,8 @@ If resetting OBC, no response message back to ground station.
 
 It is recommended that the ground station team sends a follow-up message to check the uptime/restart time of the subsystem that should have been reset.
 
-Enable/Disable Indefinite Low-Power Mode
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Set Indefinite Low-Power Mode Enable
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 TODO - figure out what this should do
 
