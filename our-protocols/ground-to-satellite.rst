@@ -40,7 +40,9 @@ Satellite to ground acknowledgement (ACK or NACK):
 - Byte 0 - Opcode
 - Bytes 1-4 (32-bit int) - Argument 1
 - Bytes 5-8 (32-bit int) - Argument 2
-- Bytes 9 - Status - 0 = OK (valid command and (valid password or don't care)), 1 = Invalid Length, 2 = Invalid Decoded Format, 3 = Invalid Opcode, 4 = Invalid Password
+- Bytes 9 - Status - 0 = OK, 1 = Invalid Packet, 2 = Invalid Decoded Format, 3 = Invalid Opcode, 4 = Invalid Password
+
+Invalid Packet is always (in theory) caused by dropped UART bytes between the transceiver and OBC.
 
 The acknowledgement should be sent almost immediately after the satellite receives the request, even if it is currently in the process of executing another command. There is a delay between the acknowledgement and response to execute the command (depends on command type, e.g. collect block takes the longest by far).
 
@@ -315,13 +317,13 @@ Commands - Summary
       - 0x13
       - starting block number
       - number of blocks (count, must be <= 5 or else nothing will be read and 0 bytes of data will be given back)
-      - (19 * `count`) bytes
+      - (19 * ``count``) bytes
     * - Read Secondary Command Blocks
       - No
       - 0x14
       - starting block number
       - number of blocks (count, must be <= 5 or else nothing will be read and 0 bytes of data will be given back)
-      - (19 * `count`) bytes
+      - (19 * ``count``) bytes
     * - Read Raw Memory Bytes
       - Yes
       - 0x15
@@ -508,14 +510,14 @@ Read Primary Command Blocks
 
 The satellite sends back the specified block(s) of primary command data stored in flash memory.
 
-Data - `count` number of command blocks (19 bytes each)
+Data - ``count`` number of command blocks (19 bytes each)
 
 Read Secondary Command Blocks
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The satellite sends back the specified block(s) of secondary command data stored in flash memory.
 
-Data - `count` number of command blocks (19 bytes each)
+Data - ``count``` number of command blocks (19 bytes each)
 
 Read Raw Memory Bytes
 ^^^^^^^^^^^^^^^^^^^^^
