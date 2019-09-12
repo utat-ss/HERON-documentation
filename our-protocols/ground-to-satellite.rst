@@ -227,7 +227,7 @@ Commands - Summary
       - Argument 1
       - Argument 2
       - Data
-    * - Ping (OBC)
+    * - Ping OBC
       - No
       - 0x00
       - N/A
@@ -245,19 +245,19 @@ Commands - Summary
       - date (8 bits YY, 8 bits MM, 8 bits DD)
       - time (8 bits HH, 8 bits MM, 8 bits SS)
       - N/A
-    * - Read EEPROM (OBC)
+    * - Read OBC EEPROM
       - Yes
       - 0x03
       - 32-bit address
       - N/A
       - 4 bytes
-    * - Erase EEPROM (OBC)
+    * - Erase OBC EEPROM
       - Yes
       - 0x04
       - 32-bit address (in bytes)
       - N/A
       - N/A
-    * - Read RAM Byte (OBC)
+    * - Read OBC RAM Byte
       - Yes
       - 0x05
       - Address (in bytes)
@@ -432,8 +432,8 @@ Commands - Summary
 Commands - Descriptions
 -----------------------
 
-Ping (OBC)
-^^^^^^^^^^
+Ping OBC
+^^^^^^^^
 
 Ping OBC to see if it responds. Should be used to check OBC responds to transceiver messages.
 
@@ -449,22 +449,22 @@ Set RTC Date/Time
 
 Sets the current time on the RTC chip connected to OBC. This is only intended to be used once during the lifetime of the mission (first contact).
 
-Read EEPROM (OBC)
-^^^^^^^^^^^^^^^^^
+Read OBC EEPROM
+^^^^^^^^^^^^^^^
 
 Reads 4 bytes (a `dword` i.e. double word) from EEPROM memory.
 
 Data - read data
 
-Erase EEPROM (OBC)
-^^^^^^^^^^^^^^^^^^
+Erase OBC EEPROM
+^^^^^^^^^^^^^^^^
 
 Erases 4 bytes (a `dword` i.e. double word) in EEPROM memory (sets to all 1's, i.e. 0xFFFFFFFF).
 
 NOTE: Be careful using this, because for example it could force OBC to re-run its initial 30-minute comms delay and try to deploy the antenna again.
 
-Read RAM Byte (OBC)
-^^^^^^^^^^^^^^^^^^^
+Read OBC RAM Byte
+^^^^^^^^^^^^^^^^^
 
 Reads a byte from the "data memory" (i.e. RAM) in the OBC microcontroller (see http://download.mikroe.com/documents/compilers/mikroc/avr/help/avr_memory_organization.htm). This is intended to read register values in the MCU for debugging purposes.
 
