@@ -369,6 +369,12 @@ Field numbers:
     * - Start temporary low-power mode (60 seconds)
       - 17
       - N/A
+    * - Enable indefinite low-power mode
+      - 18
+      - N/A
+    * - Disable indefinite low-power mode
+      - 19
+      - N/A
 
 TODO - set limits for setpoints
 
@@ -540,7 +546,13 @@ Field numbers:
     * - Start temporary low-power mode (60 seconds)
       - 22
       - N/A
-    
+    * - Enable indefinite low-power mode
+      - 23
+      - N/A
+    * - Disable indefinite low-power mode
+      - 24
+      - N/A
+
 
 Ping - Respond to a CAN message from OBC
 
