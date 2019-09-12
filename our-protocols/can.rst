@@ -214,86 +214,89 @@ Field numbers:
     * - Data
       - Field Number
       - Data Format
-    * - Buck-boost converter output voltage
+    * - Battery pack voltage
       - 0
       - ADC - EPS Voltage
-    * - Buck-boost converter output current
+    * - Battery pack current
       - 1
       - ADC - EPS Current
-    * - -Y solar cell output current
+    * - X+ solar panel current
       - 2
       - ADC - EPS Current
-    * - +X solar cell output current
+    * - X- solar panel current
       - 3
       - ADC - EPS Current
-    * - +Y solar cell output current
+    * - Y+ solar panel current
       - 4
       - ADC - EPS Current
-    * - -X solar cell output current
+    * - Y- solar panel current
       - 5
       - ADC - EPS Current
-    * - Battery thermistor 1 temperature
+    * - Buck-boost (3.3V) converter voltage
       - 6
-      - ADC - Thermistor
-    * - Battery thermistor 2 temperature
+      - ADC - EPS Voltage
+    * - Buck-boost (3.3V) converter current
       - 7
-      - ADC - Thermistor
-    * - Battery pack output voltage
+      - ADC - EPS Current
+    * - Boost (5V) converter voltage
       - 8
       - ADC - EPS Voltage
-    * - Battery pack output current
+    * - Boost (5V) converter current
       - 9
       - ADC - EPS Current
-    * - Boost converter output current
+    * - Payload current
       - 10
       - ADC - EPS Current
-    * - Boost converter output voltage
+    * - Battery temperature 1
       - 11
-      - ADC - EPS Voltage
-    * - Battery heater - setpoint 1
+      - ADC - Temperature
+    * - Battery temperature 2
       - 12
-      - DAC
-    * - Battery heater - setpoint 2
+      - ADC - Temperature
+    * - Buck-boost (3.3V) converter temperature
       - 13
+      - ADC - Temperature
+    * - Boost (5V) converter temperature
+      - 14
+      - ADC - Temperature
+    * - Payload connector temperature
+      - 15
+      - ADC - Temperature
+    * - Solar panel charging shunt states
+      - 16
+      - 4 bits - 0 = not shunting (charging on), 1 = shunting (charging off) - bit 3 = X+, bit 2 = X-, bit 1 = Y+, bit 0 = Y-
+    * - Battery heater 1 - currently used setpoint
+      - 17
+      - DAC
+    * - Battery heater 2 - currently used setpoint
+      - 18
       - DAC
     * - IMU Gyroscope (Uncalibrated) - X-Axis
-      - 14
-      - IMU - Gyroscope
-    * - IMU Gyroscope (Uncalibrated) - Y-Axis
-      - 15
-      - IMU - Gyroscope
-    * - IMU Gyroscope (Uncalibrated) - Z-Axis
-      - 16
-      - IMU - Gyroscope
-    * - IMU Gyroscope (Calibrated) - X-Axis
-      - 17
-      - IMU - Gyroscope
-    * - IMU Gyroscope (Calibrated) - Y-Axis
-      - 18
-      - IMU - Gyroscope
-    * - IMU Gyroscope (Calibrated) - Z-Axis
       - 19
       - IMU - Gyroscope
-    * - Battery heater - shadow setpoint 1
+    * - IMU Gyroscope (Uncalibrated) - Y-Axis
       - 20
-      - DAC
-    * - Battery heater - shadow setpoint 2
+      - IMU - Gyroscope
+    * - IMU Gyroscope (Uncalibrated) - Z-Axis
       - 21
-      - DAC
-    * - Battery heater - sun setpoint 1
+      - IMU - Gyroscope
+    * - IMU Gyroscope (Calibrated) - X-Axis
       - 22
-      - DAC
-    * - Battery heater - sun setpoint 2
+      - IMU - Gyroscope
+    * - IMU Gyroscope (Calibrated) - Y-Axis
       - 23
-      - DAC
-    * - Uptime
+      - IMU - Gyroscope
+    * - IMU Gyroscope (Calibrated) - Z-Axis
       - 24
+      - IMU - Gyroscope
+    * - Uptime
+      - 25
       - In seconds
     * - Restart count
-      - 25
+      - 26
       - Count
     * - Restart reason
-      - 26
+      - 27
       - See ``uptime.h`` for constants (TODO put in document)
 
 
@@ -315,39 +318,57 @@ Field numbers:
     * - Ping
       - 0
       - N/A
-    * - Set battery heater - shadow setpoint 1
+    * - Get battery heater 1 - shadow setpoint
       - 1
       - DAC
-    * - Set battery heater - shadow setpoint 2
+    * - Set battery heater 1 - shadow setpoint
       - 2
       - DAC
-    * - Set battery heater - sun setpoint 1
+    * - Get battery heater 2 - shadow setpoint
       - 3
       - DAC
-    * - Set battery heater - sun setpoint 2
+    * - Set battery heater 2 - shadow setpoint
       - 4
       - DAC
-    * - Set battery heater mode - lower current threshold
+    * - Get battery heater 1 - sun setpoint
       - 5
+      - DAC
+    * - Set battery heater 1 - sun setpoint
+      - 6
+      - DAC
+    * - Get battery heater 2 - sun setpoint
+      - 7
+      - DAC
+    * - Set battery heater 2 - sun setpoint
+      - 8
+      - DAC
+    * - Get battery heater mode - lower current threshold
+      - 9
+      - ADC - EPS Current
+    * - Set battery heater mode - lower current threshold
+      - 10
+      - ADC - EPS Current
+    * - Get battery heater mode - upper current threshold
+      - 11
       - ADC - EPS Current
     * - Set battery heater mode - upper current threshold
-      - 6
+      - 12
       - ADC - EPS Current
     * - Reset
-      - 7
+      - 13
       - N/A
     * - Read EEPROM
-      - 8
+      - 14
       - EEPROM Address (OBC to EPS) or EEPROM data (EPS to OBC)
     * - Erase EEPROM
-      - 9
+      - 15
       - EEPROM Address (OBC to EPS)
-    * - Start temporary low-power mode (60 seconds)
-      - 10
-      - N/A
     * - Read RAM Byte
-      - 11
+      - 16
       - RAM Address (OBC to EPS) or RAM data (EPS to OBC)
+    * - Start temporary low-power mode (60 seconds)
+      - 17
+      - N/A
 
 TODO - set limits for setpoints
 
@@ -453,34 +474,34 @@ Field numbers:
     * - Ping
       - 0
       - N/A
-    * - Turn heater 1 off
+    * - Force heater 1 off
       - 1
       - N/A
-    * - Turn heater 1 on
+    * - Force heater 1 on
       - 2
       - N/A
-    * - Turn heater 2 off
+    * - Force heater 2 off
       - 3
       - N/A
-    * - Turn heater 2 on
+    * - Force heater 2 on
       - 4
       - N/A
-    * - Turn heater 3 off
+    * - Force heater 3 off
       - 5
       - N/A
-    * - Turn heater 3 on
+    * - Force heater 3 on
       - 6
       - N/A
-    * - Turn heater 4 off
+    * - Force heater 4 off
       - 7
       - N/A
-    * - Turn heater 4 on
+    * - Force heater 4 on
       - 8
       - N/A
-    * - Turn heater 5 off
+    * - Force heater 5 off
       - 9
       - N/A
-    * - Turn heater 5 on
+    * - Force heater 5 on
       - 10
       - N/A
     * - Disable 6V boost converter
@@ -513,12 +534,13 @@ Field numbers:
     * - Erase EEPROM
       - 20
       - EEPROM Address (OBC to PAY)
-    * - Start temporary low-power mode (60 seconds)
-      - 21
-      - N/A
     * - Read RAM Byte
-      - 22
+      - 21
       - RAM Address (OBC to PAY) or RAM data (PAY to OBC)
+    * - Start temporary low-power mode (60 seconds)
+      - 22
+      - N/A
+    
 
 Ping - Respond to a CAN message from OBC
 
