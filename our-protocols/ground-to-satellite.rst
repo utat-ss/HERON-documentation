@@ -329,33 +329,21 @@ Commands - Summary
       - Starting address (in bytes)
       - Count (number of bytes)
       - ``count`` bytes
-    * - Set Memory Section Start Address
-      - Yes
-      - 0x16
-      - block type
-      - start address
-      - N/A
-    * - Set Memory Section End Address
-      - Yes
-      - 0x17
-      - block type
-      - end address
-      - N/A
     * - Erase Memory Physical Sector
       - Yes
-      - 0x18
+      - 0x16
       - Address (in bytes)
       - N/A
       - N/A
     * - Erase Memory Physical Block
       - Yes
-      - 0x19
+      - 0x17
       - address (in bytes)
       - N/A
       - N/A
     * - Erase All Memory
       - Yes
-      - 0x1A
+      - 0x18
       - N/A
       - N/A
       - N/A
@@ -377,21 +365,63 @@ Commands - Summary
       - block type
       - block number
       - N/A
-    * - Set Automatic Data Collection Enable
+    * - Get Memory Section Start Address
       - Yes
       - 0x23
       - block type
-      - 0 (disable) or 1 (enable)
       - N/A
-    * - Set Automatic Data Collection Period
+      - N/A
+    * - Set Memory Section Start Address
       - Yes
       - 0x24
       - block type
-      - period (in seconds)
+      - start address
       - N/A
-    * - Resync Automatic Data Collection
+    * - Get Memory Section End Address
       - Yes
       - 0x25
+      - block type
+      - N/A
+      - N/A
+    * - Set Memory Section End Address
+      - Yes
+      - 0x26
+      - block type
+      - end address
+      - N/A
+    * - Get Automatic Data Collection Enable
+      - No
+      - 0x27
+      - block type
+      - N/A
+      - 0 (disable) or 1 (enable)
+    * - Set Automatic Data Collection Enable
+      - Yes
+      - 0x28
+      - block type
+      - 0 (disable) or 1 (enable)
+      - N/A
+    * - Get Automatic Data Collection Period
+      - No
+      - 0x29
+      - block type
+      - N/A
+      - period (in seconds)
+    * - Set Automatic Data Collection Period
+      - Yes
+      - 0x2A
+      - block type
+      - period (in seconds)
+      - N/A
+    * - Get Automatic Data Collection Timers
+      - No
+      - 0x2B
+      - N/A
+      - N/A
+      - N/A
+    * - Resync Automatic Data Collection Timers
+      - Yes
+      - 0x2C
       - N/A
       - N/A
       - N/A
@@ -525,20 +555,6 @@ The satellite reads and sends back the contents of the flash memory starting at 
 
 Data - read data
 
-Set Memory Section Start Address
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sets the starting address of a section in OBC flash memory. This could be used if one of the memory chips is found to be malfunctioning in orbit, allowing us to remap the memory sections from ground. Note that changing this will blindly overwrite any data previously in that part of memory.
-
-NOTE: This should be run consecutively with the "Set Memory Section End Address" command.
-
-Set Memory Section End Address
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sets the end address of a section in OBC flash memory. See above for motivation.
-
-NOTE: This should be run consecutively with the "Set Memory Section Start Address" command.
-
 Erase Memory Physical Sector
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -581,17 +597,56 @@ Set Current Block Number
 
 Sets the current block number for the specified block type. The block number represents the index of the block that will be written to memory the next time collection is triggered for that section, i.e. if the current block number is x, blocks 0 to (n-1) have already been collected and written to memory but block x has not. This could be used to skip sections of flash memory that are found to be malfunctioning, to reset the block number to 0 when a section reaches the end of its memory and all existing data has already been safely downlinked, or ran when the start address of a section has been changed.
 
+Get Memory Section Start Address
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TODO
+
+Set Memory Section Start Address
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets the starting address of a section in OBC flash memory. This could be used if one of the memory chips is found to be malfunctioning in orbit, allowing us to remap the memory sections from ground. Note that changing this will blindly overwrite any data previously in that part of memory.
+
+NOTE: This should be run consecutively with the "Set Memory Section End Address" command.
+
+Get Memory Section End Address
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TODO
+
+Set Memory Section End Address
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets the end address of a section in OBC flash memory. See above for motivation.
+
+NOTE: This should be run consecutively with the "Set Memory Section Start Address" command.
+
+Get Automatic Data Collection Enable
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TODO
+
 Set Automatic Data Collection Enable
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Turns off or on automatic data collection for one type of data.
+
+Get Automatic Data Collection Period
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TODO
 
 Set Automatic Data Collection Period
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Sets the automatic data collection period for one type of data. Must have ``period >= 60`` or else the state of OBC will not change. This is to prevent data collection from triggering too frequently and constantly filling up the command/CAN queues.
 
-Resync Automatic Data Collection
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Get Automatic Data Collection Timers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TODO
+
+Resync Automatic Data Collection Timers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Resynchronizes timers for data collection for all types of data so they start counting at the same time (reset all to 0, counting up).

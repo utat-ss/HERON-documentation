@@ -33,7 +33,7 @@ Each **block** starts with a 10-byte **header** to identify and timestamp the bl
     * - 8
       - RTC time (SS)
     * - 9
-      - Success Count (0xFF = fail, otherwise success)
+      - Success Count (0xFF = unknown fail, 0xFE = timeout fail, 0xFD = invalid arguments fail, 1 = success)
 
 The success count byte will not be written when a command is started, so its default value of 0xFF means a fail. After a command it is executed and succeesed, the byte will be written to 1.
 
