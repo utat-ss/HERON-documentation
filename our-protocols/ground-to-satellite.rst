@@ -551,7 +551,7 @@ Data - ``count``` number of command blocks (19 bytes each)
 Read Raw Memory Bytes
 ^^^^^^^^^^^^^^^^^^^^^
 
-The satellite reads and sends back the contents of the flash memory starting at the specified address and reading the specified number of bytes. The maximum number of bytes that can be read in one command is 106 bytes (to match the biggest block type of PAY_OPT, 10 byte header + 32 fields * 3 bytes, don't want to make the message buffers on OBC any longer).
+The satellite reads and sends back the contents of the flash memory starting at the specified address and reading the specified number of bytes. The maximum number of bytes that can be read in one command is 106 bytes (to match the biggest block type of PAY_OPT, 10 byte header + 32 fields * 3 bytes, don't want to make the message buffers on OBC any longer). Note that if you try to read the command log of the read command, the success bytes will not have been written yet and therefore will be shown as 0xFF.
 
 Data - read data
 
@@ -572,7 +572,7 @@ Deletes the block in memory containing the specified address. The block size can
 Erase All Memory
 ^^^^^^^^^^^^^^^^
 
-The satellite erases all flash memory on all 3 chips (sets every byte to 0xFF, i.e. all 1's). This would generally be used when changing the satellite's current block number, allowing it to rewrite to addresses that were previously written to.
+The satellite erases all flash memory on all 3 chips (sets every byte to 0xFF, i.e. all 1's). This would generally be used when changing the satellite's current block number, allowing it to rewrite to addresses that were previously written to. Note that the command log for this command will be written twice to flash, since the first iteration will be erased along with the rest of the flash memory.
 
 BE VERY CAREFUL WITH THIS!!
 
