@@ -35,9 +35,11 @@ The argument 1, argument 2, and password are sometimes not used, but are always 
 
 TODO - revisit variable-length or omission of arguments
 
+TODO - second password in case of bit flips?
+
 Satellite to ground acknowledgement (ACK or NACK):
 
-- Byte 0 - Opcode
+- Byte 0 - Opcode | 0x80 (i.e. the bytes has the MSB, bit 7, always set to 1)
 - Bytes 1-4 (32-bit int) - Argument 1
 - Bytes 5-8 (32-bit int) - Argument 2
 - Bytes 9 - Status - 0 = OK, 1 = Invalid Packet, 2 = Invalid Decoded Format, 3 = Invalid Opcode, 4 = Invalid Password
@@ -584,6 +586,8 @@ Note the "automatic" argument indicates whether the command was sent manually fr
 Triggers data collection of a block and writes it to flash memory on OBC. Note that this does not send any data back to ground - see "read block" command.
 
 Data - block number (only sends a downlink packet if auto is enabled)
+
+TODO - reset current block number automatically, erase mem sector
 
 Get Current Block Number
 ^^^^^^^^^^^^^^^^^^^^^^^^
