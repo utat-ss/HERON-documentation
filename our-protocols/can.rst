@@ -556,4 +556,22 @@ Field numbers:
 
 Ping - Respond to a CAN message from OBC
 
-Set PAY Heater DAC Setpoints - The satellite changes the DAC setpoints that control the PAY heaters for the cells.
+Force Heater x On/Off - Override the on-board heater control algorithm to command a certain heater to turn on or off
+
+Disable/Enable Boost Converter - Turn off/on the boost converter to disable 10V or 6V power load
+
+Move Actuation Plate Up/Down - Command the motors to turn and move actuation plate up or down
+
+Run blister pack deployment sequence - Command the motors to turn in a pre-defined sequence to pop the blister packs and deploy the biological experiment
+
+Reset - Reset the microcontroller ATMega64m1 on pay-ssm
+
+Read EEPROM - Read 4-bytes of data in EEPROM
+
+Erase EEPROM - Erase 4-bytes of data in EEPROM
+
+Read RAM byte (in progress) - Read an arbitrary byte specified in RAM, used to check register status
+
+Start Temporary Low-power Mode (60 seconds) - Turn off the 6V boost converter (heaters system) temperarily to run motors only
+
+Enable/Disable Indefinite Low-poer Mode - Turn on/off the 10V boost converter (motors system)
