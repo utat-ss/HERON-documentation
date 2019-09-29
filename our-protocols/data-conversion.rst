@@ -144,7 +144,7 @@ Restart Reason
       - 0x01
     * - Intentional reset command
       - 0x02
-    * - No command received for some amount of time
+    * - No command reset (no command received for some amount of time)
       - 0x03
     * - Watchdog system reset (not caught by intentionally timing out the watchdog, i.e. WDRF)
       - 0x04
@@ -154,3 +154,12 @@ Restart Reason
       - 0x06
     * - Power-on reset
       - 0x07
+
+No Command Reset
+----------------
+
+Each subsystem will have "no command reset" functionality. The concept is somewhat similar to a watchdog timer, but is entirely implemented in software and has a very long-term timer period.
+
+For a microcontroller, if it does not receive any commands from an external source for some period of time (which we will define it as 24 hours), it will reset itself. OBC's source of commands will be the ground station, while EPS/PAY's sources of commands will be OBC.
+
+This is done to mitigate errors in initialization/configuration where an MCU might not be able to receive any commands (e.g. broken comms link/UART for OBC, broken CAN link for EPS/PAY).

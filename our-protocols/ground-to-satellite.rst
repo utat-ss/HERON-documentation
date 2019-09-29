@@ -37,6 +37,8 @@ TODO - revisit variable-length or omission of arguments
 
 TODO - second password in case of bit flips?
 
+TODO - reset satellite if it doesn't receive comms for a couple of days?
+
 Satellite to ground acknowledgement (ACK or NACK):
 
 - Byte 0 - Opcode | 0x80 (i.e. the bytes has the MSB, bit 7, always set to 1)
@@ -335,7 +337,7 @@ Commands - Summary
       - Yes
       - 0x16
       - Address (in bytes)
-      - N/A
+      - 1 if auto scheduled, 0 otherwise
       - N/A
     * - Erase Memory Physical Block
       - Yes
@@ -548,7 +550,7 @@ Read Secondary Command Blocks
 
 The satellite sends back the specified block(s) of secondary command data stored in flash memory.
 
-Data - ``count``` number of command blocks (19 bytes each)
+Data - ``count`` number of command blocks (19 bytes each)
 
 Read Raw Memory Bytes
 ^^^^^^^^^^^^^^^^^^^^^
@@ -563,6 +565,10 @@ Erase Memory Physical Sector
 Ideally argument 1 (address in bytes) should be specified as aligned to a 4 kB boundary, but it will work nonetheless.
 
 The satellite erases one sector (4 kB) of the flash memory (sets every byte to 0xFF, i.e. all 1's). This will happen for the 4 kB sector that includes the specified address, aligned to a 4 kB boundary.
+
+This command may be automatically scheduled by the satellite when advancing the current block number and it is about to start writing data to a new sector.
+
+TODO - maybe functionality to enqueue to the front of the queue to guarantee it will be executed next?
 
 Erase Memory Physical Block
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -601,6 +607,8 @@ Set Current Block Number
 
 Sets the current block number for the specified block type. The block number represents the index of the block that will be written to memory the next time collection is triggered for that section, i.e. if the current block number is x, blocks 0 to (n-1) have already been collected and written to memory but block x has not. This could be used to skip sections of flash memory that are found to be malfunctioning, to reset the block number to 0 when a section reaches the end of its memory and all existing data has already been safely downlinked, or ran when the start address of a section has been changed.
 
+TODO - need to immediately erase the mem sector containing the new address?
+
 Get Memory Section Start Address
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -612,6 +620,8 @@ Set Memory Section Start Address
 Sets the starting address of a section in OBC flash memory. This could be used if one of the memory chips is found to be malfunctioning in orbit, allowing us to remap the memory sections from ground. Note that changing this will blindly overwrite any data previously in that part of memory.
 
 NOTE: This should be run consecutively with the "Set Memory Section End Address" command.
+
+NOTE: The start and end addresses should be aligned to a 4 kB bounary to avoid unintentional effects of erasing data in neighbouring sections when the "erase memory physical sector" command is executed.
 
 Get Memory Section End Address
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
