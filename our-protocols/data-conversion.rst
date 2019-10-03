@@ -155,10 +155,10 @@ Restart Reason
     * - Power-on reset
       - 0x07
 
-No Command Reset
-----------------
+Command Timer
+-------------
 
-Each subsystem will have "no command reset" functionality. The concept is somewhat similar to a watchdog timer, but is entirely implemented in software and has a very long-term timer period.
+Each subsystem will have "command timer" functionality. The concept is somewhat similar to a watchdog timer, but is entirely implemented in software and has a very long-term timer period.
 
 For a microcontroller, if it does not receive any commands from an external source for some period of time (which we will define it as 24 hours), it will reset itself. OBC's source of commands will be the ground station, while EPS/PAY's sources of commands will be OBC.
 

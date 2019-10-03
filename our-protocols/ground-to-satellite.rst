@@ -37,8 +37,6 @@ TODO - revisit variable-length or omission of arguments
 
 TODO - second password in case of bit flips?
 
-TODO - reset satellite if it doesn't receive comms for a couple of days?
-
 Satellite to ground acknowledgement (ACK or NACK):
 
 - Byte 0 - Opcode | 0x80 (i.e. the bytes has the MSB, bit 7, always set to 1)

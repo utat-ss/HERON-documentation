@@ -33,11 +33,9 @@ Each **block** starts with a 10-byte **header** to identify and timestamp the bl
     * - 8
       - RTC time (SS)
     * - 9
-      - Success Count (0xFF = unknown fail, 0xFE = timeout fail, 0xFD = invalid arguments fail, 1 = success)
+      - Status (0x00 = Success, 0x01 = Invalid Arguments, 0x02 = Timed Out, 0xFF = Unknown Failure)
 
-TODO - maybe rename to status/result
-
-The success count byte will not be written when a command is started, so its default value of 0xFF means a fail. After a command it is executed and succeesed, the byte will be written to 1.
+The status byte will not be written when a command is started, so its default value of 0xFF means a fail. After a command it is executed and succeeded/failed, this byte will be written to another value.
 
 The collect block command uses the success count to count the number of fields successfully received back over CAN from the intended subsystem. If it is equal to the number of fields of that data type, the command was successful.
 
