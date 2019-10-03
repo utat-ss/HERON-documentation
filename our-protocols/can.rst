@@ -133,11 +133,11 @@ _________
 
 TODO - update code
 
-* Byte 0 - Unused
-* Byte 1 - Sender
-* Byte 2 - Receiver
-* Byte 3 - Opcode (1 = ping request, 2 = ping response, 3 = restart count request, 4 = restart count response)
-* Bytes 4-7 - Data (if responding to a restart count request)
+* Byte 0 - Sender
+* Byte 1 - Receiver
+* Byte 2 - Opcode (1 = ping request, 2 = ping response, 3 = restart info request, 4 = restart info response)
+* Byte 3 - Restart reason (if restart info response)
+* Bytes 4-7 - Restart count (if restart info response)
 
 Commands
 ________
