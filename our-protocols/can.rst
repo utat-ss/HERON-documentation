@@ -73,7 +73,7 @@ The MOBs are allocated as follows:
       - N/A
       - RX
     * - 5
-      - CMD_RESP_MOB
+      - OBC_CMD_MOB
       - RX
       - TX
       - TX
