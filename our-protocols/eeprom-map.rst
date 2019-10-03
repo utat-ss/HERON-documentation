@@ -7,6 +7,9 @@ Try to start each section/block of related values on an address that is a multip
 
 Use 4-byte values (dwords, i.e. double words) for all values - for simplicity and we have plenty of EEPROM space. Note all values are stored as little-endian in EEPROM and in the hexdump.
 
+There is 2kB of EEPROM in each 64M1 MCU.
+
+Applicable to all subsystems:
 
 .. list-table::
     :header-rows: 1
@@ -14,100 +17,102 @@ Use 4-byte values (dwords, i.e. double words) for all values - for simplicity an
     * - Address (bytes)
       - Section
       - Value
-      - Subsystem(s)
     * - 0x00
-      - Uptime
+      - Restart Info
       - Restart count
       - All
     * - 0x04
-      - Uptime
+      - Restart Info
       - Restart reason
       - All
-    * - 0x08
-      - Uptime
-      - Restart date
-      - OBC
-    * - 0x0C
-      - Uptime
-      - Restart time
-      - OBC
-    * - 0x20
-      - Comms
-      - Comms delay done
-      - OBC
-    * - 0x40
-      - Data Collection
-      - EPS_HK current block number
-      - OBC
-    * - 0x44
-      - Data Collection
-      - EPS_HK auto data collection enable (0 = disabled, 1 = enabled)
-      - OBC
-    * - 0x48
-      - Data Collection
-      - EPS_HK auto data collection period (in seconds)
-      - OBC
-    * - 0x50
-      - Data Collection
-      - PAY_HK current block number
-      - OBC
-    * - 0x54
-      - Data Collection
-      - PAY_HK auto data collection enable (0 = disabled, 1 = enabled)
-      - OBC
-    * - 0x58
-      - Data Collection
-      - PAY_HK auto data collection period (in seconds)
-      - OBC
-    * - 0x60
-      - Data Collection
-      - PAY_OPT current block number
-      - OBC
-    * - 0x64
-      - Data Collection
-      - PAY_OPT auto data collection enable (0 = disabled, 1 = enabled)
-      - OBC
-    * - 0x68
-      - Data Collection
-      - PAY_OPT auto data collection period (in seconds)
-      - OBC
-    * - 0x70
-      - Data Collection
-      - OBC_HK current block number
-      - OBC
-    * - 0x74
-      - Data Collection
-      - OBC_HK auto data collection enable (0 = disabled, 1 = enabled)
-      - OBC
-    * - 0x78
-      - Data Collection
-      - OBC_HK auto data collection period (in seconds)
-      - OBC
-    * - 0x80
-      - Memory
-      - Command log current block number
-      - OBC
+
+OBC only:
+
+.. list-table::
+    :header-rows: 1
+
+    * - Address (bytes)
+      - Section
+      - Value
     * - 0x100
-      - EPS Heaters
-      - Heater 1 shadow setpoint
-      - EPS
+      - Restart Info
+      - Restart date
     * - 0x104
-      - EPS Heaters
-      - Heater 2 shadow setpoint
-      - EPS
-    * - 0x108
-      - EPS Heaters
-      - Heater 1 sun setpoint
-      - EPS
-    * - 0x10C
-      - EPS Heaters
-      - Heater 2 sun setpoint
-      - EPS
+      - Restart Info
+      - Restart time
+    * - 0x120
+      - Comms
+      - Comms delay done (30 minutes)
+    * - 0x140
+      - Memory Blocks
+      - OBC_HK current block number
+    * - 0x144
+      - Memory Blocks
+      - OBC_HK auto data collection enable (0 = disabled, 1 = enabled)
+    * - 0x148
+      - Memory Blocks
+      - OBC_HK auto data collection period (in seconds)
+    * - 0x150
+      - Memory Blocks
+      - EPS_HK current block number
+    * - 0x154
+      - Memory Blocks
+      - EPS_HK auto data collection enable (0 = disabled, 1 = enabled)
+    * - 0x158
+      - Memory Blocks
+      - EPS_HK auto data collection period (in seconds)
+    * - 0x160
+      - Memory Blocks
+      - PAY_HK current block number
+    * - 0x164
+      - Memory Blocks
+      - PAY_HK auto data collection enable (0 = disabled, 1 = enabled)
+    * - 0x168
+      - Memory Blocks
+      - PAY_HK auto data collection period (in seconds)
+    * - 0x170
+      - Memory Blocks
+      - PAY_OPT current block number
+    * - 0x174
+      - Memory Blocks
+      - PAY_OPT auto data collection enable (0 = disabled, 1 = enabled)
+    * - 0x178
+      - Memory Blocks
+      - PAY_OPT auto data collection period (in seconds)
+    * - 0x180
+      - Memory Blocks
+      - PRIM_CMD_LOG current block number
+    * - 0x190
+      - Memory Blocks
+      - SEC_CMD_LOG current block number
+
+EPS only:
+
+.. list-table::
+    :header-rows: 1
+
+    * - Address (bytes)
+      - Section
+      - Value
     * - 0x200
-      - PAY Heaters
-      - Heaters 1-4 setpoint
-      - PAY
+      - Heaters
+      - Heater 1 shadow setpoint
     * - 0x204
-      - PAY Heaters
-      - Heater 5 setpoint
-      - PAY
+      - Heaters
+      - Heater 2 shadow setpoint
+    * - 0x208
+      - Heaters
+      - Heater 1 sun setpoint
+    * - 0x20C
+      - Heaters
+      - Heater 2 sun setpoint
+    * - 0x210
+      - Heaters
+      - Shadow current threshold
+    * - 0x214
+      - Heaters
+      - Sun current threshold
+
+PAY only:
+
+TODO
