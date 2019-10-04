@@ -543,12 +543,16 @@ The satellite sends back the specified block(s) of primary command data stored i
 
 Data - ``count`` number of command blocks (19 bytes each)
 
+All command blocks should be complete, including the status byte.
+
 Read Secondary Command Blocks
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The satellite sends back the specified block(s) of secondary command data stored in flash memory.
 
 Data - ``count`` number of command blocks (19 bytes each)
+
+Note that if the range of blocks to read includes the command that will be initiated by this request, the command block for this command will have an unwritten status byte (value 0xFF) because it reads flash memory before completing the command and writing the status byte.
 
 Read Raw Memory Bytes
 ^^^^^^^^^^^^^^^^^^^^^
