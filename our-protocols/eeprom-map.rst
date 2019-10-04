@@ -18,13 +18,23 @@ Applicable to all subsystems:
       - Section
       - Value
     * - 0x00
+      - Scratch
+      - Scratch 1
+    * - 0x04
+      - Scratch
+      - Scratch 2
+    * - 0x08
+      - Scratch
+      - Scratch 3
+    * - 0x0C
+      - Scratch
+      - Scratch 4
+    * - 0x10
       - Restart Info
       - Restart count
-      - All
-    * - 0x04
+    * - 0x14
       - Restart Info
       - Restart reason
-      - All
 
 OBC only:
 
