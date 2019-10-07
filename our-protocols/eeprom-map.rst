@@ -44,12 +44,6 @@ OBC only:
     * - Address (bytes)
       - Section
       - Value
-    * - 0x100
-      - Restart Info
-      - Restart date
-    * - 0x104
-      - Restart Info
-      - Restart time
     * - 0x120
       - Comms
       - Comms delay done (30 minutes)
