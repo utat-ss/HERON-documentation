@@ -53,7 +53,8 @@ Satellite to ground response:
 - Byte 0 - Opcode
 - Bytes 1-4 (32-bit int) - Argument 1
 - Bytes 5-8 (32-bit int) - Argument 2
-- Bytes 9-... - Data (length depends on opcode)
+- Byte 9 - Status - 0x00 = Success, 0x01 = Invalid Arguments, 0x02 = Timed Out, 0xFF = Unknown Failure - same as written to command log in memory
+- Bytes 10-... - Data (length depends on opcode)
 
 Message Encoding
 ----------------
@@ -200,24 +201,43 @@ This is used as an argument in some commands to identify a type of data.
 - 2 - EPS_HK
 - 3 - PAY_HK
 - 4 - PAY_OPT
+- 5 - PRIM_CMD_LOG
+- 6 - SEC_CMD_LOG
 
 Block Size
 ^^^^^^^^^^
-
-TODO - update
 
 The number of bytes to store a block of a particular type of data, including both the header and data.
 
 size = 10 bytes (header) + (3 bytes * number of fields)
 
 - OBC_HK - 25 bytes
-- EPS_HK - 91 bytes
+- EPS_HK - 94 bytes
 - PAY_HK - 82 bytes
 - PAY_OPT - 106 bytes
 
 
 Commands - Summary
 ------------------
+
+The commands are roughly grouped as follows:
+
+.. list-table::
+    :header-rows: 1
+    :stub-columns: 1
+
+    * - Group
+      - Opcode
+    * - General OBC Functions
+      - 0x0x
+    * - Read Data
+      - 0x1x
+    * - Data Collection
+      - 0x2x
+    * - Memory Management
+      - 0x3x
+    * - Inter-Subsystem Commands
+      - 0x4x
 
 .. list-table::
     :header-rows: 1
@@ -265,166 +285,166 @@ Commands - Summary
       - Address (in bytes)
       - N/A
       - 1 byte
-    * - Send EPS CAN Message
-      - Yes
-      - 0x06
-      - first 4 bytes of message to send
-      - last 4 bytes of message to send
-      - 8 bytes
-    * - Send PAY CAN Message
-      - Yes
-      - 0x07
-      - first 4 bytes of message to send
-      - last 4 bytes of message to send
-      - 8 bytes
-    * - Actuate PAY Motors
-      - Yes
-      - 0x08
-      - 1 (move plate up) or 2 (move plate down)
-      - N/A
-      - N/A
-    * - Reset Subsystem
-      - Yes
-      - 0x09
-      - subsystem
-      - N/A
-      - N/A
-    * - Set Indefinite Low-Power Mode Enable
-      - Yes
-      - 0x0A
-      - 0 to disable, 1 to enable
-      - N/A
-      - N/A
-    * - Read Most Recent Status Info
-      - No
-      - 0x10
-      - N/A
-      - N/A
-      - 27 bytes
     * - Read Data Block
       - No
-      - 0x11
+      - 0x10
       - block type
       - block number
       - Block size for argument 1
-    * - Read Recent Local Data Block
-      - No
-      - 0x12
-      - block type
-      - N/A
-      - Block size for argument 1
     * - Read Primary Command Blocks
       - No
-      - 0x13
+      - 0x11
       - starting block number
       - number of blocks (count, must be <= 5 or else nothing will be read and 0 bytes of data will be given back)
       - (19 * ``count``) bytes
     * - Read Secondary Command Blocks
       - No
-      - 0x14
+      - 0x12
       - starting block number
       - number of blocks (count, must be <= 5 or else nothing will be read and 0 bytes of data will be given back)
       - (19 * ``count``) bytes
+    * - Read Most Recent Status Info
+      - No
+      - 0x13
+      - N/A
+      - N/A
+      - 27 bytes
+    * - Read Recent Local Data Block
+      - No
+      - 0x14
+      - block type
+      - N/A
+      - Block size for argument 1
     * - Read Raw Memory Bytes
       - Yes
       - 0x15
       - Starting address (in bytes)
       - Count (number of bytes)
       - ``count`` bytes
-    * - Erase Memory Physical Sector
-      - Yes
-      - 0x16
-      - Address (in bytes)
-      - 1 if auto scheduled, 0 otherwise
-      - N/A
-    * - Erase Memory Physical Block
-      - Yes
-      - 0x17
-      - address (in bytes)
-      - N/A
-      - N/A
-    * - Erase All Memory
-      - Yes
-      - 0x18
-      - N/A
-      - N/A
-      - N/A
     * - Collect Data Block
       - No
       - 0x20
       - block type
       - automatic (1 for auto)
       - 3 bytes (if auto)
-    * - Get Current Block Number
-      - No
-      - 0x21
-      - block type
-      - N/A
-      - 4 bytes
-    * - Set Current Block Number
-      - Yes
-      - 0x22
-      - block type
-      - block number
-      - N/A
-    * - Get Memory Section Start Address
-      - Yes
-      - 0x23
-      - block type
-      - N/A
-      - N/A
-    * - Set Memory Section Start Address
-      - Yes
-      - 0x24
-      - block type
-      - start address
-      - N/A
-    * - Get Memory Section End Address
-      - Yes
-      - 0x25
-      - block type
-      - N/A
-      - N/A
-    * - Set Memory Section End Address
-      - Yes
-      - 0x26
-      - block type
-      - end address
-      - N/A
     * - Get Automatic Data Collection Enable
       - No
-      - 0x27
+      - 0x21
       - block type
       - N/A
       - 0 (disable) or 1 (enable)
     * - Set Automatic Data Collection Enable
       - Yes
-      - 0x28
+      - 0x22
       - block type
       - 0 (disable) or 1 (enable)
       - N/A
     * - Get Automatic Data Collection Period
       - No
-      - 0x29
+      - 0x23
       - block type
       - N/A
       - period (in seconds)
     * - Set Automatic Data Collection Period
       - Yes
-      - 0x2A
+      - 0x24
       - block type
       - period (in seconds)
       - N/A
     * - Get Automatic Data Collection Timers
       - No
-      - 0x2B
+      - 0x25
       - N/A
       - N/A
       - N/A
     * - Resync Automatic Data Collection Timers
       - Yes
-      - 0x2C
+      - 0x26
       - N/A
+      - N/A
+      - N/A
+    * - Get Current Block Number
+      - No
+      - 0x30
+      - block type
+      - N/A
+      - 4 bytes
+    * - Set Current Block Number
+      - Yes
+      - 0x31
+      - block type
+      - block number
+      - N/A
+    * - Get Memory Section Start Address
+      - Yes
+      - 0x32
+      - block type
+      - N/A
+      - N/A
+    * - Set Memory Section Start Address
+      - Yes
+      - 0x33
+      - block type
+      - start address
+      - N/A
+    * - Get Memory Section End Address
+      - Yes
+      - 0x34
+      - block type
+      - N/A
+      - N/A
+    * - Set Memory Section End Address
+      - Yes
+      - 0x35
+      - block type
+      - end address
+      - N/A
+    * - Erase Memory Physical Sector
+      - Yes
+      - 0x36
+      - Address (in bytes)
+      - 1 if auto scheduled, 0 otherwise
+      - N/A
+    * - Erase Memory Physical Block
+      - Yes
+      - 0x37
+      - address (in bytes)
+      - N/A
+      - N/A
+    * - Erase All Memory
+      - Yes
+      - 0x38
+      - N/A
+      - N/A
+      - N/A
+    * - Send EPS CAN Message
+      - Yes
+      - 0x40
+      - first 4 bytes of message to send
+      - last 4 bytes of message to send
+      - 8 bytes
+    * - Send PAY CAN Message
+      - Yes
+      - 0x41
+      - first 4 bytes of message to send
+      - last 4 bytes of message to send
+      - 8 bytes
+    * - Actuate PAY Motors
+      - Yes
+      - 0x42
+      - 1 (move plate up) or 2 (move plate down)
+      - N/A
+      - N/A
+    * - Reset Subsystem
+      - Yes
+      - 0x43
+      - subsystem
+      - N/A
+      - N/A
+    * - Set Indefinite Low-Power Mode Enable
+      - Yes
+      - 0x44
+      - 0 to disable, 1 to enable
       - N/A
       - N/A
 
@@ -474,6 +494,158 @@ Data - read value
 
 TODO - could this be dangerous if reading from an unintended location?
 
+Read Data Block
+^^^^^^^^^^^^^^^
+
+The satellite sends back the specified block of data stored in flash memory.
+
+Read Primary Command Blocks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The satellite sends back the specified block(s) of primary command data stored in flash memory.
+
+Data - ``count`` number of command blocks (19 bytes each)
+
+All command blocks should be complete, including the status byte.
+
+Read Secondary Command Blocks
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The satellite sends back the specified block(s) of secondary command data stored in flash memory.
+
+Data - ``count`` number of command blocks (19 bytes each)
+
+Note that if the range of blocks to read includes the command that will be initiated by this request, the command block for this command will have an unwritten status byte (value 0xFF) because it reads flash memory before completing the command and writing the status byte.
+
+Read Most Recent Status Info
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Gets the most recently saved (in flash memory) status information for each subsystem. This is done by subtracting one from each section's current block number and reading that block in memory (does not actually modify the current block number for any sections).
+
+This is intended to be used at the beginning of the pass to detect any restarts or critical status information that should all be obtained in one command.
+
+Data - OBC uptime (3 bytes), OBC restart count (3 bytes), OBC restart reason (1 byte), OBC restart date (3 bytes), OBC restart time (3 bytes), EPS uptime (3 bytes), EPS restart count (3 bytes), EPS restart reason (1 byte), PAY uptime (3 bytes), PAY restart count (3 bytes), PAY restart reason (1 byte)
+
+Read Recent Local Data Block
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Reads the block of data stored locally in the microcontroller's program memory. This should be the most recent block it has collected, if OBC has not restarted since it collected it.
+
+Generally, this should not be used. It can be used for debugging and very infrequent data collection in case flash memory storage fails.
+
+Read Raw Memory Bytes
+^^^^^^^^^^^^^^^^^^^^^
+
+The satellite reads and sends back the contents of the flash memory starting at the specified address and reading the specified number of bytes. The maximum number of bytes that can be read in one command is 106 bytes (to match the biggest block type of PAY_OPT, 10 byte header + 32 fields * 3 bytes, don't want to make the message buffers on OBC any longer). Note that if you try to read the command log of the read command, the success bytes will not have been written yet and therefore will be shown as 0xFF.
+
+Data - read data
+
+Collect Data Block
+^^^^^^^^^^^^^^^^^^
+
+Note the "automatic" argument indicates whether the command was sent manually from the ground station (0) or was scheduled by automatic data collection (1). The ground station should only send this as 0. A value of 1 will cause OBC to not send a transceiver packet response through the downlink. This is to save power for a frequent operation and to prevent OBC from spamming the ground station with packets when the ground station did not request anything.
+
+Triggers data collection of a block and writes it to flash memory on OBC. Note that this does not send any data back to ground - see "read block" command.
+
+Data - block number (only sends a downlink packet if auto is enabled)
+
+TODO - reset current block number automatically, erase mem sector
+
+Get Automatic Data Collection Enable
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TODO
+
+Set Automatic Data Collection Enable
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Turns off or on automatic data collection for one type of data.
+
+Get Automatic Data Collection Period
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TODO
+
+Set Automatic Data Collection Period
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets the automatic data collection period for one type of data. Must have ``period >= 60`` or else the state of OBC will not change. This is to prevent data collection from triggering too frequently and constantly filling up the command/CAN queues.
+
+Get Automatic Data Collection Timers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TODO
+
+Resync Automatic Data Collection Timers
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Resynchronizes timers for data collection for all types of data so they start counting at the same time (reset all to 0, counting up).
+
+Get Current Block Number
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Gets the current block number for the specified block type. The block number represents the index of the block that will be written to memory the next time collection is triggered for that section, i.e. if the current block number is x, blocks 0 to (n-1) have already been collected and written to memory but block x has not.
+
+Data - block number
+
+Set Current Block Number
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets the current block number for the specified block type. The block number represents the index of the block that will be written to memory the next time collection is triggered for that section, i.e. if the current block number is x, blocks 0 to (n-1) have already been collected and written to memory but block x has not. This could be used to skip sections of flash memory that are found to be malfunctioning, to reset the block number to 0 when a section reaches the end of its memory and all existing data has already been safely downlinked, or ran when the start address of a section has been changed.
+
+TODO - need to immediately erase the mem sector containing the new address?
+
+Get Memory Section Start Address
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TODO
+
+Set Memory Section Start Address
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets the starting address of a section in OBC flash memory. This could be used if one of the memory chips is found to be malfunctioning in orbit, allowing us to remap the memory sections from ground. Note that changing this will blindly overwrite any data previously in that part of memory.
+
+NOTE: This should be run consecutively with the "Set Memory Section End Address" command.
+
+NOTE: The start and end addresses should be aligned to a 4 kB bounary to avoid unintentional effects of erasing data in neighbouring sections when the "erase memory physical sector" command is executed.
+
+Get Memory Section End Address
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+TODO
+
+Set Memory Section End Address
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sets the end address of a section in OBC flash memory. See above for motivation.
+
+NOTE: This should be run consecutively with the "Set Memory Section Start Address" command
+
+Erase Memory Physical Sector
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Ideally argument 1 (address in bytes) should be specified as aligned to a 4 kB boundary, but it will work nonetheless.
+
+The satellite erases one sector (4 kB) of the flash memory (sets every byte to 0xFF, i.e. all 1's). This will happen for the 4 kB sector that includes the specified address, aligned to a 4 kB boundary.
+
+This command may be automatically scheduled by the satellite when advancing the current block number and it is about to start writing data to a new sector.
+
+TODO - maybe functionality to enqueue to the front of the queue to guarantee it will be executed next?
+
+Erase Memory Physical Block
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+NOTE: The use of the term "block" here is different from all other uses in general.
+
+Deletes the block in memory containing the specified address. The block size can range from 8kb to 64kb - see pg. 5 of data sheet for memory map and pg. 25 for more details on block erase
+
+Erase All Memory
+^^^^^^^^^^^^^^^^
+
+The satellite erases all flash memory on all 3 chips (sets every byte to 0xFF, i.e. all 1's). This would generally be used when changing the satellite's current block number, allowing it to rewrite to addresses that were previously written to. Note that the command log for this command will be written twice to flash, since the first iteration will be erased along with the rest of the flash memory.
+
+BE VERY CAREFUL WITH THIS!!
+
 Send EPS CAN Message
 ^^^^^^^^^^^^^^^^^^^^
 
@@ -514,155 +686,3 @@ Set Indefinite Low-Power Mode Enable
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 TODO - figure out what this should do
-
-Read Most Recent Status Info
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Gets the most recently saved (in flash memory) status information for each subsystem. This is done by subtracting one from each section's current block number and reading that block in memory (does not actually modify the current block number for any sections).
-
-This is intended to be used at the beginning of the pass to detect any restarts or critical status information that should all be obtained in one command.
-
-Data - OBC uptime (3 bytes), OBC restart count (3 bytes), OBC restart reason (1 byte), OBC restart date (3 bytes), OBC restart time (3 bytes), EPS uptime (3 bytes), EPS restart count (3 bytes), EPS restart reason (1 byte), PAY uptime (3 bytes), PAY restart count (3 bytes), PAY restart reason (1 byte)
-
-Read Data Block
-^^^^^^^^^^^^^^^
-
-The satellite sends back the specified block of data stored in flash memory.
-
-Read Recent Local Data Block
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Reads the block of data stored locally in the microcontroller's program memory. This should be the most recent block it has collected, if OBC has not restarted since it collected it.
-
-Generally, this should not be used. It can be used for debugging and very infrequent data collection in case flash memory storage fails.
-
-Read Primary Command Blocks
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The satellite sends back the specified block(s) of primary command data stored in flash memory.
-
-Data - ``count`` number of command blocks (19 bytes each)
-
-All command blocks should be complete, including the status byte.
-
-Read Secondary Command Blocks
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The satellite sends back the specified block(s) of secondary command data stored in flash memory.
-
-Data - ``count`` number of command blocks (19 bytes each)
-
-Note that if the range of blocks to read includes the command that will be initiated by this request, the command block for this command will have an unwritten status byte (value 0xFF) because it reads flash memory before completing the command and writing the status byte.
-
-Read Raw Memory Bytes
-^^^^^^^^^^^^^^^^^^^^^
-
-The satellite reads and sends back the contents of the flash memory starting at the specified address and reading the specified number of bytes. The maximum number of bytes that can be read in one command is 106 bytes (to match the biggest block type of PAY_OPT, 10 byte header + 32 fields * 3 bytes, don't want to make the message buffers on OBC any longer). Note that if you try to read the command log of the read command, the success bytes will not have been written yet and therefore will be shown as 0xFF.
-
-Data - read data
-
-Erase Memory Physical Sector
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Ideally argument 1 (address in bytes) should be specified as aligned to a 4 kB boundary, but it will work nonetheless.
-
-The satellite erases one sector (4 kB) of the flash memory (sets every byte to 0xFF, i.e. all 1's). This will happen for the 4 kB sector that includes the specified address, aligned to a 4 kB boundary.
-
-This command may be automatically scheduled by the satellite when advancing the current block number and it is about to start writing data to a new sector.
-
-TODO - maybe functionality to enqueue to the front of the queue to guarantee it will be executed next?
-
-Erase Memory Physical Block
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-NOTE: The use of the term "block" here is different from all other uses in general.
-
-Deletes the block in memory containing the specified address. The block size can range from 8kb to 64kb - see pg. 5 of data sheet for memory map and pg. 25 for more details on block erase
-
-Erase All Memory
-^^^^^^^^^^^^^^^^
-
-The satellite erases all flash memory on all 3 chips (sets every byte to 0xFF, i.e. all 1's). This would generally be used when changing the satellite's current block number, allowing it to rewrite to addresses that were previously written to. Note that the command log for this command will be written twice to flash, since the first iteration will be erased along with the rest of the flash memory.
-
-BE VERY CAREFUL WITH THIS!!
-
-Collect Data Block
-^^^^^^^^^^^^^^^^^^
-
-Note the "automatic" argument indicates whether the command was sent manually from the ground station (0) or was scheduled by automatic data collection (1). The ground station should only send this as 0. A value of 1 will cause OBC to not send a transceiver packet response through the downlink. This is to save power for a frequent operation and to prevent OBC from spamming the ground station with packets when the ground station did not request anything.
-
-Triggers data collection of a block and writes it to flash memory on OBC. Note that this does not send any data back to ground - see "read block" command.
-
-Data - block number (only sends a downlink packet if auto is enabled)
-
-TODO - reset current block number automatically, erase mem sector
-
-Get Current Block Number
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Gets the current block number for the specified block type. The block number represents the index of the block that will be written to memory the next time collection is triggered for that section, i.e. if the current block number is x, blocks 0 to (n-1) have already been collected and written to memory but block x has not.
-
-Data - block number
-
-Set Current Block Number
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sets the current block number for the specified block type. The block number represents the index of the block that will be written to memory the next time collection is triggered for that section, i.e. if the current block number is x, blocks 0 to (n-1) have already been collected and written to memory but block x has not. This could be used to skip sections of flash memory that are found to be malfunctioning, to reset the block number to 0 when a section reaches the end of its memory and all existing data has already been safely downlinked, or ran when the start address of a section has been changed.
-
-TODO - need to immediately erase the mem sector containing the new address?
-
-Get Memory Section Start Address
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-TODO
-
-Set Memory Section Start Address
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sets the starting address of a section in OBC flash memory. This could be used if one of the memory chips is found to be malfunctioning in orbit, allowing us to remap the memory sections from ground. Note that changing this will blindly overwrite any data previously in that part of memory.
-
-NOTE: This should be run consecutively with the "Set Memory Section End Address" command.
-
-NOTE: The start and end addresses should be aligned to a 4 kB bounary to avoid unintentional effects of erasing data in neighbouring sections when the "erase memory physical sector" command is executed.
-
-Get Memory Section End Address
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-TODO
-
-Set Memory Section End Address
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sets the end address of a section in OBC flash memory. See above for motivation.
-
-NOTE: This should be run consecutively with the "Set Memory Section Start Address" command.
-
-Get Automatic Data Collection Enable
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-TODO
-
-Set Automatic Data Collection Enable
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Turns off or on automatic data collection for one type of data.
-
-Get Automatic Data Collection Period
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-TODO
-
-Set Automatic Data Collection Period
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sets the automatic data collection period for one type of data. Must have ``period >= 60`` or else the state of OBC will not change. This is to prevent data collection from triggering too frequently and constantly filling up the command/CAN queues.
-
-Get Automatic Data Collection Timers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-TODO
-
-Resync Automatic Data Collection Timers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Resynchronizes timers for data collection for all types of data so they start counting at the same time (reset all to 0, counting up).

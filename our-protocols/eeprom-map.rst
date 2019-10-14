@@ -120,3 +120,10 @@ EPS only:
 PAY only:
 
 TODO
+
+.. list-table::
+    :header-rows: 1
+
+    * - Address (bytes)
+      - Section
+      - Value
