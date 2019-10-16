@@ -327,93 +327,75 @@ The commands are roughly grouped as follows:
       - block type
       - automatic (1 for auto)
       - 3 bytes (if auto)
-    * - Get Automatic Data Collection Enable
+    * - Get Automatic Data Collection Settings
       - No
       - 0x21
-      - block type
       - N/A
-      - 0 (disable) or 1 (enable)
+      - N/A
+      - 27 bytes - 9 bytes for each in order of {OBC, EPS, PAY} - {enabled (1 byte, 0 is disabled or 1 is enabled), period (in s), timer count (in s)}
     * - Set Automatic Data Collection Enable
       - Yes
       - 0x22
       - block type
       - 0 (disable) or 1 (enable)
       - N/A
-    * - Get Automatic Data Collection Period
-      - No
-      - 0x23
-      - block type
-      - N/A
-      - period (in seconds)
     * - Set Automatic Data Collection Period
       - Yes
-      - 0x24
+      - 0x23
       - block type
       - period (in seconds)
-      - N/A
-    * - Get Automatic Data Collection Timers
-      - No
-      - 0x25
-      - N/A
-      - N/A
       - N/A
     * - Resync Automatic Data Collection Timers
       - Yes
-      - 0x26
+      - 0x24
       - N/A
       - N/A
       - N/A
-    * - Get Current Block Number
+    * - Get Current Block Numbers
       - No
       - 0x30
-      - block type
       - N/A
-      - 4 bytes
+      - N/A
+      - 24 bytes - 4 bytes for each in order of block type numbers 1 to 6
     * - Set Current Block Number
       - Yes
       - 0x31
       - block type
       - block number
       - N/A
-    * - Get Memory Section Start Address
+    * - Get Memory Section Addresses
       - Yes
       - 0x32
-      - block type
       - N/A
       - N/A
+      - 48 bytes - 8 bytes for each of 6 sections - {start address (4 bytes), end address (4 bytes)}
     * - Set Memory Section Start Address
       - Yes
       - 0x33
       - block type
       - start address
       - N/A
-    * - Get Memory Section End Address
-      - Yes
-      - 0x34
-      - block type
-      - N/A
-      - N/A
     * - Set Memory Section End Address
       - Yes
-      - 0x35
+      - 0x34
       - block type
       - end address
       - N/A
     * - Erase Memory Physical Sector
       - Yes
-      - 0x36
+      - 0x35
       - Address (in bytes)
       - 1 if auto scheduled, 0 otherwise
       - N/A
     * - Erase Memory Physical Block
       - Yes
-      - 0x37
+      - 0x36
       - address (in bytes)
       - N/A
       - N/A
     * - Erase All Memory
       - Yes
-      - 0x38
+      - 0x37
       - N/A
       - N/A
       - N/A
@@ -551,42 +533,30 @@ Data - block number (only sends a downlink packet if auto is enabled)
 
 TODO - reset current block number automatically, erase mem sector
 
-Get Automatic Data Collection Enable
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Get Automatic Data Collection Settings
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-TODO
+Gets all settings for auto data collection of the 4 data block types.
 
 Set Automatic Data Collection Enable
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Turns off or on automatic data collection for one type of data.
 
-Get Automatic Data Collection Period
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-TODO
-
 Set Automatic Data Collection Period
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Sets the automatic data collection period for one type of data. Must have ``period >= 60`` or else the state of OBC will not change. This is to prevent data collection from triggering too frequently and constantly filling up the command/CAN queues.
-
-Get Automatic Data Collection Timers
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-TODO
 
 Resync Automatic Data Collection Timers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Resynchronizes timers for data collection for all types of data so they start counting at the same time (reset all to 0, counting up).
 
-Get Current Block Number
-^^^^^^^^^^^^^^^^^^^^^^^^
+Get Current Block Numbers
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Gets the current block number for the specified block type. The block number represents the index of the block that will be written to memory the next time collection is triggered for that section, i.e. if the current block number is x, blocks 0 to (n-1) have already been collected and written to memory but block x has not.
-
-Data - block number
+Gets the current block number for all block types. The block number represents the index of the block that will be written to memory the next time collection is triggered for that section, i.e. if the current block number is x, blocks 0 to (n-1) have already been collected and written to memory but block x has not.
 
 Set Current Block Number
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -595,10 +565,10 @@ Sets the current block number for the specified block type. The block number rep
 
 TODO - need to immediately erase the mem sector containing the new address?
 
-Get Memory Section Start Address
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Get Memory Section Addresses
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-TODO
+Gets the start and end addresses (in bytes) for all 6 memory sections.
 
 Set Memory Section Start Address
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -608,11 +578,6 @@ Sets the starting address of a section in OBC flash memory. This could be used i
 NOTE: This should be run consecutively with the "Set Memory Section End Address" command.
 
 NOTE: The start and end addresses should be aligned to a 4 kB bounary to avoid unintentional effects of erasing data in neighbouring sections when the "erase memory physical sector" command is executed.
-
-Get Memory Section End Address
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-TODO
 
 Set Memory Section End Address
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
