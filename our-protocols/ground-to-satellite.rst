@@ -332,7 +332,7 @@ The commands are roughly grouped as follows:
       - 0x21
       - N/A
       - N/A
-      - 27 bytes - 9 bytes for each in order of {OBC, EPS, PAY} - {enabled (1 byte, 0 is disabled or 1 is enabled), period (in s), timer count (in s)}
+      - 36 bytes - 9 bytes for each in order of {OBC_HK, EPS_HK, PAY_HK, PAY_OPT} - {enabled (1 byte, 0 is disabled or 1 is enabled), period (in s), timer count (in s)}
     * - Set Automatic Data Collection Enable
       - Yes
       - 0x22
