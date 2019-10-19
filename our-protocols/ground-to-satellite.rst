@@ -285,6 +285,12 @@ The commands are roughly grouped as follows:
       - Address (in bytes)
       - N/A
       - 1 byte
+    * - Set Beacon Inhibit Enable
+      - Yes
+      - 0x06
+      - 0 (do not inhibit beacon) or 1 (inhibit beacon)
+      - N/A
+      - N/A
     * - Read Data Block
       - No
       - 0x10
@@ -475,6 +481,11 @@ Reads a byte from the "data memory" (i.e. RAM) in the OBC microcontroller (see h
 Data - read value
 
 TODO - could this be dangerous if reading from an unintended location?
+
+Set Beacon Inhibit Enable
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If the beacon inhibit is enabled (this command is sent with argument 1 = 1), disables the beacon for 6 hours. If this command is sent with argument 1 = 0, it will stop inhibiting the beacon immediately.
 
 Read Data Block
 ^^^^^^^^^^^^^^^
