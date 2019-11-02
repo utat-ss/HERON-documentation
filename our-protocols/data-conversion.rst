@@ -144,7 +144,7 @@ Restart Reason
       - 0x01
     * - Intentional reset command
       - 0x02
-    * - No command reset (no command received for some amount of time)
+    * - Communication timeout (no command received for some amount of time)
       - 0x03
     * - Watchdog system reset (not caught by intentionally timing out the watchdog, i.e. WDRF)
       - 0x04

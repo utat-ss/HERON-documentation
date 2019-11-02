@@ -569,6 +569,8 @@ Get Current Block Numbers
 
 Gets the current block number for all block types. The block number represents the index of the block that will be written to memory the next time collection is triggered for that section, i.e. if the current block number is x, blocks 0 to (n-1) have already been collected and written to memory but block x has not.
 
+TODO - maybe put this in secondary command log?
+
 Set Current Block Number
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
