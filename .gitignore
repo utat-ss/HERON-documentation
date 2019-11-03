@@ -21,4 +21,4 @@ xcuserdata
 # Compiled Python files
 *.pyc
 
-_build/**
+**/_build/**

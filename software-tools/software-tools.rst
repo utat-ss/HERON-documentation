@@ -13,3 +13,4 @@ Software Tools
 	atmel-studio
 	MPLAB-X-IDE
 	git-troubleshooting
+	remote-programming
