@@ -55,14 +55,6 @@ Our documentation is organized into the following sections:
 	elec-style-guide/elec-style-guide
 
 
-.. _our-protocols:
-.. toctree::
-	:maxdepth: 2
-	:caption: Our Protocols
-
-	our-protocols/our-protocols
-
-
 If you would like to contribute to our documentation, create a branch and start a pull request. If you would like to report an error, please `submit an issue`_.
 
 .. _submit an issue: https://github.com/HeronMkII/documentation/issues
