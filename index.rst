@@ -54,6 +54,12 @@ Our documentation is organized into the following sections:
 	datasheets/reading-datasheets
 	elec-style-guide/elec-style-guide
 
+.. _it:
+.. toctree::
+	:maxdepth: 2
+	:caption: IT
+
+	remote-access/remote-access
 
 If you would like to contribute to our documentation, create a branch and start a pull request. If you would like to report an error, please `submit an issue`_.
 
