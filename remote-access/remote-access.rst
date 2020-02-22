@@ -6,5 +6,4 @@ This section details different aspects of remote access, including remote progra
 .. toctree::
 	:maxdepth: 2
 
-	remote-programming
 	vpn-setup

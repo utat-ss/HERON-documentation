@@ -60,6 +60,7 @@ Our documentation is organized into the following sections:
 	:caption: IT
 
 	remote-access/remote-access
+	remote-programming/remote-programming
 
 If you would like to contribute to our documentation, create a branch and start a pull request. If you would like to report an error, please `submit an issue`_.
 
