@@ -40,6 +40,6 @@ You will be prompted to enter a username and password to login to the VPN. Ask a
 4. Texts will start flying through the terminal and you will be prompted to enter your username and password at some point.
 5. Once the connection is established, you should see something like "Initialization Sequence Complete" and you should be good to go. The connection will stay established as long as the terminal windows is open.
 
-[Resource for Linux OpenVPN setup instructions] (https://openvpn.net/vpn-server-resources/how-to-connect-to-access-server-from-a-linux-computer/)
+[Resource for Linux OpenVPN setup instructions](https://openvpn.net/vpn-server-resources/how-to-connect-to-access-server-from-a-linux-computer/)
 
 [Guideline for OpenVPN setup instructions](https://help.ubnt.com/hc/en-us/articles/115015971688-EdgeRouter-OpenVPN-Server)
