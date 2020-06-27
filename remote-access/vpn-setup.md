@@ -25,10 +25,10 @@ You will be prompted to enter a username and password to login to the VPN. Ask a
 
 ### Windows
 1. Create a directory to place your vpn configuration in (such as Desktop/openvpn)
-2. Place the ca.cert, client.crt, er.ovpn and client.key files in that directory
+2. Place the ca.cert, client.crt, er.ovpn and client.key files in that directory (need to unzip the folder)
 3. Download [OpenVPN for Windows](https://openvpn.net/client-connect-vpn-for-windows/)
-4. Click the er.ovpn
-5. You will be prompted to enter a username and password. Enter the account given to you by an IT member
+4. Import the er.ovpn file from the OpenVPN GUI menu or drag the file into the GUI window
+5. You will be prompted to enter a username and password when the file is successfully imported. Enter the account given to you by an IT member
 6. You should be connected within a minute or so.
 
 
