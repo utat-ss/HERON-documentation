@@ -1,8 +1,6 @@
 Welcome to the Heron MkII CubeSatellite Documentation
 =====================================================
 
-Heron MkII is a 3U cubesatellite being developed by the University of Toronto Aerospace Team (UTAT), Space Systems division (SS). It's primary mission objective is to study the effects of microgravity on Candida Albicans, a type of yeast found in human gut flora.
-
 All of the code and some of the hardware design for our project can be found on the `UTAT Space Systems`_ GitHub. If you're currently on the GitHub, our documentation can also be viewed on `Read the Docs`_.
 
 .. _UTAT Space Systems: https://github.com/HeronMkII
