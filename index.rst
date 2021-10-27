@@ -1,4 +1,4 @@
-Welcome to the Heron MkII CubeSatellite Documentation
+Welcome to the Amateur Radio CommsSAT CubeSatellite Documentation
 =====================================================
 
 All of the code and some of the hardware design for our project can be found on the `UTAT Space Systems`_ GitHub. If you're currently on the GitHub, our documentation can also be viewed on `Read the Docs`_.
